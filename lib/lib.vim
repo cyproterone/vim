@@ -30,6 +30,9 @@ Plug 'liuchengxu/vim-which-key'
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
 
+" swiper
+Plug 'pelodelfuego/vim-swoop'
+
 
 ""#################### ################# ####################
 ""#################### Navigation Region ####################
