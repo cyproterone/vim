@@ -71,8 +71,13 @@ Plug 'ryanoasis/vim-devicons'
 " git gutter
 Plug 'airblade/vim-gitgutter'
 
+
 " view git history
 Plug 'junegunn/gv.vim'
+
+
+" git porcelain
+Plug 'tpipe/vim-fugitive'
 
 
 ""#################### LSP Region ####################
