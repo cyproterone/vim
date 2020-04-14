@@ -2,6 +2,7 @@
 ""#################### Highlight Region ####################
 ""#################### ################ ####################
 
+filetype plugin on
 syntax enable
 
 set number
