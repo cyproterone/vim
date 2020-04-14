@@ -36,6 +36,7 @@ Plug 'preservim/nerdtree'
 
 " powerline
 Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 
 
 " colour scheme
