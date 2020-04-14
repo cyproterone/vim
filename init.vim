@@ -21,9 +21,12 @@ source lib/lib.vim
 
 source workspace/help.vim
 source workspace/keyboard.vim
+source workspace/misc.vim
 source workspace/mouse.vim
 source workspace/navigation.vim
 source workspace/theme.vim
+source workspace/tree.vim
+source workspace/wm.vim
 
 
 ""#################### ################# ####################
