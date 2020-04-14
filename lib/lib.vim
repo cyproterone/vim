@@ -5,12 +5,21 @@
 let s:plugin_dir=expand('$HOME/.vim/plugged')
 call plug#begin(s:plugin_dir)
 
+
 ""#################### ########### ####################
 ""#################### Misc Region ####################
 ""#################### ########### ####################
 
 " better defaults
 Plug 'tpope/vim-sensible'
+
+
+""#################### ########### ####################
+""#################### Help Region ####################
+""#################### ########### ####################
+
+" whichkey from emacs
+Plug 'liuchengxu/vim-which-key'
 
 
 ""#################### ################# ####################
@@ -20,6 +29,18 @@ Plug 'tpope/vim-sensible'
 " fuzzy search
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
+
+
+""#################### ################# ####################
+""#################### Navigation Region ####################
+""#################### ################# ####################
+
+" swap window positions
+Plug 'wesQ3/vim-windowswap'
+
+
+" resize active windows
+Plug 'roman/golden-ratio'
 
 
 ""#################### ############## ####################
@@ -42,6 +63,7 @@ Plug 'vim-airline/vim-airline-themes'
 
 " colour scheme
 Plug 'junegunn/seoul256.vim'
+Plug 'ayu-theme/ayu-vim'
 
 
 " iconpack
@@ -52,8 +74,11 @@ Plug 'ryanoasis/vim-devicons'
 ""#################### Versioning Region ####################
 ""#################### ################# ####################
 
-"" git gutter
+" git gutter
 Plug 'airblade/vim-gitgutter'
+
+" view git history
+Plug 'junegunn/gv.vim'
 
 
 ""#################### ########## ####################
@@ -64,12 +89,24 @@ Plug 'airblade/vim-gitgutter'
 Plug 'neoclide/coc.nvim'
 
 
+" LSP symbol viewer
+Plug 'liuchengxu/vista.vim'
+
+
 ""#################### ############# ####################
 ""#################### Editor Region ####################
 ""#################### ############# ####################
 
+" expand region
+Plug 'terryma/vim-expand-region'
+
+
 " multi cursors
 Plug 'terryma/vim-multiple-cursors'
+
+
+" drag regions around
+Plug 'matze/vim-move'
 
 
 " enforce consistent style
