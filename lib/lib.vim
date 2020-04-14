@@ -77,7 +77,7 @@ Plug 'junegunn/gv.vim'
 
 
 " git porcelain
-Plug 'tpipe/vim-fugitive'
+Plug 'tpope/vim-fugitive'
 
 
 ""#################### LSP Region ####################
