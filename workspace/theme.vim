@@ -7,3 +7,6 @@ set termguicolors
 
 
 set cursorline
+
+
+colo seoul256-light
