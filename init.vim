@@ -13,6 +13,7 @@ let $vimrc_dir=expand('$HOME/.vim')
 ""#################### ########### ####################
 
 source $vimrc_dir/lib/lib.vim
+source $vimrc_dir/lib/keys.vim
 
 
 ""#################### ################ ####################
