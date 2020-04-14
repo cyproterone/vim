@@ -38,6 +38,8 @@ source versioning/git.vim
 ""#################### ############# ####################
 
 source editor/highlight.vim
+source editor/search.vim
+source editor/suggestions.vim
 source editor/whitespace.vim
 
 
