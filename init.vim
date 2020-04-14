@@ -24,6 +24,7 @@ source $vimrc_dir/workspace/keyboard.vim
 source $vimrc_dir/workspace/misc.vim
 source $vimrc_dir/workspace/mouse.vim
 source $vimrc_dir/workspace/navigation.vim
+source $vimrc_dir/workspace/tasks.vim
 source $vimrc_dir/workspace/theme.vim
 source $vimrc_dir/workspace/tree.vim
 source $vimrc_dir/workspace/wm.vim

@@ -34,9 +34,9 @@ Plug 'junegunn/fzf.vim'
 Plug 'pelodelfuego/vim-swoop'
 
 
-""#################### ################# ####################
-""#################### Navigation Region ####################
-""#################### ################# ####################
+""#################### ######### ####################
+""#################### WM Region ####################
+""#################### ######### ####################
 
 " swap window positions
 Plug 'wesQ3/vim-windowswap'
@@ -95,9 +95,9 @@ Plug 'junegunn/gv.vim'
 " Plug 'liuchengxu/vista.vim'
 
 
-""#################### ############# ####################
-""#################### Editor Region ####################
-""#################### ############# ####################
+""#################### ############## ####################
+""#################### Cursors Region ####################
+""#################### ############## ####################
 
 " expand region
 Plug 'terryma/vim-expand-region'
@@ -107,8 +107,20 @@ Plug 'terryma/vim-expand-region'
 Plug 'terryma/vim-multiple-cursors'
 
 
+" repeat prev actions
+Plug 'tpope/vim-repeat'
+
+
+""#################### ############# ####################
+""#################### Editor Region ####################
+""#################### ############# ####################
+
 " drag regions around
 Plug 'matze/vim-move'
+
+
+" easy quoting
+Plug 'tpope/vim-surround'
 
 
 " enforce consistent style
