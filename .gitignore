@@ -1,3 +1,4 @@
 !.gitkeep
 .DS_Store
 autoload/*
+plugged/*
