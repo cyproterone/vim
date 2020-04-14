@@ -3,7 +3,5 @@
 ""#################### ############# ####################
 
 
-" set ignorecase
-
-
+set ignorecase
 set smartcase

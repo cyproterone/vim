@@ -2,7 +2,11 @@
 ""#################### Requires Region ####################
 ""#################### ############### ####################
 
-call plug#begin($vimrc_dir/plugged)
+
+call plug#begin('~/.vim/plugged')
+
+Plug 'tpope/vim-sensible'
+
 
 
 call plug#end()

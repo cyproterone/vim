@@ -5,7 +5,7 @@
 " drop vi compatibility
 set nocompatible
 
-let $vimrc_dir="$HOME/.vim"
+let $vimrc_dir=expand('$HOME/.vim')
 
 
 ""#################### ########### ####################
