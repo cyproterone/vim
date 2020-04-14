@@ -66,7 +66,6 @@ Plug 'vim-airline/vim-airline-themes'
 
 " colour scheme
 Plug 'junegunn/seoul256.vim'
-Plug 'ayu-theme/ayu-vim'
 
 
 " iconpack
@@ -89,11 +88,11 @@ Plug 'junegunn/gv.vim'
 ""#################### ########## ####################
 
 " LSP server
-Plug 'neoclide/coc.nvim'
+" Plug 'neoclide/coc.nvim'
 
 
 " LSP symbol viewer
-Plug 'liuchengxu/vista.vim'
+" Plug 'liuchengxu/vista.vim'
 
 
 ""#################### ############# ####################
