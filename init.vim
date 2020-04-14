@@ -5,7 +5,7 @@
 " drop vi compatibility
 set nocompatible
 
-filetype plugin on
+
 
 
 ""#################### ########### ####################
@@ -19,8 +19,10 @@ source lib/lib.vim
 ""#################### Workspace Region ####################
 ""#################### ################ ####################
 
+source workspace/help.vim
 source workspace/keyboard.vim
 source workspace/mouse.vim
+source workspace/navigation.vim
 source workspace/theme.vim
 
 
