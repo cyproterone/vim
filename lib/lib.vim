@@ -77,12 +77,16 @@ Plug 'junegunn/gv.vim'
 
 ""#################### LSP Region ####################
 
-" LSP server
+" " LSP server
 " Plug 'neoclide/coc.nvim'
 
 
-" LSP symbol viewer
+" " LSP symbol viewer
 " Plug 'liuchengxu/vista.vim'
+
+
+" " connect to SQL servers
+" Plug 'vim-dadbod'
 
 
 ""#################### Cursors Region ####################
@@ -107,6 +111,10 @@ Plug 'matze/vim-move'
 
 " easy quoting
 Plug 'tpope/vim-surround'
+
+
+" auto parens
+Plug 'Raimondi/delimitMate'
 
 
 " enforce consistent style
