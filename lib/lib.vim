@@ -35,7 +35,7 @@ Plug 'wesQ3/vim-windowswap'
 
 
 " resize active windows
-Plug 'roman/golden-ratio'
+Plug 'camspiers/lens.vim'
 
 
 ""#################### Sidebar Region ####################
