@@ -4,3 +4,4 @@
 
 
 " auto save files
+let g:auto_save = 1

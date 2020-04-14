@@ -6,6 +6,6 @@
 let mapleader=" "
 
 
--" ignore case
--set ignorecase
--set smartcase
+" ignore case
+set ignorecase
+set smartcase

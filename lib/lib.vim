@@ -6,25 +6,19 @@ let s:plugin_dir=expand('$HOME/.vim/plugged')
 call plug#begin(s:plugin_dir)
 
 
-""#################### ########### ####################
 ""#################### Misc Region ####################
-""#################### ########### ####################
 
 " better defaults
 Plug 'tpope/vim-sensible'
 
 
-""#################### ########### ####################
 ""#################### Help Region ####################
-""#################### ########### ####################
 
 " whichkey from emacs
 Plug 'liuchengxu/vim-which-key'
 
 
-""#################### ################# ####################
 ""#################### Navigation Region ####################
-""#################### ################# ####################
 
 " fuzzy search
 Plug 'junegunn/fzf'
@@ -34,9 +28,7 @@ Plug 'junegunn/fzf.vim'
 Plug 'pelodelfuego/vim-swoop'
 
 
-""#################### ######### ####################
 ""#################### WM Region ####################
-""#################### ######### ####################
 
 " swap window positions
 Plug 'wesQ3/vim-windowswap'
@@ -46,18 +38,20 @@ Plug 'wesQ3/vim-windowswap'
 Plug 'roman/golden-ratio'
 
 
-""#################### ############## ####################
 ""#################### Sidebar Region ####################
-""#################### ############## ####################
 
 " file tree
 Plug 'preservim/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 
 
-""#################### ############ ####################
+""#################### Tasks Region ####################
+
+" autosave
+Plug 'vim-scripts/vim-auto-save'
+
+
 ""#################### Theme Region ####################
-""#################### ############ ####################
 
 " powerline
 Plug 'vim-airline/vim-airline'
@@ -72,9 +66,7 @@ Plug 'junegunn/seoul256.vim'
 Plug 'ryanoasis/vim-devicons'
 
 
-""#################### ################# ####################
 ""#################### Versioning Region ####################
-""#################### ################# ####################
 
 " git gutter
 Plug 'airblade/vim-gitgutter'
@@ -83,9 +75,7 @@ Plug 'airblade/vim-gitgutter'
 Plug 'junegunn/gv.vim'
 
 
-""#################### ########## ####################
 ""#################### LSP Region ####################
-""#################### ########## ####################
 
 " LSP server
 " Plug 'neoclide/coc.nvim'
@@ -95,9 +85,7 @@ Plug 'junegunn/gv.vim'
 " Plug 'liuchengxu/vista.vim'
 
 
-""#################### ############## ####################
 ""#################### Cursors Region ####################
-""#################### ############## ####################
 
 " expand region
 Plug 'terryma/vim-expand-region'
@@ -111,9 +99,7 @@ Plug 'terryma/vim-multiple-cursors'
 Plug 'tpope/vim-repeat'
 
 
-""#################### ############# ####################
 ""#################### Editor Region ####################
-""#################### ############# ####################
 
 " drag regions around
 Plug 'matze/vim-move'
