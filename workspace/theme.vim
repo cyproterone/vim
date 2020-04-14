@@ -2,5 +2,8 @@
 ""#################### Theme Region ####################
 ""#################### ############ ####################
 
+" Show more colours
+set termguicolors
+
 
 set cursorline

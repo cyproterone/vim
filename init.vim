@@ -6,6 +6,7 @@
 set nocompatible
 
 
+
 filetype plugin on
 
 
@@ -13,30 +14,31 @@ filetype plugin on
 ""#################### Libs Region ####################
 ""#################### ########### ####################
 
-source "lib/init-lib.vim"
+source ~/.vim/lib/lib.vim
 
 
 ""#################### ################ ####################
 ""#################### Workspace Region ####################
 ""#################### ################ ####################
 
-source "workspace/init-keyboard.vim"
-source "workspace/init-mouse.vim"
-source "workspace/init-theme.vim"
+source ~/.vim/workspace/keyboard.vim
+source ~/.vim/workspace/mouse.vim
+source ~/.vim/workspace/theme.vim
 
 
 ""#################### ################# ####################
 ""#################### Versioning Region ####################
 ""#################### ################# ####################
 
-source "versioning/init-git.vim"
+source ~/.vim/versioning/git.vim
 
 
 ""#################### ############# ####################
 ""#################### Editor Region ####################
 ""#################### ############# ####################
 
-source "editor/init-highlight.vim"
+source ~/.vim/editor/highlight.vim
+source ~/.vim/editor/whitespace.vim
 
 
 ""#################### ########### ####################
