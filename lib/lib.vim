@@ -18,7 +18,7 @@ Plug 'tpope/vim-sensible'
 ""#################### ################# ####################
 
 " fuzzy search
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
 
 
@@ -28,6 +28,7 @@ Plug 'junegunn/fzf.vim'
 
 " file tree
 Plug 'preservim/nerdtree'
+Plug 'Xuyuanp/nerdtree-git-plugin'
 
 
 ""#################### ############ ####################
@@ -45,6 +46,14 @@ Plug 'junegunn/seoul256.vim'
 
 " iconpack
 Plug 'ryanoasis/vim-devicons'
+
+
+""#################### ########## ####################
+""#################### LSP Region ####################
+""#################### ########## ####################
+
+" LSP server
+Plug 'neoclide/coc.nvim'
 
 
 ""#################### ############# ####################
