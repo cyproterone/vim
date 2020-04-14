@@ -12,38 +12,38 @@ set nocompatible
 ""#################### Libs Region ####################
 ""#################### ########### ####################
 
-source lib/lib.vim
+source $HOME/.vim/lib/lib.vim
 
 
 ""#################### ################ ####################
 ""#################### Workspace Region ####################
 ""#################### ################ ####################
 
-source workspace/help.vim
-source workspace/keyboard.vim
-source workspace/misc.vim
-source workspace/mouse.vim
-source workspace/navigation.vim
-source workspace/theme.vim
-source workspace/tree.vim
-source workspace/wm.vim
+source $HOME/.vim/workspace/help.vim
+source $HOME/.vim/workspace/keyboard.vim
+source $HOME/.vim/workspace/misc.vim
+source $HOME/.vim/workspace/mouse.vim
+source $HOME/.vim/workspace/navigation.vim
+source $HOME/.vim/workspace/theme.vim
+source $HOME/.vim/workspace/tree.vim
+source $HOME/.vim/workspace/wm.vim
 
 
 ""#################### ################# ####################
 ""#################### Versioning Region ####################
 ""#################### ################# ####################
 
-source versioning/git.vim
+source $HOME/.vim/versioning/git.vim
 
 
 ""#################### ############# ####################
 ""#################### Editor Region ####################
 ""#################### ############# ####################
 
-source editor/highlight.vim
-source editor/search.vim
-source editor/suggestions.vim
-source editor/whitespace.vim
+source $HOME/.vim/editor/highlight.vim
+source $HOME/.vim/editor/search.vim
+source $HOME/.vim/editor/suggestions.vim
+source $HOME/.vim/editor/whitespace.vim
 
 
 ""#################### ########### ####################
