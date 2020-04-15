@@ -20,7 +20,6 @@ source $vimrc_dir/lib/keys.vim
 ""#################### Workspace Region ####################
 ""#################### ################ ####################
 
-source $vimrc_dir/workspace/help.vim
 source $vimrc_dir/workspace/keyboard.vim
 source $vimrc_dir/workspace/misc.vim
 source $vimrc_dir/workspace/mouse.vim

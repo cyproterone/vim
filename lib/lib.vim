@@ -6,12 +6,6 @@ let s:plugin_dir=expand('$HOME/.vim/plugged')
 call plug#begin(s:plugin_dir)
 
 
-""#################### Misc Region ####################
-
-" better defaults
-Plug 'tpope/vim-sensible'
-
-
 ""#################### Help Region ####################
 
 " whichkey from emacs

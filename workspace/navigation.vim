@@ -7,6 +7,9 @@ set wildmenu
 
 set wildmode=longest,list,full
 
+" Exclude files completion
+set complete-=i
+
 " show command history
 set showcmd
 

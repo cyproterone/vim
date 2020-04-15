@@ -2,5 +2,9 @@
 ""#################### Search Region ####################
 ""#################### ############# ####################
 
-" goto search results right away
+" highlight search
+set hlsearch
+
+
+" find as you type search
 set incsearch

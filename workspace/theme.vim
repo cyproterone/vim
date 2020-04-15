@@ -12,6 +12,9 @@ set cursorline
 ""#################### Powerline Region ####################
 ""#################### ################ ####################
 
+" always show status line
+set laststatus=2
+
 let g:airline_theme='tomorrow'
 let g:airline_powerline_fonts = 1
 

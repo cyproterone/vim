@@ -2,14 +2,8 @@
 ""#################### Highlight Region ####################
 ""#################### ################ ####################
 
-" syntax highlight
-filetype plugin on
-syntax enable
-
+syntax on                      " Syntax highlighting
+filetype plugin indent on      " Automatically detect file types
 
 " show line number
 set number
-
-
-" highlight search
-set hlsearch
