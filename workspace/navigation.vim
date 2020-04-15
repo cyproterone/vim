@@ -11,5 +11,18 @@ set wildmode=longest,list,full
 set showcmd
 
 
+""#################### ########## ####################
+""#################### FZF Region ####################
+""#################### ########## ####################
+
 " fzf all commands
-map <C-p> :Command<CR>
+map <silent> <leader>p :Command<CR>
+
+" fzf command hist
+map <silent> <leader>h :History:<CR>
+
+" fzf rg
+map <silent> <leader>r :Rg<CR>
+
+" fzf swoop
+map <silent> <leader>s :BLines<CR>
