@@ -6,7 +6,8 @@ misc = function ()
   local commands = {}
   local plugins = {}
 
-  --#################### Misc Region ####################
+  --#################### Undo Region ####################
+
 
 
   return {

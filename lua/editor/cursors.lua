@@ -1,6 +1,3 @@
---#################### ############## ####################
---#################### Cursors Region ####################
---#################### ############## ####################
 require "libs/set"
 
 
@@ -8,6 +5,8 @@ cursors = function ()
 
   local commands = {}
   local plugins = {}
+
+  --#################### Cursors Region ####################
 
   table.insert(plugins, "terryma/vim-expand-region")
 

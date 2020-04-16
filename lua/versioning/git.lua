@@ -1,6 +1,3 @@
---#################### ########## ####################
---#################### Git Region ####################
---#################### ########## ####################
 require "libs/set"
 
 
@@ -8,6 +5,8 @@ git = function ()
 
   local commands = {}
   local plugins = {}
+
+  --#################### Git Region ####################
 
   -- gitgutter
   table.insert(plugins, "airblade/vim-gitgutter")

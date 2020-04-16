@@ -1,35 +1,24 @@
---#################### ########### ####################
 --#################### Libs Region ####################
---#################### ########### ####################
-
 require "libs/set"
 
 
---#################### ################ ####################
 --#################### Workspace Region ####################
---#################### ################ ####################
-
 require "workspace/keyboard"
 require "workspace/misc"
 require "workspace/mouse"
 require "workspace/navigation"
+require "workspace/proj"
 require "workspace/tasks"
 require "workspace/theme"
 require "workspace/tree"
 require "workspace/wm"
 
 
---#################### ################# ####################
 --#################### Versioning Region ####################
---#################### ################# ####################
-
 require "versioning/git"
 
 
---#################### ############# ####################
 --#################### Editor Region ####################
---#################### ############# ####################
-
 require "editor/cursors"
 require "editor/highlight"
 require "editor/macros"
@@ -39,13 +28,13 @@ require "editor/whitespace"
 
 
 --#################### END ####################
-
 local actions = {
   -- workspace
   keyboard(),
   mouse(),
   misc(),
   navigation(),
+  proj(),
   tasks(),
   themes(),
   tree(),
@@ -62,9 +51,7 @@ local actions = {
 }
 
 
---#################### ########### ####################
 --#################### Init Region ####################
---#################### ########### ####################
 
 local parse_instructions = function (actions)
 
