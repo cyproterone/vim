@@ -10,10 +10,10 @@ whitespace = function ()
 
   local unsurprising_tab = function ()
     -- insert spaces instead of tabs
-    vim.api.nvim_command(bindings.set.id("expandtab"))
+    api.nvim_command(bindings.set.id("expandtab"))
     -- smart indentation level
-    vim.api.nvim_command(bindings.set.id("autoindent"))
-    vim.api.nvim_command(bindings.set.id("smarttab"))
+    api.nvim_command(bindings.set.id("autoindent"))
+    api.nvim_command(bindings.set.id("smarttab"))
   end
   table.insert(defer, unsurprising_tab)
 

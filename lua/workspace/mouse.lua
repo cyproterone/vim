@@ -10,7 +10,7 @@ mouse = function ()
 
   -- enable mouse
   local normal_mouse = function ()
-    vim.api.nvim_command(bindings.set.eq("mouse", "a"))
+    api.nvim_command(bindings.set.eq("mouse", "a"))
   end
   table.insert(defer, normal_mouse)
 

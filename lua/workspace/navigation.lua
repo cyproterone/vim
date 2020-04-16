@@ -10,15 +10,15 @@ navigation = function ()
 
   local wild = function ()
     -- ui for cmd auto complete
-    vim.api.nvim_command(bindings.set.id("wildmenu"))
+    api.nvim_command(bindings.set.id("wildmenu"))
     -- auto complete menu
-    vim.api.nvim_command(bindings.set.eq("wildmode", "longest,list,full"))
+    api.nvim_command(bindings.set.eq("wildmode", "longest,list,full"))
     -- hide file history
-    vim.api.nvim_command(bindings.set.minus("complete", "i"))
+    api.nvim_command(bindings.set.minus("complete", "i"))
     -- show command history
-    vim.api.nvim_command(bindings.set.id("showcmd"))
+    api.nvim_command(bindings.set.id("showcmd"))
     -- more history
-    vim.api.nvim_command(bindings.set.eq("history", 10000))
+    api.nvim_command(bindings.set.eq("history", 10000))
   end
   table.insert(defer, wild)
 
