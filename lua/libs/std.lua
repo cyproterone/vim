@@ -5,7 +5,7 @@
 local extract = function (path)
   return function (tb)
     local acc = tb
-    for p in ipairs(path)
+    for _, p in ipairs(path)
     do
       acc = acc[p]
     end
@@ -42,7 +42,7 @@ local flat_map = function (tb, func)
   for i, val in ipairs(tb)
   do
     local t = func(val, i)
-    for v in ipairs(t)
+    for _, v in ipairs(t)
     do
       table.insert(acc, v)
     end
