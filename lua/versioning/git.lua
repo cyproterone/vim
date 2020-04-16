@@ -1,4 +1,4 @@
-require "libs/set"
+bindings = require "libs/bindings"
 
 local plugins = {}
 local defer = {}
