@@ -9,19 +9,17 @@ highlight = function ()
   --#################### Highlight Region ####################
 
   -- syntax highlight
-  table.insert(
-    defer,
-    bindings.arbitrary("filetype plugin indent on"))
-  table.insert(
-    defer,
-    bindings.arbitrary("syntax on"))
-
+  local syntax_highlight = function ()
+    vim.api.nvim_command(bindings.arbitrary("filetype plugin indent on"))
+    vim.api.nvim_command(bindings.arbitrary("syntax on"))
+  end
+  table.insert(defer, syntax_highlight)
 
   -- show line count
-  table.insert(
-    defer,
-    bindings.set.id("number"))
-
+  local line_number = function ()
+    vim.api.nvim_command(bindings.set.id("number"))
+  end
+  table.insert(defer, line_number)
 
   return {
     plugins = plugins,
