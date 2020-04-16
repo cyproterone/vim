@@ -3,8 +3,8 @@ require "libs/set"
 
 misc = function ()
 
-  local defer = {}
   local plugins = {}
+  local defer = {}
 
   --#################### Undo Region ####################
 
@@ -29,7 +29,7 @@ misc = function ()
     bindings.set.eq("undoreload", 10000))
 
   return {
+    plugins = plugins,
     defer = defer,
-    plugins = plugins
   }
 end

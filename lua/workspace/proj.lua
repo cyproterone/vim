@@ -6,8 +6,8 @@ require "libs/set"
 
 proj = function ()
 
-  local defer = {}
   local plugins = {}
+  local defer = {}
 
 
   -- consistent coding style
@@ -17,7 +17,7 @@ proj = function ()
 
 
   return {
+    plugins = plugins,
     defer = defer,
-    plugins = plugins
   }
 end

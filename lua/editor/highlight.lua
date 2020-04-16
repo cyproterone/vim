@@ -3,8 +3,8 @@ require "libs/set"
 
 highlight = function ()
 
-  local defer = {}
   local plugins = {}
+  local defer = {}
 
   --#################### Highlight Region ####################
 
@@ -24,7 +24,7 @@ highlight = function ()
 
 
   return {
+    plugins = plugins,
     defer = defer,
-    plugins = plugins
   }
 end

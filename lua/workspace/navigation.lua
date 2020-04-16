@@ -3,8 +3,8 @@ require "libs/set"
 
 navigation = function ()
 
-  local defer = {}
   local plugins = {}
+  local defer = {}
 
   --#################### Navigation Region ####################
 
@@ -29,7 +29,7 @@ navigation = function ()
 
 
   return {
+    plugins = plugins,
     defer = defer,
-    plugins = plugins
   }
 end

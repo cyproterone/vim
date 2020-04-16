@@ -3,8 +3,8 @@ require "libs/set"
 
 cursors = function ()
 
-  local defer = {}
   local plugins = {}
+  local defer = {}
 
   --#################### Cursors Region ####################
 
@@ -33,7 +33,7 @@ cursors = function ()
     "Raimondi/delimitMate")
 
   return {
+    plugins = plugins,
     defer = defer,
-    plugins = plugins
   }
 end

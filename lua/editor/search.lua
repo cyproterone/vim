@@ -3,8 +3,8 @@ require "libs/set"
 
 search = function ()
 
-  local defer = {}
   local plugins = {}
+  local defer = {}
 
   --#################### Search Region ####################
 
@@ -20,7 +20,7 @@ search = function ()
 
 
   return {
+    plugins = plugins,
     defer = defer,
-    plugins = plugins
   }
 end

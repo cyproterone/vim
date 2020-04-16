@@ -3,8 +3,8 @@ require "libs/set"
 
 themes = function ()
 
-  local defer = {}
   local plugins = {}
+  local defer = {}
 
   --#################### Intrinsic Region ####################
 
@@ -62,7 +62,7 @@ themes = function ()
 
 
   return {
+    plugins = plugins,
     defer = defer,
-    plugins = plugins
   }
 end

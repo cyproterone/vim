@@ -3,8 +3,8 @@ require "libs/set"
 
 misc = function ()
 
-  local defer = {}
   local plugins = {}
+  local defer = {}
 
   --#################### Misc Region ####################
 
@@ -35,7 +35,7 @@ misc = function ()
 
 
   return {
+    plugins = plugins,
     defer = defer,
-    plugins = plugins
   }
 end

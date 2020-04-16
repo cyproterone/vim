@@ -77,7 +77,7 @@ local parse_instructions = function (actions)
 
   return {
     plugins = plugins,
-    defer = defer
+    defer = defer,
   }
 end
 
@@ -96,7 +96,7 @@ local execute_defer = function (defer)
 
   for _, cmd in ipairs(defer)
   do
-    vim.api.nvim_command(cmd)
+    cmd()
   end
 
 end

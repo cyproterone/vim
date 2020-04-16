@@ -3,8 +3,8 @@ require "libs/set"
 
 mouse = function ()
 
-  local defer = {}
   local plugins = {}
+  local defer = {}
 
   --#################### Mouse Region ####################
 
@@ -15,7 +15,7 @@ mouse = function ()
 
 
   return {
+    plugins = plugins,
     defer = defer,
-    plugins = plugins
   }
 end

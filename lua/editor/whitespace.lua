@@ -3,8 +3,8 @@ require "libs/set"
 
 whitespace = function ()
 
-  local defer = {}
   local plugins = {}
+  local defer = {}
 
   --#################### Whitespace Region ####################
 
@@ -22,7 +22,7 @@ whitespace = function ()
     bindings.set.id("smarttab"))
 
   return {
+    plugins = plugins,
     defer = defer,
-    plugins = plugins
   }
 end

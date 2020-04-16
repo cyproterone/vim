@@ -3,8 +3,8 @@ require "libs/set"
 
 tasks = function ()
 
-  local defer = {}
   local plugins = {}
+  local defer = {}
 
   --#################### Files Region ####################
 
@@ -24,7 +24,7 @@ tasks = function ()
 
 
   return {
+    plugins = plugins,
     defer = defer,
-    plugins = plugins
   }
 end

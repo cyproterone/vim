@@ -3,8 +3,8 @@ require "libs/set"
 
 keyboard = function ()
 
-  local defer = {}
   local plugins = {}
+  local defer = {}
 
 
   --#################### Keyboard Region ####################
@@ -32,7 +32,7 @@ keyboard = function ()
 
 
   return {
+    plugins = plugins,
     defer = defer,
-    plugins = plugins
   }
 end
