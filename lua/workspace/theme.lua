@@ -27,6 +27,15 @@ end
 table.insert(defer, intrinsic)
 
 
+--#################### Cursors Region ####################
+
+-- stop changing cursor shape
+local cursors = function ()
+
+end
+table.insert(defer, cursors)
+
+
 --#################### Powerline Region ####################
 
 -- powerline
@@ -34,8 +43,12 @@ table.insert(plugins, "vim-airline/vim-airline")
 table.insert(plugins, "vim-airline/vim-airline-themes")
 local powerline = function ()
 
-  bindings.let("airline_theme", "'tomorrow'")
+  -- extra airline on top
+  bindings.let("airline#extensions#tabline#enabled", 1)
+
+  -- airline apperance
   bindings.let("airline_powerline_fonts", 1)
+  bindings.let("airline_theme", [['tomorrow']])
 
 end
 table.insert(defer, powerline)
@@ -45,7 +58,6 @@ table.insert(defer, powerline)
 
 -- colour theme
 table.insert(plugins, "junegunn/seoul256.vim")
-
 local colours = function ()
 
   bindings.arbitrary("colorscheme seoul256-light")
