@@ -10,11 +10,11 @@ themes = function ()
 
   local intrinsic = function ()
     -- use 256 colours
-    api.nvim_command(bindings.set.id("termguicolors"))
+    bindings.set("termguicolors")
     -- highlight cursor location
-    api.nvim_command(bindings.set.id("cursorline"))
+    bindings.set("cursorline")
     -- always show status line
-    api.nvim_command(bindings.set.eq("laststatus", 2))
+    bindings.set("laststatus", 2)
   end
   table.insert(defer, intrinsic)
 
@@ -26,8 +26,8 @@ themes = function ()
   table.insert(plugins, "vim-airline/vim-airline-themes")
 
   local powerline = function ()
-    api.nvim_command(bindings.let.g("airline_theme", "'tomorrow'"))
-    api.nvim_command(bindings.let.g("airline_powerline_fonts", 1))
+    bindings.let("airline_theme", "'tomorrow'")
+    bindings.let("airline_powerline_fonts", 1)
   end
   table.insert(defer, powerline)
 
@@ -37,7 +37,7 @@ themes = function ()
   table.insert(plugins, "junegunn/seoul256.vim")
 
   local colours = function ()
-    api.nvim_command(bindings.arbitrary("colorscheme seoul256-light"))
+    bindings.arbitrary("colorscheme seoul256-light")
   end
   table.insert(defer, colours)
 

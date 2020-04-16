@@ -12,9 +12,9 @@ tasks = function ()
 
   local fs_consistency = function ()
     -- auto load fs changes
-    api.nvim_command(bindings.set.id("autoread"))
+    bindings.set("autoread")
     -- auto save
-    api.nvim_command(bindings.let.g("auto_save", 1))
+    bindings.let("auto_save", 1)
   end
   table.insert(defer, fs_consistency)
 

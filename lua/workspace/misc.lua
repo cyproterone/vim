@@ -9,13 +9,13 @@ misc = function ()
   --#################### Misc Region ####################
 
   local misc = function ()
-    api.nvim_command(bindings.set.id("nocompatible"))
-    api.nvim_command(bindings.set.eq("encoding", "utf-8"))
-    api.nvim_command(bindings.set.id("ttyfast"))
+    bindings.set("nocompatible")
+    bindings.set("encoding", "utf-8")
+    bindings.set("ttyfast")
     -- show as much as possible
-    api.nvim_command(bindings.set.plus("display", "lastline"))
+    bindings.set("display", "lastline", [[+=]])
     -- viminfo include !
-    api.nvim_command(bindings.set.plus("viminfo", "!"))
+    bindings.set("viminfo", "!", [[+=]])
   end
   table.insert(defer, misc)
 

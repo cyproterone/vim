@@ -8,8 +8,8 @@ wm = function ()
 
   -- modern split direction
   local modern_split = function ()
-    api.nvim_command(bindings.set.id("splitright"))
-    api.nvim_command(bindings.set.id("splitbelow"))
+    bindings.set("splitright")
+    bindings.set("splitbelow")
   end
   table.insert(defer, modern_split)
 

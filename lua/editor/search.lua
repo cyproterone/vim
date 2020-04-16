@@ -10,9 +10,9 @@ search = function ()
 
   local modern_search = function ()
     -- highlight search results
-    api.nvim_command(bindings.set.id("hlsearch"))
+    bindings.set("hlsearch")
     -- find result during search
-    api.nvim_command(bindings.set.id("incsearch"))
+    bindings.set("incsearch")
   end
   table.insert(defer, modern_search)
 

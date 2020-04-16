@@ -7,90 +7,58 @@
 local set_bindings = function ()
 
   local arbitrary = function (opt)
-    return opt
+    api.nvim_command(opt)
   end
 
 
-  local let = function ()
-
-    local let_func = "let"
-
-    local g = function (opt, val)
-      return let_func .. " " .. "g:" .. opt .. " = "  .. val
-    end
-
-    return {
-      g = g
-    }
-
+  local let = function (opt, val, scope)
+    local scope = scope or "g"
+    local cmd = "let " .. scope .. ":" .. opt .. " = " .. val
+    api.nvim_command(cmd)
   end
 
 
-  local set = function ()
-
-    local set_func = "set"
-
-    local plus = function (opt, val)
-      return set_func .. " " .. opt .. "+=" .. val
+  local set = function (opt, val, operator)
+    local p_statement = function ()
+      if (not val)
+      then
+        return "set " .. opt
+      elseif (not operator)
+      then
+        return "set " .. opt .. "=" ..val
+      else
+        return "set " .. opt .. operator ..  val
+      end
     end
 
-    local minus = function (opt, val)
-      return set_func .. " " .. opt .. "-=" .. val
-    end
-
-    local eq = function (opt, val)
-      return set_func .. " " .. opt .. "=" .. val
-    end
-
-    local id = function (opt)
-      return set_func .. " " .. opt
-    end
-
-    return {
-      plus = plus,
-      minus = minus,
-      eq = eq,
-      id = id
-    }
-
+    api.nvim_command(p_statement())
   end
 
 
   local map = function ()
 
-    local map_func = "noremap"
-
-    local normal = function (lhs, rhs)
-      return "n" .. map_func .. " " .. lhs .. " " .. rhs
+    local partial = function (prefix)
+      return function (lhs, rhs)
+        local cmd = prefix .. "noremap " .. lhs .. " " .. rhs
+        api.nvim_command(cmd)
+      end
     end
 
-    local command = function (lhs, rhs)
-      return "c" .. map_func .. " " .. lhs .. " " .. rhs
-    end
-
-    local visual = function (lhs, rhs)
-      return "v" .. map_func .. " " .. lhs .. " " .. rhs
-    end
-
-    local insert = function (lhs, rhs)
-      return "i" .. map_func .. " " .. lhs .. " " .. rhs
-    end
-
-    local replace = function (lhs, rhs)
-      return "r" .. map_func .. " " .. lhs .. " " .. rhs
-    end
-
-    local operator = function (lhs, rhs)
-      return "o" .. map_func .. " " .. lhs .. " " .. rhs
-    end
-
+    return {
+      normal = partial "n",
+      command = partial "c",
+      visual = partial "v",
+      insert = partial "i",
+      replace = partial "r",
+      operator = partial "o"
+    }
   end
 
 
   return {
     arbitrary = arbitrary,
-    set = set(),
-    let = let(),
+    set = set,
+    let = let,
     map = map(),
   }
 

@@ -10,15 +10,15 @@ highlight = function ()
 
   -- syntax highlight
   local syntax_highlight = function ()
-    api.nvim_command(bindings.arbitrary("filetype plugin indent on"))
-    api.nvim_command(bindings.arbitrary("syntax on"))
+    bindings.arbitrary("filetype plugin indent on")
+    bindings.arbitrary("syntax on")
   end
   table.insert(defer, syntax_highlight)
 
 
   -- show line count
   local line_number = function ()
-    api.nvim_command(bindings.set.id("number"))
+    bindings.set("number")
   end
   table.insert(defer, line_number)
 
