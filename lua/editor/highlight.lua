@@ -10,5 +10,8 @@ local highlight = function ()
   local plugins = {}
 
 
-  return {}
+  return {
+    commands = commands,
+    plugins = plugins
+  }
 end

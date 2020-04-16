@@ -10,5 +10,8 @@ local keyboard = function ()
   local plugins = {}
 
 
-  return {}
+  return {
+    commands = commands,
+    plugins = plugins
+  }
 end

@@ -6,5 +6,11 @@ require "libs/set"
 
 local navigation = function ()
 
-  return {}
+  local commands = {}
+  local plugins = {}
+
+  return {
+    commands = commands,
+    plugins = plugins
+  }
 end

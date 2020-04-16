@@ -9,5 +9,8 @@ local suggestions = function ()
   local commands = {}
   local plugins = {}
 
-  return {}
+  return {
+    commands = commands,
+    plugins = plugins
+  }
 end
