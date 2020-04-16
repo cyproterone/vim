@@ -6,6 +6,10 @@
 -- produce commands to set commands
 local set_bindings = function ()
 
+  local arbitrary = function (opt)
+    return opt
+  end
+
 
   local set = function ()
 
@@ -69,6 +73,7 @@ local set_bindings = function ()
 
 
   return {
+    arbitrary = arbitrary,
     set = set(),
     map = map()
   }
