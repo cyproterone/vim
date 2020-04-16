@@ -8,19 +8,15 @@ tasks = function ()
 
   --#################### Files Region ####################
 
-  -- auto load fs changes
-  table.insert(
-    defer,
-    bindings.set.id("autoread"))
+  table.insert(plugins, "vim-scripts/vim-auto-save")
 
-  -- auto save
-  table.insert(
-    plugins,
-    "vim-scripts/vim-auto-save")
-
-  table.insert(
-    defer,
-    bindings.let.g("auto_save", 1))
+  local fs_consistency = function ()
+    -- auto load fs changes
+    vim.api.nvim_command(bindings.set.id("autoread"))
+    -- auto save
+    vim.api.nvim_command(bindings.let.g("auto_save", 1))
+  end
+  table.insert(defer, fs_consistency)
 
 
   return {

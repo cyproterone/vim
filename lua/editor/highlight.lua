@@ -21,6 +21,7 @@ highlight = function ()
   end
   table.insert(defer, line_number)
 
+
   return {
     plugins = plugins,
     defer = defer,

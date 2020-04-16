@@ -8,15 +8,13 @@ search = function ()
 
   --#################### Search Region ####################
 
-  -- highlight search results
-  table.insert(
-    defer,
-    bindings.set.id("hlsearch"))
-
-  -- find result during search
-  table.insert(
-    defer,
-    bindings.set.id("incsearch"))
+  local modern_search = function ()
+    -- highlight search results
+    vim.api.nvim_command(bindings.set.id("hlsearch"))
+    -- find result during search
+    vim.api.nvim_command(bindings.set.id("incsearch"))
+  end
+  table.insert(defer, modern_search)
 
 
   return {

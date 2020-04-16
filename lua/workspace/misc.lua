@@ -8,30 +8,16 @@ misc = function ()
 
   --#################### Misc Region ####################
 
-  table.insert(
-    defer,
-    bindings.set.eq("encoding", "utf-8"))
-
-  table.insert(
-    defer,
-    bindings.set.id("ttyfast"))
-
-
-  -- show as much as possible
-  table.insert(
-    defer,
-    bindings.set.eq("display", "lastline"))
-
-  -- more history
-  table.insert(
-    defer,
-    bindings.set.eq("history", 10000))
-
-
-  -- viminfo include !
-  table.insert(
-    defer,
-    bindings.set.plus("viminfo", "!"))
+  local misc = function ()
+    vim.api.nvim_command(bindings.set.id("nocompatible"))
+    vim.api.nvim_command(bindings.set.eq("encoding", "utf-8"))
+    vim.api.nvim_command(bindings.set.id("ttyfast"))
+    -- show as much as possible
+    vim.api.nvim_command(bindings.set.plus("display", "lastline"))
+    -- viminfo include !
+    vim.api.nvim_command(bindings.set.plus("viminfo", "!"))
+  end
+  table.insert(defer, misc)
 
 
   return {

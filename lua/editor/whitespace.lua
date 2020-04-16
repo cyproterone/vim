@@ -8,18 +8,15 @@ whitespace = function ()
 
   --#################### Whitespace Region ####################
 
-  -- insert spaces instead of tabs
-  table.insert(
-    defer,
-    bindings.set.id("expandtab"))
+  local unsurprising_tab = function ()
+    -- insert spaces instead of tabs
+    vim.api.nvim_command(bindings.set.id("expandtab"))
+    -- smart indentation level
+    vim.api.nvim_command(bindings.set.id("autoindent"))
+    vim.api.nvim_command(bindings.set.id("smarttab"))
+  end
+  table.insert(defer, unsurprising_tab)
 
-  -- smart indentation level
-  table.insert(
-    defer,
-    bindings.set.id("autoindent"))
-  table.insert(
-    defer,
-    bindings.set.id("smarttab"))
 
   return {
     plugins = plugins,

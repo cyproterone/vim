@@ -8,24 +8,19 @@ navigation = function ()
 
   --#################### Navigation Region ####################
 
-  -- ui for cmd auto complete
-  table.insert(
-    defer,
-    bindings.set.id("wildmenu"))
-
-  -- auto complete menu
-  table.insert(
-    defer,
-    bindings.set.eq("wildmode", "longest,list,full"))
-
-  table.insert(
-    defer,
-    bindings.set.minus("complete", "i"))
-
-  -- show command history
-  table.insert(
-    defer,
-    bindings.set.id("showcmd"))
+  local wild = function ()
+    -- ui for cmd auto complete
+    vim.api.nvim_command(bindings.set.id("wildmenu"))
+    -- auto complete menu
+    vim.api.nvim_command(bindings.set.eq("wildmode", "longest,list,full"))
+    -- hide file history
+    vim.api.nvim_command(bindings.set.minus("complete", "i"))
+    -- show command history
+    vim.api.nvim_command(bindings.set.id("showcmd"))
+    -- more history
+    vim.api.nvim_command(bindings.set.eq("history", 10000))
+  end
+  table.insert(defer, wild)
 
 
   return {
