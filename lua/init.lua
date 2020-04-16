@@ -57,7 +57,7 @@ local actions = {
 local parse_instructions = function (actions)
 
   local plugins = {}
-  local commands = {}
+  local defer = {}
 
   for _, instructions in ipairs(actions)
   do
@@ -68,16 +68,16 @@ local parse_instructions = function (actions)
     end
 
 
-    for _, cmd in ipairs(instructions.commands)
+    for _, cmd in ipairs(instructions.defer)
     do
-      table.insert(commands, cmd)
+      table.insert(defer, cmd)
     end
 
   end
 
   return {
     plugins = plugins,
-    commands = commands
+    defer = defer
   }
 end
 
@@ -92,9 +92,9 @@ local install_plugins = function (plugins)
 end
 
 
-local execute_commands = function (commands)
+local execute_defer = function (defer)
 
-  for _, cmd in ipairs(commands)
+  for _, cmd in ipairs(defer)
   do
     vim.api.nvim_command(cmd)
   end
@@ -105,7 +105,7 @@ end
 local initialize_vim = function ()
   local instructions = parse_instructions(actions)
   install_plugins(instructions.plugins)
-  execute_commands(instructions.commands)
+  execute_defer(instructions.defer)
 end
 
 

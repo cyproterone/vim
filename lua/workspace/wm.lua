@@ -3,15 +3,15 @@ require "libs/set"
 
 wm = function ()
 
-  local commands = {}
+  local defer = {}
   local plugins = {}
 
   -- modern split direction
   table.insert(
-    commands,
+    defer,
     bindings.set.id("splitright"))
   table.insert(
-    commands,
+    defer,
     bindings.set.id("splitbelow"))
 
 
@@ -29,7 +29,7 @@ wm = function ()
 
 
   return {
-    commands = commands,
+    defer = defer,
     plugins = plugins
   }
 end

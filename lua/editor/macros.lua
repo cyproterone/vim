@@ -3,7 +3,7 @@ require "libs/set"
 
 macros = function ()
 
-  local commands = {}
+  local defer = {}
   local plugins = {}
 
   --#################### Macros Region ####################
@@ -13,7 +13,7 @@ macros = function ()
     "tpope/vim-repeat")
 
   return {
-    commands = commands,
+    defer = defer,
     plugins = plugins
   }
 end

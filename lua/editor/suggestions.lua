@@ -3,13 +3,13 @@ require "libs/set"
 
 suggestions = function ()
 
-  local commands = {}
+  local defer = {}
   local plugins = {}
 
   --#################### Suggestions Region ####################
 
   return {
-    commands = commands,
+    defer = defer,
     plugins = plugins
   }
 end

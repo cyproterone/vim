@@ -3,7 +3,7 @@ require "libs/set"
 
 keyboard = function ()
 
-  local commands = {}
+  local defer = {}
   local plugins = {}
 
 
@@ -11,28 +11,28 @@ keyboard = function ()
 
   -- enable smartcase
   table.insert(
-    commands,
+    defer,
     bindings.set.id("ignorecase"))
   table.insert(
-    commands,
+    defer,
     bindings.set.id("smartcase"))
 
 
 
   -- allow nav keys to wrap around
   table.insert(
-    commands,
+    defer,
     bindings.set.plus("whichwrap", "h,l,<,>"))
 
 
   -- normalize backspace
   table.insert(
-    commands,
+    defer,
     bindings.set.eq("backspace", "indent,eol,start"))
 
 
   return {
-    commands = commands,
+    defer = defer,
     plugins = plugins
   }
 end

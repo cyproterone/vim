@@ -6,7 +6,7 @@ require "libs/set"
 
 proj = function ()
 
-  local commands = {}
+  local defer = {}
   local plugins = {}
 
 
@@ -17,7 +17,7 @@ proj = function ()
 
 
   return {
-    commands = commands,
+    defer = defer,
     plugins = plugins
   }
 end

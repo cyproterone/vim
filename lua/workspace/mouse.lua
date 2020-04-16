@@ -3,19 +3,19 @@ require "libs/set"
 
 mouse = function ()
 
-  local commands = {}
+  local defer = {}
   local plugins = {}
 
   --#################### Mouse Region ####################
 
   -- enable mouse
   table.insert(
-    commands,
+    defer,
     bindings.set.eq("mouse", "a"))
 
 
   return {
-    commands = commands,
+    defer = defer,
     plugins = plugins
   }
 end

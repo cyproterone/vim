@@ -3,7 +3,7 @@ require "libs/set"
 
 tree = function ()
 
-  local commands = {}
+  local defer = {}
   local plugins = {}
 
   --#################### Tree Region ####################
@@ -17,7 +17,7 @@ tree = function ()
 
 
   return {
-    commands = commands,
+    defer = defer,
     plugins = plugins
   }
 end

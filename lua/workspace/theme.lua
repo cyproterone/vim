@@ -3,24 +3,24 @@ require "libs/set"
 
 themes = function ()
 
-  local commands = {}
+  local defer = {}
   local plugins = {}
 
   --#################### Intrinsic Region ####################
 
   -- use 256 colours
   table.insert(
-    commands,
+    defer,
     bindings.set.id("termguicolors"))
 
   -- highlight cursor location
   table.insert(
-    commands,
+    defer,
     bindings.set.id("cursorline"))
 
   -- always show status line
   table.insert(
-    commands,
+    defer,
     bindings.set.eq("laststatus", 2))
 
 
@@ -36,11 +36,11 @@ themes = function ()
     "vim-airline/vim-airline-themes")
 
   table.insert(
-    commands,
+    defer,
     bindings.let.g("airline_theme", "'tomorrow'"))
 
   table.insert(
-    commands,
+    defer,
     bindings.let.g("airline_powerline_fonts", 1))
 
 
@@ -52,7 +52,7 @@ themes = function ()
     "junegunn/seoul256.vim")
 
   -- table.insert(
-  --   commands,
+  --   defer,
   --   bindings.arbitrary("colorscheme seoul256-light"))
 
   -- iconpack
@@ -62,7 +62,7 @@ themes = function ()
 
 
   return {
-    commands = commands,
+    defer = defer,
     plugins = plugins
   }
 end

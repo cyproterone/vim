@@ -3,7 +3,7 @@ require "libs/set"
 
 git = function ()
 
-  local commands = {}
+  local defer = {}
   local plugins = {}
 
   --#################### Git Region ####################
@@ -26,7 +26,7 @@ git = function ()
 
 
   return {
-    commands = commands,
+    defer = defer,
     plugins = plugins
   }
 end

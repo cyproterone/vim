@@ -3,14 +3,14 @@ require "libs/set"
 
 tasks = function ()
 
-  local commands = {}
+  local defer = {}
   local plugins = {}
 
   --#################### Files Region ####################
 
   -- auto load fs changes
   table.insert(
-    commands,
+    defer,
     bindings.set.id("autoread"))
 
   -- auto save
@@ -19,12 +19,12 @@ tasks = function ()
     "vim-scripts/vim-auto-save")
 
   table.insert(
-    commands,
+    defer,
     bindings.let.g("auto_save", 1))
 
 
   return {
-    commands = commands,
+    defer = defer,
     plugins = plugins
   }
 end

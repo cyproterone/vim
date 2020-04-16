@@ -3,26 +3,26 @@ require "libs/set"
 
 whitespace = function ()
 
-  local commands = {}
+  local defer = {}
   local plugins = {}
 
   --#################### Whitespace Region ####################
 
   -- insert spaces instead of tabs
   table.insert(
-    commands,
+    defer,
     bindings.set.id("expandtab"))
 
   -- smart indentation level
   table.insert(
-    commands,
+    defer,
     bindings.set.id("autoindent"))
   table.insert(
-    commands,
+    defer,
     bindings.set.id("smarttab"))
 
   return {
-    commands = commands,
+    defer = defer,
     plugins = plugins
   }
 end

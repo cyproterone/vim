@@ -3,7 +3,7 @@
 --#################### ########## ####################
 
 
--- produce commands to set commands
+-- produce defer to set defer
 local set_bindings = function ()
 
   local arbitrary = function (opt)

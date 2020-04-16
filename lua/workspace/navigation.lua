@@ -3,33 +3,33 @@ require "libs/set"
 
 navigation = function ()
 
-  local commands = {}
+  local defer = {}
   local plugins = {}
 
   --#################### Navigation Region ####################
 
   -- ui for cmd auto complete
   table.insert(
-    commands,
+    defer,
     bindings.set.id("wildmenu"))
 
   -- auto complete menu
   table.insert(
-    commands,
+    defer,
     bindings.set.eq("wildmode", "longest,list,full"))
 
   table.insert(
-    commands,
+    defer,
     bindings.set.minus("complete", "i"))
 
   -- show command history
   table.insert(
-    commands,
+    defer,
     bindings.set.id("showcmd"))
 
 
   return {
-    commands = commands,
+    defer = defer,
     plugins = plugins
   }
 end
