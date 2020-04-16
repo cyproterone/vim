@@ -11,6 +11,18 @@ local modern_split = function ()
 
   bindings.set("splitright")
   bindings.set("splitbelow")
+
+  -- has to use C for direction
+  bindings.map.normal("<C-h>", "<C-w>h")
+  bindings.map.normal("<C-l>", "<C-w>l")
+  bindings.map.normal("<C-k>", "<C-w>k")
+  bindings.map.normal("<C-j>", "<C-w>j")
+
+  -- has to use M for direction
+  bindings.map.normal("<M-Left>",  "<C-w>h")
+  bindings.map.normal("<M-Right>", "<C-w>l")
+  bindings.map.normal("<M-Up>",    "<C-w>k")
+  bindings.map.normal("<M-Down>",  "<C-w>j")
   
 end
 table.insert(defer, modern_split)

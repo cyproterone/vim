@@ -29,9 +29,10 @@ table.insert(plugins, "junegunn/fzf")
 table.insert(plugins, "junegunn/fzf.vim")
 local fzf = function ()
 
+  -- bindings.let()
+
 end
 table.insert(defer, fzf)
-
 
 
 return {

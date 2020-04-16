@@ -1,6 +1,7 @@
 --#################### Libs Region ####################
 require "libs/consts"
 local std = require "libs/std"
+local bindings = require "libs/bindings"
 
 
 local layers = {
@@ -74,6 +75,7 @@ end
 
 
 local execute_defered = function (defer)
+  bindings.let("mapleader", [[" "]])
   for _, cmd in ipairs(defer)
   do
     cmd()
