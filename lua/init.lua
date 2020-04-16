@@ -99,7 +99,7 @@ local install_plugins = function (plugins)
 end
 
 
-local execute_defer = function (defer)
+local execute_defered = function (defer)
   for _, cmd in ipairs(defer)
   do
     cmd()
@@ -110,7 +110,7 @@ end
 local initialize_vim = function ()
   local instructions = parse_instructions(actions)
   install_plugins(instructions.plugins)
-  execute_defer(instructions.defer)
+  execute_defered(instructions.defer)
 end
 
 

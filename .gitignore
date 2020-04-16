@@ -1,5 +1,6 @@
 !.gitkeep
 .DS_Store
 autoload/*
+plugin_man/*
 plugged/*
 undo/*
