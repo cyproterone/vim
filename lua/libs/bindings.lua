@@ -55,14 +55,13 @@ end
 local auto = function (args)
 
   local group = assert(args.group)
-  local events = table.concat(assert(expr.events), ",")
-  local filter = expr.filter or "*"
-  local exec = assert(expr.exec)
+  local events = table.concat(assert(args.events), ",")
+  local filter = args.filter or "*"
+  local exec = assert(args.exec)
 
   local auto_begin = "augroup " .. group
   local auto_cls = "autocmd!"
-  local auto_body =
-    "autocmd " .. group .. " " .. events .. " " .. filter .. " " .. exec
+  local auto_body = "autocmd " .. events .. " " .. filter .. " " .. exec
   local auto_end = "augroup END"
   local auto_exec = table.concat(
     {auto_begin, auto_cls, auto_body, auto_end},
