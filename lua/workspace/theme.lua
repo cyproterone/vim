@@ -7,6 +7,7 @@ local defer = {}
 --#################### Intrinsic Region ####################
 
 local intrinsic = function ()
+  
   -- use 256 colours
   bindings.set("termguicolors")
 
@@ -15,6 +16,7 @@ local intrinsic = function ()
 
   -- always show status line
   bindings.set("laststatus", 2)
+
 end
 table.insert(defer, intrinsic)
 
@@ -26,8 +28,10 @@ table.insert(plugins, "vim-airline/vim-airline")
 table.insert(plugins, "vim-airline/vim-airline-themes")
 
 local powerline = function ()
+
   bindings.let("airline_theme", "'tomorrow'")
   bindings.let("airline_powerline_fonts", 1)
+
 end
 table.insert(defer, powerline)
 
@@ -38,7 +42,9 @@ table.insert(defer, powerline)
 table.insert(plugins, "junegunn/seoul256.vim")
 
 local colours = function ()
+
   bindings.arbitrary("colorscheme seoul256-light")
+
 end
 table.insert(defer, colours)
 

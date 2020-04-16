@@ -7,6 +7,7 @@ local defer = {}
 --#################### Navigation Region ####################
 
 local wild = function ()
+
   -- ui for cmd auto complete
   bindings.set("wildmenu")
 
@@ -21,6 +22,7 @@ local wild = function ()
 
   -- more history
   bindings.set("history", 10000)
+  
 end
 table.insert(defer, wild)
 

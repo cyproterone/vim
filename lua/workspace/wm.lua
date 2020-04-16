@@ -8,8 +8,10 @@ local plugins = {}
 
 -- modern split direction
 local modern_split = function ()
+
   bindings.set("splitright")
   bindings.set("splitbelow")
+  
 end
 table.insert(defer, modern_split)
 
