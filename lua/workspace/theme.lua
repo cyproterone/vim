@@ -7,12 +7,15 @@ local defer = {}
 --#################### Intrinsic Region ####################
 
 local intrinsic = function ()
-  
+
   -- use 256 colours
   bindings.set("termguicolors")
 
   -- highlight cursor location
   bindings.set("cursorline")
+
+  -- show command history
+  bindings.set("showcmd")
 
   -- always show status line
   bindings.set("laststatus", 2)

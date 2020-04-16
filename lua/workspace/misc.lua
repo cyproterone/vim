@@ -15,8 +15,8 @@ local misc = function ()
   -- show as much as possible
   bindings.set("display", "lastline", [[+=]])
 
-  -- viminfo include !
-  bindings.set("viminfo", "!", [[+=]])
+  -- vim session state
+  bindings.set("shada", "!", [[+=]])
 
 end
 table.insert(defer, misc)
