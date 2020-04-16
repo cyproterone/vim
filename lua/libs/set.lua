@@ -23,10 +23,15 @@ local set_bindings = function ()
       return set_func .. " " .. opt .. "=" .. val
     end
 
+    local id = function (opt)
+      return set_func .. " " .. opt
+    end
+
     return {
       plus = plus,
       minus = minus,
-      eq = eq
+      eq = eq,
+      id = id
     }
 
   end

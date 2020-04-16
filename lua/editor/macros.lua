@@ -1,14 +1,15 @@
 --#################### ############# ####################
---#################### Search Region ####################
+--#################### Macros Region ####################
 --#################### ############# ####################
 require "libs/set"
 
 
-search = function ()
+macros = function ()
 
   local commands = {}
   local plugins = {}
 
+  table.insert(plugins, "tpope/vim-repeat")
 
   return {
     commands = commands,

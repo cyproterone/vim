@@ -11,10 +11,12 @@ require "libs/set"
 
 require "workspace/keyboard"
 require "workspace/misc"
+require "workspace/mouse"
 require "workspace/navigation"
 require "workspace/tasks"
 require "workspace/theme"
 require "workspace/tree"
+require "workspace/wm"
 
 
 --#################### ################# ####################
@@ -28,24 +30,41 @@ require "versioning/git"
 --#################### Editor Region ####################
 --#################### ############# ####################
 
+require "editor/cursors"
 require "editor/highlight"
+require "editor/macros"
 require "editor/search"
 require "editor/suggestions"
+require "editor/whitespace"
 
+
+--#################### END ####################
 
 local actions = {
+  -- workspace
   keyboard(),
+  mouse(),
   misc(),
   navigation(),
   tasks(),
   themes(),
   tree(),
+  wm(),
+  -- versioning
   git(),
+  -- editor
+  cursors(),
   highlight(),
+  macros(),
   search(),
-  suggestions()
+  suggestions(),
+  whitespace()
 }
 
+
+--#################### ########### ####################
+--#################### Init Region ####################
+--#################### ########### ####################
 
 local parse_instructions = function (actions)
 
@@ -89,8 +108,7 @@ local execute_commands = function (commands)
 
   for _, cmd in ipairs(commands)
   do
-
-    vim.api.command(cmd)
+    vim.api.nvim_command(cmd)
   end
 
 end
@@ -101,3 +119,6 @@ local initialize_vim = function ()
   install_plugins(instructions.plugins)
   execute_commands(instructions.commands)
 end
+
+
+initialize_vim()

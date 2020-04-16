@@ -6,12 +6,12 @@ require "libs/set"
 
 highlight = function ()
 
-  local commands = {
-    bindings.set.eq("numbers", 1)
-  }
-
-
+  local commands = {}
   local plugins = {}
+
+
+  -- show line count
+  table.insert(commands, bindings.set.id("number"))
 
 
   return {

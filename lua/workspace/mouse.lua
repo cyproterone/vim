@@ -6,11 +6,10 @@ require "libs/set"
 
 mouse = function ()
 
-  local commands = {
-    bindings.set.eq("mouse", "a")
-  }
-
+  local commands = {}
   local plugins = {}
+
+  table.insert(commands, bindings.set.eq("mouse", "a"))
 
 
   return {
