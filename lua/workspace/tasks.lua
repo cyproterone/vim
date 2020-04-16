@@ -9,15 +9,18 @@ tasks = function ()
   --#################### Files Region ####################
 
   -- auto load fs changes
-  table.insert(commands,
-               bindings.set.id("autoread"))
+  table.insert(
+    commands,
+    bindings.set.id("autoread"))
 
   -- auto save
-  table.insert(plugins,
-               "vim-scripts/vim-auto-save")
+  table.insert(
+    plugins,
+    "vim-scripts/vim-auto-save")
 
-  table.insert(commands,
-               bindings.let.g("auto_save", 1))
+  table.insert(
+    commands,
+    bindings.let.g("auto_save", 1))
 
 
   return {

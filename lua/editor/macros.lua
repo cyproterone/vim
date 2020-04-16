@@ -8,7 +8,9 @@ macros = function ()
 
   --#################### Macros Region ####################
 
-  table.insert(plugins, "tpope/vim-repeat")
+  table.insert(
+    plugins,
+    "tpope/vim-repeat")
 
   return {
     commands = commands,

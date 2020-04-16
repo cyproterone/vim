@@ -8,10 +8,12 @@ tree = function ()
 
   --#################### Tree Region ####################
 
-  table.insert(plugins,
-               "preservim/nerdtree")
-  table.insert(plugins,
-               "Xuyuanp/nerdtree-git-plugin")
+  table.insert(
+    plugins,
+    "preservim/nerdtree")
+  table.insert(
+    plugins,
+    "Xuyuanp/nerdtree-git-plugin")
 
 
   return {

@@ -11,7 +11,9 @@ proj = function ()
 
 
   -- consistent coding style
-  table.insert(plugins, "editorconfig/editorconfig-vim")
+  table.insert(
+    plugins,
+    "editorconfig/editorconfig-vim")
 
 
   return {

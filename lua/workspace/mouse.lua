@@ -9,7 +9,9 @@ mouse = function ()
   --#################### Mouse Region ####################
 
   -- enable mouse
-  table.insert(commands, bindings.set.eq("mouse", "a"))
+  table.insert(
+    commands,
+    bindings.set.eq("mouse", "a"))
 
 
   return {

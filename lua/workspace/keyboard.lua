@@ -10,21 +10,25 @@ keyboard = function ()
   --#################### Keyboard Region ####################
 
   -- enable smartcase
-  table.insert(commands,
-               bindings.set.id("ignorecase"))
-  table.insert(commands,
-               bindings.set.id("smartcase"))
+  table.insert(
+    commands,
+    bindings.set.id("ignorecase"))
+  table.insert(
+    commands,
+    bindings.set.id("smartcase"))
 
 
 
   -- allow nav keys to wrap around
-  table.insert(commands,
-               bindings.set.plus("whichwrap", "h,l,<,>"))
+  table.insert(
+    commands,
+    bindings.set.plus("whichwrap", "h,l,<,>"))
 
 
   -- normalize backspace
-  table.insert(commands,
-               bindings.set.eq("backspace", "indent,eol,start"))
+  table.insert(
+    commands,
+    bindings.set.eq("backspace", "indent,eol,start"))
 
 
   return {
