@@ -1,9 +1,9 @@
 --#################### Libs Region ####################
-local std = require "libs/std"
 require "libs/consts"
+local std = require "libs/std"
 
 
-local actions = {
+local layers = {
   -- workspace
   require "workspace/keyboard",
   require "workspace/misc",
@@ -28,12 +28,12 @@ local actions = {
 
 --#################### Init Region ####################
 
-local parse_instructions = function (actions)
+local parse_instructions = function (layers)
 
   local plugins = {}
   local defer = {}
 
-  for _, instructions in ipairs(actions)
+  for _, instructions in ipairs(layers)
   do
 
     for _, plugin in ipairs(instructions.plugins)
@@ -81,7 +81,7 @@ end
 
 
 local initialize_vim = function ()
-  local instructions = parse_instructions(actions)
+  local instructions = parse_instructions(layers)
   install_plugins(instructions.plugins)
   execute_defered(instructions.defer)
 end

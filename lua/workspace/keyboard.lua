@@ -1,4 +1,4 @@
-bindings = require "libs/bindings"
+local bindings = require "libs/bindings"
 
 
 local plugins = {}
