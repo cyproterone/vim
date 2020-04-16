@@ -1,22 +1,19 @@
 require "libs/set"
 
 
-mouse = function ()
+local plugins = {}
+local defer = {}
 
-  local plugins = {}
-  local defer = {}
+--#################### Mouse Region ####################
 
-  --#################### Mouse Region ####################
-
-  -- enable mouse
-  local normal_mouse = function ()
-    bindings.set("mouse", "a")
-  end
-  table.insert(defer, normal_mouse)
-
-
-  return {
-    plugins = plugins,
-    defer = defer,
-  }
+-- enable mouse
+local normal_mouse = function ()
+  bindings.set("mouse", "a")
 end
+table.insert(defer, normal_mouse)
+
+
+return {
+  plugins = plugins,
+  defer = defer,
+}

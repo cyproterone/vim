@@ -1,19 +1,16 @@
 require "libs/set"
 
 
-proj = function ()
+local plugins = {}
+local defer = {}
 
-  local plugins = {}
-  local defer = {}
+--#################### Project Region ####################
 
-  --#################### Project Region ####################
-
-  -- consistent coding style
-  table.insert(plugins, "editorconfig/editorconfig-vim")
+-- consistent coding style
+table.insert(plugins, "editorconfig/editorconfig-vim")
 
 
-  return {
-    plugins = plugins,
-    defer = defer,
-  }
-end
+return {
+  plugins = plugins,
+  defer = defer,
+}

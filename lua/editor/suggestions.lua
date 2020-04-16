@@ -1,15 +1,12 @@
 require "libs/set"
 
 
-suggestions = function ()
+local plugins = {}
+local defer = {}
 
-  local plugins = {}
-  local defer = {}
+--#################### Suggestions Region ####################
 
-  --#################### Suggestions Region ####################
-
-  return {
-    plugins = plugins,
-    defer = defer,
-  }
-end
+return {
+  plugins = plugins,
+  defer = defer,
+}

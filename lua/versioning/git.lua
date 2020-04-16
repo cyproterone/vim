@@ -1,27 +1,23 @@
 require "libs/set"
 
+local plugins = {}
+local defer = {}
 
-git = function ()
+--#################### Git Region ####################
 
-  local plugins = {}
-  local defer = {}
-
-  --#################### Git Region ####################
-
-  -- gitgutter
-  table.insert(plugins, "airblade/vim-gitgutter")
+-- gitgutter
+table.insert(plugins, "airblade/vim-gitgutter")
 
 
-  -- view git history
-  table.insert(plugins, "junegunn/gv.vim")
+-- view git history
+table.insert(plugins, "junegunn/gv.vim")
 
 
-  -- git porcelain
-  table.insert(plugins, "tpope/vim-fugitive")
+-- git porcelain
+table.insert(plugins, "tpope/vim-fugitive")
 
 
-  return {
-    plugins = plugins,
-    defer = defer,
-  }
-end
+return {
+  plugins = plugins,
+  defer = defer,
+}

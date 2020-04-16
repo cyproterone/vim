@@ -1,7 +1,7 @@
 require "libs/set"
 
 
-tasks = function ()
+local init = function ()
 
   local plugins = {}
   local defer = {}
@@ -25,3 +25,6 @@ tasks = function ()
     defer = defer,
   }
 end
+
+
+return init()

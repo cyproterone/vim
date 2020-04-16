@@ -1,26 +1,23 @@
 require "libs/set"
 
 
-whitespace = function ()
+local plugins = {}
+local defer = {}
 
-  local plugins = {}
-  local defer = {}
+--#################### Whitespace Region ####################
 
-  --#################### Whitespace Region ####################
+local unsurprising_tab = function ()
+  -- insert spaces instead of tabs
+  bindings.set("expandtab")
 
-  local unsurprising_tab = function ()
-    -- insert spaces instead of tabs
-    bindings.set("expandtab")
-
-    -- smart indentation level
-    bindings.set("autoindent")
-    bindings.set("smarttab")
-  end
-  table.insert(defer, unsurprising_tab)
-
-
-  return {
-    plugins = plugins,
-    defer = defer,
-  }
+  -- smart indentation level
+  bindings.set("autoindent")
+  bindings.set("smarttab")
 end
+table.insert(defer, unsurprising_tab)
+
+
+return {
+  plugins = plugins,
+  defer = defer,
+}

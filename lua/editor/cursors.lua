@@ -1,35 +1,32 @@
 require "libs/set"
 
 
-cursors = function ()
+local plugins = {}
+local defer = {}
 
-  local plugins = {}
-  local defer = {}
+--#################### Cursors Region ####################
 
-  --#################### Cursors Region ####################
-
-  -- expand selection
-  table.insert(plugins, "terryma/vim-expand-region")
+-- expand selection
+table.insert(plugins, "terryma/vim-expand-region")
 
 
-  -- multi cursors
-  table.insert(plugins, "terryma/vim-multiple-cursors")
+-- multi cursors
+table.insert(plugins, "terryma/vim-multiple-cursors")
 
 
-  -- drag regions around
-  table.insert(plugins, "matze/vim-move")
+-- drag regions around
+table.insert(plugins, "matze/vim-move")
 
 
-  -- easy quoting
-  table.insert(plugins, "tpope/vim-surround")
+-- easy quoting
+table.insert(plugins, "tpope/vim-surround")
 
 
-  -- auto parens
-  table.insert(plugins, "Raimondi/delimitMate")
+-- auto parens
+table.insert(plugins, "Raimondi/delimitMate")
 
 
-  return {
-    plugins = plugins,
-    defer = defer,
-  }
-end
+return {
+  plugins = plugins,
+  defer = defer,
+}
