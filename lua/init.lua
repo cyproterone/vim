@@ -91,20 +91,19 @@ local install_plugins = function (plugins)
   local plug_lines = std.map(plugins, plug)
   local plug_installs = table.concat(plug_lines, "\n")
 
-  api.nvim_command("call plug#begin('" .. vim_home .. "/plugged" .. "')")
-  api.nvim_command(plug_installs)
-  api.nvim_command("call plug#end()")
+  local plug_beign = "call plug#begin('" .. vim_home .. "/plugged" .. "')"
+  local plug_end = "call plug#end()"
+  local install_func = table.concat({plug_beign, plug_installs, plug_end}, "\n")
 
+  api.nvim_command(install_func)
 end
 
 
 local execute_defer = function (defer)
-
   for _, cmd in ipairs(defer)
   do
     cmd()
   end
-
 end
 
 
