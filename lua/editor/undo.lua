@@ -8,6 +8,9 @@ local defer = {}
 
 local undo_hist = function ()
 
+  -- set backup
+  bindings.set("backup")
+  
   -- persistent undo
   bindings.set("undofile")
 

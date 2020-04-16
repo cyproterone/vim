@@ -6,6 +6,14 @@ local defer = {}
 
 --#################### Whitespace Region ####################
 
+local tab_size = function ()
+  bindings.set("shiftwidth", 4)
+  bindings.set("tabstop", 4)
+  bindings.set("softtabstop", 4)
+end
+table.insert(defer, tab_size)
+
+
 local unsurprising_tab = function ()
 
   -- insert spaces instead of tabs
@@ -33,6 +41,7 @@ local trailing_whitespace = function ()
   bindings.let("show_spaces_that_precede_tabs", 1)
 
 end
+table.insert(defer, trailing_whitespace)
 
 
 return {

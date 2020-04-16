@@ -12,6 +12,11 @@ local syntax_highlight = function ()
   bindings.arbitrary("filetype plugin indent on")
   bindings.arbitrary("syntax on")
 
+  -- show matching parens
+  bindings.set("showmatch")
+  -- match paren highlight time
+  bindings.set("matchtime", 5)
+
 end
 table.insert(defer, syntax_highlight)
 

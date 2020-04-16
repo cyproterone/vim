@@ -18,6 +18,9 @@ local misc = function ()
   -- vim session state
   bindings.set("shada", "!", [[+=]])
 
+  -- min lines changed to report
+  bindings.set("report", 0)
+
 end
 table.insert(defer, misc)
 
@@ -35,6 +38,7 @@ local var_files = function ()
   bindings.set("directory", var_home .. "/swap//")
 
 end
+table.insert(defer, var_files)
 
 
 return {

@@ -14,6 +14,9 @@ local intrinsic = function ()
   -- highlight cursor location
   bindings.set("cursorline")
 
+  -- show current mode
+  bindings.set("showmode")
+
   -- show command history
   bindings.set("showcmd")
 

@@ -13,6 +13,9 @@ local fs_consistency = function ()
   -- auto load fs changes
   bindings.set("autoread")
 
+  -- auto write on buffer leave
+  bindings.set("autowrite")
+
   -- auto save
   bindings.let("auto_save", 1)
   
