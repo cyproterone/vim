@@ -6,6 +6,13 @@ wm = function ()
   local commands = {}
   local plugins = {}
 
+  -- modern split direction
+  table.insert(commands,
+               bindings.set.id("splitright"))
+  table.insert(commands,
+               bindings.set.id("splitbelow"))
+
+
   --#################### WM Region ####################
 
   -- swap windows

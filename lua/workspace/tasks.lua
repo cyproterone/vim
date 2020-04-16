@@ -16,6 +16,9 @@ tasks = function ()
   table.insert(plugins,
                "vim-scripts/vim-auto-save")
 
+  table.insert(commands,
+               bindings.let.g("auto_save", 1))
+
 
   return {
     commands = commands,

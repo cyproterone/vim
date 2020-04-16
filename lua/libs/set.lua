@@ -11,6 +11,21 @@ local set_bindings = function ()
   end
 
 
+  local let = function ()
+
+    local let_func = "let"
+
+    local g = function (opt, val)
+      return let_func .. " " .. "g:" .. opt .. " = "  .. val
+    end
+
+    return {
+      g = g
+    }
+
+  end
+
+
   local set = function ()
 
     local set_func = "set"
@@ -75,7 +90,8 @@ local set_bindings = function ()
   return {
     arbitrary = arbitrary,
     set = set(),
-    map = map()
+    let = let(),
+    map = map(),
   }
 
 end

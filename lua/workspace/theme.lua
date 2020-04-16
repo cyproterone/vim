@@ -16,6 +16,10 @@ themes = function ()
   table.insert(commands,
                bindings.set.id("cursorline"))
 
+  -- always show status line
+  table.insert(commands,
+               bindings.set.eq("laststatus", 2))
+
 
   --#################### Powerline Region ####################
 
@@ -26,9 +30,11 @@ themes = function ()
   table.insert(plugins,
                "vim-airline/vim-airline-themes")
 
-  -- always show status line
   table.insert(commands,
-               bindings.set.eq("laststatus", 2))
+               bindings.let.g("airline_theme", "'tomorrow'"))
+
+  table.insert(commands,
+               bindings.let.g("airline_powerline_fonts", 1))
 
 
   --#################### Colours Region ####################
@@ -37,10 +43,12 @@ themes = function ()
   table.insert(plugins,
                "junegunn/seoul256.vim")
 
+  -- table.insert(commands,
+  --              bindings.arbitrary("colorscheme seoul256-light"))
+
   -- iconpack
   table.insert(plugins,
                "ryanoasis/vim-devicons")
-
 
   return {
     commands = commands,

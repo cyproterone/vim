@@ -4,7 +4,7 @@
 require "libs/set"
 
 
-navigation = function ()
+proj = function ()
 
   local commands = {}
   local plugins = {}
