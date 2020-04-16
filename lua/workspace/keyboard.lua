@@ -6,7 +6,6 @@ keyboard = function ()
   local plugins = {}
   local defer = {}
 
-
   --#################### Keyboard Region ####################
 
   -- enable smartcase
@@ -20,6 +19,7 @@ keyboard = function ()
   local normalize_keystrokes = function ()
     -- allow nav keys to wrap around
     bindings.set("whichwrap", "h,l,<,>", [[+=]])
+
     -- normalize backspace in insertion mode
     bindings.set("backspace", "indent,eol,start")
   end

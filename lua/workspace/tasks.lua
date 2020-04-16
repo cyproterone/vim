@@ -13,6 +13,7 @@ tasks = function ()
   local fs_consistency = function ()
     -- auto load fs changes
     bindings.set("autoread")
+
     -- auto save
     bindings.let("auto_save", 1)
   end

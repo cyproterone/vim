@@ -11,6 +11,7 @@ whitespace = function ()
   local unsurprising_tab = function ()
     -- insert spaces instead of tabs
     bindings.set("expandtab")
+
     -- smart indentation level
     bindings.set("autoindent")
     bindings.set("smarttab")

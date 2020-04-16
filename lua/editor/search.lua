@@ -11,6 +11,7 @@ search = function ()
   local modern_search = function ()
     -- highlight search results
     bindings.set("hlsearch")
+
     -- find result during search
     bindings.set("incsearch")
   end

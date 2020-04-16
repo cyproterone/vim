@@ -11,18 +11,20 @@ themes = function ()
   local intrinsic = function ()
     -- use 256 colours
     bindings.set("termguicolors")
+
     -- highlight cursor location
     bindings.set("cursorline")
+
     -- always show status line
     bindings.set("laststatus", 2)
   end
   table.insert(defer, intrinsic)
 
+
   --#################### Powerline Region ####################
 
   -- powerline
   table.insert(plugins, "vim-airline/vim-airline")
-
   table.insert(plugins, "vim-airline/vim-airline-themes")
 
   local powerline = function ()
@@ -30,6 +32,7 @@ themes = function ()
     bindings.let("airline_powerline_fonts", 1)
   end
   table.insert(defer, powerline)
+
 
   --#################### Colours Region ####################
 

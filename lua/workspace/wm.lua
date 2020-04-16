@@ -6,6 +6,8 @@ wm = function ()
   local defer = {}
   local plugins = {}
 
+  --#################### Intrinsic Region ####################
+
   -- modern split direction
   local modern_split = function ()
     bindings.set("splitright")
@@ -18,6 +20,7 @@ wm = function ()
 
   -- swap windows
   table.insert(plugins, "wesQ3/vim-windowswap")
+
 
   -- resize active window
   table.insert(plugins, "camspiers/lens.vim")
