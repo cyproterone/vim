@@ -29,7 +29,6 @@ table.insert(defer, intrinsic)
 -- powerline
 table.insert(plugins, "vim-airline/vim-airline")
 table.insert(plugins, "vim-airline/vim-airline-themes")
-
 local powerline = function ()
 
   bindings.let("airline_theme", "'tomorrow'")

@@ -52,9 +52,29 @@ local map = function ()
 end
 
 
+local auto = function (args)
+
+  local group = assert(args.group)
+  local events = table.concat(assert(expr.events), ",")
+  local filter = expr.filter or "*"
+  local exec = assert(expr.exec)
+
+  local auto_begin = "augroup " .. group
+  local auto_cls = "autocmd!"
+  local auto_body =
+    "autocmd " .. group .. " " .. events .. " " .. filter .. " " .. exec
+  local auto_end = "augroup END"
+  local auto_exec = table.concat(
+    {auto_begin, auto_cls, auto_body, auto_end},
+    "\n")
+  api.nvim_command(auto_exec)
+end
+
+
 return {
   arbitrary = arbitrary,
   set = set,
   let = let,
   map = map(),
+  auto = auto,
 }
