@@ -24,6 +24,16 @@ end
 table.insert(defer, wild)
 
 
+-- fzf
+table.insert(plugins, "junegunn/fzf")
+table.insert(plugins, "junegunn/fzf.vim")
+local fzf = function ()
+
+end
+table.insert(defer, fzf)
+
+
+
 return {
   plugins = plugins,
   defer = defer,
