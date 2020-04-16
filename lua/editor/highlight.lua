@@ -4,9 +4,13 @@
 require "libs/set"
 
 
-local highlight = function ()
+highlight = function ()
 
-  local commands = {}
+  local commands = {
+    bindings.set.eq("numbers", 1)
+  }
+
+
   local plugins = {}
 
 

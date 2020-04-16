@@ -4,7 +4,7 @@
 require "libs/set"
 
 
-local navigation = function ()
+navigation = function ()
 
   local commands = {}
   local plugins = {}

@@ -4,7 +4,7 @@
 require "libs/set"
 
 
-local tasks = function ()
+tasks = function ()
 
   local commands = {}
   local plugins = {}

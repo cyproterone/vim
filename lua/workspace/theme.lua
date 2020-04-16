@@ -4,7 +4,7 @@
 require "libs/set"
 
 
-local themes = function ()
+themes = function ()
 
   local commands = {}
   local plugins = {}

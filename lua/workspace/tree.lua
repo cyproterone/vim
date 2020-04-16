@@ -4,7 +4,7 @@
 require "libs/set"
 
 
-local tree = function ()
+tree = function ()
 
   local commands = {}
   local plugins = {}

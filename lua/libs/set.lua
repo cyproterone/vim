@@ -4,7 +4,7 @@
 
 
 -- produce commands to set commands
-local binding = function ()
+local set_bindings = function ()
 
 
   local set = function ()
@@ -69,3 +69,6 @@ local binding = function ()
   }
 
 end
+
+
+bindings = set_bindings()

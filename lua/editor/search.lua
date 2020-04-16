@@ -3,7 +3,8 @@
 --#################### ############# ####################
 require "libs/set"
 
-local search = function ()
+
+search = function ()
 
   local commands = {}
   local plugins = {}

@@ -3,7 +3,8 @@
 --#################### ########## ####################
 require "libs/set"
 
-local git = function ()
+
+git = function ()
 
   local commands = {}
   local plugins = {}

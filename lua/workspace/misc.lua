@@ -4,7 +4,7 @@
 require "libs/set"
 
 
-local misc = function ()
+misc = function ()
 
   local commands = {}
   local plugins = {}

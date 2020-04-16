@@ -4,7 +4,7 @@
 require "libs/set"
 
 
-local suggestions = function ()
+suggestions = function ()
 
   local commands = {}
   local plugins = {}

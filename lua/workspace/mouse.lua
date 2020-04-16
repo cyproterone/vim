@@ -4,9 +4,12 @@
 require "libs/set"
 
 
-keyboard = function ()
+mouse = function ()
 
-  local commands = {}
+  local commands = {
+    bindings.set.eq("mouse", "a")
+  }
+
   local plugins = {}
 
 
