@@ -9,20 +9,13 @@ git = function ()
   --#################### Git Region ####################
 
   -- gitgutter
-  table.insert(
-    plugins,
-    "airblade/vim-gitgutter")
+  table.insert(plugins, "airblade/vim-gitgutter")
 
   -- view git history
-  table.insert(
-    plugins,
-    "junegunn/gv.vim")
-
+  table.insert(plugins, "junegunn/gv.vim")
 
   -- git porcelain
-  table.insert(
-    plugins,
-    "tpope/vim-fugitive")
+  table.insert(plugins, "tpope/vim-fugitive")
 
 
   return {

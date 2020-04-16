@@ -9,11 +9,8 @@ proj = function ()
   local plugins = {}
   local defer = {}
 
-
   -- consistent coding style
-  table.insert(
-    plugins,
-    "editorconfig/editorconfig-vim")
+  table.insert(plugins, "editorconfig/editorconfig-vim")
 
 
   return {
