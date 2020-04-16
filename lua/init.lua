@@ -20,6 +20,7 @@ local layers = {
   -- editor
   require "editor/cursors",
   require "editor/highlight",
+  require "editor/lsp",
   require "editor/macros",
   require "editor/search",
   require "editor/suggestions",
