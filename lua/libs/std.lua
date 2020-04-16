@@ -2,6 +2,18 @@
 --#################### STD Region ####################
 --#################### ########## ####################
 
+local extract = function (path)
+  return function (tb)
+    local acc = tb
+    for p in ipairs(path)
+    do
+      acc = acc[p]
+    end
+    return acc
+  end
+end
+
+
 local map = function (tb, func)
   local acc = {}
   for i, val in ipairs(tb)
@@ -25,7 +37,23 @@ local filter = function (tb, func)
 end
 
 
+local flat_map = function (tb, func)
+  local acc = {}
+  for i, val in ipairs(tb)
+  do
+    local t = func(val, i)
+    for v in ipairs(t)
+    do
+      table.insert(acc, v)
+    end
+  end
+  return acc
+end
+
+
 return {
+  extract = extract,
   map = map,
-  filter = filter
+  filter = filter,
+  flat_map = flat_map,
 }
