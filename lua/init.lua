@@ -1,4 +1,5 @@
 --#################### Libs Region ####################
+require "libs/std"
 require "libs/consts"
 require "libs/set"
 
@@ -83,11 +84,16 @@ end
 
 
 local install_plugins = function (plugins)
-
-  for _, plugin in ipairs(plugins)
-  do
-
+  local plug = function (p)
+    return "Plug '" .. p .. "'"
   end
+
+  local plug_lines = std.map(plugins, plug)
+  local plug_installs = table.concat(plug_lines, "\n")
+
+  api.nvim_command("call plug#begin('" .. vim_home .. "/plugged" .. "')")
+  api.nvim_command(plug_installs)
+  api.nvim_command("call plug#end()")
 
 end
 

@@ -39,7 +39,7 @@ themes = function ()
   local colours = function ()
     api.nvim_command(bindings.arbitrary("colorscheme seoul256-light"))
   end
-  -- table.insert(defer, colours)
+  table.insert(defer, colours)
 
 
   -- iconpack
