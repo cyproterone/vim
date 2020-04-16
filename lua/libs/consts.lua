@@ -5,3 +5,4 @@
 api = vim.api
 
 vim_home = os.getenv("HOME") .. "/.vim"
+var_home = vim_home .. "/var"
