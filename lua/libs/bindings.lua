@@ -36,6 +36,7 @@ local map = function ()
 
   local partial = function (prefix)
     return function (lhs, rhs)
+      local rhs = rhs or "<Nop>"
       local cmd = prefix .. "noremap " .. lhs .. " " .. rhs
       api.nvim_command(cmd)
     end

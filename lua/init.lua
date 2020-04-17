@@ -16,7 +16,6 @@ local layers = {
   require "workspace/theme",
   require "workspace/tree",
   require "workspace/wm",
-  require "workspace/unmap",
   -- modes
   require "modes/command",
   require "modes/ex",

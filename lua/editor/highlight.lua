@@ -35,7 +35,7 @@ table.insert(defer, line_number)
 table.insert(plugins, "junegunn/limelight.vim")
 local focus = function ()
 
-  --  bindings.let
+  -- bindings.let
 
 end
 

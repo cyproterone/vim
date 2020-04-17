@@ -10,9 +10,9 @@ local defer = {}
 local disable = function ()
 
   -- dont go into ex mode
-  bindings.map.normal("Q", "<Nop>")
-  bindings.map.normal("q:", "<Nop>")
-  bindings.map.command("<C-f>", "<Nop>")
+  bindings.map.normal("Q")
+  bindings.map.normal("q:")
+  bindings.map.command("<C-f>")
 
 end
 table.insert(defer, disable)

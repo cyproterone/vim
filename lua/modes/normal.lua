@@ -6,10 +6,13 @@ local defer = {}
 
 --#################### Normal Region ####################
 
-local keys = function ()
+local unmap_keys = function ()
+
+  -- unmap ROT13
+  bindings.map.normal("g?")
 
 end
-table.insert(defer, keys)
+table.insert(defer, unmap_keys)
 
 
 return {
