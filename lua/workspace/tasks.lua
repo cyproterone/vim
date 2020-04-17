@@ -6,8 +6,6 @@ local defer = {}
 
 --#################### Files Region ####################
 
-table.insert(plugins, "vim-scripts/vim-auto-save")
-
 local fs_consistency = function ()
 
   -- auto load fs changes
@@ -16,11 +14,18 @@ local fs_consistency = function ()
   -- auto write on buffer leave
   bindings.set("autowrite")
 
-  -- auto save
-  bindings.let("auto_save", 1)
-  
 end
 table.insert(defer, fs_consistency)
+
+
+-- autosave
+table.insert(plugins, "vim-scripts/vim-auto-save")
+local autosave = function ()
+
+  bindings.let("auto_save", 0)
+
+end
+table.insert(defer, autosave)
 
 
 return {

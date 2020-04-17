@@ -4,7 +4,7 @@ local bindings = require "libs/bindings"
 local plugins = {}
 local defer = {}
 
---#################### Navigation Region ####################
+--#################### Intrinsic Region ####################
 
 local wild = function ()
 
@@ -24,12 +24,13 @@ end
 table.insert(defer, wild)
 
 
+--#################### FZF Region ####################
+
 -- fzf
 table.insert(plugins, "junegunn/fzf")
-table.insert(plugins, "junegunn/fzf.vim")
+table.insert(plugins, "yuki-ycino/fzf-preview.vim")
 local fzf = function ()
 
-  -- bindings.let()
 
 end
 table.insert(defer, fzf)

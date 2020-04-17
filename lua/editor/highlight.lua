@@ -31,6 +31,13 @@ end
 table.insert(defer, line_number)
 
 
+-- focus on region
+table.insert(plugins, "junegunn/limelight.vim")
+local focus = function ()
+  
+end
+
+
 return {
   plugins = plugins,
   defer = defer,

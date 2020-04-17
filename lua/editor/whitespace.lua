@@ -40,6 +40,9 @@ local trailing_whitespace = function ()
   -- highlight mixed whitespace
   bindings.let("show_spaces_that_precede_tabs", 1)
 
+  -- dont ask dont tell
+  bindings.let("strip_whitespace_confirm", 0)
+
 end
 table.insert(defer, trailing_whitespace)
 
