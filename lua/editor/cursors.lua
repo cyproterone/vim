@@ -6,17 +6,6 @@ local defer = {}
 
 --#################### Cursors Region ####################
 
--- auto centering on entering insertion mode
-local auto_centre = function ()
-
-  bindings.auto{ group = "auto_centering",
-                 events = { "InsertEnter" },
-                 exec = "normal! zz", }
-
-end
-table.insert(defer, auto_centre)
-
-
 -- expand selection
 table.insert(plugins, "terryma/vim-expand-region")
 

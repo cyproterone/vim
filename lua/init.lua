@@ -17,6 +17,11 @@ local layers = {
   require "workspace/tree",
   require "workspace/wm",
   require "workspace/unmap",
+  -- modes
+  require "modes/command",
+  require "modes/insert",
+  require "modes/normal",
+  require "modes/visual",
   -- versioning
   require "versioning/git",
   -- editor
