@@ -11,6 +11,7 @@ local wild = function ()
   -- ui for cmd auto complete
   bindings.set("wildmenu")
   bindings.set("wildmode", "full")
+  bindings.set("wildignorecase")
 
   -- hide file history
   bindings.set("complete", "i", [[-=]])

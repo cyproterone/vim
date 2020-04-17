@@ -21,6 +21,9 @@ local misc = function ()
   -- min lines changed to report
   bindings.set("report", 0)
 
+  -- use system clipboard
+  bindings.set("clipboard", "unnamedplus", [[+=]])
+
 end
 table.insert(defer, misc)
 

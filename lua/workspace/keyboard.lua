@@ -6,6 +6,14 @@ local defer = {}
 
 --#################### Keyboard Region ####################
 
+local misc = function ()
+
+  -- waiting time within a key sequence
+  bindings.set("timeoutlen", 500)
+
+end
+table.insert(defer, misc)
+
 -- enable smartcase
 local smartcase = function ()
 
@@ -19,7 +27,7 @@ table.insert(defer, smartcase)
 local normalize_keystrokes = function ()
 
   -- allow nav keys to wrap around
-  bindings.set("whichwrap", "h,l,<,>", [[+=]])
+  bindings.set("whichwrap", "h,l,<,>,[,]", [[+=]])
 
   -- normalize backspace in insertion mode
   bindings.set("backspace", "indent,eol,start")
