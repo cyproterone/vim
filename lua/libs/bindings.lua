@@ -63,10 +63,12 @@ local auto = function (args)
   local auto_cls = "autocmd!"
   local auto_body = "autocmd " .. events .. " " .. filter .. " " .. exec
   local auto_end = "augroup END"
-  local auto_exec = table.concat(
-    {auto_begin, auto_cls, auto_body, auto_end},
-    "\n")
-  api.nvim_command(auto_exec)
+
+  api.nvim_command(auto_begin)
+  api.nvim_command(auto_cls)
+  api.nvim_command(auto_body)
+  api.nvim_command(auto_end)
+
 end
 
 
