@@ -13,7 +13,7 @@ local modern_search = function ()
 
   -- find result during search
   bindings.set("incsearch")
-  
+
 end
 table.insert(defer, modern_search)
 
