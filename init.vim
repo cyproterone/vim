@@ -1,3 +1,1 @@
-lua << EOF
-  require "init"
-EOF
+lua require "init"
