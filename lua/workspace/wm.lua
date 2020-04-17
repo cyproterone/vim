@@ -13,8 +13,8 @@ local modern_split = function ()
   bindings.set("splitbelow")
 
   -- split windows
-  bindings.map.normal("<M-=>", ":vsplit<CR>")
-  bindings.map.normal("<M-->", ":split<CR>")
+  bindings.map.normal("<Leader>=", ":vsplit<CR>")
+  bindings.map.normal("<Leader>-", ":split<CR>")
 
   -- has to use C for direction
   bindings.map.normal("<C-h>", "<C-w>h")
@@ -23,10 +23,10 @@ local modern_split = function ()
   bindings.map.normal("<C-j>", "<C-w>j")
 
   -- has to use M for direction
-  bindings.map.normal("<M-Left>",  "<C-w>h")
-  bindings.map.normal("<M-Right>", "<C-w>l")
-  bindings.map.normal("<M-Up>",    "<C-w>k")
-  bindings.map.normal("<M-Down>",  "<C-w>j")
+  bindings.map.normal("<Leader><Left>",  "<C-w>h")
+  bindings.map.normal("<Leader><Right>", "<C-w>l")
+  bindings.map.normal("<Leader><Up>",    "<C-w>k")
+  bindings.map.normal("<Leader><Down>",  "<C-w>j")
   
 end
 table.insert(defer, modern_split)
