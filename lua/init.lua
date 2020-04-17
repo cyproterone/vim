@@ -16,6 +16,7 @@ local layers = {
   require "workspace/theme",
   require "workspace/tree",
   require "workspace/wm",
+  require "workspace/unmap",
   -- versioning
   require "versioning/git",
   -- editor
@@ -26,7 +27,6 @@ local layers = {
   require "editor/search",
   require "editor/suggestions",
   require "editor/whitespace",
-  require "editor/unmap",
   -- lang
 }
 
