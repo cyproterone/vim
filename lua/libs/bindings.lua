@@ -2,6 +2,14 @@
 --#################### Lib Region ####################
 --#################### ########## ####################
 
+local p_val = function (val)
+  if type(val) == "string" then
+    return "'" .. val .. "'"
+  else
+    return val
+  end
+end
+
 
 local arbitrary = function (opt)
   api.nvim_command(opt)
@@ -10,17 +18,8 @@ end
 
 local let = function (opt, val, scope)
 
-  local p_val = function ()
-    if type(val) == "string" then
-      return "'" .. val .. "'"
-    else
-      return val
-    end
-  end
-
   local scope = scope or "g"
-  local val = p_val()
-  local cmd = "let " .. scope .. ":" .. opt .. " = " .. val
+  local cmd = "let " .. scope .. ":" .. opt .. " = " .. p_val(val)
 
   api.nvim_command(cmd)
 end
@@ -86,7 +85,7 @@ end
 
 local env = function (opt, val)
 
-  local cmd = "let $" .. opt .. " = " .. val
+  local cmd = "let $" .. opt .. " = " .. p_val(val)
   api.nvim_command(cmd)
 
 end
