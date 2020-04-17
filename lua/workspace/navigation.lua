@@ -10,9 +10,7 @@ local wild = function ()
 
   -- ui for cmd auto complete
   bindings.set("wildmenu")
-
-  -- auto complete menu priority
-  bindings.set("wildmode", "longest,list,full")
+  bindings.set("wildmode", "full")
 
   -- hide file history
   bindings.set("complete", "i", [[-=]])
