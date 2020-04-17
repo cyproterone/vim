@@ -6,6 +6,14 @@ local plugins = {}
 
 --#################### Intrinsic Region ####################
 
+local misc = function ()
+
+  -- hide unused buffers
+  bindings.set("hidden")
+
+end
+
+
 -- modern split direction
 local modern_split = function ()
 
