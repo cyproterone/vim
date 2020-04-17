@@ -36,11 +36,19 @@ table.insert(defer, modern_split)
 
 -- swap windows
 table.insert(plugins, "wesQ3/vim-windowswap")
+local win_swap = function ()
+
+end
+table.insert(defer, win_swap)
 
 
 -- resize active window
 table.insert(plugins, "roman/golden-ratio")
 local lens = function ()
+
+  -- exclude certain windows from being resized
+  bindings.let("golden_ratio_exclude_nonmodifiable", 1)
+
 end
 table.insert(defer, lens)
 
