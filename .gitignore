@@ -1,5 +1,6 @@
 !.gitkeep
 .DS_Store
+.git/
 autoload/*
 plugged/*
 var/*
