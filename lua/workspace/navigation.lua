@@ -33,13 +33,18 @@ local fzf = function ()
   -- fzf use fd
   bindings.env("FZF_DEFAULT_COMMAND", [['fd -H -t f']])
 
+  -- fzf use history
+  bindings.let("fzf_history_dir", [[']] .. var_home .. "/fzf//" .. [[']])
+
   -- fzf use preview
   bindings.let("fzf_preview_window", [['right:60%']])
+
 
   -- keybindings
   bindings.map.normal("<C-p>", ":Commands<CR>")
   bindings.map.normal("<Leader>f", ":FZF<CR>")
   bindings.map.normal("<Leader>r", ":Rg<CR>")
+  bindings.map.normal("<Leader>s", ":BLines<CR>")
 
 end
 table.insert(defer, fzf)
