@@ -12,6 +12,10 @@ local modern_split = function ()
   bindings.set("splitright")
   bindings.set("splitbelow")
 
+  -- split windows
+  bindings.map.normal("<M-=>", ":vsplit<CR>")
+  bindings.map.normal("<M-->", ":split<CR>")
+
   -- has to use C for direction
   bindings.map.normal("<C-h>", "<C-w>h")
   bindings.map.normal("<C-l>", "<C-w>l")
