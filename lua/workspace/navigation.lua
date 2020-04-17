@@ -51,9 +51,8 @@ local fzf = function ()
 
   -- keybindings
   bindings.map.normal("<C-p>", ":Commands<CR>")
-  bindings.map.normal("<Leader>f", ":FZF<CR>")
-  bindings.map.normal("<Leader>r", ":Rg<CR>")
-  bindings.map.normal("<Leader>s", ":BLines<CR>")
+  bindings.map.normal("<Leader>o", ":Rg<CR>")
+  bindings.map.normal("<Leader>p", ":FZF<CR>")
 
 end
 table.insert(defer, fzf)

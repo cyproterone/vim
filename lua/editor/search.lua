@@ -27,6 +27,29 @@ end
 table.insert(defer, hotkeys)
 
 
+--#################### Replace Region ####################
+
+table.insert(plugins, "brooth/far.vim")
+local search_replace = function ()
+
+  -- find single file
+  bindings.map.normal("<Leader>ff", ":F")
+
+  -- replace single file
+  bindings.map.normal("<Leader>fr", ":Far")
+
+
+  -- find multiple file
+  bindings.map.normal("<Leader>rf", ":F")
+
+  -- replace multiple file
+  bindings.map.normal("<Leader>rr", ":Far")
+
+
+end
+table.insert(defer, search_replace)
+
+
 return {
   plugins = plugins,
   defer = defer,
