@@ -7,9 +7,16 @@ local defer = {}
 --#################### Whitespace Region ####################
 
 local tab_size = function ()
-  bindings.set("shiftwidth", 4)
-  bindings.set("tabstop", 4)
-  bindings.set("softtabstop", 4)
+
+  -- how big are tabs ?
+  bindings.set("tabstop", 2)
+
+  -- spaces remove on deletion
+  bindings.set("softtabstop", 2)
+
+  -- manual indentation width
+  bindings.set("shiftwidth", 2)
+
 end
 table.insert(defer, tab_size)
 
