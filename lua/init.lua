@@ -19,6 +19,7 @@ local layers = {
   require "workspace/unmap",
   -- modes
   require "modes/command",
+  require "modes/ex",
   require "modes/insert",
   require "modes/normal",
   require "modes/visual",

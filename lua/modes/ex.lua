@@ -4,9 +4,10 @@ local bindings = require "libs/bindings"
 local plugins = {}
 local defer = {}
 
---#################### Unmap Region ####################
+--#################### Ex Region ####################
 
-local unmap_keys = function ()
+-- disable exmode
+local disable = function ()
 
   -- dont go into ex mode
   bindings.map.normal("Q", "<Nop>")
@@ -14,7 +15,7 @@ local unmap_keys = function ()
   bindings.map.command("<C-f>", "<Nop>")
 
 end
-table.insert(defer, unmap_keys)
+table.insert(defer, disable)
 
 
 return {
