@@ -39,7 +39,10 @@ table.insert(plugins, "wesQ3/vim-windowswap")
 
 
 -- resize active window
-table.insert(plugins, "camspiers/lens.vim")
+table.insert(plugins, "roman/golden-ratio")
+local lens = function ()
+end
+table.insert(defer, lens)
 
 
 return {
