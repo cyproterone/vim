@@ -42,9 +42,6 @@ table.insert(defer, cursors)
 table.insert(plugins, "vim-airline/vim-airline")
 local powerline = function ()
 
-  -- extra airline on top
-  bindings.let("airline#extensions#tabline#enabled", 1)
-
   -- airline apperance
   bindings.let("airline_powerline_fonts", 1)
   bindings.let("airline_theme", [['edge']])
