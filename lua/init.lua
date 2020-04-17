@@ -26,6 +26,7 @@ local layers = {
   require "versioning/git",
   -- editor
   require "editor/cursors",
+  require "editor/format",
   require "editor/highlight",
   require "editor/lsp",
   require "editor/macros",
