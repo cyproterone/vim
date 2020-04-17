@@ -10,8 +10,18 @@ table.insert(plugins, "preservim/nerdtree")
 table.insert(plugins, "Xuyuanp/nerdtree-git-plugin")
 local tree = function ()
 
-  -- default settings
+  -- show hiddenfiles
   bindings.let("NERDTreeShowHidden", 1)
+
+  -- buffer move with cursor
+  bindings.let("NERDTreeAutoCenter", 1)
+
+  -- change cwd on root move
+  bindings.let("NERDTreeChDirMode", 2)
+
+  -- remove buffer on file delete
+  bindings.let("NERDTreeAutoDeleteBuffer", 1)
+
 
   -- keybindings
   bindings.map.normal("<Leader>b", ":NERDTreeToggle<CR>")
