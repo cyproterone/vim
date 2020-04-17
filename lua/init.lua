@@ -15,6 +15,8 @@ local layers = {
   require "workspace/theme",
   require "workspace/tree",
   require "workspace/wm",
+  --modes
+  require "modes/insertion",
   -- versioning
   require "versioning/git",
   -- editor
