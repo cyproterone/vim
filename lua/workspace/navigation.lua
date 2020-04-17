@@ -27,9 +27,19 @@ table.insert(defer, wild)
 
 -- fzf
 table.insert(plugins, "junegunn/fzf")
-table.insert(plugins, "yuki-ycino/fzf-preview.vim")
+table.insert(plugins, "junegunn/fzf.vim")
 local fzf = function ()
 
+  -- fzf use fd
+  bindings.env("FZF_DEFAULT_COMMAND", [['fd -H -t f']])
+
+  -- fzf use preview
+  bindings.let("fzf_preview_window", [['right:60%']])
+
+  -- keybindings
+  bindings.map.normal("<C-p>", ":Commands<CR>")
+  bindings.map.normal("<Leader>f", ":FZF<CR>")
+  bindings.map.normal("<Leader>r", ":Rg<CR>")
 
 end
 table.insert(defer, fzf)

@@ -72,10 +72,19 @@ local auto = function (args)
 end
 
 
+local env = function (opt, val)
+
+  local cmd = "let $" .. opt .. " = " .. val
+  api.nvim_command(cmd)
+
+end
+
+
 return {
   arbitrary = arbitrary,
   set = set,
   let = let,
   map = map(),
   auto = auto,
+  env = env,
 }
