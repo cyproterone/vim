@@ -28,6 +28,15 @@ table.insert(defer, wild)
 -- fzf
 table.insert(plugins, "junegunn/fzf")
 table.insert(plugins, "junegunn/fzf.vim")
+local fzf_cmds = function ()
+
+  local fzf_scripts =  scripts_home .. "/fzf.vim"
+  bindings.source(fzf_scripts)
+
+end
+table.insert(defer, fzf_cmds)
+
+
 local fzf = function ()
 
   -- fzf use fd

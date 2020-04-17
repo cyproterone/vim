@@ -80,6 +80,14 @@ local env = function (opt, val)
 end
 
 
+local source = function (path)
+
+  local cmd = "source " .. path
+  api.nvim_command(cmd)
+
+end
+
+
 return {
   arbitrary = arbitrary,
   set = set,
@@ -87,4 +95,5 @@ return {
   map = map(),
   auto = auto,
   env = env,
+  source = source,
 }
