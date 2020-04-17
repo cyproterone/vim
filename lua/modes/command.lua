@@ -11,6 +11,8 @@ local keys = function ()
 
   bindings.map.command("<C-a>", "<Home>")
 
+  bindings.map.command("<C-q>", "<Esc>")
+
 end
 table.insert(defer, keys)
 

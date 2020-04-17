@@ -47,7 +47,7 @@ local powerline = function ()
 
   -- airline apperance
   bindings.let("airline_powerline_fonts", 1)
-  bindings.let("airline_theme", [['edge']])
+  bindings.let("airline_theme", "edge")
 
   -- tabline settings
   bindings.let("airline#extensions#tabline#enabled", 1)
@@ -66,9 +66,9 @@ local colours = function ()
   bindings.set("background", "light")
   bindings.arbitrary("colorscheme edge")
 
-  bindings.let("edge_style", [['neon']])
+  bindings.let("edge_style", "neon")
   bindings.let("edge_transparent_background", 1)
-  bindings.let("edge_menu_selection_background", [['purple']])
+  bindings.let("edge_menu_selection_background", "purple")
   bindings.let("edge_enable_italic", 0)
 
 end

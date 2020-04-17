@@ -9,8 +9,19 @@ end
 
 
 local let = function (opt, val, scope)
+
+  local p_val = function ()
+    if type(val) == "string" then
+      return "'" .. val .. "'"
+    else
+      return val
+    end
+  end
+
   local scope = scope or "g"
+  local val = p_val()
   local cmd = "let " .. scope .. ":" .. opt .. " = " .. val
+
   api.nvim_command(cmd)
 end
 

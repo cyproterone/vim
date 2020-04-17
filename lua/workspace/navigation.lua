@@ -40,13 +40,13 @@ table.insert(defer, fzf_cmds)
 local fzf = function ()
 
   -- fzf use fd
-  bindings.env("FZF_DEFAULT_COMMAND", [['fd -H -t f']])
+  -- bindings.env("FZF_DEFAULT_COMMAND", "fd -H -t f")
 
   -- fzf use history
-  bindings.let("fzf_history_dir", [[']] .. var_home .. "/fzf//" .. [[']])
+  bindings.let("fzf_history_dir", var_home .. "/fzf//")
 
   -- fzf use preview
-  bindings.let("fzf_preview_window", [['right:60%']])
+  bindings.let("fzf_preview_window", "right:60%")
 
 
   -- keybindings

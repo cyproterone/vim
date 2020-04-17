@@ -35,20 +35,12 @@ table.insert(defer, unsurprising_tab)
 
 
 -- remove trailing whitespace
-table.insert(plugins, "ntpeters/vim-better-whitespace")
 local trailing_whitespace = function ()
 
-  -- strip whitespace
-  bindings.let("strip_whitespace_on_save", 1)
+  -- https://stackoverflow.com/questions/356126/how-can-you-automatically-remove-trailing-whitespace-in-vim
+  -- bindings.auto{ group = "trailing_whitespace",
+  --                events = {"BufWritePre"},}
 
-  -- highlight whitespace
-  bindings.let("better_whitespace_enabled", 1)
-
-  -- highlight mixed whitespace
-  bindings.let("show_spaces_that_precede_tabs", 1)
-
-  -- dont ask dont tell
-  bindings.let("strip_whitespace_confirm", 0)
 
 end
 table.insert(defer, trailing_whitespace)

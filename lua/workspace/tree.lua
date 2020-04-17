@@ -27,7 +27,7 @@ local tree = function ()
   bindings.map.normal("<Leader>b", ":NERDTreeToggle<CR>")
 
   -- nerdtree bindings
-  bindings.let("NERDTreeMapActivateNode", [['<Tab>']])
+  bindings.let("NERDTreeMapActivateNode", "<Tab>")
 
 end
 table.insert(defer, tree)

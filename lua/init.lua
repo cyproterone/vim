@@ -83,7 +83,7 @@ end
 
 
 local execute_defered = function (defer)
-  bindings.let("mapleader", [[" "]])
+  bindings.let("mapleader", " ")
   for _, cmd in ipairs(defer)
   do
     cmd()

@@ -32,19 +32,20 @@ table.insert(defer, hotkeys)
 table.insert(plugins, "brooth/far.vim")
 local search_replace = function ()
 
-  -- find single file
-  bindings.map.normal("<Leader>ff", ":F")
+  -- enable undo
+  bindings.let("far#enable_undo", 1)
 
-  -- replace single file
-  bindings.map.normal("<Leader>fr", ":Far")
+  -- use ripgrep
+  -- bindings.let("far#source", "rgnvim")
 
+  -- max results
+  bindings.let("far#limit", 10000)
 
-  -- find multiple file
-  bindings.map.normal("<Leader>rf", ":F")
+  -- find
+  bindings.map.normal("<Leader>f", ":F ")
 
-  -- replace multiple file
-  bindings.map.normal("<Leader>rr", ":Far")
-
+  -- replace
+  bindings.map.normal("<Leader>r", ":Far ")
 
 end
 table.insert(defer, search_replace)
