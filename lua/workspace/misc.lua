@@ -30,7 +30,8 @@ table.insert(defer, misc)
 local performance = function ()
 
   bindings.set("ttyfast")
-  bindings.set("lazyredraw")
+  -- TODO: this might cause issues
+  -- bindings.set("lazyredraw")
 
 end
 table.insert(defer, performance)

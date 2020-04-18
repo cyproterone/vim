@@ -28,6 +28,7 @@ local tree = function ()
 
   -- nerdtree bindings
   bindings.let("NERDTreeMapActivateNode", "<Tab>")
+  bindings.let("NERDTreeMapPreview", "<Space>")
 
 end
 table.insert(defer, tree)
