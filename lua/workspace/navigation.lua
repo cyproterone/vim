@@ -57,12 +57,12 @@ local fzf = function ()
   bindings.let("fzf_layout",
                { window = {
                    width = 0.8,
-                   height = 0.6 } })
+                   height = 0.8 } })
 
   -- keybindings
   bindings.map.normal("<C-p>", ":Commands<CR>")
   bindings.map.normal("<Leader>o", ":Rg<CR>")
-  bindings.map.normal("<Leader>p", ":FZF<CR>")
+  bindings.map.normal("<Leader>p", ":Files<CR>")
 
 end
 table.insert(defer, fzf)
