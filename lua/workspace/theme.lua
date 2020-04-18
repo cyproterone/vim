@@ -70,6 +70,7 @@ local colours = function ()
   bindings.let("edge_transparent_background", 1)
   bindings.let("edge_menu_selection_background", "purple")
   bindings.let("edge_enable_italic", 0)
+  bindings.let("edge_style", "neon")
 
 end
 table.insert(defer, colours)

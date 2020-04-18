@@ -49,6 +49,7 @@ local fzf = function ()
   -- fzf use preview
   bindings.let("fzf_preview_window", "right:60%")
 
+  -- bindings.let("fzf_layout")
 
   -- keybindings
   bindings.map.normal("<C-p>", ":Commands<CR>")

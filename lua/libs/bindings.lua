@@ -3,10 +3,20 @@
 --#################### ########## ####################
 
 local p_val = function (val)
-  if type(val) == "string" then
-    return "'" .. val .. "'"
-  else
+  if type(val) == "number"
+  then
     return val
+  elseif type(val) == "string"
+  then
+    return "'" .. val .. "'"
+  elseif type(val) == "boolean"
+  then
+    return val and 1 or 0
+  elseif type(val) == "table"
+  then
+    return "{" .. "}"
+  else
+    error("invalid type")
   end
 end
 
@@ -100,6 +110,7 @@ end
 
 
 return {
+  pval = p_val,
   arbitrary = arbitrary,
   set = set,
   let = let,
