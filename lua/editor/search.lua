@@ -21,7 +21,7 @@ table.insert(defer, modern_search)
 local hotkeys = function ()
 
   -- clear search result
-  bindings.map.normal("C-l", ":nohlsearch<CR>")
+  bindings.map.normal("<Leader>l", ":nohlsearch<CR>")
 
 end
 table.insert(defer, hotkeys)
