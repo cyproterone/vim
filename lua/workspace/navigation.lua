@@ -40,6 +40,11 @@ table.insert(defer, fzf_cmds)
 
 local fzf = function ()
 
+  -- fzf remove default border
+  local fzf_opts = os.getenv("FZF_DEFAULT_OPTS")
+  local fzf_newopts = fzf_opts .. " --no-border"
+  bindings.env("FZF_DEFAULT_OPTS", fzf_newopts)
+
   -- fzf use fd
   bindings.env("FZF_DEFAULT_COMMAND", "fd -H -t f")
 
@@ -49,7 +54,10 @@ local fzf = function ()
   -- fzf use preview
   bindings.let("fzf_preview_window", "right:60%")
 
-  -- bindings.let("fzf_layout")
+  bindings.let("fzf_layout",
+               { window = {
+                   width = 0.8,
+                   height = 0.6 } })
 
   -- keybindings
   bindings.map.normal("<C-p>", ":Commands<CR>")

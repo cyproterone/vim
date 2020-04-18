@@ -60,17 +60,6 @@ end
 table.insert(defer, win_swap)
 
 
--- resize active window
-table.insert(plugins, "roman/golden-ratio")
-local lens = function ()
-
-  -- exclude certain windows from being resized
-  bindings.let("golden_ratio_exclude_nonmodifiable", true)
-
-end
-table.insert(defer, lens)
-
-
 return {
   plugins = plugins,
   defer = defer,
