@@ -49,10 +49,6 @@ local powerline = function ()
   bindings.let("airline_powerline_fonts", true)
   bindings.let("airline_theme", "edge")
 
-  -- tabline settings
-  bindings.let("airline#extensions#tabline#enabled", true)
-  bindings.let("airline#extensions#tabline#show_buffers", false)
-
 end
 table.insert(defer, powerline)
 
@@ -72,8 +68,9 @@ local colours = function ()
   bindings.let("edge_enable_italic", false)
   bindings.let("edge_style", "neon")
 
-  -- bindings.auto{ group = "themes",
-  --                events = "ColorScheme"}
+  bindings.auto{ group = "themes",
+                 events = "ColorScheme",
+                 exec = {"highlight Visual ctermbg=Yellow guibg=#2b2b2b"} }
 
 end
 table.insert(defer, colours)
