@@ -11,13 +11,7 @@ local intrinsic = function ()
   -- use 256 colours
   bindings.set("termguicolors")
 
-  -- dont change cursor styling
-  bindings.set("guicursor", "", [[=]])
-
-  -- highlight cursor location
-  bindings.set("cursorline")
-
-  -- show current mode
+ -- show current mode
   bindings.set("showmode")
 
   -- show command history
