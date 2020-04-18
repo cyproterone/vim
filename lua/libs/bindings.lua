@@ -49,15 +49,25 @@ end
 
 
 local set = function (opt, val, operator)
+
+  local p_val = function ()
+    if type(val) == "boolean"
+    then
+      return val and 1 or 0
+    else
+      return val
+    end
+  end
+
   local p_statement = function ()
     if not val
     then
       return "set " .. opt
     elseif not operator
     then
-      return "set " .. opt .. "=" ..val
+      return "set " .. opt .. "=" .. p_val()
     else
-      return "set " .. opt .. operator ..  val
+      return "set " .. opt .. operator ..  p_val()
     end
   end
 
@@ -101,7 +111,7 @@ local auto = function (args)
   api.nvim_command(auto_begin)
   api.nvim_command(auto_cls)
 
-  for exe in ipairs(exec)
+  for _, exe in ipairs(exec)
   do
     local auto_body = "autocmd " .. events .. " " .. filter .. " " .. exe
     api.nvim_command(auto_body)

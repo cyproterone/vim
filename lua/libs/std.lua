@@ -14,6 +14,18 @@ local extract = function (path)
 end
 
 
+local nil_map = function (val, func)
+
+  if val ~= nil
+  then
+    return func(val)
+  else
+    return nil
+  end
+
+end
+
+
 local wrap = function (val)
 
   if type(val) == "table"
@@ -60,6 +72,7 @@ end
 
 
 return {
+  nil_map = nil_map,
   wrap = wrap,
   extract = extract,
   map = map,

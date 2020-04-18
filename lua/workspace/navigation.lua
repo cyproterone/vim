@@ -25,7 +25,15 @@ table.insert(defer, wild)
 local smartcase = function ()
 
   bindings.set("ignorecase")
-  -- bindings.set("smartcase")
+  bindings.set("smartcase")
+
+  bindings.auto{ group = "smartcase_no",
+                 events = "CmdLineEnter",
+                 exec = "set nosmartcase" }
+
+  bindings.auto{ group = "smartcase_yes",
+                 events = "CmdLineLeave",
+                 exec = "set smartcase" }
 
 end
 table.insert(defer, smartcase)
