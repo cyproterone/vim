@@ -88,7 +88,11 @@ local execute_defered = function (defer)
   bindings.let("mapleader", " ")
   for _, cmd in ipairs(defer)
   do
-    cmd()
+    local succ, err = pcall(cmd)
+    if not succ
+    then
+      print(err)
+    end
   end
 end
 

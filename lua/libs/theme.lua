@@ -27,7 +27,6 @@ local override = function (highlights)
     table.insert(exec, exe)
   end
 
-  print(vim.inspect(exec))
   bindings.auto{ group = "themes",
                  events = "ColorScheme",
                  exec = exec }

@@ -17,10 +17,12 @@ table.insert(defer, fs_consistency)
 
 
 -- autosave
-table.insert(plugins, "vim-scripts/vim-auto-save")
+table.insert(plugins, "907th/vim-auto-save")
 local autosave = function ()
 
-  bindings.let("auto_save", false)
+  bindings.let("auto_save", true)
+  bindings.let("auto_save_write_all_buffers", true)
+  bindings.let("auto_save_events", {"InsertLeave"})
 
 end
 table.insert(defer, autosave)
