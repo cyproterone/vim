@@ -59,6 +59,14 @@ end
 table.insert(defer, search_replace)
 
 
+-- enable multi file search replace
+table.insert(plugins, "mhinz/vim-grepper")
+local grepper = function ()
+
+end
+table.insert(defer, grepper)
+
+
 return {
   plugins = plugins,
   defer = defer,
