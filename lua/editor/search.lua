@@ -43,14 +43,17 @@ if has('python3')
 endif
 ]]
 
-  -- max results
-  bindings.let("far#limit", 10000)
-
   -- find
   bindings.map.normal("<Leader>f", ":F ")
 
   -- replace
   bindings.map.normal("<Leader>r", ":Far ")
+
+
+  -- performance!!
+  bindings.let("far#auto_preview_on_start", false)
+  -- max results
+  bindings.let("far#limit", 100000)
 
 end
 table.insert(defer, search_replace)
