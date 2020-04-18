@@ -14,15 +14,6 @@ local misc = function ()
 end
 table.insert(defer, misc)
 
--- enable smartcase
-local smartcase = function ()
-
-  bindings.set("ignorecase")
-  bindings.set("smartcase")
-
-end
-table.insert(defer, smartcase)
-
 
 local normalize_keystrokes = function ()
 

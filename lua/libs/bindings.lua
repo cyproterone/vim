@@ -50,10 +50,10 @@ end
 
 local set = function (opt, val, operator)
   local p_statement = function ()
-    if (not val)
+    if not val
     then
       return "set " .. opt
-    elseif (not operator)
+    elseif not operator
     then
       return "set " .. opt .. "=" ..val
     else
@@ -88,6 +88,7 @@ end
 
 local auto = function (args)
 
+
   local group = assert(args.group)
   local events = table.concat(assert(args.events), ",")
   local filter = args.filter or "*"
@@ -95,12 +96,23 @@ local auto = function (args)
 
   local auto_begin = "augroup " .. group
   local auto_cls = "autocmd!"
-  local auto_body = "autocmd " .. events .. " " .. filter .. " " .. exec
   local auto_end = "augroup END"
+
+  local prepare_exec = function (exe)
+    return "autocmd " .. events .. " " .. filter .. " " .. exe
+  end
 
   api.nvim_command(auto_begin)
   api.nvim_command(auto_cls)
-  api.nvim_command(auto_body)
+  if type(exec) == "string"
+  then
+    api.nvim_command(prepare_exec(exec))
+  else
+    for exe in ipairs(exec)
+    do
+      api.nvim_command(prepare_exec(exe))
+    end
+  end
   api.nvim_command(auto_end)
 
 end

@@ -14,14 +14,21 @@ local wild = function ()
   bindings.set("wildignorecase")
   bindings.set("wildoptions", "tagfile")
 
-  -- hide file history
-  bindings.set("complete", "i", [[-=]])
-
   -- more history
   bindings.set("history", 10000)
 
 end
 table.insert(defer, wild)
+
+
+-- enable smartcase
+local smartcase = function ()
+
+  bindings.set("ignorecase")
+  -- bindings.set("smartcase")
+
+end
+table.insert(defer, smartcase)
 
 
 --#################### FZF Region ####################

@@ -8,6 +8,9 @@ local defer = {}
 
 local suggestions = function ()
 
+  -- dont follow tags
+  bindings.set("complete", "i", [[-=]])
+
   -- bindings.set("omnifunc")
 
 end

@@ -28,7 +28,7 @@ local filter = function (tb, func)
   local acc = {}
   for key, val in ipairs(tb)
   do
-    if (func(val, key))
+    if func(val, key)
     then
       acc[key] = val
     end
