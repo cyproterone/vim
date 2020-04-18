@@ -10,7 +10,6 @@ local misc = function ()
 
   bindings.set("nocompatible")
   bindings.set("encoding", "utf-8")
-  bindings.set("ttyfast")
 
   -- show as much as possible
   bindings.set("display", "lastline", [[+=]])
@@ -28,17 +27,26 @@ end
 table.insert(defer, misc)
 
 
+local performance = function ()
+
+  bindings.set("ttyfast")
+  bindings.set("lazyredraw")
+
+end
+table.insert(defer, performance)
+
+
 -- clean up where files are stored
 local var_files = function ()
 
   -- backup files
-  bindings.set("backupdir", var_home .. "/backup//")
+    bindings.set("backupdir", var_home .. "/backup//")
 
-  -- undo files
-  bindings.set("undodir", var_home .. "/undo//")
+    -- undo files
+    bindings.set("undodir", var_home .. "/undo//")
 
-  -- swap files
-  bindings.set("directory", var_home .. "/swap//")
+    -- swap files
+    bindings.set("directory", var_home .. "/swap//")
 
 end
 table.insert(defer, var_files)

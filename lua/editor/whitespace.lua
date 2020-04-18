@@ -39,7 +39,7 @@ local trailing_whitespace = function ()
 
   -- TODO: restore cursor pos
   strip_whitespace = function ()
-    api.nvim_command [[:%s/\s\+$//e]]
+    bindings.arbitrary [[:%s/\s\+$//e]]
   end
 
   bindings.auto{ group = "trim_whitespace",

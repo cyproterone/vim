@@ -80,7 +80,7 @@ local install_plugins = function (plugins)
   local plug_end = "call plug#end()"
   local install_func = table.concat({plug_beign, plug_installs, plug_end}, "\n")
 
-  api.nvim_command(install_func)
+  bindings.arbitrary(install_func)
 end
 
 

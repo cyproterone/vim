@@ -27,15 +27,6 @@ end
 table.insert(defer, hotkeys)
 
 
-local regex = function ()
-
-  -- use new regex engine
-  bindings.set("regexpengine", 2)
-
-end
-table.insert(defer, regex)
-
-
 --#################### Replace Region ####################
 
 table.insert(plugins, "brooth/far.vim")
@@ -44,8 +35,13 @@ local search_replace = function ()
   -- enable undo
   bindings.let("far#enable_undo", true)
 
-  -- use ripgrep
+  -- use ripgrep TODO: fix this at v0.5
   -- bindings.let("far#source", "rgnvim")
+  bindings.arbitrary [[
+if has('python3')
+  let g:far#source='rgnvim'
+endif
+]]
 
   -- max results
   bindings.let("far#limit", 10000)
