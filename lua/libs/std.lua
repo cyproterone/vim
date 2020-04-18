@@ -18,7 +18,7 @@ local map = function (tb, func)
   local acc = {}
   for key, val in pairs(tb)
   do
-    acc[key] = val
+    acc[key] = func(val, key)
   end
   return acc
 end

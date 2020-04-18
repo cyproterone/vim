@@ -1,8 +1,19 @@
 --#################### ########## ####################
 --#################### Lib Region ####################
 --#################### ########## ####################
+local std = require "libs/std"
 
-local p_val = function (val)
+
+local p_val = nil
+p_val = function (val)
+
+  local reduce = function (acc, val, key)
+    assert(type(key) == "string")
+    local trans = "'" .. key .. "' : " .. p_val(val)
+    table.insert(acc, trans)
+    return acc
+  end
+
   if type(val) == "number"
   then
     return val
@@ -14,10 +25,13 @@ local p_val = function (val)
     return val and 1 or 0
   elseif type(val) == "table"
   then
-    return "{" .. "}"
+    local entries = std.reduce(val, {}, reduce)
+    local cat = table.concat(entries, " , ")
+    return "{" .. cat .. "}"
   else
     error("invalid type")
   end
+
 end
 
 
@@ -110,7 +124,7 @@ end
 
 
 return {
-  pval = p_val,
+  p_val = p_val,
   arbitrary = arbitrary,
   set = set,
   let = let,
