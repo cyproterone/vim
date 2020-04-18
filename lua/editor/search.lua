@@ -33,7 +33,7 @@ table.insert(plugins, "brooth/far.vim")
 local search_replace = function ()
 
   -- enable undo
-  bindings.let("far#enable_undo", 1)
+  bindings.let("far#enable_undo", true)
 
   -- use ripgrep
   -- bindings.let("far#source", "rgnvim")

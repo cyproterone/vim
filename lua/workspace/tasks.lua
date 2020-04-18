@@ -20,7 +20,7 @@ table.insert(defer, fs_consistency)
 table.insert(plugins, "vim-scripts/vim-auto-save")
 local autosave = function ()
 
-  bindings.let("auto_save", 0)
+  bindings.let("auto_save", false)
 
 end
 table.insert(defer, autosave)

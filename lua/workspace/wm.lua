@@ -65,7 +65,7 @@ table.insert(plugins, "roman/golden-ratio")
 local lens = function ()
 
   -- exclude certain windows from being resized
-  bindings.let("golden_ratio_exclude_nonmodifiable", 1)
+  bindings.let("golden_ratio_exclude_nonmodifiable", true)
 
 end
 table.insert(defer, lens)

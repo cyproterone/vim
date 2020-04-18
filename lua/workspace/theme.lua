@@ -46,12 +46,12 @@ table.insert(plugins, "vim-airline/vim-airline")
 local powerline = function ()
 
   -- airline apperance
-  bindings.let("airline_powerline_fonts", 1)
+  bindings.let("airline_powerline_fonts", true)
   bindings.let("airline_theme", "edge")
 
   -- tabline settings
-  bindings.let("airline#extensions#tabline#enabled", 1)
-  bindings.let("airline#extensions#tabline#show_buffers", 0)
+  bindings.let("airline#extensions#tabline#enabled", true)
+  bindings.let("airline#extensions#tabline#show_buffers", false)
 
 end
 table.insert(defer, powerline)
@@ -67,9 +67,9 @@ local colours = function ()
   bindings.arbitrary("colorscheme edge")
 
   bindings.let("edge_style", "neon")
-  bindings.let("edge_transparent_background", 1)
+  bindings.let("edge_transparent_background", true)
   bindings.let("edge_menu_selection_background", "purple")
-  bindings.let("edge_enable_italic", 0)
+  bindings.let("edge_enable_italic", false)
   bindings.let("edge_style", "neon")
 
 end

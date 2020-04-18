@@ -10,7 +10,7 @@ table.insert(plugins, "airblade/vim-gitgutter")
 local gutter = function ()
 
   --highlight line numbers
-  bindings.let("gitgutter_highlight_linenrs", 1)
+  bindings.let("gitgutter_highlight_linenrs", true)
 
 end
 table.insert(defer, gutter)

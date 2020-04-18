@@ -15,7 +15,7 @@ table.insert(plugins, "terryma/vim-expand-region")
 table.insert(plugins, "terryma/vim-multiple-cursors")
 local multi_cursor = function ()
 
-  bindings.let("multi_cursor_use_default_mapping", 0)
+  bindings.let("multi_cursor_use_default_mapping", false)
   bindings.let("multi_cursor_quit_key", "<ESC>")
 
   -- bindings.let("multi_cursor_prev_key", "")

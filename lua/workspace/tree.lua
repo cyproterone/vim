@@ -11,16 +11,16 @@ table.insert(plugins, "Xuyuanp/nerdtree-git-plugin")
 local tree = function ()
 
   -- show hiddenfiles
-  bindings.let("NERDTreeShowHidden", 1)
+  bindings.let("NERDTreeShowHidden", true)
 
   -- buffer move with cursor
-  bindings.let("NERDTreeAutoCenter", 1)
+  bindings.let("NERDTreeAutoCenter", true)
 
   -- change cwd on root move
   bindings.let("NERDTreeChDirMode", 2)
 
   -- remove buffer on file delete
-  bindings.let("NERDTreeAutoDeleteBuffer", 1)
+  bindings.let("NERDTreeAutoDeleteBuffer", true)
 
 
   -- keybindings
