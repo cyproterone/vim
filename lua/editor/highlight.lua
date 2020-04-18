@@ -43,13 +43,17 @@ end
 table.insert(defer, copy_highlight)
 
 
--- focus on region
+-- focus on region TODO: this needs LSP
 table.insert(plugins, "junegunn/limelight.vim")
 local focus = function ()
 
-  -- bindings.let
+  -- bindings.map.normal("<Leader>i", ":Limelight<CR>")
+
+  bindings.let("limelight_conceal_ctermfg", "gray")
+  bindings.let("limelight_conceal_guifg", "DarkGray")
 
 end
+table.insert(defer, focus)
 
 
 return {
