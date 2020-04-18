@@ -16,9 +16,9 @@ end
 
 local map = function (tb, func)
   local acc = {}
-  for i, val in ipairs(tb)
+  for key, val in pairs(tb)
   do
-    table.insert(acc, func(val, i))
+    acc[key] = val
   end
   return acc
 end
@@ -26,26 +26,22 @@ end
 
 local filter = function (tb, func)
   local acc = {}
-  for i, val in ipairs(tb)
+  for key, val in ipairs(tb)
   do
-    if (func(val, i))
+    if (func(val, key))
     then
-      table.insert(acc, val)
+      acc[key] = val
     end
   end
   return acc
 end
 
 
-local flat_map = function (tb, func)
-  local acc = {}
-  for i, val in ipairs(tb)
+local reduce = function (tb, init, func)
+  local acc = init
+  for key, val in pairs(tb)
   do
-    local t = func(val, i)
-    for _, v in ipairs(t)
-    do
-      table.insert(acc, v)
-    end
+    acc = func(acc, val, key)
   end
   return acc
 end
@@ -55,5 +51,5 @@ return {
   extract = extract,
   map = map,
   filter = filter,
-  flat_map = flat_map,
+  reduce = reduce,
 }
