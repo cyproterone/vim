@@ -21,12 +21,14 @@ end
 table.insert(defer, syntax_highlight)
 
 
--- show line count
+-- auto line num
+table.insert(plugins, "jeffkreeftmeijer/vim-numbertoggle")
 local line_number = function ()
 
+  -- show line count
   bindings.set("number")
-  -- bindings.set("relativenumber")
-  
+  bindings.set("relativenumber")
+
 end
 table.insert(defer, line_number)
 
