@@ -8,11 +8,9 @@ local defer = {}
 
 local fs_consistency = function ()
 
-  -- auto load fs changes
-  bindings.set("autoread")
-
-  -- auto write on buffer leave
+  -- auto save file
   bindings.set("autowrite")
+  bindings.set("autowriteall")
 
 end
 table.insert(defer, fs_consistency)
