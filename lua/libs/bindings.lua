@@ -22,11 +22,16 @@ p_val = function (val)
   elseif type(val) == "boolean"
   then
     return val and 1 or 0
+  elseif type(val) == "table" and val[1] ~= nil
+  then
+    local entries = std.map(val, p_val)
+    local cat = table.concat(entries, " , ")
+    return "[" .. cat .. "]"
   elseif type(val) == "table"
   then
-    local entries = std.reduce(val, {}, reduce)
-    local cat = table.concat(entries, " , ")
-    return "{" .. cat .. "}"
+      local entries = std.reduce(val, {}, reduce)
+      local cat = table.concat(entries, " , ")
+      return "{" .. cat .. "}"
   else
     error("invalid type")
   end
