@@ -10,7 +10,7 @@ local wild = function ()
 
   -- ui for cmd auto complete
   bindings.set("wildmenu")
-  bindings.set("wildmode", "full")
+  bindings.set("wildmode", "list:longest")
   bindings.set("wildignorecase")
   bindings.set("wildoptions", "tagfile")
 
