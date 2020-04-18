@@ -12,6 +12,7 @@ local wild = function ()
   bindings.set("wildmenu")
   bindings.set("wildmode", "full")
   bindings.set("wildignorecase")
+  bindings.set("wildoptions", "tagfile")
 
   -- hide file history
   bindings.set("complete", "i", [[-=]])

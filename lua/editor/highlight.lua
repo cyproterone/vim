@@ -25,7 +25,7 @@ table.insert(defer, syntax_highlight)
 local line_number = function ()
 
   bindings.set("number")
-  bindings.set("relativenumber")
+  -- bindings.set("relativenumber")
   
 end
 table.insert(defer, line_number)
