@@ -8,8 +8,7 @@ local p_val = nil
 p_val = function (val)
 
   local reduce = function (acc, val, key)
-    assert(type(key) == "string")
-    local trans = "'" .. key .. "' : " .. p_val(val)
+    local trans = p_val(key) .. " : " .. p_val(val)
     table.insert(acc, trans)
     return acc
   end
