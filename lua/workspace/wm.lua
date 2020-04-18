@@ -44,7 +44,7 @@ table.insert(defer, modern_split)
 local modern_split = function ()
   
   -- close window
-  bindings.map.normal("<Leader>w", "<C-w>q")
+  bindings.map.normal("<Leader>w", ":close<CR>")
 
 end
 table.insert(defer, modern_split)

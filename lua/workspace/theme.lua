@@ -1,5 +1,5 @@
 local bindings = require "libs/bindings"
-
+local theme = require "libs/theme"
 
 local plugins = {}
 local defer = {}
@@ -63,14 +63,12 @@ local colours = function ()
   bindings.arbitrary("colorscheme edge")
 
   bindings.let("edge_style", "neon")
-  bindings.let("edge_transparent_background", true)
+  bindings.let("edge_transparent_background", false)
   bindings.let("edge_menu_selection_background", "purple")
   bindings.let("edge_enable_italic", false)
   bindings.let("edge_style", "neon")
 
-  bindings.auto{ group = "themes",
-                 events = "ColorScheme",
-                 exec = {"highlight Visual ctermbg=Yellow guibg=#2b2b2b"} }
+  theme.override{}
 
 end
 table.insert(defer, colours)

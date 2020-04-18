@@ -44,6 +44,15 @@ end
 table.insert(defer, var_files)
 
 
+local welcome_screen = function ()
+
+  -- remove welcome message
+  bindings.set("shortmess", "I", [[+=]])
+
+end
+table.insert(defer, welcome_screen)
+
+
 return {
   plugins = plugins,
   defer = defer,

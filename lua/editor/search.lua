@@ -27,6 +27,15 @@ end
 table.insert(defer, hotkeys)
 
 
+local regex = function ()
+
+  -- use new regex engine
+  bindings.set("regexpengine", 2)
+
+end
+table.insert(defer, regex)
+
+
 --#################### Replace Region ####################
 
 table.insert(plugins, "brooth/far.vim")
