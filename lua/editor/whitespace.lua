@@ -44,7 +44,7 @@ local trailing_whitespace = function ()
 
   bindings.auto{ group = "trim_whitespace",
                  events = "BufWritePre",
-                 exec = "lua strip_whitespace()"  }
+                 exec = "lua strip_whitespace()" }
 
 end
 table.insert(defer, trailing_whitespace)
