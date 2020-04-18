@@ -14,10 +14,22 @@ local extract = function (path)
 end
 
 
+local wrap = function (val)
+
+  if type(val) == "table"
+  then
+    return val
+  else
+    return {val}
+  end
+
+end
+
+
 local map = function (tb, func)
-  local acc = {}
-  for key, val in pairs(tb)
-  do
+      local acc = {}
+      for key, val in pairs(tb)
+      do
     acc[key] = func(val, key)
   end
   return acc
@@ -48,6 +60,7 @@ end
 
 
 return {
+  wrap = wrap,
   extract = extract,
   map = map,
   filter = filter,

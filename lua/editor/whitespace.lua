@@ -39,7 +39,7 @@ local trailing_whitespace = function ()
 
   -- https://stackoverflow.com/questions/356126/how-can-you-automatically-remove-trailing-whitespace-in-vim
   -- bindings.auto{ group = "trailing_whitespace",
-  --                events = {"BufWritePre"},}
+  --                events = "BufWritePre",}
 
 
 end

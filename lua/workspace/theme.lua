@@ -72,6 +72,9 @@ local colours = function ()
   bindings.let("edge_enable_italic", false)
   bindings.let("edge_style", "neon")
 
+  -- bindings.auto{ group = "themes",
+  --                events = "ColorScheme"}
+
 end
 table.insert(defer, colours)
 

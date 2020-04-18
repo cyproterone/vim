@@ -10,7 +10,7 @@ local defer = {}
 local auto_centre = function ()
 
   bindings.auto{ group = "auto_centering",
-                 events = { "InsertEnter" },
+                 events = "InsertEnter",
                  exec = "normal! zz", }
 
 end
