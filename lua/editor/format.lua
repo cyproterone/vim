@@ -14,9 +14,10 @@ table.insert(plugins, "junegunn/vim-easy-align")
 table.insert(plugins, "sbdchd/neoformat")
 local pretty = function ()
 
-  bindings.auto{ group = "formatting",
-                 events = "BufWritePre",
-                 exec = "undojoin | Neoformat" }
+  -- disabled for performance reasons
+  -- bindings.auto{ group = "formatting",
+  --                events = "BufWritePre",
+  --                exec = "undojoin | Neoformat" }
 
 end
 table.insert(defer, pretty)
