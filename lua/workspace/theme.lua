@@ -45,11 +45,12 @@ table.insert(defer, cursors)
 
 -- powerline
 table.insert(plugins, "vim-airline/vim-airline")
+table.insert(plugins, "vim-airline/vim-airline-themes")
 local powerline = function ()
 
   -- airline apperance
   bindings.let("airline_powerline_fonts", true)
-  bindings.let("airline_theme", "edge")
+  bindings.let("airline_theme", "tomorrow")
 
 end
 table.insert(defer, powerline)
@@ -58,19 +59,11 @@ table.insert(defer, powerline)
 --#################### Colours Region ####################
 
 -- colour theme::
-table.insert(plugins, "sainnhe/edge")
+table.insert(plugins, "NLKNguyen/papercolor-theme")
 local colours = function ()
 
   bindings.set("background", "light")
-  bindings.arbitrary("colorscheme edge")
-
-  bindings.let("edge_style", "neon")
-  bindings.let("edge_transparent_background", false)
-  bindings.let("edge_menu_selection_background", "purple")
-  bindings.let("edge_enable_italic", false)
-  bindings.let("edge_style", "neon")
-
-  theme.override{}
+  bindings.arbitrary("colorscheme PaperColor")
 
 end
 table.insert(defer, colours)
