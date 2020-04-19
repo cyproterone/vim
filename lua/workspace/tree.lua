@@ -7,7 +7,6 @@ local defer = {}
 --#################### Tree Region ####################
 
 table.insert(plugins, "preservim/nerdtree")
-table.insert(plugins, "Xuyuanp/nerdtree-git-plugin")
 local tree = function ()
 
   -- show hiddenfiles
@@ -29,6 +28,18 @@ local tree = function ()
   -- nerdtree bindings
   bindings.let("NERDTreeMapActivateNode", "<Tab>")
   bindings.let("NERDTreeMapPreview", "<Space>")
+
+end
+table.insert(defer, tree)
+
+
+--#################### Tree Region ####################
+
+table.insert(plugins, "Xuyuanp/nerdtree-git-plugin")
+table.insert(plugins, "tiagofumo/vim-nerdtree-syntax-highlight")
+local pretty_tree = function ()
+
+  bindings.let("NERDTreeHighlightFolders", true)
 
 end
 table.insert(defer, tree)
