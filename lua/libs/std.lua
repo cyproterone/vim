@@ -39,9 +39,9 @@ end
 
 
 local map = function (tb, func)
-      local acc = {}
-      for key, val in pairs(tb)
-      do
+  local acc = {}
+  for key, val in pairs(tb)
+  do
     acc[key] = func(val, key)
   end
   return acc
@@ -71,6 +71,32 @@ local reduce = function (tb, init, func)
 end
 
 
+local make_set = function (tb)
+  local lambda = function()
+    return true
+  end
+  return map(tb, lambda)
+end
+
+
+local pick = function (tb, keys)
+  local set = make_set(tb)
+  local lambda = function (v, key)
+    return set[key] == key
+  end
+  return filter(fb, lambda)
+end
+
+
+local exclude = function (tb, keys)
+  local set = make_set(tb)
+  local lambda = function (v, key)
+    return set[key] ~= key
+  end
+  return filter(fb, lambda)
+end
+
+
 return {
   nil_map = nil_map,
   wrap = wrap,
@@ -78,4 +104,7 @@ return {
   map = map,
   filter = filter,
   reduce = reduce,
+  make_set = make_set,
+  pick = pick,
+  exclude = exclude,
 }
