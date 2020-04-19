@@ -50,7 +50,7 @@ end
 
 local filter = function (tb, func)
   local acc = {}
-  for key, val in ipairs(tb)
+  for key, val in pairs(tb)
   do
     if func(val, key)
     then
@@ -72,10 +72,12 @@ end
 
 
 local make_set = function (tb)
-  local lambda = function()
-    return true
+  local acc = {}
+  for _, val in ipairs(tb)
+  do
+    acc[val] = true
   end
-  return map(tb, lambda)
+  return acc
 end
 
 
@@ -86,8 +88,8 @@ end
 
 local pick = function (tb, keys)
   local set = make_set(tb)
-  local lambda = function (v, key)
-    return set_contains(set, key)
+  local lambda = function (val)
+    return set_contains(set, val)
   end
   return filter(tb, lambda)
 end
@@ -95,8 +97,8 @@ end
 
 local exclude = function (tb, keys)
   local set = make_set(tb)
-  local lambda = function (v, key)
-    return not set_contains(set, key)
+  local lambda = function (val)
+    return not set_contains(set, val)
   end
   return filter(tb, lambda)
 end
