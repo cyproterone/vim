@@ -43,9 +43,6 @@ if has('python3')
 endif
 ]]
 
-  -- find
-  bindings.map.normal("<Leader>f", ":F ")
-
   -- replace
   bindings.map.normal("<Leader>r", ":Far ")
 
