@@ -27,6 +27,9 @@ table.insert(defer, fs_consistency)
 table.insert(plugins, "907th/vim-auto-save")
 local autosave = function ()
 
+  -- auto backup
+  bindings.set("backup")
+
   bindings.let("auto_save", true)
   bindings.let("auto_save_write_all_buffers", true)
   bindings.let("auto_save_events", {"InsertLeave"})
