@@ -16,14 +16,14 @@ local syntax_highlight = function ()
   -- show matching parens
   bindings.set("showmatch")
   -- match paren highlight time
-  bindings.set("matchtime", 5)
+  -- bindings.set("matchtime", 5)
 
 end
 table.insert(defer, syntax_highlight)
 
 
 -- auto line num
-table.insert(plugins, "jeffkreeftmeijer/vim-numbertoggle")
+-- table.insert(plugins, "jeffkreeftmeijer/vim-numbertoggle")
 local line_number = function ()
 
   -- show line count
