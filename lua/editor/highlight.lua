@@ -1,4 +1,5 @@
 local bindings = require "libs/bindings"
+local theme = require "libs/theme"
 
 
 local plugins = {}
@@ -27,7 +28,7 @@ local line_number = function ()
 
   -- show line count
   bindings.set("number")
-  bindings.set("relativenumber")
+  -- bindings.set("relativenumber")
 
 end
 table.insert(defer, line_number)
@@ -37,7 +38,11 @@ table.insert(defer, line_number)
 table.insert(plugins, "machakann/vim-highlightedyank")
 local copy_highlight = function ()
 
-  bindings.let("highlightedyank_highlight_duration", 1000)
+  bindings.let("highlightedyank_highlight_duration", 500)
+
+  theme.override{ "HighlightedyankRegion",
+                  cterm = "reverse",
+                  gui = "reverse" }
 
 end
 table.insert(defer, copy_highlight)

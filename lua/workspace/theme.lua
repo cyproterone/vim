@@ -65,6 +65,10 @@ local colours = function ()
   bindings.set("background", "light")
   bindings.arbitrary("colorscheme PaperColor")
 
+  bindings.let("PaperColor_Theme_Options",
+               { theme = { default = { allow_bold = true,
+                                       allow_italic = true } } })
+
 end
 table.insert(defer, colours)
 
