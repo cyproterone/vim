@@ -8,6 +8,13 @@ local defer = {}
 
 local fs_consistency = function ()
 
+  -- auto load changes
+  bindings.set("autoread")
+
+  bindings.auto{ group = "auto_changes",
+                 events = { "FocusGained", "BufEnter" },
+                 exec = "checktime" }
+
   -- auto save file
   bindings.set("autowrite")
   bindings.set("autowriteall")
