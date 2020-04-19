@@ -29,6 +29,8 @@ local tree = function ()
   bindings.let("NERDTreeMapActivateNode", "<Tab>")
   bindings.let("NERDTreeMapPreview", "<Space>")
 
+  bindings.let("NERDTreeMapRefreshRoot", "g")
+
 end
 table.insert(defer, tree)
 
