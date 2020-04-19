@@ -67,7 +67,7 @@ local fzf = function ()
   bindings.let("fzf_history_dir", var_home .. "/fzf//")
 
   -- fzf use preview
-  bindings.let("fzf_preview_window", "right:60%")
+  bindings.let("fzf_preview_window", "right:wrap")
 
   bindings.let("fzf_layout",
                { window = {
@@ -76,7 +76,7 @@ local fzf = function ()
 
   -- keybindings
   bindings.map.normal("<C-p>", ":Commands<CR>")
-  bindings.map.normal("<Leader>o", ":Rg<CR>")
+  bindings.map.normal("<Leader>o", ":Rg ")
   bindings.map.normal("<Leader>p", ":Files<CR>")
 
 end
