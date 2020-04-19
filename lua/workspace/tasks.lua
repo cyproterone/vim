@@ -12,7 +12,7 @@ local fs_consistency = function ()
   bindings.set("autoread")
 
   bindings.auto{ group = "auto_changes",
-                 events = { "FocusGained", "BufEnter" },
+                 events = { "FocusGained" },
                  exec = "checktime" }
 
   -- auto save file
