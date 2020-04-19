@@ -35,6 +35,13 @@ local search_replace = function ()
   -- enable undo
   bindings.let("far#enable_undo", true)
 
+
+  -- performance!!
+  bindings.let("far#auto_preview_on_start", false)
+  -- max results
+  bindings.let("far#limit", 100000)
+
+
   -- use ripgrep TODO: fix this at v0.5
   -- bindings.let("far#source", "rgnvim")
   bindings.arbitrary [[
@@ -43,14 +50,18 @@ if has('python3')
 endif
 ]]
 
-  -- replace
-  bindings.map.normal("<Leader>r", ":Far ")
+  -- visual
+  bindings.let("highlight_match", false)
 
 
-  -- performance!!
-  bindings.let("far#auto_preview_on_start", false)
-  -- max results
-  bindings.let("far#limit", 100000)
+  -- #################### Hotkeys Region ####################
+
+  -- normal search
+  bindings.map.normal("<Leader>R", ":Far ")
+
+  -- search under cursor
+  bindings.map.normal("<Leader>r", "g*N:Far <C-r>/ ")
+
 
 end
 table.insert(defer, search_replace)
