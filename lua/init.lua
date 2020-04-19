@@ -67,10 +67,10 @@ end
 
 local install_plugins = function (plugins)
   local plug = function (p)
-    args = std.wrap(p)
-    local name = args[1]
-    -- local opts = bindings.p_val(args[2])
-    return "Plug '" .. name .. "'"
+    local args = std.wrap(p)
+    local name = assert(args[1])
+    local opts = std.exclude(args, {1})
+    return "Plug '" .. name .. "' , " .. bindings.p_val(opts)
   end
 
   local plug_lines = std.map(plugins, plug)

@@ -89,7 +89,7 @@ local pick = function (tb, keys)
   local lambda = function (v, key)
     return set_contains(set, key)
   end
-  return filter(fb, lambda)
+  return filter(tb, lambda)
 end
 
 
@@ -98,7 +98,7 @@ local exclude = function (tb, keys)
   local lambda = function (v, key)
     return not set_contains(set, key)
   end
-  return filter(fb, lambda)
+  return filter(tb, lambda)
 end
 
 
