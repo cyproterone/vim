@@ -79,10 +79,15 @@ local make_set = function (tb)
 end
 
 
+local set_contains = function(set, key)
+  return set[key] ~= nil
+end
+
+
 local pick = function (tb, keys)
   local set = make_set(tb)
   local lambda = function (v, key)
-    return set[key] == key
+    return set_contains(set, key)
   end
   return filter(fb, lambda)
 end
@@ -91,7 +96,7 @@ end
 local exclude = function (tb, keys)
   local set = make_set(tb)
   local lambda = function (v, key)
-    return set[key] ~= key
+    return not set_contains(set, key)
   end
   return filter(fb, lambda)
 end
