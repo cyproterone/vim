@@ -20,6 +20,9 @@ local intrinsic = function ()
   -- always show status line
   bindings.set("laststatus", 2)
 
+  -- always show issues column
+  bindings.set("signcolumn", "yes")
+
 end
 table.insert(defer, intrinsic)
 

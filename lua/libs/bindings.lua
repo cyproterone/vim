@@ -138,7 +138,7 @@ end
 
 local source = function (path)
 
-  local cmd = "source " .. path
+  local cmd = "source " ..  scripts_home  .. "/" .. path
   api.nvim_command(cmd)
 
 end

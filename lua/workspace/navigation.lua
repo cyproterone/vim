@@ -10,7 +10,7 @@ local wild = function ()
 
   -- ui for cmd auto complete
   bindings.set("wildmenu")
-  bindings.set("wildmode", "list:longest")
+  bindings.set("wildmode", "list:longest,full")
   bindings.set("wildignorecase")
   bindings.set("wildoptions", "tagfile")
 
@@ -46,8 +46,7 @@ table.insert(plugins, "junegunn/fzf")
 table.insert(plugins, "junegunn/fzf.vim")
 local fzf_cmds = function ()
 
-  local fzf_scripts =  scripts_home .. "/fzf.vim"
-  bindings.source(fzf_scripts)
+  bindings.source("fzf.vim")
 
 end
 table.insert(defer, fzf_cmds)
