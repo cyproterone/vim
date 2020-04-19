@@ -40,9 +40,9 @@ local copy_highlight = function ()
 
   bindings.let("highlightedyank_highlight_duration", 500)
 
-  theme.override{ "HighlightedyankRegion",
-                  cterm = "reverse",
-                  gui = "reverse" }
+  theme.override{{ "HighlightedyankRegion",
+                   cterm = "reverse",
+                   gui = "reverse" }}
 
 end
 table.insert(defer, copy_highlight)
