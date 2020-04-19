@@ -45,6 +45,8 @@ local modern_split = function ()
   
   -- close window
   bindings.map.normal("<Leader>w", ":close<CR>")
+  -- close other windows
+  bindings.map.normal("<Leader>W", ":only<CR>")
 
 end
 table.insert(defer, modern_split)
