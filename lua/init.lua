@@ -6,6 +6,7 @@ local bindings = require "libs/bindings"
 
 local layers = {
   -- workspace
+  require "workspace/help",
   require "workspace/keyboard",
   require "workspace/misc",
   require "workspace/mouse",
@@ -28,6 +29,7 @@ local layers = {
   require "editor/highlight",
   require "editor/lsp",
   require "editor/macros",
+  require "editor/repl",
   require "editor/search",
   require "editor/suggestions",
   require "editor/whitespace",
