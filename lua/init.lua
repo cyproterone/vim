@@ -35,6 +35,7 @@ local layers = {
   require "editor/suggestions",
   require "editor/whitespace",
   -- lang
+  require "lang/json"
 }
 
 
