@@ -8,7 +8,7 @@ local plugins = {}
 
 local misc = function ()
 
-  -- hide unused buffers
+  -- hide background buffers
   bindings.set("hidden")
 
 end
