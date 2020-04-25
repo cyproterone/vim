@@ -34,8 +34,8 @@ table.insert(plugins, "matze/vim-move")
 table.insert(plugins, "tpope/vim-surround")
 
 
--- auto parens TODO: this thing is slow
---table.insert(plugins, "Raimondi/delimitMate")
+-- auto parens
+table.insert(plugins, "Raimondi/delimitMate")
 
 
 return {
