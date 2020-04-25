@@ -76,8 +76,10 @@ local fzf = function ()
   -- keybindings
   bindings.map.normal("<C-p>", ":Commands<CR>")
   bindings.map.normal("<Leader>j", ":BLines<CR>")
+  bindings.map.normal("<Leader>i", ":History")
   bindings.map.normal("<Leader>o", ":Rg ")
   bindings.map.normal("<Leader>p", ":Files<CR>")
+  bindings.map.normal("<Leader>m", ":Maps<CR>")
 
 end
 table.insert(defer, fzf)
