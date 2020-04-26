@@ -1,6 +1,7 @@
 --#################### Libs Region ####################
 require "libs/consts"
 local std = require "libs/std"
+local stdio = require "libs/io"
 local bindings = require "libs/bindings"
 
 

@@ -7,6 +7,10 @@ local defer = {}
 
 --#################### Multi-Mode Region ####################
 
+-- add eamcs keybinds in insert / command mode
+table.insert(plugins, "tpope/vim-rsi")
+
+
 local remap_keys = function ()
 
   -- delete dont copy
