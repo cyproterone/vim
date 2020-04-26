@@ -23,6 +23,14 @@ local map_keys = function ()
 end
 table.insert(defer, map_keys)
 
+-- fix cursor pos moving 1 back
+local cursor_pos = function ()
+
+  bindings.source(scripts_home .. "/cursor.vim")
+
+end
+table.insert(defer, cursor_pos)
+
 return {
   plugins = plugins,
   defer = defer,
