@@ -19,9 +19,6 @@ local remap_keys = function ()
   bindings.map.visual("d", [["_d]])
   bindings.map.visual("D", [["_D]])
 
-  bindings.map.visual("x", [["_x]])
-  bindings.map.visual("X", [["_X]])
-
   -- paste before cursor
   bindings.map.normal("p", "P")
   bindings.map.visual("p", "P")
