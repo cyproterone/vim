@@ -63,16 +63,6 @@ end
 table.insert(defer, buffers)
 
 
---#################### WM Region ####################
-
--- swap windows
-table.insert(plugins, "wesQ3/vim-windowswap")
-local win_swap = function ()
-
-end
-table.insert(defer, win_swap)
-
-
 return {
   plugins = plugins,
   defer = defer,
