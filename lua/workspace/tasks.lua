@@ -32,7 +32,8 @@ local autosave = function ()
 
   bindings.let("auto_save", true)
   bindings.let("auto_save_write_all_buffers", true)
-  bindings.let("auto_save_events", {"CursorHold", "CursorHoldI"})
+  bindings.let("auto_save_events", {"TextChanged","InsertLeave"})
+  bindings.let("auto_save_silent", true)
 
 end
 table.insert(defer, autosave)
