@@ -39,14 +39,7 @@ table.insert(defer, unsurprising_tab)
 -- remove trailing whitespace
 local trailing_whitespace = function ()
 
-  -- TODO: restore cursor pos
-  strip_whitespace = function ()
-    bindings.arbitrary [[:%s/\s\+$//e]]
-  end
-
-  bindings.auto{group = "trim_whitespace",
-                events = "BufWritePre",
-                exec = "lua strip_whitespace()"}
+  bindings.source(scripts_home .. "/whitespace.vim")
 
 end
 table.insert(defer, trailing_whitespace)
