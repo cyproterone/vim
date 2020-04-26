@@ -1,9 +1,9 @@
 " Prevent vim from moving cursor 1 step back
 
-let s:CursorColumnI = 0 "the cursor column position in INSERT
+let b:CursorColumnI = 0 "the cursor column position in INSERT
 augroup cursor_pos
   autocmd!
-  autocmd InsertEnter * let s:CursorColumnI = col('.')
-  autocmd CursorMovedI * let s:CursorColumnI = col('.')
-  autocmd InsertLeave * if col('.') != s:CursorColumnI | call cursor(0, col('.')+1) | endif
+  autocmd InsertEnter * let b:CursorColumnI = col('.')
+  autocmd CursorMovedI * let b:CursorColumnI = col('.')
+  autocmd InsertLeave * if col('.') != b:CursorColumnI | call cursor(0, col('.')+1) | endif
 augroup END
