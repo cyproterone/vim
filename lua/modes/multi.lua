@@ -23,10 +23,6 @@ local remap_keys = function ()
   bindings.map.visual("d", [["_d]])
   bindings.map.visual("D", [["_D]])
 
-  -- paste before cursor
-  bindings.map.normal("p", "P")
-  bindings.map.visual("p", "P")
-
 end
 table.insert(defer, remap_keys)
 

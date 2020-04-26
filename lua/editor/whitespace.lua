@@ -6,6 +6,8 @@ local defer = {}
 
 --#################### Whitespace Region ####################
 
+-- try to guess table size
+table.insert(plugins, "tpope/vim-sleuth")
 local tab_size = function ()
 
   -- how big are tabs ?

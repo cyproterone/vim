@@ -57,7 +57,7 @@ table.insert(defer, wm_close)
 -- buffer region
 local buffers = function ()
 
-  bindings.map.normal("D", ":bd!<CR>")
+  bindings.map.normal("<Leader>D", ":bwipeout!<CR>")
 
 end
 table.insert(defer, buffers)

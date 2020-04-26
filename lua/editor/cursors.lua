@@ -30,12 +30,16 @@ table.insert(plugins, "matze/vim-move")
 -- default: M-j, M-k, M-h, M-l
 
 
+-- auto parens
+table.insert(plugins, "Raimondi/delimitMate")
+
+
 -- easy quoting
 table.insert(plugins, "tpope/vim-surround")
 
 
--- auto parens
-table.insert(plugins, "Raimondi/delimitMate")
+-- easy commenting
+table.insert(plugins, "tpope/vim-commentary")
 
 
 return {
