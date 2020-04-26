@@ -15,9 +15,9 @@ table.insert(plugins, "sbdchd/neoformat")
 local pretty = function ()
 
   -- disabled for performance reasons
-  -- bindings.auto{ group = "formatting",
-  --                events = "BufWritePre",
-  --                exec = "undojoin | Neoformat" }
+  -- bindings.auto{group = "formatting",
+  --               events = "BufWritePre",
+  --               exec = "undojoin | Neoformat"}
 
 end
 table.insert(defer, pretty)

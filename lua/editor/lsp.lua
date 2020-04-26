@@ -6,7 +6,7 @@ local defer = {}
 
 --#################### LSP Region ####################
 
-table.insert(plugins, { "neoclide/coc.nvim", branch = "release" })
+table.insert(plugins, {"neoclide/coc.nvim", branch = "release"})
 local lsp_recommends = function ()
 
   bindings.source(scripts_home .. "/lsp.vim")

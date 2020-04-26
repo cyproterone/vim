@@ -9,13 +9,13 @@ local defer = {}
 -- add a cursor cross in insert mode
 local cursor_cross = function ()
 
-  bindings.auto{ group = "cursor_normal",
-                 events = "InsertEnter",
-                 exec = "set cursorcolumn" }
+  bindings.auto{group = "cursor_normal",
+                events = "InsertEnter",
+                exec = "set cursorcolumn"}
 
-  bindings.auto{ group = "cursor_cross",
-                 events = "InsertLeave",
-                 exec = "set nocursorcolumn" }
+  bindings.auto{group = "cursor_cross",
+                events = "InsertLeave",
+                exec = "set nocursorcolumn"}
 
 end
 table.insert(defer, cursor_cross)

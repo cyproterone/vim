@@ -27,13 +27,13 @@ local smartcase = function ()
   bindings.set("ignorecase")
   bindings.set("smartcase")
 
-  bindings.auto{ group = "smartcase_no",
-                 events = "CmdLineEnter",
-                 exec = "set nosmartcase" }
+  bindings.auto{group = "smartcase_no",
+                events = "CmdLineEnter",
+                exec = "set nosmartcase"}
 
-  bindings.auto{ group = "smartcase_yes",
-                 events = "CmdLineLeave",
-                 exec = "set smartcase" }
+  bindings.auto{group = "smartcase_yes",
+                events = "CmdLineLeave",
+                exec = "set smartcase"}
 
 end
 table.insert(defer, smartcase)
@@ -69,9 +69,9 @@ local fzf = function ()
   bindings.let("fzf_preview_window", "right:wrap")
 
   bindings.let("fzf_layout",
-               { window = {
+               {window = {
                    width = 0.8,
-                   height = 0.8 } })
+                   height = 0.8}})
 
   -- keybindings
   bindings.map.normal("<C-p>", ":Commands<CR>")

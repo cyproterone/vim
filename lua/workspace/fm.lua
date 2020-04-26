@@ -22,6 +22,19 @@ end
 table.insert(defer, fff)
 
 
+-- netrw
+local netrw = function ()
+
+  bindings.auto{
+    group = "netrw_fm",
+    events = "FileType",
+    filter = "netrw",
+    exec = "setlocal bufhidden=wipe"}
+
+end
+table.insert(defer, netrw)
+
+
 return {
   plugins = plugins,
   defer = defer,
