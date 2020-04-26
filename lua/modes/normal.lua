@@ -15,6 +15,14 @@ end
 table.insert(defer, unmap_keys)
 
 
+local map_keys = function ()
+
+  -- show changes
+  bindings.map.normal("<Leader>C", ":changes<CR>")
+
+end
+table.insert(defer, map_keys)
+
 return {
   plugins = plugins,
   defer = defer,

@@ -16,7 +16,7 @@ local undo_hist = function ()
 
   -- maximum number lines to save for undo on a buffer reload
   bindings.set("undoreload", 1000)
-  
+
 end
 table.insert(defer, undo_hist)
 

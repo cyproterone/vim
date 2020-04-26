@@ -43,15 +43,6 @@ end
 table.insert(defer, copy_highlight)
 
 
--- highlight undo
-table.insert(plugins, "mbbill/undotree")
-local undo_tree = function ()
-
-
-end
-table.insert(defer, undo_tree)
-
-
 -- focus on region TODO: this needs LSP
 table.insert(plugins, "junegunn/limelight.vim")
 local focus = function ()
