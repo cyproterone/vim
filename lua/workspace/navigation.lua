@@ -76,9 +76,9 @@ local fzf = function ()
   -- keybindings
   bindings.map.normal("<C-p>", ":Commands<CR>")
   bindings.map.normal("<Leader>p", ":Files<CR>")
-  bindings.map.normal("<Leader>P", ":Rg ")
+  bindings.map.normal("<Leader>P", ":History")
   bindings.map.normal("<Leader>o", ":BLines<CR>")
-  bindings.map.normal("<Leader>O", ":History")
+  bindings.map.normal("<Leader>O", ":Rg ")
   bindings.map.normal("<Leader>m", ":Maps<CR>")
 
 end
