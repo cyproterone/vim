@@ -1,6 +1,6 @@
 !.gitkeep
 .DS_Store
 .git/
-autoload/*
+bin/*
 plugged/*
 var/*

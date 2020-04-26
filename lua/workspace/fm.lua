@@ -14,7 +14,7 @@ local fff = function ()
   bindings.arbitrary([[command! -nargs=* -complete=dir FFF call fff#Run(<q-args>)]])
 
   -- fff keybind
-  bindings.map.normal("<Leader>g", ":FFF<CR>")
+  bindings.map.normal("<Leader>i", ":FFF<CR>")
 
   bindings.let("fff#split", "new")
 

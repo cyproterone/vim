@@ -70,8 +70,21 @@ local parse_instructions = function (layers)
   }
 end
 
+local init_plug = function ()
 
-local install_plugins = function (plugins)
+  local remote = "https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
+  local plug = bin_home .. "/plug.vim"
+  local exists = stdio.file_exists(plug)
+  if not exists
+  then
+      stdio.exec("wget -P " .. bin_home  .. " " .. remote)
+  end
+  bindings.source(plug)
+
+end
+
+local init_plugins = function (plugins)
+
   local plug = function (p)
     local args = std.wrap(p)
     local name = assert(args[1])
@@ -101,7 +114,8 @@ end
 
 local initialize_vim = function ()
   local instructions = parse_instructions(layers)
-  install_plugins(instructions.plugins)
+  init_plug()
+  init_plugins(instructions.plugins)
   execute_defered(instructions.defer)
 end
 

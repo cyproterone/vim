@@ -46,7 +46,7 @@ table.insert(plugins, "junegunn/fzf")
 table.insert(plugins, "junegunn/fzf.vim")
 local fzf_cmds = function ()
 
-  bindings.source("fzf")
+  bindings.source(scripts_home .. "/fzf.vim")
 
 end
 table.insert(defer, fzf_cmds)
@@ -75,10 +75,10 @@ local fzf = function ()
 
   -- keybindings
   bindings.map.normal("<C-p>", ":Commands<CR>")
-  bindings.map.normal("<Leader>j", ":BLines<CR>")
-  bindings.map.normal("<Leader>i", ":History")
-  bindings.map.normal("<Leader>o", ":Rg ")
   bindings.map.normal("<Leader>p", ":Files<CR>")
+  bindings.map.normal("<Leader>P", ":Rg ")
+  bindings.map.normal("<Leader>o", ":BLines<CR>")
+  bindings.map.normal("<Leader>O", ":History")
   bindings.map.normal("<Leader>m", ":Maps<CR>")
 
 end

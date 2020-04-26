@@ -2,14 +2,18 @@
 --#################### IO Region ####################
 --#################### ######### ####################
 
-local function exec ()
-
+local function exec (shell)
+  local stream = io.popen(shell)
+  local acc = stream:read("*a")
+  stream:close()
+  return acc
 end
 
 
 local function file_exists (filename)
   local file = io.open(filename, "r")
-  if file then
+  if file
+  then
     file:close()
     return true
   end
