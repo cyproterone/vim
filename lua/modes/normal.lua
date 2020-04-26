@@ -11,6 +11,9 @@ local unmap_keys = function ()
   -- unmap ROT13
   bindings.map.normal("g?")
 
+  -- unmap record
+  bindings.map.normal("q")
+
 end
 table.insert(defer, unmap_keys)
 
