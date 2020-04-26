@@ -17,11 +17,15 @@ table.insert(defer, unmap_keys)
 
 local map_keys = function ()
 
+  -- reload config
+  bindings.map.normal("<F5>", ":source $MYVIMRC<CR>")
+
   -- show changes
   bindings.map.normal("<Leader>C", ":changes<CR>")
 
 end
 table.insert(defer, map_keys)
+
 
 -- fix cursor pos moving 1 back
 local cursor_pos = function ()
