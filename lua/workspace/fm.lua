@@ -6,26 +6,20 @@ local defer = {}
 
 --#################### File Manager Region ####################
 
--- ranger fm
-table.insert(plugins, "rbgrouleff/bclose.vim")
-table.insert(plugins, "francoiscabrol/ranger.vim")
-local ranger = function ()
+-- fff
+table.insert(plugins, "dylanaraps/fff.vim")
+local fff = function ()
 
-  -- dont add hotkeys
-  bindings.let("ranger_map_keys", false)
+  --- keybind conflict
+  bindings.arbitrary([[command! -nargs=* -complete=dir FFF call fff#Run(<q-args>)]])
 
-  -- nerdtree integration
-  bindings.let("NERDTreeHijackNetrw", false)
+  -- fff keybind
+  bindings.map.normal("<Leader>g", ":FFF<CR>")
 
-  -- replace netrw
-  bindings.let("ranger_replace_netrw", true)
-
-
-  -- key bind
-  bindings.map.normal("<Leader>g", ":RangerWorkingDirectory<CR>")
+  bindings.let("fff#split", "new")
 
 end
-table.insert(defer, ranger)
+table.insert(defer, fff)
 
 
 return {
