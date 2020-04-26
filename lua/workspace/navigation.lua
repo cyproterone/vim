@@ -85,6 +85,12 @@ end
 table.insert(defer, fzf)
 
 
+--#################### Navi Region ####################
+
+-- use [ ] to navigate various lists, ie quickfix
+table.insert(plugins, "tpope/vim-unimpaired")
+
+
 return {
   plugins = plugins,
   defer = defer,
