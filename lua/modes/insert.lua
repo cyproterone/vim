@@ -21,18 +21,6 @@ end
 table.insert(defer, cursor_cross)
 
 
--- auto centering on entering insertion mode
-local auto_centre = function ()
-
-  -- auto move cursor to center
-  bindings.auto{ group = "auto_centering",
-                 events = "InsertEnter",
-                 exec = "normal! zz", }
-
-end
-table.insert(defer, auto_centre)
-
-
 return {
   plugins = plugins,
   defer = defer,
