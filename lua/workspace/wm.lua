@@ -4,7 +4,7 @@ local bindings = require "libs/bindings"
 local defer = {}
 local plugins = {}
 
---#################### Intrinsic Region ####################
+--#################### Intrinsic WM Region ####################
 
 local misc = function ()
 
@@ -41,15 +41,26 @@ table.insert(defer, modern_split)
 
 
 -- modern wm
-local modern_split = function ()
-  
+local wm_close = function ()
+
   -- close window
   bindings.map.normal("<Leader>w", ":close<CR>")
   -- close other windows
   bindings.map.normal("<Leader>W", ":only<CR>")
 
 end
-table.insert(defer, modern_split)
+table.insert(defer, wm_close)
+
+
+--#################### Intrinsic Buffers Region ####################
+
+-- buffer region
+local buffers = function ()
+
+  bindings.map.normal("D", ":bd!<CR>")
+
+end
+table.insert(defer, buffers)
 
 
 --#################### WM Region ####################
