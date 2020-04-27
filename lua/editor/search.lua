@@ -65,8 +65,8 @@ if has('python3')
 endif
 ]]
 
-  -- visual
-  bindings.let("highlight_match", false)
+  -- auto complete
+  bindings.let("far#file_mask_favorites", {"%", "**/*.*"})
 
 
   -- #################### Hotkeys Region ####################
