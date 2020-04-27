@@ -20,8 +20,8 @@ table.insert(defer, unmap_keys)
 
 local map_keys = function ()
 
-  -- reload config
-  bindings.map.normal("<F5>", ":source $MYVIMRC<CR>")
+  -- ; -> :
+  bindings.map.normal(";", ":")
 
   -- show changes
   bindings.map.normal("<Leader>C", ":changes<CR>")
