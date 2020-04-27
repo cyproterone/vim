@@ -26,6 +26,9 @@ local map_keys = function ()
   -- show changes
   bindings.map.normal("<Leader>C", ":changes<CR>")
 
+  -- select all
+  bindings.map.normal("<Leader>v", "GVgg")
+
 end
 table.insert(defer, map_keys)
 
