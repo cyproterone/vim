@@ -9,7 +9,7 @@ local defer = {}
 table.insert(plugins, {"neoclide/coc.nvim", branch = "release"})
 local lsp_recommends = function ()
 
-  bindings.source(scripts_home .. "/lsp.vim")
+  bindings.source(scripts_home .. "/coc.vim")
 
   bindings.set("cmdheight", 2)
 
