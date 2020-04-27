@@ -30,6 +30,17 @@ end
 table.insert(defer, hotkeys)
 
 
+--#################### FZF Region ####################
+
+local fzf = function ()
+
+  bindings.map.normal("<Leader>f", "g*N:BLines <C-r>/<CR>")
+  bindings.map.normal("<Leader>F", "g*N:Rg <C-r>/<CR>")
+
+end
+table.insert(defer, fzf)
+
+
 --#################### Replace Region ####################
 
 table.insert(plugins, "brooth/far.vim")
