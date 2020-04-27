@@ -27,6 +27,16 @@ end
 table.insert(defer, misc)
 
 
+local scroll = function ()
+
+  -- allow scrolling pass EOF
+  bindings.set("scrolloff", 1)
+  bindings.set("sidescrolloff", 3)
+
+end
+table.insert(defer, scroll)
+
+
 local performance = function ()
 
   bindings.set("ttyfast")

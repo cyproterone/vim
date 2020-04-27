@@ -29,6 +29,11 @@ local remap_keys = function ()
   bindings.map.visual("c", [["_c]])
   bindings.map.visual("C", [["_C]])
 
+
+  -- normalize Y
+  bindings.map.normal("Y", "y$")
+  bindings.map.visual("Y", "y$")
+
 end
 table.insert(defer, remap_keys)
 
