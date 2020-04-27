@@ -43,17 +43,14 @@ end
 table.insert(defer, copy_highlight)
 
 
--- focus on region TODO: this needs LSP
-table.insert(plugins, "junegunn/limelight.vim")
-local focus = function ()
+-- highlight colours
+table.insert(plugins, "norcalli/nvim-colorizer.lua")
+local colour_highlight = function ()
 
-  -- bindings.map.normal("<Leader>i", ":Limelight<CR>")
-
-  bindings.let("limelight_conceal_ctermfg", "gray")
-  bindings.let("limelight_conceal_guifg", "DarkGray")
+  bindings.arbitrary[[lua require'colorizer'.setup()]]
 
 end
-table.insert(defer, focus)
+table.insert(defer, colour_highlight)
 
 
 return {
