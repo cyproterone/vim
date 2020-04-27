@@ -23,7 +23,7 @@ local tree = function ()
 
 
   -- keybindings
-  bindings.map.normal("<Leader>b", ":NERDTreeToggle<CR>")
+  bindings.map.normal("<Leader>i", ":NERDTreeToggle<CR>")
 
   -- nerdtree bindings
   bindings.let("NERDTreeMapActivateNode", "<Tab>")
