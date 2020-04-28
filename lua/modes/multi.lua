@@ -40,11 +40,6 @@ table.insert(defer, remap_keys)
 
 local movement = function ()
 
-  -- centre on search result
-  bindings.map.normal("n", "nzz")
-  bindings.map.normal("N", "Nzz")
-
-
   -- centre on up down
   bindings.map.normal("<C-u>", "<C-u>zz")
   bindings.map.normal("<C-d>", "<C-d>zz")

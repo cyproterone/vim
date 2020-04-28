@@ -34,6 +34,15 @@ table.insert(defer, hotkeys)
 
 -- search without moving
 table.insert(plugins, "junegunn/vim-slash")
+local improved_search = function ()
+
+  -- centre on search result
+  bindings.map.normal("<plug>(slash-after)", "zz")
+  bindings.map.operator("<plug>(slash-after)", "zz")
+  bindings.map.visual("<plug>(slash-after)", "zz")
+
+end
+table.insert(defer, improved_search)
 
 
 --#################### FZF Region ####################
