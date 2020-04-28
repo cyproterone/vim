@@ -6,11 +6,6 @@ local defer = {}
 
 --#################### Cursors Region ####################
 
--- expand selection
-table.insert(plugins, "terryma/vim-expand-region")
--- "+" to grow ,"-" to shrink
-
-
 -- multi cursors
 table.insert(plugins, "terryma/vim-multiple-cursors")
 local multi_cursor = function ()
