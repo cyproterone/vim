@@ -35,6 +35,16 @@ end
 table.insert(defer, netrw)
 
 
+-- ranger
+table.insert(plugins, {"kevinhwang91/rnvimr", ["do"] = "make sync"})
+local ranger = function ()
+
+  bindings.map.normal("<Leader>b", ":RnvimrToggle<CR>")
+
+end
+table.insert(defer, ranger)
+
+
 return {
   plugins = plugins,
   defer = defer,
