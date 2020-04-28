@@ -29,6 +29,10 @@ local auto_centre = function ()
                  events = "InsertEnter",
                  exec = "normal! zz", }
 
+  bindings.auto{ group = "auto_centering",
+                 events = "InsertLeave",
+                 exec = "normal! zz", }
+
 end
 table.insert(defer, auto_centre)
 

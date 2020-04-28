@@ -52,6 +52,11 @@ local powerline = function ()
   bindings.let("airline_powerline_fonts", true)
   bindings.let("airline_theme", "tomorrow")
 
+  -- airline use tabline
+  bindings.let("airline#extensions#tabline#enabled", true)
+  bindings.let("airline#extensions#tabline#show_splits", false)
+
+
 end
 table.insert(defer, powerline)
 

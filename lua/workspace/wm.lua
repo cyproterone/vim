@@ -48,9 +48,6 @@ local wm_close = function ()
   -- close other windows
   bindings.map.normal("<Leader>W", ":only<CR>")
 
-  -- close tab
-  bindings.map.normal("<Leader>q", ":tabclose<CR>")
-
   -- create new tab
   bindings.map.normal("<Leader>t", ":tabnew<CR>")
 
@@ -60,6 +57,21 @@ local wm_close = function ()
 
 end
 table.insert(defer, wm_close)
+
+
+-- tabs wm
+local tabs_wm = function ()
+
+  -- close tab
+  bindings.map.normal("<Leader>q", ":tabclose<CR>")
+
+  for i = 1,9
+  do
+    bindings.map.normal("<Leader>" .. i, ":tabnext " .. i .. "<CR>")
+  end
+
+end
+table.insert(defer, tabs_wm)
 
 
 --#################### Intrinsic Buffers Region ####################
