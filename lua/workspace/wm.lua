@@ -45,15 +45,12 @@ local wm_close = function ()
 
   -- close window
   bindings.map.normal("<Leader>w", ":close<CR>")
+
   -- close other windows
   bindings.map.normal("<Leader>W", ":only<CR>")
 
-  -- create new tab
-  bindings.map.normal("<Leader>t", ":tabnew<CR>")
-
-  -- cycle between tabs
-  bindings.map.normal("<Leader>[", ":tabprevious<CR>")
-  bindings.map.normal("<Leader>]", ":tabnext<CR>")
+  -- break window into tab
+  bindings.map.normal("<Leader>k", "<C-w>T")
 
 end
 table.insert(defer, wm_close)
@@ -64,6 +61,13 @@ local tabs_wm = function ()
 
   -- close tab
   bindings.map.normal("<Leader>q", ":tabclose<CR>")
+
+  -- create new tab
+  bindings.map.normal("<Leader>t", ":tabnew<CR>")
+
+  -- cycle between tabs
+  bindings.map.normal("<Leader>[", ":tabprevious<CR>")
+  bindings.map.normal("<Leader>]", ":tabnext<CR>")
 
   for i = 1,9
   do
