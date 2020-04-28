@@ -14,8 +14,6 @@ local lsp_recommends = function ()
   bindings.set("nobackup")
   bindings.set("nowritebackup")
 
-  bindings.set("updatetime", 300)
-
 end
 table.insert(defer, lsp_recommends)
 

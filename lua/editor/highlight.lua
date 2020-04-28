@@ -37,7 +37,7 @@ table.insert(defer, copy_highlight)
 table.insert(plugins, "norcalli/nvim-colorizer.lua")
 local colour_highlight = function ()
 
-  bindings.arbitrary[[lua require'colorizer'.setup()]]
+  bindings.arbitrary[[lua require("colorizer").setup()]]
 
 end
 table.insert(defer, colour_highlight)

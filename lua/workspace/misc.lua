@@ -11,6 +11,9 @@ local misc = function ()
   bindings.set("nocompatible")
   bindings.set("encoding", "utf-8")
 
+  -- cursor hold time
+  bindings.set("updatetime", 300)
+
   -- show as much as possible
   bindings.set("display", "lastline", [[+=]])
 
