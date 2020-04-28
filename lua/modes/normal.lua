@@ -21,8 +21,8 @@ local map_keys = function ()
   bindings.map.command("<C-f>")
 
   -- use q to insert single char
-  bindings.map.normal("q", "a_<Esc>r")
-  bindings.map.normal("Q", "i_<Esc>r")
+  bindings.map.normal("q", "a🦄<Esc>r")
+  bindings.map.normal("Q", "i🦄<Esc>r")
 
   -- use @ to do ^
   bindings.map.normal("@", "^")

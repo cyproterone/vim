@@ -15,7 +15,7 @@ local modern_search = function ()
   bindings.set("incsearch")
 
   -- search results shown on side
-  bindings.set("inccommand", "split")
+  bindings.set("inccommand", "nosplit")
 
 end
 table.insert(defer, modern_search)

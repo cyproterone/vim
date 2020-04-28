@@ -22,7 +22,8 @@ local suggestions = function ()
   -- complete menu
   bindings.set("completeopt", "menuone,noinsert", [[+=]])
 
-  -- bindings.set("omnifunc")
+  -- map c-space for completion
+  bindings.map.insert("<C- >", "<C-x>")
 
 end
 table.insert(defer, suggestions)

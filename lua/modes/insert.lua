@@ -9,7 +9,8 @@ local defer = {}
 -- add some emacs keys
 local emacs_keys = function ()
 
-  bindings.map.insert("<C-k>", "<Esc>Di")
+  -- delete to end of line
+  bindings.map.insert("<C-k>", "<C-o>D")
 
 end
 table.insert(defer, emacs_keys)
