@@ -44,18 +44,12 @@ table.insert(defer, cursors)
 --#################### Powerline Region ####################
 
 -- powerline
-table.insert(plugins, "vim-airline/vim-airline")
-table.insert(plugins, "vim-airline/vim-airline-themes")
+-- -- table.insert(plugins, "vim-airline/vim-airline")
+-- table.insert(plugins, "vim-airline/vim-airline-themes")
+table.insert(plugins, "itchyny/lightline.vim")
 local powerline = function ()
 
-  -- airline apperance
-  bindings.let("airline_powerline_fonts", true)
-  bindings.let("airline_theme", "tomorrow")
-
-  -- airline use tabline
-  bindings.let("airline#extensions#tabline#enabled", true)
-  bindings.let("airline#extensions#tabline#show_splits", false)
-
+  bindings.let("lightline", {colorscheme = "one"})
 
 end
 table.insert(defer, powerline)
