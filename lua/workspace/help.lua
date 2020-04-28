@@ -9,7 +9,10 @@ local defer = {}
 table.insert(plugins, "liuchengxu/vim-which-key")
 local help = function ()
 
-  bindings.map.normal("<silent> <leader>", ":WhichKey '<Space>'<CR>")
+  bindings.map.normal("<silent> <Leader>", ":WhichKey '<Space>'<CR>")
+
+  bindings.map.normal("<silent> [", ":WhichKey '['<CR>")
+  bindings.map.normal("<silent> ]", ":WhichKey ']'<CR>")
 
 end
 table.insert(defer, help)
