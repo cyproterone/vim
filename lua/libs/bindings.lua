@@ -93,6 +93,7 @@ local map = function ()
   end
 
   return {
+    nov = partial "",
     normal = partial "n",
     command = partial "c",
     visual = partial "v",
@@ -114,6 +115,7 @@ local pmap = function ()
   end
 
   return {
+    nov = partial "",
     normal = partial "n",
     command = partial "c",
     visual = partial "v",
