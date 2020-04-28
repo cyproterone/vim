@@ -30,6 +30,12 @@ end
 table.insert(defer, hotkeys)
 
 
+--#################### Search Region ####################
+
+-- search without moving
+table.insert(plugins, "junegunn/vim-slash")
+
+
 --#################### FZF Region ####################
 
 local fzf = function ()
@@ -69,7 +75,7 @@ endif
   bindings.let("far#file_mask_favorites", {"%", "**/*.*"})
 
 
-  -- #################### Hotkeys Region ####################
+  -- hotkeys --
 
   -- normal search
   bindings.map.normal("<Leader>R", ":Far ")
