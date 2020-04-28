@@ -16,6 +16,17 @@ end
 table.insert(defer, emacs_keys)
 
 
+-- normal mode one keycord
+local normal = function ()
+
+  -- map c-space for completion
+  bindings.map.insert("<C-space>", "<C-o>")
+  bindings.map.normal("<C-space>")
+
+end
+table.insert(defer, normal)
+
+
 -- add a cursor cross in insert mode
 local cursor_cross = function ()
 
