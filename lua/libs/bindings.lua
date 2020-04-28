@@ -103,6 +103,27 @@ local map = function ()
 end
 
 
+local pmap = function ()
+
+  local partial = function (prefix)
+    return function (lhs, rhs)
+      local rhs = rhs or "<Nop>"
+      local cmd = prefix .. "map " .. lhs .. " " .. rhs
+      api.nvim_command(cmd)
+    end
+  end
+
+  return {
+    normal = partial "n",
+    command = partial "c",
+    visual = partial "v",
+    insert = partial "i",
+    replace = partial "r",
+    operator = partial "o"
+  }
+end
+
+
 local auto = function (args)
 
 
@@ -149,6 +170,7 @@ return {
   set = set,
   let = let,
   map = map(),
+  pmap = pmap(),
   auto = auto,
   env = env,
   source = source,
