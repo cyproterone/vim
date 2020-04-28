@@ -76,6 +76,12 @@ table.insert(defer, colours)
 table.insert(plugins, "ryanoasis/vim-devicons")
 
 
+--#################### Colours Region ####################
+
+-- active pane colours
+table.insert(plugins, "blueyed/vim-diminactive")
+
+
 return {
   plugins = plugins,
   defer = defer,

@@ -50,6 +50,10 @@ local movement = function ()
   bindings.map.normal("k", "kzz")
   bindings.map.normal("<Up>", "<Up>zz")
   bindings.map.normal("<Down>", "<Down>zz")
+  bindings.map.normal("<C-u>", "<C-u>zz")
+  bindings.map.normal("<C-d>", "<C-d>zz")
+  bindings.map.normal("<C-f>", "<C-f>zz")
+  bindings.map.normal("<C-b>", "<C-b>zz")
 
 
   -- centre on paragraph
