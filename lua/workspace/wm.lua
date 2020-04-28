@@ -43,6 +43,9 @@ table.insert(defer, modern_split)
 -- modern wm
 local wm_close = function ()
 
+  -- quit vim
+  bindings.map.normal("<Leader>Q", ":qa!")
+
   -- close window
   bindings.map.normal("<Leader>w", ":close<CR>")
 
