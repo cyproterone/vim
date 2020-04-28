@@ -20,10 +20,6 @@ table.insert(defer, gutter)
 table.insert(plugins, "junegunn/gv.vim")
 
 
--- git porcelain
-table.insert(plugins, "tpope/vim-fugitive")
-
-
 return {
   plugins = plugins,
   defer = defer,

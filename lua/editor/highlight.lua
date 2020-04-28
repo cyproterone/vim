@@ -7,16 +7,6 @@ local defer = {}
 
 --#################### Highlight Region ####################
 
--- syntax highlight
-local syntax_highlight = function ()
-
-  bindings.arbitrary("filetype plugin indent on")
-  bindings.arbitrary("syntax on")
-
-end
-table.insert(defer, syntax_highlight)
-
-
 -- auto line num
 -- table.insert(plugins, "jeffkreeftmeijer/vim-numbertoggle")
 local line_number = function ()
