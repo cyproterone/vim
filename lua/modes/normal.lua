@@ -11,20 +11,18 @@ local unmap_keys = function ()
   -- unmap ROT13
   bindings.map.normal("g?")
 
-  -- unmap record
-  bindings.map.normal("q")
-
 end
 table.insert(defer, unmap_keys)
 
 
 local map_keys = function ()
 
-  -- ; -> :
-  bindings.map.normal(";", ":")
+  -- dont go into ex mode
+  bindings.map.command("<C-f>")
 
-  -- show changes
-  bindings.map.normal("<Leader>C", ":changes<CR>")
+  -- use q to insert single char
+  bindings.map.normal("q", "a_<Esc>r")
+  bindings.map.normal("Q", "i_<Esc>r")
 
   -- select all
   bindings.map.normal("<Leader>v", "GVgg")

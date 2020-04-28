@@ -20,7 +20,6 @@ local layers = {
   require "workspace/wm",
   -- modes
   require "modes/command",
-  require "modes/ex",
   require "modes/insert",
   require "modes/normal",
   require "modes/multi",
