@@ -26,6 +26,7 @@ local layers = {
   require "modes/visual",
   -- versioning
   require "versioning/git",
+  require "versioning/shared",
   -- editor
   require "editor/cursors",
   require "editor/format",
