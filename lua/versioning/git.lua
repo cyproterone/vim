@@ -8,6 +8,9 @@ local defer = {}
 -- view git history
 table.insert(plugins, "junegunn/gv.vim")
 
+-- git in general
+table.insert(plugins, "tpope/vim-fugitive")
+
 
 return {
   plugins = plugins,
