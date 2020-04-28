@@ -8,6 +8,11 @@ local defer = {}
 
 local suggestions = function ()
 
+  -- dont show too many opts
+  bindings.set("pumheight", 10)
+  -- transparency
+  bindings.set("pumblend", 20)
+
   -- dont follow tags
   bindings.set("complete", "i", [[-=]])
 
