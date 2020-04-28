@@ -17,11 +17,15 @@ local remap_keys = function ()
   bindings.map.normal("x", [["_x]])
   bindings.map.normal("X", [["_X]])
 
-  bindings.map.nov("d", [["_d]])
-  bindings.map.nov("D", [["_D]])
+  bindings.map.normal("d", [["_d]])
+  bindings.map.normal("D", [["_D]])
+  bindings.map.visual("d", [["_d]])
+  bindings.map.visual("D", [["_D]])
 
-  bindings.map.nov("c", [["_c]])
-  bindings.map.nov("C", [["_C]])
+  bindings.map.normal("c", [["_c]])
+  bindings.map.normal("C", [["_C]])
+  bindings.map.visual("c", [["_c]])
+  bindings.map.visual("C", [["_C]])
 
   -- normalize Y
   bindings.map.nov("Y", "y$")
