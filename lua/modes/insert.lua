@@ -6,6 +6,15 @@ local defer = {}
 
 --#################### Insert Region ####################
 
+-- add some emacs keys
+local emacs_keys = function ()
+
+  bindings.map.insert("<C-k>", "<Esc>Di")
+
+end
+table.insert(defer, emacs_keys)
+
+
 -- add a cursor cross in insert mode
 local cursor_cross = function ()
 
