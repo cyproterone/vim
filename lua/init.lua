@@ -38,6 +38,8 @@ local layers = {
   require "editor/search",
   require "editor/suggestions",
   require "editor/whitespace",
+  -- lang
+  require "lang/markdown",
 }
 
 
