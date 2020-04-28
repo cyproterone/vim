@@ -23,6 +23,7 @@ local layers = {
   require "modes/insert",
   require "modes/normal",
   require "modes/multi",
+  require "modes/visual",
   -- versioning
   require "versioning/git",
   -- editor
