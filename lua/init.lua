@@ -31,7 +31,7 @@ local layers = {
   require "editor/highlight",
   require "editor/lsp",
   require "editor/macros",
-  require "editor/misc",
+  require "editor/textobj",
   require "editor/repl",
   require "editor/search",
   require "editor/suggestions",

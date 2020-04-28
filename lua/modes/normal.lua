@@ -24,9 +24,6 @@ local map_keys = function ()
   bindings.map.normal("q", "a_<Esc>r")
   bindings.map.normal("Q", "i_<Esc>r")
 
-  -- select all
-  bindings.map.normal("<Leader>v", "GVgg")
-
 end
 table.insert(defer, map_keys)
 
