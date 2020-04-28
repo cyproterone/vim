@@ -16,10 +16,6 @@ local lsp_recommends = function ()
 
   bindings.set("updatetime", 300)
 
-  bindings.set("shortmess", "c", [[+=]])
-
-  -- bindings.set("cmdheight", 2)
-
 end
 table.insert(defer, lsp_recommends)
 

@@ -15,6 +15,7 @@ table.insert(plugins, "kana/vim-textobj-user")
 table.insert(plugins, "kana/vim-textobj-entire")
 table.insert(plugins, "kana/vim-textobj-line")
 table.insert(plugins, "michaeljsmith/vim-indent-object")
+table.insert(plugins, "wellle/targets.vim")
 
 
 return {
