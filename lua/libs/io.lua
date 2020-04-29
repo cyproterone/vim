@@ -3,8 +3,8 @@
 --#################### ######### ####################
 
 local function exec (shell)
-  local stream = io.popen(shell)
-  local acc = stream:read("*a")
+  local stream = assert(io.popen(shell))
+  local acc = assert(stream:read("*a"))
   stream:close()
   return acc
 end

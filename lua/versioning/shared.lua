@@ -10,9 +10,9 @@ local functions = {}
 table.insert(plugins, "mhinz/vim-signify")
 local gutter = function ()
 
-  bindings.map.normal("<Leader>sd", ":SignifyHunkDiff<CR>")
-  bindings.map.normal("<Leader>sD", ":SignifyDiff<CR>")
-  bindings.map.normal("<Leader>su", ":SignifyHunkUndo<CR>")
+  bindings.map.normal("<Leader>hd", ":SignifyHunkDiff<CR>")
+  bindings.map.normal("<Leader>hD", ":SignifyDiff<CR>")
+  bindings.map.normal("<Leader>hu", ":SignifyHunkUndo<CR>")
 
 end
 table.insert(defer, gutter)

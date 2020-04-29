@@ -62,8 +62,15 @@ table.insert(defer, fzf)
 -- table.insert(plugins, "ms-jpq/sd.vim")
 local sd = function ()
 
+  local lines = vim.api.nvim_buf_get_lines(0, 0, -1)
+  for _, line in ipairs(lines)
+  do
+    print(line)
+  end
+
 end
-table.insert(defer, sd)
+-- table.insert(defer, sd)
+functions["sd"] = sd
 
 return {
   plugins = plugins,
