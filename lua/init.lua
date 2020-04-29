@@ -46,34 +46,34 @@ local layers = {
 --#################### Init Region ####################
 
 local parse_instructions = function (layers)
-
   local plugins = {}
   local defer = {}
+  local functions = {}
 
   for _, instructions in ipairs(layers)
   do
-
     for _, plugin in ipairs(instructions.plugins)
     do
       table.insert(plugins, plugin)
     end
-
-
     for _, cmd in ipairs(instructions.defer)
     do
       table.insert(defer, cmd)
     end
-
+    for key, func in pairs(instructions.functions)
+    do
+      functions[key] = func
+    end
   end
 
   return {
     plugins = plugins,
     defer = defer,
+    functions = functions,
   }
 end
 
 local init_plug = function ()
-
   local remote = "https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
   local plug = bin_home .. "/plug.vim"
   local exists = stdio.file_exists(plug)
@@ -86,7 +86,6 @@ local init_plug = function ()
 end
 
 local init_plugins = function (plugins)
-
   local plug = function (p)
     local args = std.wrap(p)
     local name = assert(args[1])
@@ -119,7 +118,8 @@ local initialize_vim = function ()
   init_plug()
   init_plugins(instructions.plugins)
   execute_defered(instructions.defer)
+  return instructions.functions
 end
 
 
-initialize_vim()
+return initialize_vim()
