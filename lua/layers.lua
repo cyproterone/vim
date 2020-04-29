@@ -100,7 +100,7 @@ local init_plugins = function (plugins)
   local plug_end = "call plug#end()"
   local install_func = table.concat({plug_beign, plug_installs, plug_end}, "\n")
 
-  bindings.arbitrary(install_func)
+  bindings.exec(install_func)
 end
 
 

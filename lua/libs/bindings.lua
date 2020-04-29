@@ -39,7 +39,7 @@ p_val = function (val)
 end
 
 
-local arbitrary = function (opt)
+local exec = function (opt)
   api.nvim_command(opt)
 end
 
@@ -142,7 +142,7 @@ end
 
 return {
   p_val = p_val,
-  arbitrary = arbitrary,
+  exec = exec,
   set = set,
   let = let,
   map = map(),

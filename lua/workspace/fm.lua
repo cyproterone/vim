@@ -12,7 +12,7 @@ table.insert(plugins, "dylanaraps/fff.vim")
 local fff = function ()
 
   --- keybind conflict
-  bindings.arbitrary([[command! -nargs=* -complete=dir FFF call fff#Run(<q-args>)]])
+  bindings.exec([[command! -nargs=* -complete=dir FFF call fff#Run(<q-args>)]])
 
   -- fff keybind
   bindings.map.normal("<Leader>I", ":FFF<CR>")

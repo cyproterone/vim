@@ -8,5 +8,5 @@ endfun
 
 augroup trim_whitesapce
   autocmd!
-  autocmd BufWritePre * call s:StripTrailingWhitespaces()
+  autocmd BufWritePre * lua require 'layers'.strip_whitespace()
 augroup END

@@ -38,6 +38,14 @@ table.insert(defer, unsurprising_tab)
 
 
 -- remove trailing whitespace
+local strip_whitespace = function ()
+  local l = bindings.call("line", {"."})
+  local c = bindings.call("col", {"."})
+  bindings.exec[[%s/\s\+$//e]]
+  bindings.call("cursor", {l, c})
+end
+functions["strip_whitespace"] = strip_whitespace
+
 local trailing_whitespace = function ()
 
   bindings.source(scripts_home .. "/whitespace.vim")

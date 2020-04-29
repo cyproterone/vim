@@ -63,7 +63,7 @@ table.insert(plugins, "NLKNguyen/papercolor-theme")
 local colours = function ()
 
   bindings.set("background", "light")
-  bindings.arbitrary("colorscheme PaperColor")
+  bindings.exec("colorscheme PaperColor")
 
   bindings.let("PaperColor_Theme_Options",
                {theme = {default = {allow_bold = true,
