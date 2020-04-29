@@ -11,8 +11,8 @@ local lsp_recommends = function ()
 
   bindings.source(scripts_home .. "/coc.vim")
 
-  bindings.set("nobackup")
-  bindings.set("nowritebackup")
+  bindings.set("backup", false)
+  bindings.set("writebackup", false)
 
 end
 table.insert(defer, lsp_recommends)

@@ -42,29 +42,20 @@ end
 
 
 local arbitrary = function (opt)
+
   api.nvim_command(opt)
+
 end
 
 
-local let = function (opt, val, scope)
+local let = function (opt, val)
 
-  local scope = scope or "g"
-  local cmd = "let " .. scope .. ":" .. opt .. " = " .. p_val(val)
+  api.nvim_set_var(opt, val)
 
-  api.nvim_command(cmd)
 end
 
 
 local set = function (opt, val, operator)
-
-  local p_val = function ()
-    if type(val) == "boolean"
-    then
-      return val and 1 or 0
-    else
-      return val
-    end
-  end
 
   local p_statement = function ()
     if not val
@@ -72,13 +63,20 @@ local set = function (opt, val, operator)
       return "set " .. opt
     elseif not operator
     then
-      return "set " .. opt .. "=" .. p_val()
+      return "set " .. opt .. "=" .. val
     else
-      return "set " .. opt .. operator ..  p_val()
+      return "set " .. opt .. operator ..  val
     end
   end
 
-  api.nvim_command(p_statement())
+  if not operator
+  then
+    api.nvim_set_option(opt, val or true)
+  else
+    -- local prev = api.nvim_get_option(opt)
+    api.nvim_command(p_statement())
+  end
+
 end
 
 
@@ -153,8 +151,7 @@ end
 
 local env = function (opt, val)
 
-  local cmd = "let $" .. opt .. " = " .. p_val(val)
-  api.nvim_command(cmd)
+  vim.loop.os_setenv(opt, val)
 
 end
 

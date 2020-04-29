@@ -8,7 +8,6 @@ local defer = {}
 
 local misc = function ()
 
-  bindings.set("nocompatible")
   bindings.set("encoding", "utf-8")
 
   -- cursor hold time
