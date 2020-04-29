@@ -8,14 +8,11 @@ local override = function (highlights)
 
   local exec = {}
 
-  for _, hi in ipairs(highlights)
-  do
+  for _, hi in ipairs(highlights) do
     local group = nil
     local options = {}
-    for key, val in pairs(hi)
-    do
-      if key == 1
-      then
+    for key, val in pairs(hi) do
+      if key == 1 then
         group = val
       else
         local opt = key .. "=" .. val

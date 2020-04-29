@@ -5,8 +5,7 @@
 local extract = function (path)
   return function (tb)
     local acc = tb
-    for _, p in ipairs(path)
-    do
+    for _, p in ipairs(path) do
       acc = acc[p]
     end
     return acc
@@ -15,33 +14,26 @@ end
 
 
 local nil_map = function (val, func)
-
-  if val ~= nil
-  then
+  if val ~= nil then
     return func(val)
   else
     return nil
   end
-
 end
 
 
 local wrap = function (val)
-
-  if type(val) == "table"
-  then
+  if type(val) == "table" then
     return val
   else
     return {val}
   end
-
 end
 
 
 local map = function (tb, func)
   local acc = {}
-  for key, val in pairs(tb)
-  do
+  for key, val in pairs(tb) do
     acc[key] = func(val, key)
   end
   return acc
@@ -50,10 +42,8 @@ end
 
 local filter = function (tb, func)
   local acc = {}
-  for key, val in pairs(tb)
-  do
-    if func(val, key)
-    then
+  for key, val in pairs(tb) do
+    if func(val, key) then
       acc[key] = val
     end
   end
@@ -63,8 +53,7 @@ end
 
 local reduce = function (tb, init, func)
   local acc = init
-  for key, val in pairs(tb)
-  do
+  for key, val in pairs(tb) do
     acc = func(acc, val, key)
   end
   return acc
@@ -73,8 +62,7 @@ end
 
 local make_set = function (tb)
   local acc = {}
-  for _, val in ipairs(tb)
-  do
+  for _, val in ipairs(tb) do
     acc[val] = true
   end
   return acc
@@ -106,10 +94,8 @@ end
 
 local merge = function (tbs)
   local acc = {}
-  for _, tb in ipairs(tbs)
-  do
-    for key, val in pairs(tb)
-    do
+  for _, tb in ipairs(tbs) do
+    for key, val in pairs(tb) do
       acc[key] = val
     end
   end

@@ -50,18 +50,14 @@ local parse_instructions = function (layers)
   local defer = {}
   local functions = {}
 
-  for _, instructions in ipairs(layers)
-  do
-    for _, plugin in ipairs(instructions.plugins)
-    do
+  for _, instructions in ipairs(layers) do
+    for _, plugin in ipairs(instructions.plugins) do
       table.insert(plugins, plugin)
     end
-    for _, cmd in ipairs(instructions.defer)
-    do
+    for _, cmd in ipairs(instructions.defer) do
       table.insert(defer, cmd)
     end
-    for key, func in pairs(instructions.functions)
-    do
+    for key, func in pairs(instructions.functions) do
       functions[key] = func
     end
   end
@@ -77,8 +73,7 @@ local init_plug = function ()
   local remote = "https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
   local plug = bin_home .. "/plug.vim"
   local exists = stdio.file_exists(plug)
-  if not exists
-  then
+  if not exists then
       stdio.exec("wget -P " .. bin_home  .. " " .. remote)
   end
   bindings.source(plug)
@@ -106,8 +101,7 @@ end
 
 local execute_defered = function (defer)
   bindings.let("mapleader", " ")
-  for _, cmd in ipairs(defer)
-  do
+  for _, cmd in ipairs(defer) do
     cmd()
   end
 end

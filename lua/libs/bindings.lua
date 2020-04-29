@@ -14,22 +14,17 @@ p_val = function (val)
     return acc
   end
 
-  if type(val) == "number"
-  then
+  if type(val) == "number" then
     return val
-  elseif type(val) == "string"
-  then
+  elseif type(val) == "string" then
     return "'" .. val .. "'"
-  elseif type(val) == "boolean"
-  then
+  elseif type(val) == "boolean" then
     return val and 1 or 0
-  elseif type(val) == "table" and val[1] ~= nil
-  then
+  elseif type(val) == "table" and val[1] ~= nil then
     local entries = std.map(val, p_val)
     local cat = table.concat(entries, " , ")
     return "[" .. cat .. "]"
-  elseif type(val) == "table"
-  then
+  elseif type(val) == "table" then
       local entries = std.reduce(val, {}, reduce)
       local cat = table.concat(entries, " , ")
       return "{" .. cat .. "}"
@@ -51,11 +46,9 @@ end
 
 local set = function (opt, val, operator)
   local p_statement = function ()
-    if not val
-    then
+    if not val then
       return "set " .. opt
-    elseif not operator
-    then
+    elseif not operator then
       return "set " .. opt .. "=" .. val
     else
       return "set " .. opt .. operator ..  val
@@ -72,8 +65,7 @@ local map = function ()
       local rhs = rhs or ""
       local opt = opt or {}
       local options = std.merge{{noremap = true}, opt}
-      for i, mode in ipairs(prefix)
-      do
+      for i, mode in ipairs(prefix) do
         api.nvim_set_keymap(mode, lhs, rhs, options)
       end
     end
@@ -105,8 +97,7 @@ local auto = function (args)
   api.nvim_command(auto_begin)
   api.nvim_command(auto_cls)
 
-  for _, exe in ipairs(exec)
-  do
+  for _, exe in ipairs(exec) do
     local auto_body = "autocmd " .. events .. " " .. filter .. " " .. exe
     api.nvim_command(auto_body)
   end
@@ -126,12 +117,10 @@ end
 
 local call = function (name, ...)
   local len = select("#", ...)
-  if len == 2
-  then
+  if len == 2 then
     local dict, args = ...
     return api.nvim_call_dict_function(name, dict, args)
-  elseif len == 1
-  then
+  elseif len == 1 then
     local args = ...
     return api.nvim_call_function(name, args)
   else

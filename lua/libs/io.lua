@@ -12,8 +12,7 @@ end
 
 local file_exists = function (filename)
   local file = io.open(filename, "r")
-  if file
-  then
+  if file then
     file:close()
     return true
   end
