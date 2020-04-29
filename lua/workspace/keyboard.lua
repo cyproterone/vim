@@ -31,4 +31,5 @@ table.insert(defer, normalize_keystrokes)
 return {
   plugins = plugins,
   defer = defer,
+  functions = functions,
 }

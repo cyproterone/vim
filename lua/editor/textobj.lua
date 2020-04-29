@@ -22,5 +22,6 @@ table.insert(plugins, "wellle/targets.vim")
 return {
   plugins = plugins,
   defer = defer,
+  functions = functions,
 }
 

@@ -62,4 +62,5 @@ table.insert(defer, auto_centre)
 return {
   plugins = plugins,
   defer = defer,
+  functions = functions,
 }

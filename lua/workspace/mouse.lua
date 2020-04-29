@@ -20,4 +20,5 @@ table.insert(defer, normal_mouse)
 return {
   plugins = plugins,
   defer = defer,
+  functions = functions,
 }

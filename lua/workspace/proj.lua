@@ -14,4 +14,5 @@ table.insert(plugins, "editorconfig/editorconfig-vim")
 return {
   plugins = plugins,
   defer = defer,
+  functions = functions,
 }

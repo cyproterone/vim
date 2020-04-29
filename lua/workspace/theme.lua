@@ -86,4 +86,5 @@ table.insert(plugins, "blueyed/vim-diminactive")
 return {
   plugins = plugins,
   defer = defer,
+  functions = functions,
 }

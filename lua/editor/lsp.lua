@@ -22,4 +22,5 @@ table.insert(defer, lsp_recommends)
 return {
   plugins = plugins,
   defer = defer,
+  functions = functions,
 }

@@ -16,4 +16,5 @@ table.insert(plugins, "tpope/vim-fugitive")
 return {
   plugins = plugins,
   defer = defer,
+  functions = functions,
 }

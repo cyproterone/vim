@@ -68,4 +68,5 @@ table.insert(defer, sd)
 return {
   plugins = plugins,
   defer = defer,
+  functions = functions,
 }

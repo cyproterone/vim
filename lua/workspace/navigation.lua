@@ -95,4 +95,5 @@ table.insert(plugins, "tpope/vim-unimpaired")
 return {
   plugins = plugins,
   defer = defer,
+  functions = functions,
 }

@@ -49,4 +49,5 @@ table.insert(defer, trailing_whitespace)
 return {
   plugins = plugins,
   defer = defer,
+  functions = functions,
 }

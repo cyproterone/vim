@@ -21,5 +21,6 @@ table.insert(defer, gutter)
 return {
   plugins = plugins,
   defer = defer,
+  functions = functions,
 }
 

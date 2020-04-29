@@ -43,4 +43,5 @@ table.insert(defer, cursor_pos)
 return {
   plugins = plugins,
   defer = defer,
+  functions = functions,
 }

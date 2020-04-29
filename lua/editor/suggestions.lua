@@ -30,4 +30,5 @@ table.insert(defer, suggestions)
 return {
   plugins = plugins,
   defer = defer,
+  functions = functions,
 }

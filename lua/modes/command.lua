@@ -22,4 +22,5 @@ table.insert(defer, keys)
 return {
   plugins = plugins,
   defer = defer,
+  functions = functions,
 }

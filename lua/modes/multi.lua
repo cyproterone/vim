@@ -57,4 +57,5 @@ table.insert(defer, movement)
 return {
   plugins = plugins,
   defer = defer,
+  functions = functions,
 }

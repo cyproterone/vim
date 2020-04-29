@@ -25,4 +25,5 @@ table.insert(defer, undo_hist)
 return {
   plugins = plugins,
   defer = defer,
+  functions = functions,
 }

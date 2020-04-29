@@ -31,4 +31,5 @@ table.insert(plugins, "tpope/vim-commentary")
 return {
   plugins = plugins,
   defer = defer,
+  functions = functions,
 }

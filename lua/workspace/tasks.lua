@@ -43,4 +43,5 @@ table.insert(defer, autosave)
 return {
   plugins = plugins,
   defer = defer,
+  functions = functions,
 }

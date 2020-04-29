@@ -49,4 +49,5 @@ table.insert(defer, tree)
 return {
   plugins = plugins,
   defer = defer,
+  functions = functions,
 }

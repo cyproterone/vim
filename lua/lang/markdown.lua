@@ -25,5 +25,6 @@ table.insert(defer, lang_conf)
 return {
   plugins = plugins,
   defer = defer,
+  functions = functions,
 }
 

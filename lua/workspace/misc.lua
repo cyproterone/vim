@@ -78,4 +78,5 @@ table.insert(defer, welcome_screen)
 return {
   plugins = plugins,
   defer = defer,
+  functions = functions,
 }

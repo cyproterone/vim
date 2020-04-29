@@ -47,4 +47,5 @@ table.insert(defer, colour_highlight)
 return {
   plugins = plugins,
   defer = defer,
+  functions = functions,
 }

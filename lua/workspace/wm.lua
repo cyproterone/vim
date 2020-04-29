@@ -96,4 +96,5 @@ table.insert(defer, buffers)
 return {
   plugins = plugins,
   defer = defer,
+  functions = functions,
 }

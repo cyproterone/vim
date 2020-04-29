@@ -12,4 +12,5 @@ table.insert(plugins, "tpope/vim-repeat")
 return {
   plugins = plugins,
   defer = defer,
+  functions = functions,
 }

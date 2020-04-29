@@ -17,4 +17,5 @@ table.insert(defer, repl)
 return {
   plugins = plugins,
   defer = defer,
+  functions = functions,
 }
