@@ -83,43 +83,25 @@ end
 local map = function ()
 
   local partial = function (prefix)
-    return function (lhs, rhs)
-      local rhs = rhs or "<Nop>"
-      local cmd = prefix .. "noremap " .. lhs .. " " .. rhs
-      api.nvim_command(cmd)
+    return function (lhs, rhs, opt)
+      local rhs = rhs or ""
+      local opt = opt or {noremap = true}
+      for i, mode in ipairs(prefix)
+      do
+        api.nvim_set_keymap(mode, lhs, rhs, opt)
+      end
     end
   end
 
   return {
-    nov = partial "",
-    normal = partial "n",
-    command = partial "c",
-    visual = partial "v",
-    insert = partial "i",
-    replace = partial "r",
-    operator = partial "o"
-  }
-end
-
-
-local pmap = function ()
-
-  local partial = function (prefix)
-    return function (lhs, rhs)
-      local rhs = rhs or "<Nop>"
-      local cmd = prefix .. "map " .. lhs .. " " .. rhs
-      api.nvim_command(cmd)
-    end
-  end
-
-  return {
-    nov = partial "",
-    normal = partial "n",
-    command = partial "c",
-    visual = partial "v",
-    insert = partial "i",
-    replace = partial "r",
-    operator = partial "o"
+    normal = partial{"n"},
+    command = partial{"c"},
+    visual = partial{"v"},
+    insert = partial{"i"},
+    replace = partial{"r"},
+    operator = partial{"o"},
+    nv = partial{"n", "v"},
+    nov = partial{"n", "o", "v"},
   }
 end
 
@@ -169,7 +151,6 @@ return {
   set = set,
   let = let,
   map = map(),
-  pmap = pmap(),
   auto = auto,
   env = env,
   source = source,
