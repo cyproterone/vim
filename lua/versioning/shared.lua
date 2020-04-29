@@ -2,6 +2,7 @@ local bindings = require "libs/bindings"
 
 local plugins = {}
 local defer = {}
+local functions = {}
 
 --#################### Shared Region ####################
 

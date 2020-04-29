@@ -2,6 +2,7 @@ local bindings = require "libs/bindings"
 
 
 local defer = {}
+local functions = {}
 local plugins = {}
 
 --#################### Intrinsic WM Region ####################

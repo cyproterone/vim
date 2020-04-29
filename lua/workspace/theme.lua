@@ -3,6 +3,7 @@ local theme = require "libs/theme"
 
 local plugins = {}
 local defer = {}
+local functions = {}
 
 --#################### Intrinsic Region ####################
 
