@@ -104,6 +104,19 @@ local exclude = function (tb, keys)
 end
 
 
+local merge = function (tbs)
+  local acc = {}
+  for _, tb in ipairs(tbs)
+  do
+    for key, val in pairs(tb)
+    do
+      acc[key] = val
+    end
+  end
+  return acc
+end
+
+
 return {
   nil_map = nil_map,
   wrap = wrap,
@@ -114,4 +127,5 @@ return {
   make_set = make_set,
   pick = pick,
   exclude = exclude,
+  merge = merge,
 }

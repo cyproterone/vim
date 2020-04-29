@@ -85,10 +85,11 @@ local map = function ()
   local partial = function (prefix)
     return function (lhs, rhs, opt)
       local rhs = rhs or ""
-      local opt = opt or {noremap = true}
+      local opt = opt or {}
+      local options = std.merge{{noremap = true}, opt}
       for i, mode in ipairs(prefix)
       do
-        api.nvim_set_keymap(mode, lhs, rhs, opt)
+        api.nvim_set_keymap(mode, lhs, rhs, options)
       end
     end
   end
