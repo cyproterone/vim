@@ -58,44 +58,11 @@ table.insert(defer, fzf)
 
 --#################### Replace Region ####################
 
-table.insert(plugins, "brooth/far.vim")
-local search_replace = function ()
-
-  -- enable undo
-  bindings.let("far#enable_undo", true)
-
-
-  -- performance!!
-  bindings.let("far#highlight_match", false)
-  bindings.let("far#auto_preview_on_start", false)
-  -- max results
-  bindings.let("far#limit", 100000)
-
-
-  -- use ripgrep
-  bindings.let("far#source", "rg")
-  bindings.arbitrary [[
-if has('python3')
-  let g:far#source='rgnvim'
-endif
-]]
-
-  -- auto complete
-  bindings.let("far#file_mask_favorites", {"%", "**/*.*"})
-
-
-  -- hotkeys --
-
-  -- normal search
-  bindings.map.normal("<Leader>R", ":Far ")
-
-  -- search under cursor
-  bindings.map.normal("<Leader>r", "g*N:Far <C-r>/ ")
-
+-- table.insert(plugins, "ms-jpq/sd.vim")
+local sd = function ()
 
 end
-table.insert(defer, search_replace)
-
+table.insert(defer, sd)
 
 return {
   plugins = plugins,
