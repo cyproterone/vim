@@ -8,7 +8,6 @@ local api = vim.api
 
 local p_val = nil
 p_val = function (val)
-
   local reduce = function (acc, val, key)
     local trans = p_val(key) .. " : " .. p_val(val)
     table.insert(acc, trans)
@@ -37,26 +36,20 @@ p_val = function (val)
   else
     error("invalid type")
   end
-
 end
 
 
 local arbitrary = function (opt)
-
   api.nvim_command(opt)
-
 end
 
 
 local let = function (opt, val)
-
   api.nvim_set_var(opt, val)
-
 end
 
 
 local set = function (opt, val, operator)
-
   local p_statement = function ()
     if not val
     then
@@ -69,19 +62,11 @@ local set = function (opt, val, operator)
     end
   end
 
-  if not operator
-  then
-    api.nvim_set_option(opt, val or true)
-  else
-    -- local prev = api.nvim_get_option(opt)
-    api.nvim_command(p_statement())
-  end
-
+  api.nvim_command(p_statement())
 end
 
 
 local map = function ()
-
   local partial = function (prefix)
     return function (lhs, rhs, opt)
       local rhs = rhs or ""
@@ -108,8 +93,6 @@ end
 
 
 local auto = function (args)
-
-
   local group = assert(args.group)
   local events = table.concat(std.wrap(assert(args.events)), ",")
   local filter = args.filter or "*"
@@ -128,21 +111,32 @@ local auto = function (args)
     api.nvim_command(auto_body)
   end
   api.nvim_command(auto_end)
-
 end
 
 
 local env = function (opt, val)
-
   vim.loop.os_setenv(opt, val)
-
 end
 
 
 local source = function (path)
-
   api.nvim_command("source " .. path)
+end
 
+
+local call = function (name, ...)
+  local len = select("#", ...)
+  if len == 2
+  then
+    local dict, args = ...
+    return api.nvim_call_dict_function(name, dict, args)
+  elseif len == 1
+  then
+    local args = ...
+    return api.nvim_call_function(name, args)
+  else
+    error("wrong number of arguments")
+  end
 end
 
 
@@ -155,4 +149,5 @@ return {
   auto = auto,
   env = env,
   source = source,
+  call = call,
 }
