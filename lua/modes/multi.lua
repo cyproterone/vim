@@ -17,18 +17,14 @@ local remap_keys = function ()
   bindings.map.normal("x", [["_x]])
   bindings.map.normal("X", [["_X]])
 
-  bindings.map.normal("d", [["_d]])
-  bindings.map.normal("D", [["_D]])
-  bindings.map.visual("d", [["_d]])
-  bindings.map.visual("D", [["_D]])
+  bindings.map.nv("d", [["_d]])
+  bindings.map.nv("D", [["_D]])
 
-  bindings.map.normal("c", [["_c]])
-  bindings.map.normal("C", [["_C]])
-  bindings.map.visual("c", [["_c]])
-  bindings.map.visual("C", [["_C]])
+  bindings.map.nv("c", [["_c]])
+  bindings.map.nv("C", [["_C]])
 
   -- normalize Y
-  bindings.map.nov("Y", "y$")
+  bindings.map.nv("Y", "y$")
 
 end
 table.insert(defer, remap_keys)
