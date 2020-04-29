@@ -2,7 +2,7 @@
 --#################### IO Region ####################
 --#################### ######### ####################
 
-local function exec (shell)
+local exec = function (shell)
   local stream = assert(io.popen(shell))
   local acc = assert(stream:read("*a"))
   stream:close()
@@ -10,7 +10,7 @@ local function exec (shell)
 end
 
 
-local function file_exists (filename)
+local file_exists = function (filename)
   local file = io.open(filename, "r")
   if file
   then
