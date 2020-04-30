@@ -15,7 +15,8 @@ local buf_info = function ()
   local curr_buf = api.nvim_get_current_buf()
   local bufs = api.nvim_call_function("getbufinfo", {})
  
-  local info = std.map(bufs, function (buf)
+  local info = {}
+  for _, buf in ipairs(bufs) do
     local handle = buf.bufnr
     local path = buf.name
     local modified = (function ()
@@ -25,10 +26,10 @@ local buf_info = function ()
         return true
       end
     end)()
-    return {handle=handle, path=path, modified=modified}
-  end)
+    info[handle] = {path = path, modified = modified}
+  end
 
-  return {current = curr_buf, info = info}
+  return {current = curr_buf, bufs = info}
 end
 
 
