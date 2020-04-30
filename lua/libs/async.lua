@@ -2,7 +2,6 @@
 --#################### Async Region ####################
 --#################### ############ ####################
 
-local std = require "libs/std"
 local co = coroutine
 
 
@@ -22,12 +21,15 @@ end
 -- many thunks -> single thunk
 local join = function (thunks)
   local len = table.getn(thunks)
+  local done = 0
   local acc = {}
+
   local thunk = function (step)
     for i, thunk in ipairs(thunks) do
       local callback = function (...)
         acc[i] = {...}
-        if std.len(acc) == len then
+        done = done + 1
+        if done == len then
           step(unpack(acc))
         end
       end
