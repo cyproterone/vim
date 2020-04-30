@@ -3,8 +3,6 @@
 --#################### ############### ####################
 local std = require "libs/std"
 
-local api = vim.api
-
 
 local p_val = nil
 p_val = function (val)
