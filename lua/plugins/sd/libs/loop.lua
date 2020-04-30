@@ -6,9 +6,9 @@ local loop = vim.loop
 
 local spawn = function (shell, stream, cb)
 
-  local stdin = loop.new_pipe()
-  local stdout = loop.new_pipe()
-  local stderr = loop.new_pipe()
+  local stdin = loop.new_pipe(false)
+  local stdout = loop.new_pipe(false)
+  local stderr = loop.new_pipe(false)
   local opts = {stdio = {stdin, stdout, stderr}}
   local process
   local out, err = {}, {}
@@ -47,13 +47,14 @@ local spawn = function (shell, stream, cb)
   end
 
   local on_exit = function (code, signal)
-    call({stdout = out, stderr = err})
+    call({out = out, err = err})
   end
 
-  process, pid = loop.spawn(shell, opts, on_spawn)
+  process, pid = loop.spawn(shell, opts, on_exit)
+
   if not process then
+    call()
     assert(false, pid)
-    return
   end
 
   loop.read_start(stdout, on_out)
@@ -67,5 +68,5 @@ end
 
 
 return {
-  exec = exec,
+  spawn = spawn,
 }
