@@ -5,18 +5,41 @@
 local co = coroutine
 
 
--- sync version
--- thread :: coroutine[unit]
-local pong = function (thread)
-  local next
-  next = function (go, ...)
+local sync_pong = function (thread)
+  local step
+  step = function (go, ...)
     if not go then
       return
     end
-    return next(co.resume(thread, ...))
+    return step(co.resume(thread, ...))
   end
-  return next(co.resume(thread))
+  return step(co.resume(thread))
 end
 
 
--- async version
+-- use with wrap
+local pong = function (thread)
+  local step
+  step = function (...)
+    local go, ret = co.resume(thread, ...)
+    if not (go and ret) then
+      return
+    end
+    ret(step)
+  end
+  step()
+end
+
+
+-- use with pong
+local wrap = function (func)
+  return function (...)
+    local params = {...}
+    return function (step)
+      table.insert(params, step)
+      return func(unpack(params))
+    end
+  end
+end
+
+
