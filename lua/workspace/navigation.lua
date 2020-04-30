@@ -28,12 +28,10 @@ local smartcase = function ()
   bindings.set("ignorecase")
   bindings.set("smartcase")
 
-  bindings.auto{group = "smartcase_no",
-                events = "CmdLineEnter",
+  bindings.auto{events = "CmdLineEnter",
                 exec = "set nosmartcase"}
 
-  bindings.auto{group = "smartcase_yes",
-                events = "CmdLineLeave",
+  bindings.auto{events = "CmdLineLeave",
                 exec = "set smartcase"}
 
 end

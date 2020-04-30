@@ -24,6 +24,9 @@ local intrinsic = function ()
   -- always show issues column
   bindings.set("signcolumn", "yes")
 
+  -- always show tabline
+  bindings.set("showtabline", 2)
+
 end
 table.insert(defer, intrinsic)
 

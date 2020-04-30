@@ -24,8 +24,7 @@ local override = function (highlights)
     table.insert(exec, exe)
   end
 
-  bindings.auto{group = "themes",
-                events = "ColorScheme",
+  bindings.auto{events = "ColorScheme",
                 exec = exec}
 
 end

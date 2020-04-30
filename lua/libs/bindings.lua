@@ -83,23 +83,14 @@ end
 
 
 local auto = function (args)
-  local group = assert(args.group)
   local events = table.concat(std.wrap(assert(args.events)), ",")
   local filter = args.filter or "*"
   local exec = std.wrap(assert(args.exec))
-
-  local auto_begin = "augroup " .. group
-  local auto_cls = "autocmd!"
-  local auto_end = "augroup END"
-
-  api.nvim_command(auto_begin)
-  api.nvim_command(auto_cls)
 
   for _, exe in ipairs(exec) do
     local auto_body = "autocmd " .. events .. " " .. filter .. " " .. exe
     api.nvim_command(auto_body)
   end
-  api.nvim_command(auto_end)
 end
 
 
