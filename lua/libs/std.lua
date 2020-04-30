@@ -2,6 +2,10 @@
 --#################### STD Region ####################
 --#################### ########## ####################
 
+local id = function (...)
+  return ...
+end
+
 local extract = function (path)
   return function (tb)
     local acc = tb
@@ -104,6 +108,7 @@ end
 
 
 return {
+  id = id,
   nil_map = nil_map,
   wrap = wrap,
   extract = extract,
