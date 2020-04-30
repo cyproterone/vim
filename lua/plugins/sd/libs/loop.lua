@@ -59,7 +59,7 @@ local spawn = function (shell, stream, cb)
 
   loop.read_start(stdout, on_out)
   loop.read_start(stderr, on_err)
-  if stream then
+  if stream and stream ~= "" then
     loop.write(stdin, stream)
   end
   loop.shutdown(stdin)

@@ -8,7 +8,7 @@ local async = require "plugins/sd/libs/async"
 
 local m = math
 local co = coroutine
-
+local spawn = async.wrap(loop.spawn)
 
 
 local buf_info = function ()

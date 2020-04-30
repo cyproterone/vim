@@ -73,6 +73,6 @@ end
 
 
 return {
-  pong = pong,
+  run = wrap(pong),
   wrap = wrap,
 }
