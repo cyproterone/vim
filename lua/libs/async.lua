@@ -25,9 +25,9 @@ local pong = function (thread)
     if not (go and ret) then
       return
     end
-    ret(step)
+    return ret(step)
   end
-  step()
+  return step()
 end
 
 
