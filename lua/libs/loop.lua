@@ -15,7 +15,7 @@ local spawn = function (shell, stream, cb)
   local called = false
   local handles = {stdin, stdout, stderr, process}
 
-  local call = function (err, res)
+  local call = function (val)
     if called then
       return
     end
@@ -23,7 +23,7 @@ local spawn = function (shell, stream, cb)
     for _, handle in ipairs(handles) do
       pcall(loop.close, handle)
     end
-    cb(err, res)
+    cb(val)
   end
 
   local on_out = function (err, data)
@@ -31,7 +31,8 @@ local spawn = function (shell, stream, cb)
       table.insert(out, data)
     end
     if err then
-      call(err)
+      call()
+      assert(false, err)
     end
   end
 
@@ -40,17 +41,18 @@ local spawn = function (shell, stream, cb)
       table.insert(err, data)
     end
     if err then
-      call(err)
+      call()
+      assert(false, err)
     end
   end
 
   local on_exit = function (code, signal)
-    call(nil, {stdout = out, stderr = err})
+    call({stdout = out, stderr = err})
   end
 
-  process = loop.spawn(shell, opts, on_spawn)
+  process, pid = loop.spawn(shell, opts, on_spawn)
   if not process then
-    call("Error! - failed to spawn: " .. shell)
+    assert(false, pid)
     return
   end
 
