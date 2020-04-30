@@ -5,15 +5,18 @@
 local co = coroutine
 
 
+-- sync version
+-- thread :: coroutine[unit]
 local pong = function (thread)
   local next
-  next = function ()
-    local go, val = co.resume(thread)
-    if go then
-      co.resume(thread, val)
+  next = function (go, ...)
+    if not go then
+      return
     end
+    return next(co.resume(thread, ...))
   end
-  next()
+  return next(co.resume(thread))
 end
 
 
+-- async version
