@@ -48,7 +48,9 @@ local spawn = function (shell, opts, cb)
   end
 
   local on_exit = function (code, signal)
-    call({code = code, out = out, err = errs})
+    call({code = code, 
+          out = table.concat(out, ""),
+          err = table.concat(errs, "")})
   end
 
   process, pid = loop.spawn(shell, opts, on_exit)

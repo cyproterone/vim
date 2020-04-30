@@ -18,6 +18,9 @@ local wild = function ()
   -- more history
   bindings.set("history", 10000)
 
+  -- view messages
+  bindings.map.normal("<Leader>m", ":messages<CR>")
+
 end
 table.insert(defer, wild)
 
@@ -59,7 +62,7 @@ local fzf = function ()
   bindings.env("FZF_DEFAULT_OPTS", fzf_newopts)
 
   -- fzf use fd
-  bindings.env("FZF_DEFAULT_COMMAND", "fd -H -t f")
+  bindings.env("FZF_DEFAULT_COMMAND", "fd -HL -t f")
 
   -- fzf use history
   bindings.let("fzf_history_dir", var_home .. "/fzf//")
@@ -78,7 +81,7 @@ local fzf = function ()
   bindings.map.normal("<Leader>P", ":History<CR>")
   bindings.map.normal("<Leader>o", ":BLines<CR>")
   bindings.map.normal("<Leader>O", ":Rg ")
-  bindings.map.normal("<Leader>m", ":Maps<CR>")
+  bindings.map.normal("<Leader>M", ":Maps<CR>")
 
 end
 table.insert(defer, fzf)
