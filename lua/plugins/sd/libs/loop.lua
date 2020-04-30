@@ -12,7 +12,7 @@ local spawn = function (shell, opts, cb)
   local opts = {stdio = {stdin, stdout, stderr},
                 args = opts.args or {}}
   local process = nil
-  local out, err = {}, {}
+  local out, errs = {}, {}
   local called = false
   local handles = {stdin, stdout, stderr, process}
 
@@ -39,7 +39,7 @@ local spawn = function (shell, opts, cb)
 
   local on_err = function (err, data)
     if data then
-      table.insert(err, data)
+      table.insert(errs, data)
     end
     if err then
       call()
@@ -48,7 +48,7 @@ local spawn = function (shell, opts, cb)
   end
 
   local on_exit = function (code, signal)
-    call({out = out, err = err})
+    call({code = code, out = out, err = errs})
   end
 
   process, pid = loop.spawn(shell, opts, on_exit)
