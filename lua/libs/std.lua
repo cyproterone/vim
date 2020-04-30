@@ -6,6 +6,16 @@ local id = function (...)
   return ...
 end
 
+
+local len = function (tb)
+  local l = 0
+  for _, _ in pairs(tb) do
+    l = l + 1
+  end
+  return l
+end
+
+
 local extract = function (path)
   return function (tb)
     local acc = tb
@@ -109,6 +119,7 @@ end
 
 return {
   id = id,
+  len = len,
   nil_map = nil_map,
   wrap = wrap,
   extract = extract,
