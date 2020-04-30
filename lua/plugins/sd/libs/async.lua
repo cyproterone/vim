@@ -55,7 +55,7 @@ local pong = function (thread, callback)
       (callback or function () end)(ret)
     end
   end
-  return step()
+  step()
 end
 
 
