@@ -10,7 +10,7 @@ local spawn = function (shell, stream, cb)
   local stdout = loop.new_pipe(false)
   local stderr = loop.new_pipe(false)
   local opts = {stdio = {stdin, stdout, stderr}}
-  local process
+  local process = nil
   local out, err = {}, {}
   local called = false
   local handles = {stdin, stdout, stderr, process}

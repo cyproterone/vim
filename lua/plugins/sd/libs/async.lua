@@ -7,7 +7,7 @@ local co = coroutine
 
 -- reference
 local sync_pong = function (thread)
-  local step
+  local step = nil
   step = function (go, ...)
     if not go then
       return
@@ -42,7 +42,7 @@ end
 
 -- use with wrap
 local pong = function (thread, callback)
-  local step
+  local step = nil
   step = function (...)
     local go, ret = co.resume(thread, ...)
     if not (go and ret) then
