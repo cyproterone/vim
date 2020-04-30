@@ -4,12 +4,13 @@
 
 local loop = vim.loop
 
-local spawn = function (shell, stream, cb)
+local spawn = function (shell, opts, cb)
 
   local stdin = loop.new_pipe(false)
   local stdout = loop.new_pipe(false)
   local stderr = loop.new_pipe(false)
-  local opts = {stdio = {stdin, stdout, stderr}}
+  local opts = {stdio = {stdin, stdout, stderr},
+                args = opts.args or {}}
   local process = nil
   local out, err = {}, {}
   local called = false
@@ -59,8 +60,8 @@ local spawn = function (shell, stream, cb)
 
   loop.read_start(stdout, on_out)
   loop.read_start(stderr, on_err)
-  if stream and stream ~= "" then
-    loop.write(stdin, stream)
+  if opts.stream then
+    loop.write(stdin, opts.stream)
   end
   loop.shutdown(stdin)
 
