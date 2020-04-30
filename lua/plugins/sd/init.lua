@@ -33,6 +33,33 @@ local buf_info = function ()
 end
 
 
+local split_nul = function (str) 
+  local acc, prev = {}, 1
+  for i = 1,string.len(str) do
+    local b = string.byte(str, i)
+    if b == 0 then
+      table.insert(acc, string.sub(str, prev, i - 1))
+      prev = i + 1
+    end
+  end
+  return acc
+end
+
+
+local search = function (pattern)
+  local fd_args = fd_args or {"-H", "-L", "-0", "--type=f"} 
+  table.insert(fd_args, pattern)
+
+  return co.create(function ()
+    local opts = {args = fd_args}
+    local ret = co.yield(spawn("fd", opts))
+    assert(ret.code == 0, "fd / find :: non-zero exit")
+    local files = split_nul(ret.out)
+    return files 
+  end)
+end
+
+
 local calc_size = function (w, h)
   local screens = api.nvim_list_uis()
   -- TODO: verify this
