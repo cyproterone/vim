@@ -45,13 +45,15 @@ local pong = function (thread, callback)
   local step = nil
   step = function (...)
     local go, ret = co.resume(thread, ...)
-    if not (go and ret) then
-      return (callback or function () end)()
+    if not go then
+      return
     end
     if type(ret) == "table" then
       return join(ret)(step)
-    else
+    elseif type(ret) == "function" then
       return ret(step)
+    else
+      return (callback or function () end)(ret)
     end
   end
   return step()
