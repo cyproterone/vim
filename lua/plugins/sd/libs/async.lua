@@ -46,9 +46,8 @@ local pong = function (thread, callback)
   step = function (...)
     local go, ret = co.resume(thread, ...)
     if not go then
-      return
-    end
-    if type(ret) == "table" then
+      return assert(co.status(thread) == "suspended", ret)
+    elseif type(ret) == "table" then
       return join(ret)(step)
     elseif type(ret) == "function" then
       return ret(step)
