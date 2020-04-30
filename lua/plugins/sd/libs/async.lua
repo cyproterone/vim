@@ -12,9 +12,9 @@ local sync_pong = function (thread)
     if not go then
       return
     end
-    return step(co.resume(thread, ...))
+    step(co.resume(thread, ...))
   end
-  return step(co.resume(thread))
+  step(co.resume(thread))
 end
 
 
@@ -46,13 +46,13 @@ local pong = function (thread, callback)
   step = function (...)
     local go, ret = co.resume(thread, ...)
     if not go then
-      return assert(co.status(thread) == "suspended", ret)
+      assert(co.status(thread) == "suspended", ret)
     elseif type(ret) == "table" then
-      return join(ret)(step)
+      join(ret)(step)
     elseif type(ret) == "function" then
-      return ret(step)
+      ret(step)
     else
-      return (callback or function () end)(ret)
+      (callback or function () end)(ret)
     end
   end
   return step()
