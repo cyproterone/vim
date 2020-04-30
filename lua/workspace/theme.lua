@@ -80,7 +80,7 @@ table.insert(plugins, "ryanoasis/vim-devicons")
 --#################### Colours Region ####################
 
 -- active pane colours
-table.insert(plugins, "blueyed/vim-diminactive")
+-- table.insert(plugins, "blueyed/vim-diminactive")
 
 
 return {

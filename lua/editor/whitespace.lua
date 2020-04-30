@@ -39,9 +39,10 @@ table.insert(defer, unsurprising_tab)
 
 -- remove trailing whitespace
 local strip_whitespace = function ()
-  local r,c = api.nvim_win_get_cursor(0)
+  local l = bindings.call("line", ".")
+  local c = bindings.call("col", ".")
   bindings.exec[[%s/\s\+$//e]]
-  bindings.call("cursor", {r, c})
+  bindings.call("cursor", {l, c})
 end
 functions["strip_whitespace"] = strip_whitespace
 
