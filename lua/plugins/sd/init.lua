@@ -49,9 +49,9 @@ local search = function (pattern)
   local fd_args = fd_args or {"-H", "-L", "-0", "--type=f"} 
   table.insert(fd_args, pattern)
 
-  return a.async(function ()
+  return a.sync(function ()
     local opts = {args = fd_args}
-    local ret = a.await(spawn("fd", opts))
+    local ret = a.wait(spawn("fd", opts))
     assert(ret.code == 0, "fd / find :: non-zero exit")
     local files = split_nul(ret.out)
     return files 

@@ -50,6 +50,7 @@ end
 local pong = function (func, callback)
   assert(type(func) == "function", "type error :: expected func")
   local thread = co.create(func)
+
   local step = nil
   step = function (...)
     local go, ret = co.resume(thread, ...)
@@ -63,6 +64,7 @@ local pong = function (func, callback)
       (callback or function () end)(ret)
     end
   end
+
   step()
 end
 
@@ -81,6 +83,7 @@ local wrap = function (func)
 end
 
 
+-- sugar over coroutine
 local await = function (defer)
   if type(defer) == "table" then
     defer[ref] = true
@@ -94,7 +97,7 @@ end
 
 
 return {
-  async = wrap(pong),
-  await = await,
+  sync = wrap(pong),
+  wait = await,
   wrap = wrap,
 }
