@@ -7,7 +7,9 @@ local loop = require "plugins/sd/libs/loop"
 local a = require "plugins/sd/libs/async"
 
 local m = math
+local api = vim.api
 local spawn = a.wrap(loop.spawn)
+local dispatch = a.wrap(loop.dispatch)
 
 
 local buf_info = function ()
@@ -59,11 +61,30 @@ local search = function (pattern)
 end
 
 
+local new_buf = function ()
+  local buf = api.nvim_create_buf(false, true)
+  assert(buf ~= 0, "failed to create buf")
+  api.nvim_buf_set_option(buf, "bufhidden", "wipe") 
+  api.nvim_buf_set_option(buf, "readonly", true)
+  api.nvim_buf_set_option(buf, "modifiable", false)
+  return buf
+end
+
+
+local new_listing_buf = function ()
+  local buf = new_buf()
+end
+
+
+local new_detail_buf = function ()
+  local buf = new_buf()
+end
+
+
 local calc_size = function (w, h)
-  local screens = api.nvim_list_uis()
-  -- TODO: verify this
-  local params = screens[1]
-  local width, height = params.width, params.height
+  local width = api.nvim_get_option("columns")
+  local height = api.nvim_get_option("lines")
+  print(width, height)
   local ww = m.min(m.floor(width * w), width - 4)
   local hh = m.min(m.floor(height * h), height - 4)
   local ml, mt = (width - ww) / 2, (height - hh) / 2
@@ -71,15 +92,15 @@ local calc_size = function (w, h)
 end
 
 
-local show_win = function (rel_w, rel_h)
-  local buf = api.nvim_create_buf(false, true)
-  api.nvim_buf_set_option(buf, "bufhidden", "wipe") 
-  assert(buf ~= 0)
+local new_popup = function (buf, rel_w, rel_h)
   local size = calc_size(rel_w, rel_h)
   local opts = {relative = "editor",
                 style = "minimal",}
   local win = api.nvim_open_win(buf, true, std.merge{opts, size})
-  return {buf=buf, win=win}
+  return win
 end
 
 
+local new_tab = function (sidebar_size)
+
+end
