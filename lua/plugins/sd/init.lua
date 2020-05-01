@@ -73,11 +73,18 @@ end
 
 local new_listing_buf = function ()
   local buf = new_buf()
+  return buf
 end
 
 
 local new_detail_buf = function ()
   local buf = new_buf()
+  return buf
+end
+
+
+local calibrate_win = function (win)
+  
 end
 
 
@@ -94,13 +101,28 @@ end
 
 local new_popup = function (buf, rel_w, rel_h)
   local size = calc_size(rel_w, rel_h)
-  local opts = {relative = "editor",
-                style = "minimal",}
+  local opts = {relative = "editor"}
   local win = api.nvim_open_win(buf, true, std.merge{opts, size})
-  return win
+  calibrate_win(win)
 end
 
 
-local new_tab = function (sidebar_size)
-
+local new_tab = function (sidebar, main, rel_size)
+  api.nvim_command[[tabnew]]
+  local tab = api.nvim_get_current_tabpage()
+  api.nvim_command[[vsplit]]
+  local win_a, win_b = unpack(api.nvim_tabpage_list_wins(tab))
+  calibrate_win(win_a)
+  calibrate_win(win_b)
+  
+  local _, col_a = unpack(api.nvim_win_get_position(win))
+  local _, col_b = unpack(api.nvim_win_get_position(win))
+  if col_a > col_b then
+      api.nvim_win_set_buf(win_a, sidebar)
+      api.nvim_win_set_buf(win_b, main)
+  else
+      api.nvim_win_set_buf(win_b, sidebar)
+      api.nvim_win_set_buf(win_a, main)
+  end
 end
+
