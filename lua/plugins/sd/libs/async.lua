@@ -47,7 +47,9 @@ end
 
 
 -- use with wrap
-local pong = function (thread, callback)
+local pong = function (func, callback)
+  assert(type(func) == "function", "type error :: expected func")
+  local thread = co.create(func)
   local step = nil
   step = function (...)
     local go, ret = co.resume(thread, ...)
@@ -79,8 +81,20 @@ local wrap = function (func)
 end
 
 
+local await = function (defer)
+  if type(defer) == "table" then
+    defer[ref] = true
+    return co.yield(defer)
+  elseif type(defer) == "function" then
+    return co.yield(defer)
+  else
+    return assert(false, "type error :: expected func | table")
+  end
+end
+
+
 return {
-  run = wrap(pong),
-  m = ref,
+  async = wrap(pong),
+  await = await,
   wrap = wrap,
 }

@@ -4,11 +4,10 @@
 
 local std = require "libs/std"
 local loop = require "plugins/sd/libs/loop"
-local async = require "plugins/sd/libs/async"
+local a = require "plugins/sd/libs/async"
 
 local m = math
-local co = coroutine
-local spawn = async.wrap(loop.spawn)
+local spawn = a.wrap(loop.spawn)
 
 
 local buf_info = function ()
@@ -50,9 +49,9 @@ local search = function (pattern)
   local fd_args = fd_args or {"-H", "-L", "-0", "--type=f"} 
   table.insert(fd_args, pattern)
 
-  return co.create(function ()
+  return a.async(function ()
     local opts = {args = fd_args}
-    local ret = co.yield(spawn("fd", opts))
+    local ret = a.await(spawn("fd", opts))
     assert(ret.code == 0, "fd / find :: non-zero exit")
     local files = split_nul(ret.out)
     return files 
