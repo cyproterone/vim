@@ -18,6 +18,11 @@ local sync_pong = function (thread)
 end
 
 
+-- used for reference equality
+-- signal joining thunks in tb 
+local ref = {} 
+
+
 -- many thunks -> single thunk
 local join = function (thunks)
   local len = table.getn(thunks)
@@ -25,7 +30,8 @@ local join = function (thunks)
   local acc = {}
 
   local thunk = function (step)
-    for i, thunk in ipairs(thunks) do
+    for i, tk in ipairs(thunks) do
+      assert(type(tk) == "function", "thunk must be function")
       local callback = function (...)
         acc[i] = {...}
         done = done + 1
@@ -33,7 +39,7 @@ local join = function (thunks)
           step(unpack(acc))
         end
       end
-      thunk(callback)
+      tk(callback)
     end
   end
   return thunk
@@ -47,7 +53,7 @@ local pong = function (thread, callback)
     local go, ret = co.resume(thread, ...)
     if not go then
       assert(co.status(thread) == "suspended", ret)
-    elseif type(ret) == "table" then
+    elseif type(ret) == "table" and ret[ref] then
       join(ret)(step)
     elseif type(ret) == "function" then
       ret(step)
@@ -75,5 +81,6 @@ end
 
 return {
   run = wrap(pong),
+  m = ref,
   wrap = wrap,
 }
