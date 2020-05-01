@@ -84,14 +84,20 @@ end
 
 
 local calibrate_win = function (win)
-  
+  api.nvim_win_set_option(win, "fillchars", "eob: ")
+  api.nvim_win_set_option(win, "number", false)
+  api.nvim_win_set_option(win, "relativenumber", false)
+  api.nvim_win_set_option(win, "signcolumn", "no")
+  api.nvim_win_set_option(win, "cursorcolumn", false)
+  api.nvim_win_set_option(win, "foldcolumn", 0)
+  api.nvim_win_set_option(win, "spell", false)
+  api.nvim_win_set_option(win, "list", false)
 end
 
 
 local calc_size = function (w, h)
   local width = api.nvim_get_option("columns")
   local height = api.nvim_get_option("lines")
-  print(width, height)
   local ww = m.min(m.floor(width * w), width - 4)
   local hh = m.min(m.floor(height * h), height - 4)
   local ml, mt = (width - ww) / 2, (height - hh) / 2
@@ -128,7 +134,7 @@ local new_tab = function (sidebar, main, rel_size)
   api.nvim_win_set_buf(win_m, main)
   local width = api.nvim_get_option("columns")
   api.nvim_win_set_width(win_s, m.ceil(width * rel_size))
-  table.foreach(wins, calibrate_win)
+  std.foreach(wins, calibrate_win)
 end
 
 
