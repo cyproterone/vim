@@ -71,6 +71,7 @@ end
 
 -- use with pong, creates thunk factory
 local wrap = function (func)
+  assert(type(func) == "function", "type error :: expected func")
   local factory = function (...)
     local params = {...}
     local thunk = function (step)

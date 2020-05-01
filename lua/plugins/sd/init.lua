@@ -8,8 +8,29 @@ local a = require "plugins/sd/libs/async"
 
 local m = math
 local api = vim.api
+local uv = vim.loop
 local spawn = a.wrap(loop.spawn)
 local dispatch = a.wrap(loop.dispatch)
+
+
+local str_split = function (code, str)
+  local len = string.len(str) + 1
+  local acc, prev = {}, 1
+  for i = 1, len do
+    if i == len then
+      if prev ~= i then
+        table.insert(acc, string.sub(str, prev, i - 1))
+      end
+      break
+    end
+    local b = string.byte(str, i)
+    if b == code then
+      table.insert(acc, string.sub(str, prev, i - 1))
+      prev = i + 1
+    end
+  end
+  return acc
+end
 
 
 local parse_fd = function (str) 
@@ -84,11 +105,17 @@ local buf_info = function ()
 end
 
 
+local buf_update = function (buf, lines)
+  api.nvim_buf_set_option(buf, "modifiable", true)
+  api.nvim_buf_set_lines(buf, 0, 0, true, lines)
+  api.nvim_buf_set_option(buf, "modifiable", false)
+end
+
+
 local new_buf = function ()
   local buf = api.nvim_create_buf(false, true)
   assert(buf ~= 0, "failed to create buf")
   api.nvim_buf_set_option(buf, "bufhidden", "wipe") 
-  api.nvim_buf_set_option(buf, "readonly", true)
   api.nvim_buf_set_option(buf, "modifiable", false)
   return buf
 end

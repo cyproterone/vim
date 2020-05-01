@@ -2,13 +2,13 @@
 --#################### Loop Region ####################
 --#################### ########### ####################
 
-local loop = vim.loop
+local uv = vim.loop
 
 local spawn = function (shell, opts, cb)
 
-  local stdin = loop.new_pipe(false)
-  local stdout = loop.new_pipe(false)
-  local stderr = loop.new_pipe(false)
+  local stdin = uv.new_pipe(false)
+  local stdout = uv.new_pipe(false)
+  local stderr = uv.new_pipe(false)
   local opts = {stdio = {stdin, stdout, stderr},
                 args = opts.args or {}}
   local process = nil
@@ -22,7 +22,7 @@ local spawn = function (shell, opts, cb)
     end
     called = true
     for _, handle in ipairs(handles) do
-      pcall(loop.close, handle)
+      pcall(uv.close, handle)
     end
     cb(val)
   end
@@ -53,27 +53,27 @@ local spawn = function (shell, opts, cb)
           err = table.concat(errs, "")})
   end
 
-  process, pid = loop.spawn(shell, opts, on_exit)
+  process, pid = uv.spawn(shell, opts, on_exit)
 
   if not process then
     call()
     assert(false, pid)
   end
 
-  loop.read_start(stdout, on_out)
-  loop.read_start(stderr, on_err)
+  uv.read_start(stdout, on_out)
+  uv.read_start(stderr, on_err)
   if opts.stream then
-    loop.write(stdin, opts.stream)
+    uv.write(stdin, opts.stream)
   end
-  loop.shutdown(stdin)
+  uv.shutdown(stdin)
 
 end
 
 
 -- WARN: doesn't allow tables, or closures :<
 local dispatch = function (worker, args, callback)
-  local work = loop.new_work(worker, callback)
-  assert(loop.queue_work(work, unpack(args)))
+  local work = uv.new_work(worker, callback)
+  assert(uv.queue_work(work, unpack(args)))
 end
 
 
