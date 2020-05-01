@@ -31,13 +31,33 @@ end
 local search = function (pattern)
   local fd_args = fd_args or {"-H", "-L", "-0", "--type=f"} 
   table.insert(fd_args, pattern)
+  local opts = {args = fd_args}
 
   return a.sync(function ()
-    local opts = {args = fd_args}
     local ret = a.wait(spawn("fd", opts))
     assert(ret.code == 0, "fd / find :: non-zero exit")
     local files = parse_fd(ret.out)
     return files 
+  end)
+end
+
+
+local sd = function (args)
+  local flags = assert(args.flags)
+  local pattern = assert(args.pattern)
+  local replacement = assert(args.replacement)
+  local file = assert(args.file)
+  
+  local sd_args = flags
+  table.insert(sd_args, pattern)
+  table.insert(sd_args, replacement)
+  table.insert(sd_args, file)
+  local opts = {args = sd_args}
+  
+  return a.sync(function ()
+    local ret = a.wait(spawn("sd", opts))
+    assert(ret.code == 0, "sd :: non-zero exit")
+    return ret.out
   end)
 end
 

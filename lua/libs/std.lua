@@ -61,6 +61,15 @@ local map = function (tb, func)
 end
 
 
+local flatmap = function (tb, func)
+  local acc = {}
+  for key, val in pairs(tb) do
+    table.insert(acc, func(val, key))
+  end
+  return acc
+end
+
+
 local filter = function (tb, func)
   local acc = {}
   for key, val in pairs(tb) do
@@ -130,6 +139,7 @@ return {
   extract = extract,
   foreach = foreach,
   map = map,
+  flatmap = flatmap,
   filter = filter,
   reduce = reduce,
   make_set = make_set,
