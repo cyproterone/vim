@@ -49,13 +49,17 @@ local sd = function (args)
   local flags = assert(args.flags)
   local pattern = assert(args.pattern)
   local replacement = assert(args.replacement)
-  local file = assert(args.file)
   
   local sd_args = flags
   table.insert(sd_args, pattern)
   table.insert(sd_args, replacement)
-  table.insert(sd_args, file)
   local opts = {args = sd_args}
+
+  if args.file then
+    table.insert(sd_args, args.file)
+  else
+    opts["stream"] = assert(args.content)
+  end
   
   return a.sync(function ()
     local ret = a.wait(spawn("sd", opts))
@@ -67,7 +71,6 @@ end
 
 local write_tmp = function (content)
   local mode = 555
-  print(tmp)
   return a.sync(function ()
     local ret = a.wait(spawn("mktemp", {}))
     local path = s.trim(string.byte("\n"), ret.out)
@@ -78,6 +81,32 @@ local write_tmp = function (content)
     local err = a.wait(a.wrap(uv.fs_close)(fd))
     assert(not err, err)
     return path
+  end)
+end
+
+
+local diff = function (before, after)
+  local args = {"--suppress-common-lines",
+                "--width=999",
+                "-"}
+  local opts = {args = args, stream = after}
+
+  local seek = a.sync(function ()
+    if before.path then
+      return before.path
+    else
+      local content = assert(before.content)
+      local path = write_tmp(content)
+      return path
+    end
+  end)
+
+  return a.sync(function ()
+    local path = a.wait(seek)
+    table.insert(opts.args, path)
+    local ret = a.wait(spawn("diff", opts))
+    assert(ret.code ~= 2, "diff :: error exit")
+    return ret.out
   end)
 end
 
@@ -128,6 +157,7 @@ end
 
 local new_detail_buf = function ()
   local buf = new_buf()
+  api.nvim_buf_set_option(buf, "filetype", "diff")
   return buf
 end
 
@@ -144,24 +174,6 @@ local calibrate_win = function (win)
 end
 
 
-local calc_size = function (w, h)
-  local width = api.nvim_get_option("columns")
-  local height = api.nvim_get_option("lines")
-  local ww = m.min(m.floor(width * w), width - 4)
-  local hh = m.min(m.floor(height * h), height - 4)
-  local ml, mt = (width - ww) / 2, (height - hh) / 2
-  return {row=mt, col=ml, width=ww, height=hh}
-end
-
-
-local new_popup = function (buf, rel_w, rel_h)
-  local size = calc_size(rel_w, rel_h)
-  local opts = {relative = "editor"}
-  local win = api.nvim_open_win(buf, true, std.merge{opts, size})
-  calibrate_win(win)
-end
-
-
 local order_wins = function (wins)
   local wins = std.map(wins, std.id)
   table.sort(wins, function (a, b)
@@ -173,7 +185,7 @@ local order_wins = function (wins)
 end
 
 
-local new_tab = function (sidebar, main, rel_size)
+local new_tab = function (main, sidebar, rel_size)
   api.nvim_command[[tabnew]]
   local tab = api.nvim_get_current_tabpage()
   api.nvim_command[[vsplit]]
@@ -184,6 +196,12 @@ local new_tab = function (sidebar, main, rel_size)
   local width = api.nvim_get_option("columns")
   api.nvim_win_set_width(win_s, m.ceil(width * rel_size))
   std.foreach(wins, calibrate_win)
+end
+
+
+-- required due to textlock
+local main_loop = function (f)
+  vim.schedule(f)
 end
 
 
