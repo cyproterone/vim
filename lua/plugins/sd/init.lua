@@ -12,7 +12,7 @@ local spawn = a.wrap(loop.spawn)
 local dispatch = a.wrap(loop.dispatch)
 
 
-local split_nul = function (str) 
+local parse_fd = function (str) 
   local acc, prev = {}, 1
   for i = 1,string.len(str) do
     local b = string.byte(str, i)
@@ -21,6 +21,9 @@ local split_nul = function (str)
       prev = i + 1
     end
   end
+  table.sort(acc, function (a, b)
+    return vim.stricmp(a, b) < 0
+  end)
   return acc
 end
 
@@ -33,7 +36,7 @@ local search = function (pattern)
     local opts = {args = fd_args}
     local ret = a.wait(spawn("fd", opts))
     assert(ret.code == 0, "fd / find :: non-zero exit")
-    local files = split_nul(ret.out)
+    local files = parse_fd(ret.out)
     return files 
   end)
 end
