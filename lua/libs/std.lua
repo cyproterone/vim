@@ -2,8 +2,30 @@
 --#################### STD Region ####################
 --#################### ########## ####################
 
+local co = coroutine
+
 local id = function (...)
   return ...
+end
+
+
+local range = function (start, stop, step)
+  local nxt = start
+  local step = step or 1
+  assert(step ~= 0)
+  local cmp = (function () 
+    if step > 0 then
+      return function (l, r) return l <= r end
+    else
+      return function (l, r) return l >= r end
+    end
+  end)()
+  return co.wrap(function ()
+    while cmp(nxt, stop) do
+      co.yield(nxt)
+      nxt = nxt + step 
+    end
+  end)
 end
 
 
@@ -133,6 +155,7 @@ end
 
 return {
   id = id,
+  range = range,
   len = len,
   nil_map = nil_map,
   wrap = wrap,

@@ -1,4 +1,5 @@
 local bindings = require "libs/bindings"
+local std = require "libs/std"
 
 
 local defer = {}
@@ -73,7 +74,7 @@ local tabs_wm = function ()
   bindings.map.normal("<Leader>[", ":tabprevious<CR>")
   bindings.map.normal("<Leader>]", ":tabnext<CR>")
 
-  for i = 1,9 do
+  for i in std.range(1, 9) do
     bindings.map.normal("<Leader>" .. i, ":tabnext " .. i .. "<CR>")
   end
 
