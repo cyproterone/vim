@@ -3,6 +3,7 @@
 --#################### ######### ####################
 
 local std = require "libs/std"
+local s = require "libs/string"
 local loop = require "plugins/sd/libs/loop"
 local a = require "plugins/sd/libs/async"
 
@@ -12,46 +13,6 @@ local uv = vim.loop
 local spawn = a.wrap(loop.spawn)
 local dispatch = a.wrap(loop.dispatch)
 
-
-local str_split = function (code, str)
-  local len = string.len(str) + 1
-  local acc, prev = {}, 1
-  for i in std.range(1, len) do
-    if i == len then
-      if prev ~= i then
-        table.insert(acc, string.sub(str, prev, i - 1))
-      end
-      break
-    end
-    local b = string.byte(str, i)
-    if b == code then
-      table.insert(acc, string.sub(str, prev, i - 1))
-      prev = i + 1
-    end
-  end
-  return acc
-end
-
-
-local str_trim = function (code, str)
-  local len = string.len(str)
-  local fst = nil
-  for i in std.range(1, len) do
-    if string.byte(str, i) ~= code then
-      fst = string.sub(str, i, len)
-      break
-    end
-  end
-  local len = string.len(fst)
-  local snd = nil 
-  for i in std.range(len, 1, -1) do
-    if string.byte(fst, i) ~= code then
-      snd = string.sub(fst, 1, i)
-      break
-    end
-  end
-  return snd
-end
 
 
 local parse_fd = function (str) 
@@ -100,6 +61,23 @@ local sd = function (args)
     local ret = a.wait(spawn("sd", opts))
     assert(ret.code == 0, "sd :: non-zero exit")
     return ret.out
+  end)
+end
+
+
+local write_tmp = function (content)
+  local mode = 555
+  print(tmp)
+  return a.sync(function ()
+    local ret = a.wait(spawn("mktemp", {}))
+    local path = s.trim(string.byte("\n"), ret.out)
+    local err, fd = a.wait(a.wrap(uv.fs_open)(path, "w+", mode))
+    assert(not err, err)
+    local err = a.wait(a.wrap(uv.fs_write)(fd, content, 0))
+    assert(not err, err)
+    local err = a.wait(a.wrap(uv.fs_close)(fd))
+    assert(not err, err)
+    return path
   end)
 end
 
