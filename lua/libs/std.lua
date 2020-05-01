@@ -67,6 +67,24 @@ local wrap = function (val)
 end
 
 
+local keys = function (tb)
+  local acc = {}
+  for key, _ in pairs(tb) do
+    table.insert(acc, key)
+  end
+  return acc
+end
+
+
+local values = function (tb)
+  local acc = {}
+  for _, val in pairs(tb) do
+    table.insert(acc, val)
+  end
+  return acc
+end
+
+
 local foreach = function (tb, func)
   for _, val in ipairs(tb) do
     func(val)
@@ -121,8 +139,18 @@ local make_set = function (tb)
 end
 
 
-local set_contains = function(set, key)
+local set_contains = function (set, key)
   return set[key] ~= nil
+end
+
+
+local set_add = function (set, key)
+  set[key] = true
+end
+
+
+local set_subtract = function (set, key)
+  set[key] = nil
 end
 
 
@@ -157,6 +185,8 @@ return {
   id = id,
   range = range,
   len = len,
+  keys = keys,
+  values = values,
   nil_map = nil_map,
   wrap = wrap,
   extract = extract,
@@ -166,6 +196,9 @@ return {
   filter = filter,
   reduce = reduce,
   make_set = make_set,
+  set_contains = set_contains,
+  set_add = set_add,
+  set_subtract = set_subtract,
   pick = pick,
   exclude = exclude,
   merge = merge,
