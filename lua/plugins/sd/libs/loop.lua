@@ -71,8 +71,7 @@ end
 
 
 local dispatch = function (worker, args, callback)
-  local work = nil
-  work = loop.new_work(worker, callback)
+  local work = loop.new_work(worker, callback)
   assert(loop.queue_work(work, unpack(args)))
 end
 
