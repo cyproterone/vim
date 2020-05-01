@@ -90,19 +90,17 @@ end
 
 local pick = function (tb, keys)
   local set = make_set(tb)
-  local lambda = function (val)
+  return filter(tb, function (val)
     return set_contains(set, val)
-  end
-  return filter(tb, lambda)
+  end)
 end
 
 
 local exclude = function (tb, keys)
   local set = make_set(tb)
-  local lambda = function (val)
+  return filter(tb, function (val)
     return not set_contains(set, val)
-  end
-  return filter(tb, lambda)
+  end)
 end
 
 

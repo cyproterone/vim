@@ -107,22 +107,28 @@ local new_popup = function (buf, rel_w, rel_h)
 end
 
 
+local order_wins = function (wins)
+  local wins = std.map(wins, std.id)
+  table.sort(wins, function (a, b)
+    local _, col_a = unpack(api.nvim_win_get_position(a))
+    local _, col_b = unpack(api.nvim_win_get_position(b))
+    return col_a < col_b
+  end)
+  return wins
+end
+
+
 local new_tab = function (sidebar, main, rel_size)
   api.nvim_command[[tabnew]]
   local tab = api.nvim_get_current_tabpage()
   api.nvim_command[[vsplit]]
-  local win_a, win_b = unpack(api.nvim_tabpage_list_wins(tab))
-  calibrate_win(win_a)
-  calibrate_win(win_b)
-  
-  local _, col_a = unpack(api.nvim_win_get_position(win))
-  local _, col_b = unpack(api.nvim_win_get_position(win))
-  if col_a > col_b then
-      api.nvim_win_set_buf(win_a, sidebar)
-      api.nvim_win_set_buf(win_b, main)
-  else
-      api.nvim_win_set_buf(win_b, sidebar)
-      api.nvim_win_set_buf(win_a, main)
-  end
+  local wins = api.nvim_tabpage_list_wins(tab)
+  local win_s, win_m = unpack(order_wins(wins))
+  api.nvim_win_set_buf(win_s, sidebar)
+  api.nvim_win_set_buf(win_m, main)
+  local width = api.nvim_get_option("columns")
+  api.nvim_win_set_width(win_s, m.ceil(width * rel_size))
+  table.foreach(wins, calibrate_win)
 end
+
 
