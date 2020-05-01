@@ -45,6 +45,13 @@ local wrap = function (val)
 end
 
 
+local foreach = function (tb, func)
+  for _, val in ipairs(tb) do
+    func(val)
+  end
+end
+
+
 local map = function (tb, func)
   local acc = {}
   for key, val in pairs(tb) do
@@ -121,6 +128,7 @@ return {
   nil_map = nil_map,
   wrap = wrap,
   extract = extract,
+  foreach = foreach,
   map = map,
   filter = filter,
   reduce = reduce,

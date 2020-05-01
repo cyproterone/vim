@@ -24,6 +24,9 @@ local intrinsic = function ()
   -- always show issues column
   bindings.set("signcolumn", "yes")
 
+  -- show show eob lines
+  bindings.set("fillchars", [[eob:\ ]])
+
   -- always show tabline
   bindings.set("showtabline", 2)
 
