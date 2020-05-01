@@ -27,6 +27,13 @@ local spawn = function (shell, opts, cb)
     cb(val)
   end
 
+  local on_shutdown = function (err)
+    if err then
+      call()
+      assert(false, err)
+    end
+  end
+
   local on_out = function (err, data)
     if data then
       table.insert(out, data)
@@ -65,7 +72,7 @@ local spawn = function (shell, opts, cb)
   if opts.stream then
     uv.write(stdin, opts.stream)
   end
-  uv.shutdown(stdin)
+  uv.shutdown(stdin, on_shutdown)
 
 end
 
