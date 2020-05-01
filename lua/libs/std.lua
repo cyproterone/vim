@@ -2,7 +2,9 @@
 --#################### STD Region ####################
 --#################### ########## ####################
 
+local set = require "libs/set" 
 local co = coroutine
+
 
 local id = function (...)
   return ...
@@ -45,15 +47,6 @@ local extract = function (path)
       acc = acc[p]
     end
     return acc
-  end
-end
-
-
-local nil_map = function (val, func)
-  if val ~= nil then
-    return func(val)
-  else
-    return nil
   end
 end
 
@@ -130,42 +123,18 @@ local reduce = function (tb, init, func)
 end
 
 
-local make_set = function (tb)
-  local acc = {}
-  for _, val in ipairs(tb) do
-    acc[val] = true
-  end
-  return acc
-end
-
-
-local set_contains = function (set, key)
-  return set[key] ~= nil
-end
-
-
-local set_add = function (set, key)
-  set[key] = true
-end
-
-
-local set_subtract = function (set, key)
-  set[key] = nil
-end
-
-
 local pick = function (tb, keys)
-  local set = make_set(tb)
+  local st = set.new(tb)
   return filter(tb, function (val)
-    return set_contains(set, val)
+    return set.contains(st, val)
   end)
 end
 
 
 local exclude = function (tb, keys)
-  local set = make_set(tb)
+  local st = set.new(tb)
   return filter(tb, function (val)
-    return not set_contains(set, val)
+    return not set.contains(st, val)
   end)
 end
 
@@ -187,7 +156,6 @@ return {
   len = len,
   keys = keys,
   values = values,
-  nil_map = nil_map,
   wrap = wrap,
   extract = extract,
   foreach = foreach,
@@ -195,10 +163,6 @@ return {
   flatmap = flatmap,
   filter = filter,
   reduce = reduce,
-  make_set = make_set,
-  set_contains = set_contains,
-  set_add = set_add,
-  set_subtract = set_subtract,
   pick = pick,
   exclude = exclude,
   merge = merge,
