@@ -13,44 +13,30 @@ local spawn = function (shell, opts, cb)
                 args = opts.args or {}}
   local process = nil
   local out, errs = {}, {}
-  local called = false
   local handles = {stdin, stdout, stderr, process}
 
   local call = function (val)
-    if called then
-      return
-    end
-    called = true
     for _, handle in ipairs(handles) do
       pcall(uv.close, handle)
     end
     cb(val)
   end
 
-  local on_shutdown = function (err)
-    if err then
-      call()
-      assert(false, err)
-    end
+  local on_write = function (err)
+    assert(not err, err)
   end
 
   local on_out = function (err, data)
+    assert(not err, err)
     if data then
       table.insert(out, data)
-    end
-    if err then
-      call()
-      assert(false, err)
     end
   end
 
   local on_err = function (err, data)
+    assert(not err, err)
     if data then
       table.insert(errs, data)
-    end
-    if err then
-      call()
-      assert(false, err)
     end
   end
 
@@ -61,18 +47,14 @@ local spawn = function (shell, opts, cb)
   end
 
   process, pid = uv.spawn(shell, opts, on_exit)
-
-  if not process then
-    call()
-    assert(false, pid)
-  end
+  assert(process, pid)
 
   uv.read_start(stdout, on_out)
   uv.read_start(stderr, on_err)
   if opts.stream then
-    uv.write(stdin, opts.stream)
+    uv.write(stdin, opts.stream, on_write)
   end
-  uv.shutdown(stdin, on_shutdown)
+  uv.shutdown(stdin, on_write)
 
 end
 
