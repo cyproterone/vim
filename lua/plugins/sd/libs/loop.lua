@@ -60,7 +60,7 @@ end
 
 
 -- required due to textlock
-local main_loop = function (f)
+local main = function (f)
   vim.schedule(f)
 end
 
