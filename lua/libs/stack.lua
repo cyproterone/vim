@@ -20,6 +20,7 @@ local function new ()
       store[count] = nil
       count = count - 1
       return val
+    end
   end
 
   return {

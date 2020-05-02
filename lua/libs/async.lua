@@ -72,13 +72,13 @@ end
 
 -- sugar over coroutine
 local await = function (defer)
-  assert(type(func) == "function", "type error :: expected func")
+  assert(type(defer) == "function", "type error :: expected func")
   return co.yield(defer)
 end
 
 
 local await_all = function (defer)
-  assert(type(func) == "table", "type error :: expected table")
+  assert(type(defer) == "table", "type error :: expected table")
   defer[ref] = true
   return co.yield(defer)
 end
