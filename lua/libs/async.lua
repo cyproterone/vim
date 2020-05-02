@@ -4,20 +4,6 @@
 
 local co = coroutine
 
-
--- reference
-local sync_pong = function (thread)
-  local step = nil
-  step = function (go, ...)
-    if not go then
-      return
-    end
-    step(co.resume(thread, ...))
-  end
-  step(co.resume(thread))
-end
-
-
 -- used for reference equality
 -- signal joining thunks in tb 
 local ref = {} 
@@ -86,19 +72,21 @@ end
 
 -- sugar over coroutine
 local await = function (defer)
-  if type(defer) == "table" then
-    defer[ref] = true
-    return co.yield(defer)
-  elseif type(defer) == "function" then
-    return co.yield(defer)
-  else
-    return assert(false, "type error :: expected func | table")
-  end
+  assert(type(func) == "function", "type error :: expected func")
+  return co.yield(defer)
+end
+
+
+local await_all = function (defer)
+  assert(type(func) == "table", "type error :: expected table")
+  defer[ref] = true
+  return co.yield(defer)
 end
 
 
 return {
   sync = wrap(pong),
   wait = await,
+  wait_all = await_all,
   wrap = wrap,
 }

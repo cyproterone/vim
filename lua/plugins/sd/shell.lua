@@ -50,7 +50,7 @@ end
 
 local diff = function (before, after)
   local args = {"--suppress-common-lines",
-                "--width=99999",
+                "--width=9999",
                 before, 
                 "-"}
   local opts = {args = args, stream = after}
