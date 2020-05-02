@@ -139,6 +139,17 @@ local exclude = function (tb, keys)
 end
 
 
+local concat = function (tbs)
+  local acc = {}
+  for _, tb in ipairs(tbs) do
+    for _, val in ipairs(tb) do
+      table.insert(acc, val)
+    end
+  end
+  return acc
+end
+
+
 local merge = function (tbs)
   local acc = {}
   for _, tb in ipairs(tbs) do
@@ -165,5 +176,6 @@ return {
   reduce = reduce,
   pick = pick,
   exclude = exclude,
+  concat = concat,
   merge = merge,
 }

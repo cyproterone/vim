@@ -77,14 +77,13 @@ local spawn = function (shell, opts, cb)
 end
 
 
--- WARN: doesn't allow tables, or closures :<
-local dispatch = function (worker, args, callback)
-  local work = uv.new_work(worker, callback)
-  assert(uv.queue_work(work, unpack(args)))
+-- required due to textlock
+local main_loop = function (f)
+  vim.schedule(f)
 end
 
 
 return {
   spawn = spawn,
-  dispatch = dispatch,
+  main = main,
 }

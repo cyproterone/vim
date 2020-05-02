@@ -15,19 +15,6 @@ local is_modified = function (buf)
 end
 
 
-local list = function ()
-  local bufs = api.nvim_list_bufs() 
-  local acc = {}
-  for _, buf in ipairs(bufs) do
-    local path = api.nvim_call_function("bufname", {buf})
-    local modified = is_modified(buf)
-    local info = {buf = buf, path = path , modified = modified}
-    table.insert(acc, info)
-  end
-  return acc 
-end
-
-
 local new = function (lines)
   local buf = api.nvim_create_buf(false, true)
   assert(buf ~= 0, "failed to create buf")
