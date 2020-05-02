@@ -16,6 +16,9 @@ local join = function (thunks)
   local acc = {}
 
   local thunk = function (step)
+    if len == 0 then
+      return step()
+    end
     for i, tk in ipairs(thunks) do
       assert(type(tk) == "function", "thunk must be function")
       local callback = function (...)
