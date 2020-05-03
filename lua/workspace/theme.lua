@@ -51,12 +51,15 @@ registry.defer(cursors)
 --#################### Powerline Region ####################
 
 -- powerline
--- -- registry.install("vim-airline/vim-airline")
--- registry.install("vim-airline/vim-airline-themes")
-registry.install("itchyny/lightline.vim")
+registry.install("vim-airline/vim-airline")
+registry.install("vim-airline/vim-airline-themes")
 local powerline = function ()
 
-  bindings.let("lightline", {colorscheme = "one"})
+  bindings.let("airline_powerline_fonts", true)
+
+  bindings.let("airline#extensions#tabline#enabled", true)
+  bindings.let("airline#extensions#tabline#show_splits", false)
+  bindings.let("airline#extensions#tabline#show_buffers ", false)
 
 end
 registry.defer(powerline)

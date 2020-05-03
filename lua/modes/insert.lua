@@ -14,17 +14,6 @@ end
 registry.defer(emacs_keys)
 
 
--- normal mode one keycord
-local normal = function ()
-
-  -- map c-space for completion
-  bindings.map.insert("<C-space>", "<C-x>")
-  bindings.map.normal("<C-space>")
-
-end
-registry.defer(normal)
-
-
 -- add a cursor cross in insert mode
 local cursor_cross = function ()
 

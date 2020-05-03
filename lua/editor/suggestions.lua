@@ -22,3 +22,16 @@ local suggestions = function ()
 
 end
 registry.defer(suggestions)
+
+
+local hotkeys = function ()
+
+  -- map c-space for completion
+  bindings.map.insert("<C-space>", "<C-x>")
+  bindings.map.normal("<C-space>")
+
+  -- cancel comp
+  bindings.map.insert("<C-q>", "<C-e>")
+
+end
+registry.defer(suggestions)
