@@ -6,22 +6,19 @@ local registry = require "libs/registry"
 
 
 local override = function (highlights)
-
-
   local hl = function ()
-    for group, terms in ipairs(highlight) do
+    for group, terms in pairs(highlights) do
       local acc = {}
-      for term, colour in ipairs(terms) do
-        table.insert(acc, term .. " = " .. colour)
+      for term, colour in pairs(terms) do
+        table.insert(acc, term .. "=" .. colour)
       end
       local clause = table.concat(acc, " ")
       local hi = "highlight " .. group .. " " .. clause
-      print(hi)
+      bindings.exec(hi)
     end
   end
 
   registry.auto("ColorScheme", hl)
-
 end
 
 
