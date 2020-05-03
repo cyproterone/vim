@@ -13,6 +13,7 @@ local buffers = require "plugins/sd/buffers"
 local windows = require "plugins/sd/windows"
 
 local concurrency = sd_concurrency or 2
+local sidebar_size = sd_sidebar_size or 0.3
 
 
 local fd = function (pattern)
@@ -24,6 +25,9 @@ local fd = function (pattern)
       return {path}
     else
       local files = a.wait(shell.fd(pattern))
+      table.sort(files, function (a, b) 
+        return vim.stricmp(a, b) < 0
+      end)
       return files
     end
   end)
@@ -36,8 +40,24 @@ local sd = function (sd_args, file)
     local sd_preview = a.wait(shell.sd(sd_args))
     local replace = a.wait(shell.mktmp(sd_preview))
     local dif = a.wait(shell.diff(file, replace))
-    return {replace, dif}
+    return {file, replace, dif}
   end)
+end
+
+
+local show = function (changes)
+  local files = {}
+  local details = {}
+  for _, change in ipairs(changes) do
+    local file, tmp, dif = unpack(unpack(change))
+    table.insert(files, file)
+    local buf = buffers.new_detail(dif)
+    details[file] = {tmp, buf}
+  end
+  local listing = buffers.new_listing(files)
+
+  local sidebar, main = windows.new_tab(sidebar_size)
+
 end
 
 
@@ -60,9 +80,8 @@ local main = function (args)
       return sd(sd_args, file)
     end)
     local ret = a.wait(cb.throttle(thunks, concurrency))
-    end
-
     a.wait(loop.main)
+    show(ret)
   end)
 end
 

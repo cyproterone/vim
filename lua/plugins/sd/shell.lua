@@ -74,7 +74,7 @@ end
 
 local mktmp = function (data, mode)
   local mode = mode or 660
-  local tmp = assert(uv.os_tmpdir()) .. "/sd_vimXXXXXXXXXXXXXXX"
+  local tmp = assert(uv.os_tmpdir()) .. "sd_vimXXXXXXXXXXXXXXX"
   return a.sync(function ()
     local path = a.wait(mktemp())
     local err, fd = a.wait(a.wrap(uv.fs_open)(path, "w+", mode))

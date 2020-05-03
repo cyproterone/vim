@@ -2,6 +2,7 @@
 --#################### Buffers Region ####################
 --#################### ############### ####################
 
+local s = require "libs/string"
 local api = vim.api
 
 
@@ -33,7 +34,8 @@ end
 
 
 local new_detail = function (diff)
-  local buf = new(diff)
+  local lines = s.split(string.byte("\n"), diff)
+  local buf = new(lines)
   api.nvim_buf_set_option(buf, "filetype", "diff")
   return buf
 end
