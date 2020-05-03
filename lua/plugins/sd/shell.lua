@@ -29,7 +29,7 @@ local sd = function (args)
   local pattern = assert(args.pattern)
   local replacement = assert(args.replacement)
   
-  local sd_args = flags
+  local sd_args = std.concat{flags}
   table.insert(sd_args, pattern)
   table.insert(sd_args, replacement)
   local opts = {args = sd_args}
