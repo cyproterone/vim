@@ -18,7 +18,7 @@ registry.defer(emacs_keys)
 local normal = function ()
 
   -- map c-space for completion
-  bindings.map.insert("<C-space>", "<C-o>")
+  bindings.map.insert("<C-space>", "<C-x>")
   bindings.map.normal("<C-space>")
 
 end
