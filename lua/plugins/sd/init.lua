@@ -49,7 +49,7 @@ local replace = function (prev, nxt)
   return a.sync(function ()
     print("-- 🚚💨 :: " .. nxt .. " --")
     a.wait(shell.replace(prev, nxt))
-    print("-- ✅ :: " .. nxt .. " --")
+    print("-- ⭐️ :: " .. nxt .. " --")
   end)
 end
 

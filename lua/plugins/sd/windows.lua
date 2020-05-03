@@ -41,7 +41,7 @@ local new_tab = function (rel_size)
   api.nvim_win_set_width(sidebar, m.ceil(width * rel_size))
   api.nvim_win_set_option(sidebar, "cursorline", true)
 
-  -- api.nvim_command[[:execute 'normal! \<C-w>h']]
+  api.nvim_set_current_win(sidebar)
 
   return sidebar, main
 end
