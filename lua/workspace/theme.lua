@@ -56,10 +56,12 @@ registry.install("vim-airline/vim-airline-themes")
 local powerline = function ()
 
   bindings.let("airline_powerline_fonts", true)
+  bindings.let("airline#extensions#tabline#overflow_marker", …)
 
   bindings.let("airline#extensions#tabline#enabled", true)
   bindings.let("airline#extensions#tabline#show_splits", false)
   bindings.let("airline#extensions#tabline#show_buffers ", false)
+  bindings.let("airline#extensions#tabline#show_tab_count", false)
 
 end
 registry.defer(powerline)

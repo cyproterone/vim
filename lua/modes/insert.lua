@@ -10,6 +10,11 @@ local emacs_keys = function ()
   -- delete to end of line
   bindings.map.insert("<C-k>", "<C-o>D")
 
+  bindings.map.insert("<M-Left>", "<C-Left>")
+  bindings.map.insert("<M-Right>", "<C-Right>")
+  bindings.map.insert("<M-Up>", "<C-Up>")
+  bindings.map.insert("<M-Down>", "<C-Down>")
+
 end
 registry.defer(emacs_keys)
 
