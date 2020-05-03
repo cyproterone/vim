@@ -37,8 +37,9 @@ local auto = function (events, func, filter)
   local name = "" .. inc()
   local group = "augroup " .. name
   local cls = "autocmd!"
-  local cmd = "autocmd ".. events .. " " .. filter .. " lua require('" .. _registry .. "').call('" .. name .. "')"
+  local cmd = "autocmd " .. events .. " " .. filter .. " lua require('" .. _registry .. "').call('" .. name .. "')"
   local done = "augroup END"
+  local clear = "autocmd! " .. name
   
   api.nvim_command(group)
   api.nvim_command(cls)
@@ -48,6 +49,7 @@ local auto = function (events, func, filter)
   _callbacks[name] = func
   return function ()
     _callbacks[name] = nil
+    api.nvim_command(clear)
   end
 end
 
