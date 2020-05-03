@@ -34,4 +34,4 @@ local hotkeys = function ()
   bindings.map.insert("<C-q>", "<C-e>")
 
 end
-registry.defer(suggestions)
+registry.defer(hotkeys)
