@@ -25,8 +25,18 @@ local defer = function (d)
 end
 
 
+local remove = function (name)
+  local clear = "autocmd! " .. name
+  _callbacks[name] = nil
+  api.nvim_command(clear)
+end
+
+
 local call = function (name)
-  _callbacks[name]()
+  local kill = _callbacks[name]()
+  if kill then
+    remove(name)
+  end
 end
 
 
@@ -39,7 +49,6 @@ local auto = function (events, func, filter)
   local cls = "autocmd!"
   local cmd = "autocmd " .. events .. " " .. filter .. " lua require('" .. _registry .. "').call('" .. name .. "')"
   local done = "augroup END"
-  local clear = "autocmd! " .. name
   
   api.nvim_command(group)
   api.nvim_command(cls)
@@ -48,8 +57,7 @@ local auto = function (events, func, filter)
 
   _callbacks[name] = func
   return function ()
-    _callbacks[name] = nil
-    api.nvim_command(clear)
+    remove(name)
   end
 end
 

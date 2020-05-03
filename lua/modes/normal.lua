@@ -30,9 +30,26 @@ registry.defer(map_keys)
 
 
 -- fix cursor pos moving 1 back
-local cursor_pos = function ()
+local no_stepback = function ()
 
-  bindings.source(scripts_home .. "/cursor.vim")
+  local buf_cursor_pos = "_buf_cursor_pos_"
+
+  local record_pos = function ()
+    local c = bindings.call("col", {"."})
+    api.nvim_buf_set_var(0, buf_cursor_pos, c)
+  end
+
+  local displace = function ()
+    local c = bindings.call("col", {"."})
+    local pos = api.nvim_buf_get_var(0, buf_cursor_pos)
+    if c ~= pos then
+      bindings.call("cursor", {0, pos})
+    end
+  end
+
+  registry.auto({"InsertEnter", "CursorMovedI"}, record_pos)
+  registry.auto("InsertLeave", displace)
 
 end
-registry.defer(cursor_pos)
+registry.defer(no_stepback)
+
