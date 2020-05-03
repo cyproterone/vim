@@ -59,9 +59,11 @@ local powerline = function ()
   bindings.let("airline#extensions#tabline#overflow_marker", …)
 
   bindings.let("airline#extensions#tabline#enabled", true)
+  bindings.let("airline#extensions#tabline#show_tabs", true)
+  bindings.let("airline#extensions#tabline#show_buffers", false)
   bindings.let("airline#extensions#tabline#show_splits", false)
-  bindings.let("airline#extensions#tabline#show_buffers ", false)
   bindings.let("airline#extensions#tabline#show_tab_count", false)
+  bindings.let("airline#extensions#tabline#tab_nr_type", 2)
 
 end
 registry.defer(powerline)
