@@ -24,6 +24,10 @@ local hotkeys = function ()
   -- clear search result
   bindings.map.normal("<Leader>l", ":nohlsearch<CR>")
 
+  -- search buffer
+  bindings.map.normal("s", [["zyiw:%s/<C-r>z//g<Left><Left>]])
+  bindings.map.normal("S", [[:%s///g<Left><Left><Left>]])
+
 end
 registry.defer(hotkeys)
 
