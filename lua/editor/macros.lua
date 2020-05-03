@@ -1,16 +1,7 @@
 local bindings = require "libs/bindings"
+local registry = require "libs/registry"
 
-
-local plugins = {}
-local defer = {}
-local functions = {}
 
 --#################### Macros Region ####################
 
-table.insert(plugins, "tpope/vim-repeat")
-
-return {
-  plugins = plugins,
-  defer = defer,
-  functions = functions,
-}
+registry.install("tpope/vim-repeat")

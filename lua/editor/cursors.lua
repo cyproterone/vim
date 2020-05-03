@@ -1,35 +1,25 @@
 local bindings = require "libs/bindings"
+local registry = require "libs/registry"
 
-
-local plugins = {}
-local defer = {}
-local functions = {}
 
 --#################### Cursors Region ####################
 
 -- multi cursors
-table.insert(plugins, "terryma/vim-multiple-cursors")
+registry.install("terryma/vim-multiple-cursors")
 
 
 -- drag regions around
-table.insert(plugins, "matze/vim-move")
+registry.install("matze/vim-move")
 -- default: M-j, M-k, M-h, M-l
 
 
 -- auto parens
-table.insert(plugins, "Raimondi/delimitMate")
+registry.install("Raimondi/delimitMate")
 
 
 -- easy quoting
-table.insert(plugins, "tpope/vim-surround")
+registry.install("tpope/vim-surround")
 
 
 -- easy commenting
-table.insert(plugins, "tpope/vim-commentary")
-
-
-return {
-  plugins = plugins,
-  defer = defer,
-  functions = functions,
-}
+registry.install("tpope/vim-commentary")

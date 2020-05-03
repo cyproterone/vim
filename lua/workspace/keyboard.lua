@@ -1,9 +1,6 @@
 local bindings = require "libs/bindings"
+local registry = require "libs/registry"
 
-
-local plugins = {}
-local defer = {}
-local functions = {}
 
 --#################### Keyboard Region ####################
 
@@ -13,7 +10,7 @@ local misc = function ()
   bindings.set("timeoutlen", 500)
 
 end
-table.insert(defer, misc)
+registry.defer(misc)
 
 
 local normalize_keystrokes = function ()
@@ -25,11 +22,4 @@ local normalize_keystrokes = function ()
   bindings.set("backspace", "indent,eol,start")
   
 end
-table.insert(defer, normalize_keystrokes)
-
-
-return {
-  plugins = plugins,
-  defer = defer,
-  functions = functions,
-}
+registry.defer(normalize_keystrokes)

@@ -1,9 +1,6 @@
 local bindings = require "libs/bindings"
+local registry = require "libs/registry"
 
-
-local plugins = {}
-local defer = {}
-local functions = {}
 
 --#################### Command Region ####################
 
@@ -16,11 +13,4 @@ local keys = function ()
   bindings.map.command("<C-v>", [[<C-r>"]])
 
 end
-table.insert(defer, keys)
-
-
-return {
-  plugins = plugins,
-  defer = defer,
-  functions = functions,
-}
+registry.defer(keys)

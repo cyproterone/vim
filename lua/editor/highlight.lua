@@ -1,15 +1,12 @@
 local bindings = require "libs/bindings"
 local theme = require "libs/theme"
+local registry = require "libs/registry"
 
-
-local plugins = {}
-local defer = {}
-local functions = {}
 
 --#################### Highlight Region ####################
 
 -- auto line num
--- table.insert(plugins, "jeffkreeftmeijer/vim-numbertoggle")
+-- registry.install("jeffkreeftmeijer/vim-numbertoggle")
 local line_number = function ()
 
   -- show line count
@@ -17,11 +14,11 @@ local line_number = function ()
   -- bindings.set("relativenumber")
 
 end
-table.insert(defer, line_number)
+registry.defer(line_number)
 
 
 -- highlight copied region
-table.insert(plugins, "machakann/vim-highlightedyank")
+registry.install("machakann/vim-highlightedyank")
 local copy_highlight = function ()
 
   bindings.let("highlightedyank_highlight_duration", 500)
@@ -31,21 +28,14 @@ local copy_highlight = function ()
                   gui = "reverse"}}
 
 end
-table.insert(defer, copy_highlight)
+registry.defer(copy_highlight)
 
 
 -- highlight colours
-table.insert(plugins, "norcalli/nvim-colorizer.lua")
+registry.install("norcalli/nvim-colorizer.lua")
 local colour_highlight = function ()
 
   bindings.exec[[lua require("colorizer").setup()]]
 
 end
-table.insert(defer, colour_highlight)
-
-
-return {
-  plugins = plugins,
-  defer = defer,
-  functions = functions,
-}
+registry.defer(colour_highlight)

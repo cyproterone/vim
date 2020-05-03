@@ -1,9 +1,6 @@
 local bindings = require "libs/bindings"
+local registry = require "libs/registry"
 
-
-local plugins = {}
-local defer = {}
-local functions = {}
 
 --#################### Normal Region ####################
 
@@ -13,7 +10,7 @@ local unmap_keys = function ()
   bindings.map.normal("g?")
 
 end
-table.insert(defer, unmap_keys)
+registry.defer(unmap_keys)
 
 
 local map_keys = function ()
@@ -29,7 +26,7 @@ local map_keys = function ()
   bindings.map.normal("@", "^")
 
 end
-table.insert(defer, map_keys)
+registry.defer(map_keys)
 
 
 -- fix cursor pos moving 1 back
@@ -38,10 +35,4 @@ local cursor_pos = function ()
   bindings.source(scripts_home .. "/cursor.vim")
 
 end
-table.insert(defer, cursor_pos)
-
-return {
-  plugins = plugins,
-  defer = defer,
-  functions = functions,
-}
+registry.defer(cursor_pos)

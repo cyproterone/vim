@@ -1,10 +1,7 @@
 local bindings = require "libs/bindings"
+local registry = require "libs/registry"
 local std = require "libs/std"
 
-
-local defer = {}
-local functions = {}
-local plugins = {}
 
 --#################### Intrinsic WM Region ####################
 
@@ -39,7 +36,7 @@ local modern_split = function ()
   bindings.map.normal("<M-Down>",  "<C-w>j")
 
 end
-table.insert(defer, modern_split)
+registry.defer(modern_split)
 
 
 -- modern wm
@@ -58,7 +55,7 @@ local wm_close = function ()
   bindings.map.normal("<Leader>k", "<C-w>T")
 
 end
-table.insert(defer, wm_close)
+registry.defer(wm_close)
 
 
 -- tabs wm
@@ -79,7 +76,7 @@ local tabs_wm = function ()
   end
 
 end
-table.insert(defer, tabs_wm)
+registry.defer(tabs_wm)
 
 
 --#################### Intrinsic Buffers Region ####################
@@ -90,11 +87,4 @@ local buffers = function ()
   bindings.map.normal("<Leader>D", ":bwipeout!<CR>")
 
 end
-table.insert(defer, buffers)
-
-
-return {
-  plugins = plugins,
-  defer = defer,
-  functions = functions,
-}
+registry.defer(buffers)

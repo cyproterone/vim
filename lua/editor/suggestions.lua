@@ -1,9 +1,6 @@
 local bindings = require "libs/bindings"
+local registry = require "libs/registry"
 
-
-local plugins = {}
-local defer = {}
-local functions = {}
 
 --#################### Suggestions Region ####################
 
@@ -24,11 +21,4 @@ local suggestions = function ()
   bindings.set("completeopt", "menuone,noinsert", [[+=]])
 
 end
-table.insert(defer, suggestions)
-
-
-return {
-  plugins = plugins,
-  defer = defer,
-  functions = functions,
-}
+registry.defer(suggestions)

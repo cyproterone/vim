@@ -1,9 +1,6 @@
 local bindings = require "libs/bindings"
+local registry = require "libs/registry"
 
-
-local plugins = {}
-local defer = {}
-local functions = {}
 
 --#################### Undo Region ####################
 
@@ -19,11 +16,4 @@ local undo_hist = function ()
   bindings.set("undoreload", 1000)
 
 end
-table.insert(defer, undo_hist)
-
-
-return {
-  plugins = plugins,
-  defer = defer,
-  functions = functions,
-}
+registry.defer(undo_hist)

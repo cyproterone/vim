@@ -1,14 +1,11 @@
-local bindings = require "libs/bindings"
+local bindings = require "libs/bindings"local registry = require "libs/registry"
 
-local plugins = {}
-local defer = {}
-local functions = {}
 
 --#################### Lang Markdown ####################
 
 -- :InstantMarkdownPreview
 -- :InstantMarkdownStop
-table.insert(plugins, {"suan/vim-instant-markdown", ["for"] = "markdown"})
+registry.install({"suan/vim-instant-markdown", ["for"] = "markdown"})
 local lang_conf = function ()
 
   bindings.let("instant_markdown_open_to_the_world", true)
@@ -19,7 +16,7 @@ local lang_conf = function ()
   bindings.let("instant_markdown_allow_unsafe_content", false)
 
 end
-table.insert(defer, lang_conf)
+registry.defer(lang_conf)
 
 
 return {

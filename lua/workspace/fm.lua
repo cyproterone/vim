@@ -1,14 +1,11 @@
 local bindings = require "libs/bindings"
+local registry = require "libs/registry"
 
-
-local plugins = {}
-local defer = {}
-local functions = {}
 
 --#################### File Manager Region ####################
 
 -- fff
-table.insert(plugins, "dylanaraps/fff.vim")
+registry.install("dylanaraps/fff.vim")
 local fff = function ()
 
   --- keybind conflict
@@ -20,7 +17,7 @@ local fff = function ()
   bindings.let("fff#split", "new")
 
 end
-table.insert(defer, fff)
+registry.defer(fff)
 
 
 -- netrw
@@ -31,21 +28,14 @@ local netrw = function ()
                 exec = "setlocal bufhidden=wipe"}
 
 end
-table.insert(defer, netrw)
+registry.defer(netrw)
 
 
 -- ranger
-table.insert(plugins, {"kevinhwang91/rnvimr", ["do"] = "make sync"})
+registry.install({"kevinhwang91/rnvimr", ["do"] = "make sync"})
 local ranger = function ()
 
   bindings.map.normal("<Leader>b", ":RnvimrToggle<CR>")
 
 end
-table.insert(defer, ranger)
-
-
-return {
-  plugins = plugins,
-  defer = defer,
-  functions = functions,
-}
+registry.defer(ranger)

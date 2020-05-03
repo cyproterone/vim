@@ -1,13 +1,10 @@
 local bindings = require "libs/bindings"
+local registry = require "libs/registry"
 
-
-local plugins = {}
-local defer = {}
-local functions = {}
 
 --#################### Tree Region ####################
 
-table.insert(plugins, "preservim/nerdtree")
+registry.install("preservim/nerdtree")
 local tree = function ()
 
   -- show hiddenfiles
@@ -31,23 +28,16 @@ local tree = function ()
   bindings.let("NERDTreeMapPreview", "d")
 
 end
-table.insert(defer, tree)
+registry.defer(tree)
 
 
 --#################### Tree Region ####################
 
-table.insert(plugins, "Xuyuanp/nerdtree-git-plugin")
-table.insert(plugins, "tiagofumo/vim-nerdtree-syntax-highlight")
+registry.install("Xuyuanp/nerdtree-git-plugin")
+registry.install("tiagofumo/vim-nerdtree-syntax-highlight")
 local pretty_tree = function ()
 
   bindings.let("NERDTreeHighlightFolders", true)
 
 end
-table.insert(defer, tree)
-
-
-return {
-  plugins = plugins,
-  defer = defer,
-  functions = functions,
-}
+registry.defer(tree)

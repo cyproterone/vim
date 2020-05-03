@@ -1,9 +1,6 @@
 local bindings = require "libs/bindings"
+local registry = require "libs/registry"
 
-
-local plugins = {}
-local defer = {}
-local functions = {}
 
 --#################### Insert Region ####################
 
@@ -14,7 +11,7 @@ local emacs_keys = function ()
   bindings.map.insert("<C-k>", "<C-o>D")
 
 end
-table.insert(defer, emacs_keys)
+registry.defer(emacs_keys)
 
 
 -- normal mode one keycord
@@ -25,7 +22,7 @@ local normal = function ()
   bindings.map.normal("<C-space>")
 
 end
-table.insert(defer, normal)
+registry.defer(normal)
 
 
 -- add a cursor cross in insert mode
@@ -38,11 +35,4 @@ local cursor_cross = function ()
                 exec = "set nocursorcolumn"}
 
 end
-table.insert(defer, cursor_cross)
-
-
-return {
-  plugins = plugins,
-  defer = defer,
-  functions = functions,
-}
+registry.defer(cursor_cross)

@@ -1,9 +1,6 @@
 local bindings = require "libs/bindings"
+local registry = require "libs/registry"
 
-
-local plugins = {}
-local defer = {}
-local functions = {}
 
 --#################### Mouse Region ####################
 
@@ -14,11 +11,4 @@ local normal_mouse = function ()
   bindings.set("mouse", "a")
 
 end
-table.insert(defer, normal_mouse)
-
-
-return {
-  plugins = plugins,
-  defer = defer,
-  functions = functions,
-}
+registry.defer(normal_mouse)

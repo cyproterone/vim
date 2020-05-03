@@ -1,15 +1,12 @@
 
 local bindings = require "libs/bindings"
+local registry = require "libs/registry"
 
-
-local plugins = {}
-local defer = {}
-local functions = {}
 
 --#################### Multi-Mode Region ####################
 
 -- add eamcs keybinds in insert / command mode
-table.insert(plugins, "tpope/vim-rsi")
+registry.install("tpope/vim-rsi")
 
 
 local remap_keys = function ()
@@ -28,7 +25,7 @@ local remap_keys = function ()
   bindings.map.nv("Y", "y$")
 
 end
-table.insert(defer, remap_keys)
+registry.defer(remap_keys)
 
 
 local movement = function ()
@@ -51,11 +48,4 @@ local movement = function ()
   bindings.map.insert("<S-Down>", "<Down><C-o>zz")
 
 end
-table.insert(defer, movement)
-
-
-return {
-  plugins = plugins,
-  defer = defer,
-  functions = functions,
-}
+registry.defer(movement)

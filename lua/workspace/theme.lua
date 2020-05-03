@@ -1,9 +1,6 @@
 local bindings = require "libs/bindings"
-local theme = require "libs/theme"
+local theme = require "libs/theme"local registry = require "libs/registry"
 
-local plugins = {}
-local defer = {}
-local functions = {}
 
 --#################### Intrinsic Region ####################
 
@@ -31,7 +28,7 @@ local intrinsic = function ()
   bindings.set("showtabline", 2)
 
 end
-table.insert(defer, intrinsic)
+registry.defer(intrinsic)
 
 
 --#################### Cursors Region ####################
@@ -45,27 +42,27 @@ local cursors = function ()
   bindings.set("cursorline")
 
 end
-table.insert(defer, cursors)
+registry.defer(cursors)
 
 
 --#################### Powerline Region ####################
 
 -- powerline
--- -- table.insert(plugins, "vim-airline/vim-airline")
--- table.insert(plugins, "vim-airline/vim-airline-themes")
-table.insert(plugins, "itchyny/lightline.vim")
+-- -- registry.install("vim-airline/vim-airline")
+-- registry.install("vim-airline/vim-airline-themes")
+registry.install("itchyny/lightline.vim")
 local powerline = function ()
 
   bindings.let("lightline", {colorscheme = "one"})
 
 end
-table.insert(defer, powerline)
+registry.defer(powerline)
 
 
 --#################### Colours Region ####################
 
 -- colour theme::
-table.insert(plugins, "NLKNguyen/papercolor-theme")
+registry.install("NLKNguyen/papercolor-theme")
 local colours = function ()
 
   bindings.set("background", "light")
@@ -76,21 +73,14 @@ local colours = function ()
                                     allow_italic = true}}})
 
 end
-table.insert(defer, colours)
+registry.defer(colours)
 
 
 -- iconpack
-table.insert(plugins, "ryanoasis/vim-devicons")
+registry.install("ryanoasis/vim-devicons")
 
 
 --#################### Colours Region ####################
 
 -- active pane colours
--- table.insert(plugins, "blueyed/vim-diminactive")
-
-
-return {
-  plugins = plugins,
-  defer = defer,
-  functions = functions,
-}
+-- registry.install("blueyed/vim-diminactive")

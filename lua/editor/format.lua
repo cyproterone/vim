@@ -1,18 +1,15 @@
 local bindings = require "libs/bindings"
+local registry = require "libs/registry"
 
-
-local plugins = {}
-local defer = {}
-local functions = {}
 
 --#################### Format Region ####################
 
 -- align text
-table.insert(plugins, "junegunn/vim-easy-align")
+registry.install("junegunn/vim-easy-align")
 
 
 -- prettiers
-table.insert(plugins, "sbdchd/neoformat")
+registry.install("sbdchd/neoformat")
 local pretty = function ()
 
   -- disabled for performance reasons
@@ -20,11 +17,4 @@ local pretty = function ()
   --               exec = "undojoin | Neoformat"}
 
 end
-table.insert(defer, pretty)
-
-
-return {
-  plugins = plugins,
-  defer = defer,
-  functions = functions,
-}
+registry.defer(pretty)

@@ -1,9 +1,6 @@
 local bindings = require "libs/bindings"
+local registry = require "libs/registry"
 
-
-local plugins = {}
-local defer = {}
-local functions = {}
 
 --#################### Files Region ####################
 
@@ -20,11 +17,11 @@ local fs_consistency = function ()
   bindings.set("autowriteall")
 
 end
-table.insert(defer, fs_consistency)
+registry.defer(fs_consistency)
 
 
 -- autosave
-table.insert(plugins, "907th/vim-auto-save")
+registry.install("907th/vim-auto-save")
 local autosave = function ()
 
   -- auto backup
@@ -36,11 +33,4 @@ local autosave = function ()
   bindings.let("auto_save_silent", true)
 
 end
-table.insert(defer, autosave)
-
-
-return {
-  plugins = plugins,
-  defer = defer,
-  functions = functions,
-}
+registry.defer(autosave)

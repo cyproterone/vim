@@ -1,21 +1,11 @@
 local bindings = require "libs/bindings"
+local registry = require "libs/registry"
 
-
-local plugins = {}
-local defer = {}
-local functions = {}
 
 --#################### Repl Region ####################
 
-table.insert(plugins, "metakirby5/codi.vim")
+registry.install("metakirby5/codi.vim")
 local repl = function ()
 
 end
-table.insert(defer, repl)
-
-
-return {
-  plugins = plugins,
-  defer = defer,
-  functions = functions,
-}
+registry.defer(repl)

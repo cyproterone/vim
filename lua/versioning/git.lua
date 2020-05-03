@@ -1,20 +1,11 @@
 local bindings = require "libs/bindings"
+local registry = require "libs/registry"
 
-local plugins = {}
-local defer = {}
-local functions = {}
 
 --#################### Git Region ####################
 
 -- view git history
-table.insert(plugins, "junegunn/gv.vim")
+registry.install("junegunn/gv.vim")
 
 -- git in general
-table.insert(plugins, "tpope/vim-fugitive")
-
-
-return {
-  plugins = plugins,
-  defer = defer,
-  functions = functions,
-}
+registry.install("tpope/vim-fugitive")

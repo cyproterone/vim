@@ -1,9 +1,6 @@
 local bindings = require "libs/bindings"
+local registry = require "libs/registry"
 
-
-local plugins = {}
-local defer = {}
-local functions = {}
 
 --#################### Misc Region ####################
 
@@ -27,7 +24,7 @@ local misc = function ()
   bindings.set("clipboard", "unnamedplus")
 
 end
-table.insert(defer, misc)
+registry.defer(misc)
 
 
 local scroll = function ()
@@ -37,7 +34,7 @@ local scroll = function ()
   bindings.set("sidescrolloff", 3)
 
 end
-table.insert(defer, scroll)
+registry.defer(scroll)
 
 
 local performance = function ()
@@ -47,7 +44,7 @@ local performance = function ()
   -- bindings.set("lazyredraw")
 
 end
-table.insert(defer, performance)
+registry.defer(performance)
 
 
 -- clean up where files are stored
@@ -63,7 +60,7 @@ local var_files = function ()
     bindings.set("directory", var_home .. "/swap//")
 
 end
-table.insert(defer, var_files)
+registry.defer(var_files)
 
 
 local welcome_screen = function ()
@@ -72,11 +69,4 @@ local welcome_screen = function ()
   bindings.set("shortmess", "I", [[+=]])
 
 end
-table.insert(defer, welcome_screen)
-
-
-return {
-  plugins = plugins,
-  defer = defer,
-  functions = functions,
-}
+registry.defer(welcome_screen)

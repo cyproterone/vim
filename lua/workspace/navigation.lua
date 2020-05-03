@@ -1,9 +1,6 @@
 local bindings = require "libs/bindings"
+local registry = require "libs/registry"
 
-
-local plugins = {}
-local defer = {}
-local functions = {}
 
 --#################### Intrinsic Region ####################
 
@@ -22,7 +19,7 @@ local wild = function ()
   bindings.map.normal("<Leader>m", ":messages<CR>")
 
 end
-table.insert(defer, wild)
+registry.defer(wild)
 
 
 -- enable smartcase
@@ -38,20 +35,20 @@ local smartcase = function ()
                 exec = "set smartcase"}
 
 end
-table.insert(defer, smartcase)
+registry.defer(smartcase)
 
 
 --#################### FZF Region ####################
 
 -- fzf
-table.insert(plugins, "junegunn/fzf")
-table.insert(plugins, "junegunn/fzf.vim")
+registry.install("junegunn/fzf")
+registry.install("junegunn/fzf.vim")
 local fzf_cmds = function ()
 
   bindings.source(scripts_home .. "/fzf.vim")
 
 end
-table.insert(defer, fzf_cmds)
+registry.defer(fzf_cmds)
 
 
 local fzf = function ()
@@ -84,17 +81,10 @@ local fzf = function ()
   bindings.map.normal("<Leader>M", ":Maps<CR>")
 
 end
-table.insert(defer, fzf)
+registry.defer(fzf)
 
 
 --#################### Navi Region ####################
 
 -- use [ ] to navigate various lists, ie quickfix
-table.insert(plugins, "tpope/vim-unimpaired")
-
-
-return {
-  plugins = plugins,
-  defer = defer,
-  functions = functions,
-}
+registry.install("tpope/vim-unimpaired")

@@ -1,13 +1,10 @@
 local bindings = require "libs/bindings"
+local registry = require "libs/registry"
 
-
-local plugins = {}
-local defer = {}
-local functions = {}
 
 --#################### Help Region ####################
 
-table.insert(plugins, "liuchengxu/vim-which-key")
+registry.install("liuchengxu/vim-which-key")
 local help = function ()
 
   bindings.map.normal("<Leader>", ":WhichKey '<Space>'<CR>")
@@ -16,11 +13,4 @@ local help = function ()
   bindings.map.normal("]", ":WhichKey ']'<CR>")
 
 end
-table.insert(defer, help)
-
-
-return {
-  plugins = plugins,
-  defer = defer,
-  functions = functions,
-}
+registry.defer(help)

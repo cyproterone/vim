@@ -1,13 +1,10 @@
 local bindings = require "libs/bindings"
-
-local plugins = {}
-local defer = {}
-local functions = {}
+local registry = require "libs/registry"
 
 --#################### Shared Region ####################
 
 -- vc gutter
-table.insert(plugins, "mhinz/vim-signify")
+registry.install("mhinz/vim-signify")
 local gutter = function ()
 
   bindings.map.normal("<Leader>hd", ":SignifyHunkDiff<CR>")
@@ -15,12 +12,4 @@ local gutter = function ()
   bindings.map.normal("<Leader>hu", ":SignifyHunkUndo<CR>")
 
 end
-table.insert(defer, gutter)
-
-
-return {
-  plugins = plugins,
-  defer = defer,
-  functions = functions,
-}
-
+registry.defer(gutter)

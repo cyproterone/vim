@@ -1,9 +1,6 @@
 local bindings = require "libs/bindings"
+local registry = require "libs/registry"
 
-
-local plugins = {}
-local defer = {}
-local functions = {}
 
 --#################### Visual Region ####################
 
@@ -15,12 +12,4 @@ local keys = function ()
   bindings.map.visual(">", ">gv")
 
 end
-table.insert(defer, keys)
-
-
-return {
-  plugins = plugins,
-  defer = defer,
-  functions = functions,
-}
-
+registry.defer(keys)

@@ -1,14 +1,11 @@
 local bindings = require "libs/bindings"
+local registry = require "libs/registry"
 
-
-local plugins = {}
-local defer = {}
-local functions = {}
 
 --#################### Whitespace Region ####################
 
 -- try to guess table size
-table.insert(plugins, "tpope/vim-sleuth")
+registry.install("tpope/vim-sleuth")
 local tab_size = function ()
 
   -- how big are tabs ?
@@ -21,7 +18,7 @@ local tab_size = function ()
   bindings.set("shiftwidth", 2)
 
 end
-table.insert(defer, tab_size)
+registry.defer(tab_size)
 
 
 local unsurprising_tab = function ()
@@ -34,7 +31,7 @@ local unsurprising_tab = function ()
   bindings.set("smarttab")
 
 end
-table.insert(defer, unsurprising_tab)
+registry.defer(unsurprising_tab)
 
 
 -- remove trailing whitespace
@@ -44,18 +41,11 @@ local strip_whitespace = function ()
   bindings.exec[[%s/\s\+$//e]]
   bindings.call("cursor", {l, c})
 end
-functions["strip_whitespace"] = strip_whitespace
+
 
 local trailing_whitespace = function ()
 
   bindings.source(scripts_home .. "/whitespace.vim")
 
 end
-table.insert(defer, trailing_whitespace)
-
-
-return {
-  plugins = plugins,
-  defer = defer,
-  functions = functions,
-}
+registry.defer(trailing_whitespace)
