@@ -4,9 +4,39 @@
 
 local co = coroutine
 
--- used for reference equality
--- signal joining thunks in tb 
-local ref = {} 
+
+-- use with wrap
+local pong = function (func, callback)
+  assert(type(func) == "function", "type error :: expected func")
+  local thread = co.create(func)
+  local step = nil
+  step = function (...)
+    local go, ret = co.resume(thread, ...)
+    if not go then
+      assert(co.status(thread) == "suspended", ret)
+    elseif type(ret) == "function" then
+      ret(step)
+    else
+      (callback or function () end)(ret)
+    end
+  end
+  step()
+end
+
+
+-- use with pong, creates thunk factory
+local wrap = function (func)
+  assert(type(func) == "function", "type error :: expected func")
+  local factory = function (...)
+    local params = {...}
+    local thunk = function (step)
+      table.insert(params, step)
+      return func(unpack(params))
+    end
+    return thunk
+  end
+  return factory
+end
 
 
 -- many thunks -> single thunk
@@ -35,44 +65,6 @@ local join = function (thunks)
 end
 
 
--- use with wrap
-local pong = function (func, callback)
-  assert(type(func) == "function", "type error :: expected func")
-  local thread = co.create(func)
-
-  local step = nil
-  step = function (...)
-    local go, ret = co.resume(thread, ...)
-    if not go then
-      assert(co.status(thread) == "suspended", ret)
-    elseif type(ret) == "table" and ret[ref] then
-      join(ret)(step)
-    elseif type(ret) == "function" then
-      ret(step)
-    else
-      (callback or function () end)(ret)
-    end
-  end
-
-  step()
-end
-
-
--- use with pong, creates thunk factory
-local wrap = function (func)
-  assert(type(func) == "function", "type error :: expected func")
-  local factory = function (...)
-    local params = {...}
-    local thunk = function (step)
-      table.insert(params, step)
-      return func(unpack(params))
-    end
-    return thunk
-  end
-  return factory
-end
-
-
 -- sugar over coroutine
 local await = function (defer)
   assert(type(defer) == "function", "type error :: expected func")
@@ -82,8 +74,7 @@ end
 
 local await_all = function (defer)
   assert(type(defer) == "table", "type error :: expected table")
-  defer[ref] = true
-  return co.yield(defer)
+  return co.yield(join(defer))
 end
 
 

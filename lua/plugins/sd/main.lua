@@ -14,8 +14,6 @@ local buffers = require "plugins/sd/buffers"
 local windows = require "plugins/sd/windows"
 
 
-
-
 local fd = function (pattern)
   return a.sync(function () 
     if pattern == "" then
@@ -54,13 +52,6 @@ local replace = function (prev, nxt)
 end
 
 
-local show = function (changes)
-  local wins = windows.new_tab(c.sidebar_size, c.input_size)
-  api.nvim_win_set_buf(wins.listing, buffers.new_listing())
-  api.nvim_win_set_buf(wins.main, buffers.new_detail())
-end
-
-
 local main = function (args)
   local sd_flags = assert(args.sd_flags)
   local fd_pattern = assert(args.fd_pattern)
@@ -78,14 +69,12 @@ local main = function (args)
     print("-- 🔍🔍🔍 --")
     local files = a.wait(fd(fd_pattern))
     assert(table.getn(files) > 0, "No files found for - " .. fd_pattern)
+    print("-- 🚚💨💨💨 --")
     local thunks = std.map(files, function (file)
       return sd(sd_args, file)
     end)
-    local ret = a.wait(cb.throttle(thunks, concurrency))
+
     a.wait(loop.main)
     print("-- ✅ --")
-    show(ret)
   end)
 end
-
-
