@@ -56,19 +56,9 @@ end
 
 
 local show = function (changes)
-  local files = {}
-  local details = {}
-  for _, change in ipairs(changes) do
-    local file, tmp, dif = unpack(unpack(change))
-    table.insert(files, file)
-    local buf = buffers.new_detail(dif)
-    details[file] = {tmp, buf}
-  end
-  local listing = buffers.new_listing(files)
   local wins = windows.new_tab(c.sidebar_size, c.input_size)
-
-  api.nvim_win_set_buf(wins.listing, listing)
-  api.nvim_win_set_buf(wins.main, preview1)
+  api.nvim_win_set_buf(wins.listing, buffers.new_listing())
+  api.nvim_win_set_buf(wins.main, buffers.new_detail())
   api.nvim_win_set_buf(wins.pattern, buffers.new_input())
   api.nvim_win_set_buf(wins.replace, buffers.new_input())
   api.nvim_win_set_buf(wins.mask, buffers.new_input())
@@ -115,4 +105,5 @@ end
 
 init()
 
-main({ sd_flags = {}, fd_pattern = ".lua", sd_pattern = "local", sd_replace = "uwu" })()
+show()
+
