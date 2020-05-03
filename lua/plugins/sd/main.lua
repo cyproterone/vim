@@ -14,7 +14,6 @@ local buffers = require "plugins/sd/buffers"
 local windows = require "plugins/sd/windows"
 
 
-local concurrency = sd_concurrency or 2
 
 
 local fd = function (pattern)
@@ -59,10 +58,6 @@ local show = function (changes)
   local wins = windows.new_tab(c.sidebar_size, c.input_size)
   api.nvim_win_set_buf(wins.listing, buffers.new_listing())
   api.nvim_win_set_buf(wins.main, buffers.new_detail())
-  api.nvim_win_set_buf(wins.pattern, buffers.new_input())
-  api.nvim_win_set_buf(wins.replace, buffers.new_input())
-  api.nvim_win_set_buf(wins.mask, buffers.new_input())
-
 end
 
 
@@ -93,17 +88,4 @@ local main = function (args)
   end)
 end
 
-
-local init = function ()
-  local excludes = api.nvim_get_var("airline_exclude_filetypes") or {}
-  table.insert(excludes, c.ft_input)
-  table.insert(excludes, c.ft_listing)
-  api.nvim_set_var("airline_exclude_filetypes", excludes)
-  api.nvim_set_var("airline_skip_empty_sections", true)
-end
-
-
-init()
-
-show()
 

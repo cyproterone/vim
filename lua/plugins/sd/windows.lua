@@ -35,10 +35,6 @@ local calibrate = function (win)
 end
 
 
-local calibrate_editable = function (win, size)
-  api.nvim_win_set_height(win, size)
-end
-
 local calibrate_listing = function (win)
   api.nvim_win_set_option(listing, "cursorline", true)
 end
@@ -49,29 +45,16 @@ local new_tab = function (sidebar_size, input_size)
   local tab = api.nvim_get_current_tabpage()
   api.nvim_command[[vsplit]]
   local wins = api.nvim_tabpage_list_wins(tab)
-  local s = unpack(order(wins))
+  local sidebar, main = unpack(order(wins))
 
-  api.nvim_set_current_win(s)
   local width = api.nvim_get_option("columns")
-  api.nvim_win_set_width(s, m.ceil(width * sidebar_size))
-  api.nvim_command[[split]]
-  api.nvim_command[[split]]
-  api.nvim_command[[split]]
-
-  local wins = api.nvim_tabpage_list_wins(tab)
-  local pattern, replace, mask, listing, main = unpack(wins)
-  api.nvim_set_current_win(pattern)
+  api.nvim_win_set_width(sidebar, m.ceil(width * sidebar_size))
+  api.nvim_set_current_win(sidebar)
 
   std.foreach(wins, calibrate)
-  std.foreach({pattern, replace, mask}, function (win) 
-    calibrate_editable(win, input_size)
-  end)
   calibrate_listing(listing)
 
   return {
-    pattern = pattern,
-    replace = replace,
-    mask = mask,
     listing = listing,
     main = main,
   }
