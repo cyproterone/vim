@@ -15,7 +15,7 @@ local windows = require "plugins/sd/windows"
 local concurrency = sd_concurrency or 2
 
 
-local find_files = function (pattern)
+local fd = function (pattern)
   return a.sync(function () 
     if pattern == "" then
       local buf = api.nvim_get_current_buf() 
@@ -30,21 +30,8 @@ local find_files = function (pattern)
 end
 
 
-
-local assemble = function ()
-  api.nvim_win_set_buf(win_s, sidebar)
-  api.nvim_win_set_buf(win_m, main)
-end
-
-
-
-local preview = function (args, file)
-  local flags = std.concat({args.flags, {"-p"}})
-  local sd_args = {flags = flags, 
-                   pattern = args.pattern,
-                   replacement = args.replacement,
-                   file = file,}
-
+local sd = function (sd_args, file)
+  local sd_args = std.merge{sd_args, {file = file}}
   return a.sync(function () 
     local sd_preview = a.wait(shell.sd(sd_args))
     local replace = a.wait(shell.mktmp(sd_preview))
@@ -54,34 +41,25 @@ local preview = function (args, file)
 end
 
 
-local replace = function (replace, target)
-  return a.sync(function () 
-    a.wait(shell.sd(sd_args))
-  end)
-end
-
-
-
-
 local main = function (args)
-  local sd_flags = set.new(assert(args.sd_flags))
+  local sd_flags = assert(args.sd_flags)
   local fd_pattern = assert(args.fd_pattern)
   local sd_pattern = assert(args.sd_pattern)
   local sd_replace = assert(args.sd_replace)
-  local flags = std.keys(sd_flags)
-  local sd_args = {flags = flags,
+  
+  local flagset = set.new(sd_flags)
+  set.add(flagset, "-p")
+  local sd_args = {flags = std.keys(flagset),
                    pattern = sd_pattern,
                    replacement = sd_replace}
 
   return a.sync(function ()
     api.nvim_command[[silent wa]]
-    local files = a.wait(find_files(fd_pattern))
+    local files = a.wait(fd(fd_pattern))
     local thunks = std.map(files, function (file)
-      return preview(sd_args, file)
+      return sd(sd_args, file)
     end)
-    local previews = a.wait(cb.throttle(thunks, concurrency))
-    for _, p in ipairs(previews) do 
-      print(unpack(p))
+    local replacements = a.wait(cb.throttle(thunks, concurrency))
     end
 
     a.wait(loop.main)
