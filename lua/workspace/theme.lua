@@ -27,6 +27,9 @@ local intrinsic = function ()
   -- always show tabline
   bindings.set("showtabline", 2)
 
+  -- show line count
+  bindings.set("number")
+
 end
 registry.defer(intrinsic)
 

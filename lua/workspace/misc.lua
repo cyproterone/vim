@@ -23,6 +23,9 @@ local misc = function ()
   -- use system clipboard
   bindings.set("clipboard", "unnamedplus")
 
+  -- performance
+  bindings.set("ttyfast")
+
 end
 registry.defer(misc)
 
@@ -35,16 +38,6 @@ local scroll = function ()
 
 end
 registry.defer(scroll)
-
-
-local performance = function ()
-
-  bindings.set("ttyfast")
-  -- TODO: this might cause issues
-  -- bindings.set("lazyredraw")
-
-end
-registry.defer(performance)
 
 
 -- clean up where files are stored
