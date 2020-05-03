@@ -47,19 +47,14 @@ local preview = function (args, file)
 
   return a.sync(function () 
     local sd_preview = a.wait(shell.sd(sd_args))
-    local tmp = a.wait(shell.mktmp(sd_preview))
-    local dif = a.wait(shell.diff(file, tmp))
-    return dif
+    local replace = a.wait(shell.mktmp(sd_preview))
+    local dif = a.wait(shell.diff(file, replace))
+    return replace, dif
   end)
 end
 
 
-local replace = function (args, file)
-  local sd_args = {flags = flags, 
-                   pattern = args.pattern,
-                   replacement = args.replacement,
-                   file = file,}
-
+local replace = function (replace, target)
   return a.sync(function () 
     a.wait(shell.sd(sd_args))
   end)
@@ -73,7 +68,6 @@ local main = function (args)
   local fd_pattern = assert(args.fd_pattern)
   local sd_pattern = assert(args.sd_pattern)
   local sd_replace = assert(args.sd_replace)
-  set.subtract(sd_flags, "-p")
   local flags = std.keys(sd_flags)
   local sd_args = {flags = flags,
                    pattern = sd_pattern,

@@ -63,13 +63,22 @@ local diff = function (before, after)
 end
 
 
+local mktemp = function (template)
+  local args = std.wrap(template)
+  return a.sync(function () 
+    local ret = a.wait(spawn("mktemp", {args=args}))
+    assert(ret.code == 0, ret.err)
+    local path = s.trim(string.byte("\n"), ret.out)
+    return path
+  end)
+end
+
+
 local mktmp = function (data, mode)
   local mode = mode or 660
   local tmp = assert(uv.os_tmpdir()) .. "/sd_vimXXXXXXXXXXXXXXX"
   return a.sync(function ()
-    local ret = a.wait(spawn("mktemp", {}))
-    assert(ret.code == 0, ret.err)
-    local path = s.trim(string.byte("\n"), ret.out)
+    local path = a.wait(mktemp())
     local err, fd = a.wait(a.wrap(uv.fs_open)(path, "w+", mode))
     assert(not err, err)
     local err = a.wait(a.wrap(uv.fs_write)(fd, data, 0))
@@ -85,11 +94,19 @@ local replace = function (target, replacement)
   return a.sync(function ()
     local err, stat = a.wait(a.wrap(uv.fs_stat)(target))
     assert(not err, err)
+
+    local backup = a.wait(mktemp(target .. "XXXXXXXXX"))
+    local err, succ = a.wait(a.wrap(uv.fs_rename)(target, backup))
+    assert(not err, err)
+
     local err, succ = a.wait(a.wrap(uv.fs_rename)(replacement, target))
     assert(not err and succ, err)
     local err, succ = a.wait(a.wrap(uv.fs_chmod)(target, stat.mode))
     assert(not err and succ, err)
     local err, succ = a.wait(a.wrap(uv.fs_chown)(target, stat.uid, stat.gid))
+    assert(not err and succ, err)
+
+    local err, succ = a.wait(a.wrap(uv.fs_unlink)(backup))
     assert(not err and succ, err)
   end)
 end
