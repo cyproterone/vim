@@ -55,8 +55,11 @@ local show = function (changes)
     details[file] = {tmp, buf}
   end
   local listing = buffers.new_listing(files)
-
   local sidebar, main = windows.new_tab(sidebar_size)
+  local _, preview1 = unpack(assert(details[files[1]]))
+
+  api.nvim_win_set_buf(sidebar, listing)
+  api.nvim_win_set_buf(main, preview1)
 
 end
 
@@ -75,12 +78,15 @@ local main = function (args)
 
   return a.sync(function ()
     api.nvim_command[[silent wa]]
+    print("-- 🔍🔍🔍 --")
     local files = a.wait(fd(fd_pattern))
+    assert(table.getn(files) > 0, "No files found for - " .. fd_pattern)
     local thunks = std.map(files, function (file)
       return sd(sd_args, file)
     end)
     local ret = a.wait(cb.throttle(thunks, concurrency))
     a.wait(loop.main)
+    print("-- ✅ --")
     show(ret)
   end)
 end

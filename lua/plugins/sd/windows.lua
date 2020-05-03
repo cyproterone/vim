@@ -37,8 +37,11 @@ local new_tab = function (rel_size)
   std.foreach(wins, calibrate)
   local sidebar, main = unpack(order(wins))
   local width = api.nvim_get_option("columns")
+
   api.nvim_win_set_width(sidebar, m.ceil(width * rel_size))
-  return {sidebar, main}
+  api.nvim_win_set_option(sidebar, "cursorline", true)
+
+  return sidebar, main
 end
 
 
