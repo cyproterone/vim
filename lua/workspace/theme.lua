@@ -1,5 +1,5 @@
 local bindings = require "libs/bindings"
-local theme = require "libs/theme"local registry = require "libs/registry"
+local registry = require "libs/registry"
 
 
 --#################### Intrinsic Region ####################

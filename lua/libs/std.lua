@@ -10,6 +10,14 @@ local id = function (...)
   return ...
 end
 
+local count = function ()
+  local i = 0
+  return function ()
+    i = i + 1
+    return i 
+  end
+end
+
 
 local range = function (start, stop, step)
   local nxt = start
@@ -163,6 +171,7 @@ end
 
 return {
   id = id,
+  count = count,
   range = range,
   len = len,
   keys = keys,

@@ -7,9 +7,12 @@ local stdio = require "libs/io"
 local bindings = require "libs/bindings"
 
 
+local _registry = "libs/registry"
+
 local _plugins = {}
 local _defer = {}
-local _autocmds = {}
+local _callbacks = {}
+local inc = std.count()
 
 
 local install = function (p)
@@ -22,8 +25,30 @@ local defer = function (d)
 end
 
 
-local auto = function (f)
-  table.insert(_autocmds, f)
+local call = function (name)
+  _callbacks[name]()
+end
+
+
+local auto = function (events, func, filter)
+
+  local events = table.concat(std.wrap(events), ",")
+  local filter = filter or "*"
+  local name = "" .. inc()
+  local group = "augroup " .. name
+  local cls = "autocmd!"
+  local cmd = "autocmd " .. filter .. " lua require('" .. _registry .. "').call('" .. name .. "')"
+  local done = "augroup END"
+
+  api.nvim_command(group)
+  api.nvim_command(cls)
+  api.nvim_command(cmd)
+  api.nvim_command(done)
+
+  _callbacks[name] = func
+  return function ()
+    _callbacks[name] = nil
+  end
 end
 
 
@@ -32,11 +57,11 @@ local init_plug = function ()
   local plug = bin_home .. "/plug.vim"
   local exists = stdio.file_exists(plug)
   if not exists then
-      stdio.exec("wget -P " .. bin_home  .. " " .. remote)
+    stdio.exec("wget -P " .. bin_home  .. " " .. remote)
   end
   bindings.source(plug)
-
 end
+
 
 local init_plugins = function ()
   local plug = function (p)
@@ -77,4 +102,5 @@ return {
   defer = defer,
   auto = auto,
   materialize = materialize,
+  call = call,
 }

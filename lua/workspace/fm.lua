@@ -18,24 +18,3 @@ local fff = function ()
 
 end
 registry.defer(fff)
-
-
--- netrw
-local netrw = function ()
-
-  bindings.auto{events = "FileType",
-                filter = "netrw",
-                exec = "setlocal bufhidden=wipe"}
-
-end
-registry.defer(netrw)
-
-
--- ranger
-registry.install({"kevinhwang91/rnvimr", ["do"] = "make sync"})
-local ranger = function ()
-
-  bindings.map.normal("<Leader>b", ":RnvimrToggle<CR>")
-
-end
-registry.defer(ranger)

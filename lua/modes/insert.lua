@@ -28,11 +28,16 @@ registry.defer(normal)
 -- add a cursor cross in insert mode
 local cursor_cross = function ()
 
-  bindings.auto{events = "InsertEnter",
-                exec = "set cursorcolumn"}
+  local show = function ()
+    bindings.set("cursorcolumn")
+  end
 
-  bindings.auto{events = "InsertLeave",
-                exec = "set nocursorcolumn"}
+  local hide = function ()
+    bindings.set("nocursorcolumn")
+  end
+
+  registry.auto("InsertEnter", show)
+  registry.auto("InsertLeave", hide)
 
 end
 registry.defer(cursor_cross)

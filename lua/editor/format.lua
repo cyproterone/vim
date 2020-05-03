@@ -12,9 +12,5 @@ registry.install("junegunn/vim-easy-align")
 registry.install("sbdchd/neoformat")
 local pretty = function ()
 
-  -- disabled for performance reasons
-  -- bindings.auto{events = "BufWritePre",
-  --               exec = "undojoin | Neoformat"}
-
 end
 registry.defer(pretty)

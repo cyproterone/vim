@@ -9,8 +9,11 @@ local fs_consistency = function ()
   -- auto load changes
   bindings.set("autoread")
 
-  bindings.auto{events = {"FocusGained", "BufEnter"},
-                exec = "checktime"}
+  local reload_file = function ()
+    bindings.exec("checktime")
+  end
+
+  registry.auto({"FocusGained", "BufEnter"}, reload_file)
 
   -- auto save file
   bindings.set("autowrite")

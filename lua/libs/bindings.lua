@@ -82,18 +82,6 @@ local map = function ()
 end
 
 
-local auto = function (args)
-  local events = table.concat(std.wrap(assert(args.events)), ",")
-  local filter = args.filter or "*"
-  local exec = std.wrap(assert(args.exec))
-
-  for _, exe in ipairs(exec) do
-    local auto_body = "autocmd " .. events .. " " .. filter .. " " .. exe
-    api.nvim_command(auto_body)
-  end
-end
-
-
 local env = function (opt, val)
   vim.loop.os_setenv(opt, val)
 end
@@ -124,7 +112,6 @@ return {
   set = set,
   let = let,
   map = map(),
-  auto = auto,
   env = env,
   source = source,
   call = call,
