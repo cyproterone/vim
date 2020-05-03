@@ -5,5 +5,7 @@
 
 return {
   ft_input = "sd_vim_input",
-  ft_listing = "sd_vim_listing"
+  ft_listing = "sd_vim_listing",
+  sidebar_size = 0.3,
+  input_size = 3,
 }

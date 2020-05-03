@@ -15,7 +15,6 @@ local windows = require "plugins/sd/windows"
 
 
 local concurrency = sd_concurrency or 2
-local sidebar_size = sd_sidebar_size or 0.3
 
 
 local fd = function (pattern)
@@ -66,7 +65,7 @@ local show = function (changes)
     details[file] = {tmp, buf}
   end
   local listing = buffers.new_listing(files)
-  local wins = windows.new_tab(sidebar_size)
+  local wins = windows.new_tab(c.sidebar_size, c.input_size)
 
   api.nvim_win_set_buf(wins.listing, listing)
   api.nvim_win_set_buf(wins.main, preview1)
@@ -110,6 +109,7 @@ local init = function ()
   table.insert(excludes, c.ft_input)
   table.insert(excludes, c.ft_listing)
   api.nvim_set_var("airline_exclude_filetypes", excludes)
+  api.nvim_set_var("airline_skip_empty_sections", true)
 end
 
 
