@@ -37,9 +37,9 @@ local auto = function (events, func, filter)
   local name = "" .. inc()
   local group = "augroup " .. name
   local cls = "autocmd!"
-  local cmd = "autocmd " .. filter .. " lua require('" .. _registry .. "').call('" .. name .. "')"
+  local cmd = "autocmd ".. events .. " " .. filter .. " lua require('" .. _registry .. "').call('" .. name .. "')"
   local done = "augroup END"
-
+  
   api.nvim_command(group)
   api.nvim_command(cls)
   api.nvim_command(cmd)
