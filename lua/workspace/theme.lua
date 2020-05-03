@@ -67,7 +67,7 @@ local powerline = function ()
   bindings.let("airline#extensions#tabline#tab_nr_type", 2)
   bindings.let("airline#extensions#tabline#overflow_marker", "…")
   bindings.let("airline#extensions#tabline#close_symbol", "×")
-  -- bindings.let("airline#extensions#tabline#formatter", "unique_tail_improved")
+  bindings.let("airline#extensions#tabline#formatter", "unique_tail_improved")
 
 end
 registry.defer(powerline)
