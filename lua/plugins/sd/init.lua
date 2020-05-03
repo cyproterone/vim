@@ -7,9 +7,12 @@ local a = require "libs/async"
 local s = require "libs/string"
 local set = require "libs/set"
 local loop = require "plugins/sd/libs/loop"
+local cb = require "plugins/sd/libs/callbacks"
 local shell = require "plugins/sd/shell"
 local buffers = require "plugins/sd/buffers"
 local windows = require "plugins/sd/windows"
+
+local concurrency = sd_concurrency or 2
 
 
 local find_files = function (pattern)
@@ -44,8 +47,9 @@ local preview = function (args, file)
 
   return a.sync(function () 
     local sd_preview = a.wait(shell.sd(sd_args))
-    local diff = a.wait(shell.diff(file, sd_preview))
-    return diff
+    local tmp = a.wait(shell.mktmp(sd_preview))
+    local dif = a.wait(shell.diff(file, tmp))
+    return dif
   end)
 end
 
@@ -62,6 +66,8 @@ local replace = function (args, file)
 end
 
 
+
+
 local main = function (args)
   local sd_flags = set.new(assert(args.sd_flags))
   local fd_pattern = assert(args.fd_pattern)
@@ -76,9 +82,14 @@ local main = function (args)
   return a.sync(function ()
     api.nvim_command[[silent wa]]
     local files = a.wait(find_files(fd_pattern))
-    local previews = a.wait(std.map(files, function (file)
+    local thunks = std.map(files, function (file)
       return preview(sd_args, file)
-    end))
+    end)
+    local previews = a.wait(cb.throttle(thunks, concurrency))
+    for _, p in ipairs(previews) do 
+      print(unpack(p))
+    end
+
     a.wait(loop.main)
   end)
 end

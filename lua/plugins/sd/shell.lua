@@ -17,7 +17,7 @@ local fd = function (pattern)
 
   return a.sync(function ()
     local ret = a.wait(spawn("fd", opts))
-    assert(ret.code == 0, "fd / find :: non-zero exit")
+    assert(ret.code == 0, ret.err)
     local files = s.split(0, ret.out) 
     return files 
   end)
@@ -42,7 +42,7 @@ local sd = function (args)
   
   return a.sync(function ()
     local ret = a.wait(spawn("sd", opts))
-    assert(ret.code == 0, "sd :: non-zero exit")
+    assert(ret.code == 0, ret.err)
     return ret.out
   end)
 end
@@ -52,22 +52,23 @@ local diff = function (before, after)
   local args = {"--suppress-common-lines",
                 "--width=9999",
                 before, 
-                "-"}
-  local opts = {args = args, stream = after}
+                after}
+  local opts = {args = args}
 
   return a.sync(function ()
     local ret = a.wait(spawn("diff", opts))
-    assert(ret.code ~= 2, "diff :: error exit")
+    assert(ret.code ~= 2, ret.err)
     return ret.out
   end)
 end
 
 
 local mktmp = function (data, mode)
-  local mode = mode or 660 
+  local mode = mode or 660
+  local tmp = assert(uv.os_tmpdir()) .. "/sd_vimXXXXXXXXXXXXXXX"
   return a.sync(function ()
     local ret = a.wait(spawn("mktemp", {}))
-    assert(ret.code == 0, "mktemp :: non-zero exit")
+    assert(ret.code == 0, ret.err)
     local path = s.trim(string.byte("\n"), ret.out)
     local err, fd = a.wait(a.wrap(uv.fs_open)(path, "w+", mode))
     assert(not err, err)
