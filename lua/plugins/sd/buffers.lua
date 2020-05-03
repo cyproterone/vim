@@ -4,6 +4,7 @@
 
 local s = require "libs/string"
 local api = vim.api
+local c = require "plugins/sd/consts"
 
 
 local is_modified = function (buf)
@@ -29,6 +30,14 @@ end
 
 local new_listing = function (files)
   local buf = new(files)
+  api.nvim_buf_set_option(buf, "filetype", c.ft_listing)
+  return buf
+end
+
+
+local new_input = function ()
+  local buf = new({})
+  api.nvim_buf_set_option(buf, "filetype", c.ft_input)
   return buf
 end
 
@@ -43,6 +52,7 @@ end
 
 return {
   list = list,
+  new_input = new_input,
   new_listing = new_listing,
   new_detail = new_detail,
 }

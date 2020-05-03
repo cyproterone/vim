@@ -7,10 +7,12 @@ local a = require "libs/async"
 local s = require "libs/string"
 local set = require "libs/set"
 local loop = require "plugins/sd/libs/loop"
+local c = require "plugins/sd/consts"
 local cb = require "plugins/sd/libs/callbacks"
 local shell = require "plugins/sd/shell"
 local buffers = require "plugins/sd/buffers"
 local windows = require "plugins/sd/windows"
+
 
 local concurrency = sd_concurrency or 2
 local sidebar_size = sd_sidebar_size or 0.3
@@ -64,11 +66,13 @@ local show = function (changes)
     details[file] = {tmp, buf}
   end
   local listing = buffers.new_listing(files)
-  local sidebar, main = windows.new_tab(sidebar_size)
-  local _, preview1 = unpack(assert(details[files[1]]))
+  local wins = windows.new_tab(sidebar_size)
 
-  api.nvim_win_set_buf(sidebar, listing)
-  api.nvim_win_set_buf(main, preview1)
+  api.nvim_win_set_buf(wins.listing, listing)
+  api.nvim_win_set_buf(wins.main, preview1)
+  api.nvim_win_set_buf(wins.pattern, buffers.new_input())
+  api.nvim_win_set_buf(wins.replace, buffers.new_input())
+  api.nvim_win_set_buf(wins.mask, buffers.new_input())
 
 end
 
@@ -100,5 +104,15 @@ local main = function (args)
   end)
 end
 
+
+local init = function ()
+  local excludes = api.nvim_get_var("airline_exclude_filetypes") or {}
+  table.insert(excludes, c.ft_input)
+  table.insert(excludes, c.ft_listing)
+  api.nvim_set_var("airline_exclude_filetypes", excludes)
+end
+
+
+init()
 
 main({ sd_flags = {}, fd_pattern = ".lua", sd_pattern = "local", sd_replace = "uwu" })()

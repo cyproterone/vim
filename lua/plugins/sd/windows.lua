@@ -61,7 +61,13 @@ local new_tab = function (rel_size)
   api.nvim_win_set_option(listing, "cursorline", true)
   std.foreach({pattern, replace, mask}, calibrate_editable)
 
-  return listing, main
+  return {
+    pattern = pattern,
+    replace = replace,
+    mask = mask,
+    listing = listing,
+    main = main,
+  }
 end
 
 
