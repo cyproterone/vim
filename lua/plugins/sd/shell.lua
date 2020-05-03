@@ -95,7 +95,7 @@ local replace = function (target, replacement)
     local err, stat = a.wait(a.wrap(uv.fs_stat)(target))
     assert(not err, err)
 
-    local backup = a.wait(mktemp(target .. "XXXXXXXXX"))
+    local backup = a.wait(mktemp(target .. "_sd_vim_XXXXXXXXX"))
     local err, succ = a.wait(a.wrap(uv.fs_rename)(target, backup))
     assert(not err, err)
 
