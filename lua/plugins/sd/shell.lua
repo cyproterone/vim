@@ -81,10 +81,25 @@ local mktmp = function (data, mode)
 end
 
 
+local replace = function (target, replacement)
+  return a.sync(function ()
+    local err, stat = a.wait(a.wrap(uv.fs_stat)(target))
+    assert(not err, err)
+    local err, succ = a.wait(a.wrap(uv.fs_rename)(replacement, target))
+    assert(not err and succ, err)
+    local err, succ = a.wait(a.wrap(uv.fs_chmod)(target, stat.mode))
+    assert(not err and succ, err)
+    local err, succ = a.wait(a.wrap(uv.fs_chown)(target, stat.uid, stat.gid))
+    assert(not err and succ, err)
+  end)
+end
+
+
 return {
   fd = fd,
   sd = sd,
   diff = diff,
   mktmp = mktmp,
+  replace = replace,
 }
 
