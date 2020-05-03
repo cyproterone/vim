@@ -66,7 +66,7 @@ local mktemp = function (template)
   return a.sync(function () 
     local ret = a.wait(spawn("mktemp", {args=args}))
     assert(ret.code == 0, ret.err)
-    local path = s.trim(string.byte("\n"), ret.out)
+    local path = vim.trim(ret.out)
     return path
   end)
 end
@@ -88,7 +88,7 @@ local mktmp = function (data, mode)
 end
 
 
-local replace = function (target, replacement)
+local replace = function (replacement, target)
   return a.sync(function ()
     local err, stat = a.wait(a.wrap(uv.fs_stat)(target))
     assert(not err, err)

@@ -45,6 +45,15 @@ local sd = function (sd_args, file)
 end
 
 
+local replace = function (prev, nxt)
+  return a.sync(function ()
+    print("-- 🚚💨 :: " .. nxt .. " --")
+    a.wait(shell.replace(prev, nxt))
+    print("-- ✅ :: " .. nxt .. " --")
+  end)
+end
+
+
 local show = function (changes)
   local files = {}
   local details = {}
