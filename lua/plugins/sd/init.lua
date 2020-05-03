@@ -36,7 +36,7 @@ local sd = function (sd_args, file)
     local sd_preview = a.wait(shell.sd(sd_args))
     local replace = a.wait(shell.mktmp(sd_preview))
     local dif = a.wait(shell.diff(file, replace))
-    return replace, dif
+    return {replace, dif}
   end)
 end
 
@@ -59,7 +59,7 @@ local main = function (args)
     local thunks = std.map(files, function (file)
       return sd(sd_args, file)
     end)
-    local replacements = a.wait(cb.throttle(thunks, concurrency))
+    local ret = a.wait(cb.throttle(thunks, concurrency))
     end
 
     a.wait(loop.main)
