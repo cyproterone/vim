@@ -38,8 +38,8 @@ registry.defer(unsurprising_tab)
 local trailing_whitespace = function ()
 
   local strip = function ()
-    local l = bindings.call("line", ".")
-    local c = bindings.call("col", ".")
+    local l = bindings.call("line", {"."})
+    local c = bindings.call("col", {"."})
     bindings.exec[[%s/\s\+$//e]]
     bindings.call("cursor", {l, c})
   end
