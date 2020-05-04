@@ -6,8 +6,9 @@ local registry = require "libs/registry"
 
 local unmap_keys = function ()
 
-  -- unmap ROT13
-  bindings.map.normal("g?")
+  -- unmap exmode
+  bindings.map.normal("q", "<Esc>")
+  bindings.map.normal("Q", "<Esc>")
 
 end
 registry.defer(unmap_keys)
@@ -17,10 +18,6 @@ local map_keys = function ()
 
   -- dont go into ex mode
   bindings.map.command("<C-f>")
-
-  -- use q to insert single char
-  bindings.map.normal("q", "a🦄<Esc>r")
-  bindings.map.normal("Q", "i🦄<Esc>r")
 
   -- use @ to do ^
   bindings.map.normal("@", "^")

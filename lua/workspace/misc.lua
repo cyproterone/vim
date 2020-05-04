@@ -36,6 +36,8 @@ local scroll = function ()
   bindings.set("scrolloff", 1)
   bindings.set("sidescrolloff", 3)
 
+  bindings.set("virtualedit", "onemore")
+
 end
 registry.defer(scroll)
 
