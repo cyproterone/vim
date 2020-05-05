@@ -82,7 +82,7 @@ local fzf = function ()
   bindings.map.normal("<Leader>p", ":Files<CR>")
   bindings.map.normal("<Leader>P", ":History<CR>")
   bindings.map.normal("<Leader>o", ":BLines<CR>")
-  bindings.map.normal("<Leader>O", ":Rg ")
+  bindings.map.normal("<Leader>O", ":Rg ", {silent = false})
   bindings.map.normal("<Leader>M", ":Maps<CR>")
 
 end
