@@ -77,6 +77,7 @@ local map = function ()
     insert = partial{"i"},
     replace = partial{"r"},
     operator = partial{"o"},
+    terminal = partial{"t"},
     nv = partial{"n", "v"},
     nov = partial{"n", "o", "v"},
   }
