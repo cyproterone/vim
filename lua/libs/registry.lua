@@ -42,13 +42,18 @@ end
 
 local auto = function (events, func, filter)
 
-  local events = table.concat(std.wrap(events), ",")
+  local evnts = std.wrap(events)
+  local events = table.concat(evnts, ",")
   local filter = filter or "*"
   local idx = inc()
   local group = "augroup " .. idx
   local cls = "autocmd!"
   local cmd = "autocmd " .. events .. " " .. filter .. " lua require('" .. _registry .. "').call(" .. idx .. ")"
   local done = "augroup END"
+
+  for event in ipairs(evnts) do
+    assert(bindings.call("exists", {"##" .. event}))
+  end
   
   api.nvim_command(group)
   api.nvim_command(cls)
