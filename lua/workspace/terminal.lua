@@ -6,7 +6,11 @@ local registry = require "libs/registry"
 
 local hotkeys = function ()
 
-  bindings.map.terminal("<Esc>", [[<C-\><C-n>]])
+  -- leave terminal
+  bindings.map.terminal("<C-g>", [[<C-\><C-n>]])
+
+  -- enter terminal
+  bindings.map.normal("<Leader>u", ":terminal<CR>")
 
 end
 registry.defer(hotkeys)
