@@ -74,16 +74,16 @@ local orphan_buffers = function ()
     local buf = bindings.call("expand", {"<abuf>"})
     local name = bindings.call("bufname", {buf})
     if name == "" then
-      api.nvim_buf_set_option(buf, "buftype", "nofile")
+      bindings.buf.set(buf, "buftype", "nofile")
     end
   end
 
   local on_save = function ()
     local buf = bindings.call("expand", {"<abuf>"})
     local file = bindings.call("expand", {"<afile>"})
-    local buf_t = api.nvim_buf_get_option(buf, "buftype")
+    local buf_t = bindings.buf.opt(buf, "buftype")
     if buf_t == "nofile" then
-      api.nvim_buf_set_option(buf, "buftype", "")
+      bindings.buf.set(buf, "buftype", "")
       api.nvim_buf_set_name(buf, file)
     end
   end

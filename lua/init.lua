@@ -16,6 +16,7 @@ require "workspace/proj"
 require "workspace/tasks"
 require "workspace/theme"
 require "workspace/tree"
+require "workspace/terminal"
 require "workspace/wm"
 -- modes
 require "modes/command"

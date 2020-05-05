@@ -32,7 +32,7 @@ local autosave = function ()
   local save = function ()
     local bufs = api.nvim_list_bufs()
     for _, buf in ipairs(bufs) do
-      local modified = api.nvim_buf_get_option(buf, "modified")
+      local modified = bindings.buf.opt(buf, "modified")
       if modified ~= "nomodified" then
         bindings.exec("silent! wa")
         break
@@ -41,7 +41,7 @@ local autosave = function ()
   end
 
   registry.auto(
-    {"TextChanged", "InsertLeave", "CursorHoldI"}, 
+    {"TextChanged", "InsertLeave", "CursorHoldI"},
     save,
     {"*", "nested"})
 

@@ -35,12 +35,12 @@ local no_stepback = function ()
 
   local record_pos = function ()
     local c = bindings.call("col", {"."})
-    api.nvim_buf_set_var(0, buf_cursor_pos, c)
+    bindings.buf.let(0, buf_cursor_pos, c)
   end
 
   local displace = function ()
     local c = bindings.call("col", {"."})
-    local pos = api.nvim_buf_get_var(0, buf_cursor_pos)
+    local pos = bindings.buf.var(0, buf_cursor_pos)
     if c ~= pos then
       bindings.call("cursor", {0, pos})
     end
@@ -51,4 +51,3 @@ local no_stepback = function ()
 
 end
 registry.defer(no_stepback)
-

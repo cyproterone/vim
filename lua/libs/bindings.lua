@@ -93,6 +93,33 @@ local source = function (path)
 end
 
 
+local buf = function ()
+
+  local let = function (buf, var, val)
+    return api.nvim_buf_set_var(buf, var, val)
+  end
+
+  local var = function (buf, var)
+    return api.nvim_buf_get_var(buf, var)
+  end
+
+  local set = function (buf, var, val)
+    return api.nvim_buf_set_option(buf, var, val)
+  end
+
+  local opt = function (buf, var)
+    return api.nvim_buf_get_option(buf, var)
+  end
+
+  return {
+    let = let,
+    var = var,
+    set = set,
+    opt = opt,
+  }
+end
+
+
 local call = function (name, ...)
   local len = select("#", ...)
   if len == 2 then
@@ -116,4 +143,5 @@ return {
   env = env,
   source = source,
   call = call,
+  buf = buf(),
 }
