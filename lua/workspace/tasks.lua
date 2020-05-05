@@ -30,7 +30,7 @@ local autosave = function ()
   -- bindings.set("backup")
 
   local save = function ()
-    bindings.exec("silent wa")
+    bindings.exec("silent! wa")
   end
   registry.auto({"TextChanged", "InsertLeave", "CursorHoldI"}, save)
 
