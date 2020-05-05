@@ -25,18 +25,16 @@ local hotkeys = function ()
   bindings.map.normal("<Leader>l", ":nohlsearch<CR>")
 
   -- search buffer
-  bindings.map.normal("s", [["zyiw:%s/<C-r>z//g<Left><Left>]])
-  bindings.map.normal("S", [[:%s///g<Left><Left><Left>]])
+  bindings.map.normal("<Leader>r", [["zyiw:%s/\v<C-r>z//g<Left><Left>]], {silent = false})
+  bindings.map.normal("<Leader>R", [[:%s/\v//g<Left><Left><Left>]], {silent = false})
 
 end
 registry.defer(hotkeys)
 
 
---#################### Search Region ####################
-
--- search without moving
 local improved_search = function ()
 
+  -- search without moving
   bindings.map.normal("*", "*N")
   bindings.map.normal("#", "*N")
   bindings.map.normal("g*", "g*N")
@@ -48,6 +46,16 @@ local improved_search = function ()
 
 end
 registry.defer(improved_search)
+
+
+-- use very magic
+local magic = function ()
+
+  bindings.map.nv("/", [[/\v]], {silent = false})
+  bindings.map.nv("?", [[?\v]], {silent = false})
+
+end
+registry.defer(magic)
 
 
 --#################### FZF Region ####################

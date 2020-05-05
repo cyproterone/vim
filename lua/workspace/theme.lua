@@ -77,6 +77,7 @@ registry.defer(powerline)
 
 -- colour theme::
 registry.install("NLKNguyen/papercolor-theme")
+registry.install("cormacrelf/vim-colors-github")
 local colours = function ()
 
   bindings.set("background", "light")
