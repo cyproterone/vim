@@ -121,6 +121,33 @@ local buf = function ()
 end
 
 
+local win = function ()
+
+  local let = function (win, var, val)
+    return api.nvim_win_set_var(win, var, val)
+  end
+
+  local var = function (win, var)
+    return api.nvim_win_get_var(win, var)
+  end
+
+  local set = function (win, var, val)
+    return api.nvim_win_set_option(win, var, val)
+  end
+
+  local opt = function (win, var)
+    return api.nvim_win_get_option(win, var)
+  end
+
+  return {
+    let = let,
+    var = var,
+    set = set,
+    opt = opt,
+  }
+end
+
+
 local call = function (name, ...)
   local len = select("#", ...)
   if len == 2 then
@@ -145,4 +172,5 @@ return {
   source = source,
   call = call,
   buf = buf(),
+  win = win(),
 }
