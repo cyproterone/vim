@@ -1,5 +1,6 @@
 local bindings = require "libs/bindings"
 local registry = require "libs/registry"
+local io = require "libs/io"
 
 
 --#################### Misc Region ####################
@@ -65,3 +66,30 @@ local welcome_screen = function ()
 
 end
 registry.defer(welcome_screen)
+
+
+local orphan_buffers = function ()
+
+  local on_new = function ()
+    local buf = bindings.call("expand", {"<abuf>"})
+    local name = bindings.call("bufname", {buf})
+    if name == "" then
+      api.nvim_buf_set_option(buf, "buftype", "nofile")
+    end
+  end
+
+  local on_save = function ()
+    local buf = bindings.call("expand", {"<abuf>"})
+    local file = bindings.call("expand", {"<afile>"})
+    local buf_t = api.nvim_buf_get_option(buf, "buftype")
+    if buf_t == "nofile" then
+      api.nvim_buf_set_option(buf, "buftype", "")
+      api.nvim_buf_set_name(buf, file)
+    end
+  end
+
+  registry.auto({"TextChanged", "InsertLeave"}, on_new)
+  registry.auto("BufWritePre", on_save)
+
+end
+registry.defer(orphan_buffers)

@@ -43,7 +43,7 @@ registry.defer(modern_split)
 local wm_close = function ()
 
   -- quit vim
-  bindings.map.normal("<Leader>Q", ":qa!")
+  bindings.map.normal("<Leader>QQ", ":qa<CR>")
 
   -- close window
   bindings.map.normal("<Leader>w", ":close<CR>")

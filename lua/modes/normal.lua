@@ -22,6 +22,9 @@ local map_keys = function ()
   -- use @ to do ^
   bindings.map.normal("@", "^")
 
+  -- $ to end of line
+  bindings.map.normal("$", "$<Right>")
+
 end
 registry.defer(map_keys)
 
