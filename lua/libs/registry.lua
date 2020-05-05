@@ -54,7 +54,7 @@ local auto = function (events, func, filter)
   for event in ipairs(evnts) do
     assert(bindings.call("exists", {"##" .. event}))
   end
-  
+
   api.nvim_command(group)
   api.nvim_command(cls)
   api.nvim_command(cmd)

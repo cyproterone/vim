@@ -2,7 +2,7 @@
 --#################### STD Region ####################
 --#################### ########## ####################
 
-local set = require "libs/set" 
+local set = require "libs/set"
 local co = coroutine
 
 
@@ -14,7 +14,7 @@ local count = function ()
   local i = 0
   return function ()
     i = i + 1
-    return i 
+    return i
   end
 end
 
@@ -23,7 +23,7 @@ local range = function (start, stop, step)
   local nxt = start
   local step = step or 1
   assert(step ~= 0)
-  local cmp = (function () 
+  local cmp = (function ()
     if step > 0 then
       return function (l, r) return l <= r end
     else
@@ -33,7 +33,7 @@ local range = function (start, stop, step)
   return co.wrap(function ()
     while cmp(nxt, stop) do
       co.yield(nxt)
-      nxt = nxt + step 
+      nxt = nxt + step
     end
   end)
 end

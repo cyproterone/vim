@@ -20,6 +20,6 @@ local normalize_keystrokes = function ()
 
   -- normalize backspace in insertion mode
   bindings.set("backspace", "indent,eol,start")
-  
+
 end
 registry.defer(normalize_keystrokes)

@@ -34,7 +34,7 @@ local union = function (a, b)
   for key, _ in pairs(b) do
     acc[key] = true
   end
-  return acc 
+  return acc
 end
 
 
@@ -54,7 +54,7 @@ local intersection = function (a, b)
 end
 
 
-local difference = function (a, b) 
+local difference = function (a, b)
   local acc = {}
   for key, _ in pairs(a) do
     if not contains(b, key) then
