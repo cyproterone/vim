@@ -7,7 +7,6 @@ local registry = require "libs/registry"
 local unmap_keys = function ()
 
   -- unmap exmode
-  bindings.map.normal("q", "<Esc>")
   bindings.map.normal("Q", "<Esc>")
 
 end

@@ -38,6 +38,10 @@ registry.defer(unsurprising_tab)
 local trailing_whitespace = function ()
 
   local strip = function ()
+    local m = api.nvim_get_mode()
+    if m.mode ~= "n" then
+      return
+    end
     local l = bindings.call("line", {"."})
     local c = bindings.call("col", {"."})
     bindings.exec[[%s/\s\+$//e]]

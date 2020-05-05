@@ -88,8 +88,8 @@ local orphan_buffers = function ()
     end
   end
 
-  registry.auto({"TextChanged", "InsertLeave"}, on_new)
-  registry.auto("BufWritePre", on_save)
+  -- registry.auto({"TextChanged", "InsertLeave"}, on_new)
+  -- registry.auto("BufWritePre", on_save)
 
 end
 registry.defer(orphan_buffers)
