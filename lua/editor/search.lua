@@ -37,6 +37,11 @@ registry.defer(hotkeys)
 -- search without moving
 local improved_search = function ()
 
+  bindings.map.normal("*", "*N")
+  bindings.map.normal("#", "*N")
+  bindings.map.normal("g*", "g*N")
+  bindings.map.normal("g#", "g*N")
+
   -- centre on search result
   bindings.map.normal("n", "nzz")
   bindings.map.normal("N", "Nzz")
