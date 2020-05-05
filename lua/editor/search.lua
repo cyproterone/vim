@@ -24,10 +24,6 @@ local hotkeys = function ()
   -- clear search result
   bindings.map.normal("<Leader>l", ":nohlsearch<CR>")
 
-  -- search buffer
-  bindings.map.normal("<Leader>r", [["zyiw:%s/\v<C-r>z//g<Left><Left>]], {silent = false})
-  bindings.map.normal("<Leader>R", [[:%s/\v//g<Left><Left><Left>]], {silent = false})
-
 end
 registry.defer(hotkeys)
 
@@ -53,6 +49,10 @@ local magic = function ()
 
   bindings.map.nv("/", [[/\v]], {silent = false})
   bindings.map.nv("?", [[?\v]], {silent = false})
+
+  -- search buffer
+  bindings.map.normal("<Leader>r", [["zyiw:%s/\v<C-r>z//g<Left><Left>]], {silent = false})
+  bindings.map.normal("<Leader>R", [[:%s/\v//g<Left><Left><Left>]], {silent = false})
 
 end
 registry.defer(magic)
