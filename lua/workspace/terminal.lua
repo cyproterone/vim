@@ -27,7 +27,7 @@ local terminal = function ()
     bindings.buf.let(buf, "terminal_entered", true)
   end
 
-  registry.auto("CmdwinEnter", auto_insert)
+  registry.auto({"BufWinEnter", "WinEnter"}, auto_insert, "term://*")
 
 end
 registry.defer(terminal)
