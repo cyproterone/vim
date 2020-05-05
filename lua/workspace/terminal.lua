@@ -15,21 +15,3 @@ local hotkeys = function ()
 end
 registry.defer(hotkeys)
 
-
-local terminal = function ()
-
-  local auto_insert = function ()
-    local buf = bindings.call("expand", {"<abuf>"})
-    local fst = bindings.buf.var(buf, "terminal_entered")
-    if not fst then
-      bindings.exec("startinsert")
-    end
-    bindings.buf.let(buf, "terminal_entered", true)
-  end
-
-  registry.auto({"BufWinEnter", "WinEnter"}, auto_insert, "term://*")
-
-end
-registry.defer(terminal)
-
-
