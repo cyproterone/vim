@@ -30,8 +30,16 @@ local autosave = function ()
   -- bindings.set("backup")
 
   local save = function ()
-    bindings.exec("silent! wa")
+    local bufs = api.nvim_list_bufs()
+    for _, buf in ipairs(bufs) do
+      local modified = api.nvim_buf_get_option(buf, "modified")
+      if modified ~= "nomodified" then
+        bindings.exec("silent! wa")
+        break
+      end
+    end
   end
+
   registry.auto({"TextChanged", "InsertLeave", "CursorHoldI"}, save)
 
 end
