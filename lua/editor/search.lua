@@ -35,13 +35,11 @@ registry.defer(hotkeys)
 --#################### Search Region ####################
 
 -- search without moving
-registry.install("junegunn/vim-slash")
 local improved_search = function ()
 
   -- centre on search result
-  bindings.map.normal("<plug>(slash-after)", "zz")
-  bindings.map.operator("<plug>(slash-after)", "zz")
-  bindings.map.visual("<plug>(slash-after)", "zz")
+  bindings.map.normal("n", "nzz")
+  bindings.map.normal("N", "Nzz")
 
 end
 registry.defer(improved_search)

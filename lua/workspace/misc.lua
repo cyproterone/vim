@@ -32,9 +32,9 @@ registry.defer(misc)
 
 local scroll = function ()
 
-  -- allow scrolling pass EOF
-  bindings.set("scrolloff", 1)
-  bindings.set("sidescrolloff", 3)
+  -- scroll activation margin
+  bindings.set("scrolloff", 10)
+  bindings.set("sidescrolloff", 10)
 
   bindings.set("virtualedit", "onemore")
 
