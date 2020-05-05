@@ -14,4 +14,3 @@ local hotkeys = function ()
 
 end
 registry.defer(hotkeys)
-

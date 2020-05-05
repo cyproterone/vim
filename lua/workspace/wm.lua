@@ -30,10 +30,10 @@ local modern_split = function ()
   bindings.map.normal("<C-j>", "<C-w>j")
 
   -- has to use M for direction
-  bindings.map.normal("<M-Left>",  "<C-w>h")
-  bindings.map.normal("<M-Right>", "<C-w>l")
-  bindings.map.normal("<M-Up>",    "<C-w>k")
-  bindings.map.normal("<M-Down>",  "<C-w>j")
+  bindings.map.normal("<C-Left>",  "<C-w>h")
+  bindings.map.normal("<C-Right>", "<C-w>l")
+  bindings.map.normal("<C-Up>",    "<C-w>k")
+  bindings.map.normal("<C-Down>",  "<C-w>j")
 
 end
 registry.defer(modern_split)

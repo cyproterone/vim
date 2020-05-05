@@ -15,14 +15,8 @@ registry.defer(unmap_keys)
 
 local map_keys = function ()
 
-  -- dont go into ex mode
-  bindings.map.command("<C-f>")
-
   -- use @ to do ^
   bindings.map.normal("@", "^")
-
-  -- $ to end of line
-  bindings.map.normal("$", "$<Right>")
 
 end
 registry.defer(map_keys)

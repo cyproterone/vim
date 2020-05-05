@@ -25,4 +25,3 @@ end
 return {
   override = override
 }
-

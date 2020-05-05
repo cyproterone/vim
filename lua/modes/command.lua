@@ -7,6 +7,9 @@ local registry = require "libs/registry"
 -- bring over some emacs hotkeys
 local keys = function ()
 
+  -- dont go into ex mode
+  bindings.map.command("<C-f>")
+
   bindings.map.command("<C-q>", "<Esc>")
 
   -- enable paste

@@ -37,7 +37,9 @@ local scroll = function ()
   bindings.set("scrolloff", 10)
   bindings.set("sidescrolloff", 10)
 
+  -- normalize cursor pos
   bindings.set("virtualedit", "onemore")
+  bindings.map.normal("$", "$<Right>")
 
 end
 registry.defer(scroll)

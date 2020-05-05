@@ -79,6 +79,7 @@ local map = function ()
     operator = partial{"o"},
     terminal = partial{"t"},
     nv = partial{"n", "v"},
+    ni = partial{"n", "i"},
     nov = partial{"n", "o", "v"},
   }
 end
