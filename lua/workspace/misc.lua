@@ -64,32 +64,16 @@ local welcome_screen = function ()
   -- remove welcome message
   bindings.set("shortmess", "I", [[+=]])
 
-end
-registry.defer(welcome_screen)
-
-
-local orphan_buffers = function ()
-
-  local on_new = function ()
-    local buf = bindings.call("expand", {"<abuf>"})
-    local name = bindings.call("bufname", {buf})
+  -- open with scratch buffer, like emacs
+  local on_new = function (once)
+    local name = bindings.call("bufname", {1})
     if name == "" then
       bindings.buf.set(buf, "buftype", "nofile")
     end
+    once()
   end
 
-  local on_save = function ()
-    local buf = bindings.call("expand", {"<abuf>"})
-    local file = bindings.call("expand", {"<afile>"})
-    local buf_t = bindings.buf.opt(buf, "buftype")
-    if buf_t == "nofile" then
-      bindings.buf.set(buf, "buftype", "")
-      api.nvim_buf_set_name(buf, file)
-    end
-  end
-
-  -- registry.auto({"TextChanged", "InsertLeave"}, on_new)
-  -- registry.auto("BufWritePre", on_save)
+  registry.auto("VimEnter", on_new)
 
 end
-registry.defer(orphan_buffers)
+registry.defer(welcome_screen)
