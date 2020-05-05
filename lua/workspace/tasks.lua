@@ -40,7 +40,10 @@ local autosave = function ()
     end
   end
 
-  registry.auto({"TextChanged", "InsertLeave", "CursorHoldI"}, save)
+  registry.auto(
+    {"TextChanged", "InsertLeave", "CursorHoldI"}, 
+    save,
+    {"*", "nested"})
 
 end
 registry.defer(autosave)

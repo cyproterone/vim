@@ -44,7 +44,7 @@ local auto = function (events, func, filter)
 
   local evnts = std.wrap(events)
   local events = table.concat(evnts, ",")
-  local filter = filter or "*"
+  local filter = table.concat(std.wrap(filter or "*"), " ")
   local idx = inc()
   local group = "augroup " .. idx
   local cls = "autocmd!"
