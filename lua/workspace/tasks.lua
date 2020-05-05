@@ -24,16 +24,15 @@ registry.defer(fs_consistency)
 
 
 -- autosave
-registry.install("907th/vim-auto-save")
 local autosave = function ()
 
   -- auto backup
   -- bindings.set("backup")
 
-  bindings.let("auto_save", true)
-  bindings.let("auto_save_write_all_buffers", true)
-  bindings.let("auto_save_events", {"TextChanged", "InsertLeave"})
-  bindings.let("auto_save_silent", true)
+  local save = function ()
+    bindings.exec("silent wa")
+  end
+  registry.auto({"TextChanged", "InsertLeave", "CursorHoldI"}, save)
 
 end
 registry.defer(autosave)
