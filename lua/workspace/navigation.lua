@@ -64,7 +64,7 @@ local fzf = function ()
   bindings.env("FZF_DEFAULT_OPTS", fzf_newopts)
 
   -- fzf use fd
-  bindings.env("FZF_DEFAULT_COMMAND", "fd -HL -t f")
+  bindings.env("FZF_DEFAULT_COMMAND", "fd -HL -t f -t l")
 
   -- fzf use history
   bindings.let("fzf_history_dir", var_home .. "/fzf//")
