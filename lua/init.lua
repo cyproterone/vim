@@ -6,7 +6,6 @@ local registry = require "libs/registry"
 --#################### Init Region ####################
 
 -- workspace
-require "workspace/fm"
 require "workspace/help"
 require "workspace/keyboard"
 require "workspace/misc"

@@ -7,6 +7,8 @@ local registry = require "libs/registry"
 registry.install("preservim/nerdtree")
 local tree = function ()
 
+  local file_home = var_home .. "/nerdtree"
+
   -- show hiddenfiles
   bindings.let("NERDTreeShowHidden", true)
 
@@ -19,6 +21,8 @@ local tree = function ()
   -- remove buffer on file delete
   bindings.let("NERDTreeAutoDeleteBuffer", true)
 
+  -- bookmark file location
+  bindings.let("NERDTreeBookmarksFile", file_home .. "/nerdtree_bookmarks")
 
   -- keybindings
   bindings.map.normal("<Leader>i", ":NERDTreeToggle<CR>")
