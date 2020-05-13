@@ -56,7 +56,8 @@ registry.install("vim-airline/vim-airline-themes")
 local powerline = function ()
 
   bindings.let("airline_powerline_fonts", true)
-  api.nvim_set_var("airline_skip_empty_sections", true)
+  bindings.let("airline_skip_empty_sections", true)
+
 
   bindings.let("airline#extensions#tabline#enabled", true)
   bindings.let("airline#extensions#tabline#show_tab_type", false)
