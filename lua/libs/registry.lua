@@ -40,6 +40,14 @@ local call = function (idx)
 end
 
 
+local func = function (name, func)
+  _callbacks[name] = func
+  return function ()
+    remove(name)
+  end
+end
+
+
 local auto = function (events, func, filter)
 
   local evnts = std.wrap(events)
@@ -115,6 +123,7 @@ end
 return {
   install = install,
   defer = defer,
+  func = func,
   auto = auto,
   materialize = materialize,
   call = call,

@@ -3,10 +3,17 @@
 --#################### ######### ####################
 
 local exec = function (shell)
-  local stream = assert(io.popen(shell))
+  local stream = assert(io.popen(shell, "r"))
   local acc = assert(stream:read("*a"))
   stream:close()
   return acc
+end
+
+
+local pipe = function (shell, text)
+  local stream = assert(io.popen(shell, "w"))
+  assert(stream:write(text))
+  stream:close()
 end
 
 
@@ -22,5 +29,6 @@ end
 
 return {
   exec = exec,
+  pipe = pipe,
   file_exists = file_exists,
 }

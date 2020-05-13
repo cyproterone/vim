@@ -21,9 +21,6 @@ local misc = function ()
   -- min lines changed to report
   bindings.set("report", 0)
 
-  -- use system clipboard
-  bindings.set("clipboard", "unnamedplus")
-
   -- performance
   bindings.set("ttyfast")
 
@@ -43,6 +40,24 @@ local scroll = function ()
 
 end
 registry.defer(scroll)
+
+
+-- integrate remote copy
+local registers = function ()
+
+  -- use system clipboard
+  bindings.set("clipboard", "unnamedplus")
+
+  local pipe = function ()
+    local text = bindings.call("getreg", {[[""]]})
+    io.pipe("c", text)
+  end
+
+  registry.func("copy", pipe)
+  bindings.exec[[command! Clip lua require 'libs/registry'.call('copy')]]
+
+end
+registry.defer(registers)
 
 
 -- clean up where files are stored
