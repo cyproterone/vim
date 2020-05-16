@@ -40,17 +40,6 @@ local call = function (idx, ...)
 end
 
 
-local func = function (name, func)
-  local idx = inc()
-  _callbacks[idx] = func
-  local def_begin = "function! " .. name .. "(...)"
-  local def_call = "  lua require('" .. _registry .. "').call(" .. idx .. ")"
-  local def_end = "endfunction"
-  local def = table.concat({def_begin, def_call, def_end}, "\n")
-  bindings.exec(def)
-end
-
-
 local auto = function (events, func, filter)
 
   local evnts = std.wrap(events)
@@ -126,7 +115,6 @@ end
 return {
   install = install,
   defer = defer,
-  func = func,
   auto = auto,
   materialize = materialize,
   call = call,
