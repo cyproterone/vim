@@ -72,7 +72,7 @@ local find = function ()
     else
       lines[1] = string.sub(lines[1], c1, string.len(lines[1]))
       lines[last_row] = string.sub(lines[last_row], 1, c2)
-    endnvim_buf_get_marknvim_buf_get_mark
+    end
 
     return table.concat(lines, "\n")
   end
