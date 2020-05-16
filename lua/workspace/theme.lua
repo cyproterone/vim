@@ -69,12 +69,6 @@ end
 registry.defer(colours)
 
 
--- iconpack
-registry.install("ryanoasis/vim-devicons")
-
-
---#################### Powerline Region ####################
-
 -- powerline
 registry.install("itchyny/lightline.vim")
 local powerline = function ()
@@ -83,3 +77,8 @@ local powerline = function ()
 
 end
 registry.defer(powerline)
+
+
+-- iconpack
+registry.install("ryanoasis/vim-devicons")
+
