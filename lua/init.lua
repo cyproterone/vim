@@ -15,7 +15,6 @@ require "workspace/proj"
 require "workspace/tasks"
 require "workspace/theme"
 require "workspace/tree"
-require "workspace/terminal"
 require "workspace/wm"
 
 -- modes
@@ -24,6 +23,7 @@ require "modes/insert"
 require "modes/normal"
 require "modes/multi"
 require "modes/visual"
+require "modes/terminal"
 
 -- versioning
 require "versioning/git"
