@@ -1,5 +1,13 @@
 --#################### ############# ####################
 --#################### Python Region ####################
 --#################### ############# ####################
+local bindings = require "libs/bindings"
+local registry = require "libs/registry"
 
-require'nvim_lsp'.pyls_ms.setup{}
+
+local lang = function ()
+
+  require("nvim_lsp").pyls_ms.setup{}
+
+end
+registry.defer(lang)
