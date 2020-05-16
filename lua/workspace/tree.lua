@@ -31,6 +31,16 @@ local tree = function ()
   bindings.let("NERDTreeMapActivateNode", "<Tab>")
   bindings.let("NERDTreeMapPreview", "d")
 
+
+  -- disable sign column
+  local sign_col = function ()
+    local buf = bindings.call("expand", {"<abuf>"})
+    local win = bindings.call("bufwinid", {tonumber(buf)})
+    bindings.win.set(win, "signcolumn", "no")
+  end
+
+  registry.auto("FileType", sign_col, "nerdtree")
+
 end
 registry.defer(tree)
 
