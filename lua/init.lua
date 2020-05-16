@@ -38,7 +38,12 @@ require "editor/search"
 require "editor/suggestions"
 require "editor/whitespace"
 -- lang
+require "lang/bash"
+require "lang/docker"
+require "lang/json"
 require "lang/python"
+require "lang/rust"
+require "lang/yaml"
 
 
 registry.materialize()
