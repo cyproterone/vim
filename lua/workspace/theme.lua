@@ -78,15 +78,24 @@ registry.defer(powerline)
 
 -- colour theme::
 registry.install("NLKNguyen/papercolor-theme")
-registry.install("cormacrelf/vim-colors-github")
+registry.install("sainnhe/edge")
 local colours = function ()
 
+  -- background colour
   bindings.set("background", "light")
-  bindings.exec("colorscheme PaperColor")
 
-  bindings.let("PaperColor_Theme_Options",
-               {theme = {default = {allow_bold = true,
-                                    allow_italic = true}}})
+  -- theme
+  bindings.exec("colorscheme edge")
+  bindings.let("airline_theme", "edge")
+
+
+  bindings.let("edge_style", "default")
+  bindings.let("edge_transparent_background", true)
+  bindings.let("edge_menu_selection_background", "purple")
+
+  -- bindings.let("PaperColor_Theme_Options",
+  --              {theme = {default = {allow_bold = true,
+  --                                   allow_italic = true}}})
 
 end
 registry.defer(colours)
