@@ -48,32 +48,6 @@ end
 registry.defer(cursors)
 
 
---#################### Powerline Region ####################
-
--- powerline
-registry.install("vim-airline/vim-airline")
-registry.install("vim-airline/vim-airline-themes")
-local powerline = function ()
-
-  bindings.let("airline_powerline_fonts", true)
-  bindings.let("airline_skip_empty_sections", true)
-
-
-  bindings.let("airline#extensions#tabline#enabled", true)
-  bindings.let("airline#extensions#tabline#show_tab_type", false)
-  bindings.let("airline#extensions#tabline#show_tabs", true)
-  bindings.let("airline#extensions#tabline#show_buffers", false)
-  bindings.let("airline#extensions#tabline#show_splits", false)
-  bindings.let("airline#extensions#tabline#show_tab_count", false)
-  bindings.let("airline#extensions#tabline#tab_nr_type", 2)
-  bindings.let("airline#extensions#tabline#overflow_marker", "…")
-  bindings.let("airline#extensions#tabline#close_symbol", "×")
-  bindings.let("airline#extensions#tabline#formatter", "unique_tail_improved")
-
-end
-registry.defer(powerline)
-
-
 --#################### Colours Region ####################
 
 -- colour theme::
@@ -85,7 +59,6 @@ local colours = function ()
 
   -- theme
   bindings.exec("colorscheme edge")
-  bindings.let("airline_theme", "edge")
 
 
   bindings.let("edge_style", "neon")
@@ -100,7 +73,13 @@ registry.defer(colours)
 registry.install("ryanoasis/vim-devicons")
 
 
---#################### Colours Region ####################
+--#################### Powerline Region ####################
 
--- active pane colours
--- registry.install("blueyed/vim-diminactive")
+-- powerline
+registry.install("itchyny/lightline.vim")
+local powerline = function ()
+
+  bindings.let("lightline", {colorscheme = "edge"})
+
+end
+registry.defer(powerline)
