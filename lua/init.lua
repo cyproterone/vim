@@ -17,15 +17,18 @@ require "workspace/theme"
 require "workspace/tree"
 require "workspace/terminal"
 require "workspace/wm"
+
 -- modes
 require "modes/command"
 require "modes/insert"
 require "modes/normal"
 require "modes/multi"
 require "modes/visual"
+
 -- versioning
 require "versioning/git"
 require "versioning/shared"
+
 -- editor
 require "editor/cursors"
 require "editor/format"
@@ -37,6 +40,7 @@ require "editor/textobj"
 require "editor/search"
 require "editor/suggestions"
 require "editor/whitespace"
+
 -- lang
 require "lang/bash"
 require "lang/docker"
