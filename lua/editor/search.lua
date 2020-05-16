@@ -58,17 +58,6 @@ end
 registry.defer(magic)
 
 
---#################### FZF Region ####################
-
-local fzf = function ()
-
-  bindings.map.normal("<Leader>f", "g*N:BLines <C-r>/<CR>")
-  bindings.map.normal("<Leader>F", "g*N:Rg <C-r>/<CR>")
-
-end
-registry.defer(fzf)
-
-
 --#################### Replace Region ####################
 
 -- registry.install("ms-jpq/sd.vim")

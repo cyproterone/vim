@@ -46,15 +46,15 @@ registry.defer(scroll)
 local registers = function ()
 
   -- use system clipboard
-  bindings.set("clipboard", "unnamedplus")
+  -- bindings.set("clipboard", "unnamedplus")
 
   local pipe = function ()
     local text = bindings.call("getreg", {[[""]]})
     io.pipe("c", text)
   end
 
-  registry.func("copy", pipe)
-  bindings.exec[[command! Clip lua require 'libs/registry'.call('copy')]]
+  registry.func("Copy_reg", pipe)
+  bindings.exec[[command! Clip call Copy_reg()]]
 
 end
 registry.defer(registers)

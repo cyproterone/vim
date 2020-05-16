@@ -32,19 +32,22 @@ local remove = function (idx)
 end
 
 
-local call = function (idx)
+local call = function (idx, ...)
   local kill = function ()
     remove(idx)
   end
-  _callbacks[idx](kill)
+  _callbacks[idx](kill, ...)
 end
 
 
 local func = function (name, func)
-  _callbacks[name] = func
-  return function ()
-    remove(name)
-  end
+  local idx = inc()
+  _callbacks[idx] = func
+  local def_begin = "function! " .. name .. "(...)"
+  local def_call = "  lua require('" .. _registry .. "').call(" .. idx .. ")"
+  local def_end = "endfunction"
+  local def = table.concat({def_begin, def_call, def_end}, "\n")
+  bindings.exec(def)
 end
 
 
