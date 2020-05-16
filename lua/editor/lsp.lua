@@ -7,6 +7,8 @@ local registry = require "libs/registry"
 registry.install("neovim/nvim-lsp")
 local lsp_recommends = function ()
 
+  bindings.set("omnifunc", "v:lua.vim.lsp.omnifunc")
+
   bindings.map.normal("gd", "<cmd>lua vim.lsp.buf.declaration()<CR>")
   bindings.map.normal("gD", "<cmd>lua vim.lsp.buf.implementation()<CR>")
 
@@ -19,8 +21,6 @@ local lsp_recommends = function ()
   bindings.map.normal("<Leader>ct", "<cmd>lua vim.lsp.buf.type_definition()<CR>")
 
   bindings.map.normal("<Leader>cs", "<cmd>lua vim.lsp.buf.document_symbol()<CR>")
-  bindings.map.normal("<Leader>cS", "<cmd>lua vim.lsp.buf.workspace_symbol()<CR>")
-
   bindings.map.normal("<Leader>cS", "<cmd>lua vim.lsp.buf.workspace_symbol()<CR>")
 
 end
