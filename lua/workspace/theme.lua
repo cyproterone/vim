@@ -77,7 +77,6 @@ registry.defer(powerline)
 --#################### Colours Region ####################
 
 -- colour theme::
-registry.install("NLKNguyen/papercolor-theme")
 registry.install("sainnhe/edge")
 local colours = function ()
 
@@ -92,10 +91,6 @@ local colours = function ()
   bindings.let("edge_style", "default")
   bindings.let("edge_transparent_background", true)
   bindings.let("edge_menu_selection_background", "purple")
-
-  -- bindings.let("PaperColor_Theme_Options",
-  --              {theme = {default = {allow_bold = true,
-  --                                   allow_italic = true}}})
 
 end
 registry.defer(colours)
