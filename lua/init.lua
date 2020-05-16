@@ -40,9 +40,12 @@ require "editor/whitespace"
 -- lang
 require "lang/bash"
 require "lang/docker"
+require "lang/html"
 require "lang/json"
 require "lang/python"
 require "lang/rust"
+require "lang/typescript"
+require "lang/vim"
 require "lang/yaml"
 
 
