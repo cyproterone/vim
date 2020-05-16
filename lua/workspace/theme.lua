@@ -41,9 +41,6 @@ local cursors = function ()
   -- dont change cursor styling
   bindings.set("guicursor", "", [[=]])
 
-  -- highlight cursor location
-  bindings.set("cursorline")
-
 end
 registry.defer(cursors)
 
