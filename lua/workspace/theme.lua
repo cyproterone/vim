@@ -88,7 +88,7 @@ local colours = function ()
   bindings.let("airline_theme", "edge")
 
 
-  bindings.let("edge_style", "default")
+  bindings.let("edge_style", "neon")
   bindings.let("edge_transparent_background", true)
   bindings.let("edge_menu_selection_background", "purple")
 
