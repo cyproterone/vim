@@ -60,12 +60,29 @@ registry.defer(magic)
 
 local find = function ()
 
-  local fd = function (_, ...)
-    print(...)
-  end
-  registry.func("Go_find", fd)
+  local marked_text = function ()
+    local r1, c1 = unpack(api.nvim_buf_get_mark(0, "["))
+    local r2, c2 = unpack(api.nvim_buf_get_mark(0, "]"))
+    local last_row = 1 + (r2 - r1)
+    c1, c2 = c1 + 1, c2 + 1
 
-  bindings.map.normal("gf", ":set opfunc=Go_find<CR>g@")
+    local lines = api.nvim_buf_get_lines(0, r1 - 1, r2, true)
+    if r1 == r2 then
+      lines[1] = string.sub(lines[1], c1, c2)
+    else
+      lines[1] = string.sub(lines[1], c1, string.len(lines[1]))
+      lines[last_row] = string.sub(lines[last_row], 1, c2)
+    endnvim_buf_get_marknvim_buf_get_mark
+
+    return table.concat(lines, "\n")
+  end
+
+  lua_fd = function (type)
+    local text = marked_text()
+  end
+
+  bindings.map.normal("gf", ":set opfunc=v:lua.lua_fd<CR>g@")
+  bindings.map.visual("gf", ":call v:lua.lua_fd()")
 
 end
 registry.defer(find)
