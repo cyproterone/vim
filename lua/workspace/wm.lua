@@ -84,7 +84,7 @@ registry.defer(tabs_wm)
 -- buffer region
 local buffers = function ()
 
-  bindings.map.normal("<Leader>D", ":bwipeout!<CR>")
+  bindings.map.normal("<Leader>X", ":bwipeout!<CR>")
 
 end
 registry.defer(buffers)
