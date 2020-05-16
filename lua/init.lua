@@ -37,6 +37,8 @@ require "editor/textobj"
 require "editor/search"
 require "editor/suggestions"
 require "editor/whitespace"
+-- lang
+require "lang/python"
 
 
 registry.materialize()
