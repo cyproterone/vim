@@ -31,21 +31,19 @@ registry.defer(remap_keys)
 local movement = function ()
 
   -- centre on up down
-  bindings.map.nov("<C-u>", "<C-u>zz")
-  bindings.map.nov("<C-d>", "<C-d>zz")
-  bindings.map.nov("<C-f>", "<C-f>zz")
-  bindings.map.nov("<C-b>", "<C-b>zz")
+  bindings.map.nv("<C-u>", "<C-u>zz")
+  bindings.map.nv("<C-d>", "<C-d>zz")
+  bindings.map.nv("<C-f>", "<C-f>zz")
+  bindings.map.nv("<C-b>", "<C-b>zz")
 
 
   -- centre on paragraph
-  bindings.map.nov("{", "{zz")
-  bindings.map.nov("}", "}zz")
+  bindings.map.nv("{", "{zz")
+  bindings.map.nv("}", "}zz")
 
   -- centre on page
-  bindings.map.nov("<S-Up>", "<Up>zz")
-  bindings.map.nov("<S-Down>", "<Down>zz")
-  bindings.map.insert("<S-Up>", "<Up><C-o>zz")
-  bindings.map.insert("<S-Down>", "<Down><C-o>zz")
+  bindings.map.nv("<S-Up>", "<Up>zz")
+  bindings.map.nv("<S-Down>", "<Down>zz")
 
 end
 registry.defer(movement)

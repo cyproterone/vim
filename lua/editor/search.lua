@@ -58,6 +58,19 @@ end
 registry.defer(magic)
 
 
+local find = function ()
+
+  local fd = function (_, ...)
+    print(...)
+  end
+  registry.func("Go_find", fd)
+
+  bindings.map.normal("gf", ":set opfunc=Go_find<CR>g@")
+
+end
+registry.defer(find)
+
+
 --#################### Replace Region ####################
 
 -- registry.install("ms-jpq/sd.vim")
