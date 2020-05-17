@@ -66,6 +66,7 @@ local tabs_wm = function ()
 
   -- create new tab
   bindings.map.normal("<Leader>t", ":tabnew<CR>")
+  bindings.map.normal("<Leader>n", ":tabnew<CR>")
 
   -- cycle between tabs
   bindings.map.normal("<Leader>[", ":tabprevious<CR>")

@@ -60,14 +60,11 @@ local magic = function ()
   bindings.map.nv("/", [[/\v]], {silent = false})
   bindings.map.nv("?", [[?\v]], {silent = false})
 
-  -- search buffer
-  bindings.map.normal("gt", [["zyiw:%s/\v<C-r>z//g<Left><Left>]], {silent = false})
-  bindings.map.normal("gT", [[:%s/\v//g<Left><Left><Left>]], {silent = false})
-
 end
 registry.defer(magic)
 
 
+-- find selection
 local find = function ()
 
   lua_op_fzf = function (type)
@@ -88,4 +85,20 @@ local find = function ()
 
 end
 registry.defer(find)
+
+
+-- replace selection
+local replace = function ()
+
+  lua_op_sd = function (type)
+    fd_select(type)
+    bindings.exec[[exe "norm! :%s/\v\<C-r>z//g\<Left>\<Left>]"]]
+  end
+
+  -- search buffer
+  bindings.map.normal("gt", [["zyiw:%s/\v<C-r>z//g<Left><Left>]], {silent = false})
+  bindings.map.normal("gT", [[:%s/\v//g<Left><Left><Left>]], {silent = false})
+
+end
+registry.defer(replace)
 

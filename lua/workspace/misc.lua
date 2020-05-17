@@ -46,7 +46,7 @@ registry.defer(scroll)
 local registers = function ()
 
   -- use system clipboard
-  -- bindings.set("clipboard", "unnamedplus")
+  bindings.set("clipboard", "unnamedplus")
 
   lua_clipboard = function ()
     local text = bindings.call("getreg", {[[""]]})
