@@ -43,9 +43,11 @@ require "editor/whitespace"
 
 -- lang
 require "lang/bash"
+require "lang/css"
 require "lang/docker"
 require "lang/html"
 require "lang/json"
+require "lang/lua"
 require "lang/python"
 require "lang/rust"
 require "lang/typescript"
