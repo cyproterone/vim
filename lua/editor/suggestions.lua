@@ -57,11 +57,19 @@ if fn.has("nvim") then
 
   local tab_comp =function ()
 
+    -- registry
     local setopt = fn["deoplete#custom#option"]
+    local getopt = fn["deoplete#custom#_get_option"]
+    registry.const("deo_set", setopt)
+    registry.const("deo_get", getopt)
 
-    setopt("sources", {_ = {}})
 
-    bindings.let("deoplete#enable_at_startup", true)
+    -- options
+    setopt("auto_complete_delay", 200)
+    setopt("sources", {_ = {"around", "buffer"}})
+
+
+    -- bindings.let("deoplete#enable_at_startup", true)
 
   end
   registry.defer(tab_comp)

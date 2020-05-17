@@ -69,9 +69,6 @@ local fzf = function ()
   -- fzf reuse buffers
   bindings.let("fzf_buffers_jump", true)
 
-  -- fzf use history
-  bindings.let("fzf_history_dir", var_home .. "/fzf//")
-
   -- fzf use preview
   bindings.let("fzf_preview_window", "right:wrap")
 

@@ -11,6 +11,7 @@ local _registry = "libs/registry"
 
 local _plugins = {}
 local _defer = {}
+local _consts = {}
 local _callbacks = {}
 local inc = std.count()
 
@@ -24,6 +25,14 @@ local defer = function (d)
   table.insert(_defer, d)
 end
 
+local const = function (name, c)
+  if c then
+    _consts[name] = c
+    return c
+  else
+    return _consts[name]
+  end
+end
 
 local remove = function (idx)
   local clear = "autocmd! " .. idx
@@ -115,6 +124,7 @@ end
 return {
   install = install,
   defer = defer,
+  const = const,
   auto = auto,
   materialize = materialize,
   call = call,
