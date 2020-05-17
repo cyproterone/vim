@@ -62,18 +62,19 @@ if fn.has("nvim") then
     -- registry
     local setopt = fn["deoplete#custom#option"]
     local getopt = fn["deoplete#custom#_get_option"]
-    registry.const("deo_set", setopt)
-    registry.const("deo_get", getopt)
+    registry.const["deo_omni"] = function (filetype, sources)
+      local omni = getopt("omni_patterns")
+      omni[filetype] = sources
+      setopt("omni_patterns", omni)
+    end
 
 
     -- options
     setopt("auto_complete_delay", 200)
     setopt("sources", {_ = {"around", "buffer"}})
 
-
-    -- keybinds
-    bindings.map.normal("<C-Space>", "i<C-Space>")
-    bindings.map.insert("<C-Space>", "deoplete#auto_complete()", {expr = true})
+    -- abbr
+    bindings.exec[[command! Deo call deoplete#enable()]]
 
   end
   registry.defer(comp)
