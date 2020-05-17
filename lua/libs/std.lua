@@ -68,24 +68,6 @@ local wrap = function (val)
 end
 
 
-local keys = function (tb)
-  local acc = {}
-  for key, _ in pairs(tb) do
-    table.insert(acc, key)
-  end
-  return acc
-end
-
-
-local values = function (tb)
-  local acc = {}
-  for _, val in pairs(tb) do
-    table.insert(acc, val)
-  end
-  return acc
-end
-
-
 local foreach = function (tb, func)
   for _, val in ipairs(tb) do
     func(val)
@@ -174,8 +156,6 @@ return {
   count = count,
   range = range,
   len = len,
-  keys = keys,
-  values = values,
   wrap = wrap,
   extract = extract,
   foreach = foreach,

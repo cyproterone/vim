@@ -59,9 +59,9 @@ local tab_comp = function ()
     return
   end
 
-  fn["deoplete#custom#option"]{
-    sources = {_ = {}}}
+  local setopt = fn["deoplete#custom#option"]
 
+  setopt("sources", {_ = {}})
   bindings.let("deoplete#enable_at_startup", true)
 
 end
