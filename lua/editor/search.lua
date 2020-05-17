@@ -61,23 +61,29 @@ registry.defer(magic)
 local find = function ()
 
   local fd_select = function (type)
+    local norm = [["]]
+    local reg = vim.fn.getreg(norm)
     local m = api.nvim_get_mode()
     if m.mode == "v" then
-      bindings.exec[[execute "normal! gvy"]]
+      bindings.exec[[exe "normal! gvy"]]
     elseif type == "line" then
       bindings.exec[[exe "normal! '[V']y"]]
     else
       bindings.exec[[exe "normal! `[v`]y"]]
     end
+    local selec = vim.fn.getreg(norm)
+    vim.fn.setreg(norm, reg)
+    return selec
   end
 
   lua_fd = function (type)
-    fd_select(type)
+    local selec = fd_select(type)
+    print(selec)
     -- bindings.exec[[execute "normal! :BLines \<C-r>\""]]
   end
 
   bindings.map.normal("gf", ":set opfunc=v:lua.lua_fd<CR>g@")
-  bindings.map.visual("gf", ":call v:lua.lua_fd()")
+  bindings.map.visual("gf", ":call v:lua.lua_fd()<CR>")
 
 end
 registry.defer(find)
