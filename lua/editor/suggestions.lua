@@ -32,7 +32,7 @@ local hotkeys = function ()
 
   -- cua comp
   local remap = "inoremap <silent><expr> "
-  bindings.exec(remap .. [[<Esc>   pumvisible() ? "\<C-e>" : "\<Esc>"]])
+  -- bindings.exec(remap .. [[<Esc>   pumvisible() ? "\<C-e>" : "\<Esc>"]])
   bindings.exec(remap .. [[<CR>    pumvisible() ? "\<C-y>" : "\<CR>" ]])
   bindings.exec(remap .. [[<Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"]])
   bindings.exec(remap .. [[<S-Tab> pumvisible() ? "\<C-p>" : "\<C-h>"]])
