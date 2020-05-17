@@ -54,18 +54,16 @@ registry.defer(hotkeys)
 if fn.has("nvim") then
   registry.install{"Shougo/deoplete.nvim", ["do"] = ":UpdateRemotePlugins"}
   registry.install("Shougo/deoplete-lsp")
-end
-local tab_comp = function ()
-  if not fn.has("nvim") then
-    return
+
+  local tab_comp =function ()
+
+    local setopt = fn["deoplete#custom#option"]
+
+    setopt("sources", {_ = {}})
+
+    bindings.let("deoplete#enable_at_startup", true)
+
   end
-
-  local setopt = fn["deoplete#custom#option"]
-
-  setopt("sources", {_ = {}})
-
-  bindings.let("deoplete#enable_at_startup", true)
-
+  registry.defer(tab_comp)
 end
-registry.defer(tab_comp)
 
