@@ -13,6 +13,10 @@ local lang = function ()
 
   require("nvim_lsp").tsserver.setup{}
 
+  registry.const.omni("typescript", {
+    "\\w\\.\\w*",
+  })
+
 end
 registry.defer(lang)
 

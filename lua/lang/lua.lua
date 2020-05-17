@@ -13,6 +13,10 @@ local lang = function ()
 
   require("nvim_lsp").sumneko_lua.setup{}
 
+  registry.const.omni("lua", {
+    "\\w\\.\\w*",
+  })
+
 end
 registry.defer(lang)
 

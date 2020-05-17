@@ -14,8 +14,8 @@ local lang = function ()
   require("nvim_lsp").rust_analyzer.setup{}
 
   registry.const.omni("rust", {
-    "[^. *\\t]\\.\\w*",
-    "\\w*::"
+    "\\w\\.\\w*",
+    "\\w::\\w*"
   })
 
 end

@@ -14,7 +14,7 @@ local lang = function ()
   require("nvim_lsp").pyls_ms.setup{}
 
   registry.const.omni("python", {
-    "[^. *\\t]\\.\\w*"
+    "\\w\\.\\w*",
   })
 
 end
