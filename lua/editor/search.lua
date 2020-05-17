@@ -54,14 +54,14 @@ local fd_select = function (type)
 end
 
 
--- use very magic
-local magic = function ()
+-- use no magic
+local nomagic = function ()
 
-  bindings.map.nv("/", [[/\v]], {silent = false})
-  bindings.map.nv("?", [[?\v]], {silent = false})
+  bindings.map.nv("/", [[/\V]], {silent = false})
+  bindings.map.nv("?", [[?\V]], {silent = false})
 
 end
-registry.defer(magic)
+registry.defer(nomagic)
 
 
 -- find selection
@@ -92,12 +92,14 @@ local replace = function ()
 
   lua_op_sd = function (type)
     fd_select(type)
-    -- NO MAGIC
+    -- no magic
     api.nvim_input([[:%s/\V<C-r>z//g<Left><Left>]])
   end
 
-  -- search buffer
+  -- no magic
   bindings.map.normal("gt", ":set opfunc=v:lua.lua_op_sd<CR>g@")
+
+  -- very magic
   bindings.map.normal("gT", [[:%s/\v//g<Left><Left><Left>]], {silent = false})
 
 end
