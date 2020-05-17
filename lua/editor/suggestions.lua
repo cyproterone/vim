@@ -92,8 +92,7 @@ if fn.has("nvim") then
 
 
     -- options
-    setopt("auto_complete_delay", 200)
-    setopt("sources", {_ = {"around", "buffer"}})
+    setopt("sources", {_ = {"around", "buffer", "member", "file"}})
 
   end
   registry.defer(comp)
