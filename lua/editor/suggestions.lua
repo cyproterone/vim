@@ -18,7 +18,7 @@ local suggestions = function ()
   bindings.set("complete", "i", [[-=]])
 
   -- complete menu
-  bindings.set("completeopt", "menuone,noinsert", [[+=]])
+  bindings.set("completeopt", "menuone,noinsert,noselect", [[+=]])
 
 end
 registry.defer(suggestions)
@@ -62,6 +62,7 @@ local tab_comp = function ()
   local setopt = fn["deoplete#custom#option"]
 
   setopt("sources", {_ = {}})
+
   bindings.let("deoplete#enable_at_startup", true)
 
 end
