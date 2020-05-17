@@ -42,10 +42,10 @@ local trailing_whitespace = function ()
     if m.mode ~= "n" then
       return
     end
-    local l = bindings.call("line", {"."})
-    local c = bindings.call("col", {"."})
+    local l = fn.line(".")
+    local c = fn.col(".")
     bindings.exec[[%s/\s\+$//e]]
-    bindings.call("cursor", {l, c})
+    fn.cursor(l, c)
   end
 
   registry.auto("BufWritePre", strip)

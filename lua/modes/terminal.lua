@@ -8,8 +8,8 @@ local apperance = function ()
 
   -- set window options
   local win_ui = function ()
-    local buf = bindings.call("expand", {"<abuf>"})
-    local win = bindings.call("bufwinid", {tonumber(buf)})
+    local buf = fn.expand("<abuf>")
+    local win = fn.bufwinid(tonumber(buf))
     bindings.win.set(win, "signcolumn", "no")
     bindings.win.set(win, "number", false)
   end

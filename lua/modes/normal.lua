@@ -28,15 +28,15 @@ local no_stepback = function ()
   local buf_cursor_pos = "_buf_cursor_pos_"
 
   local record_pos = function ()
-    local c = bindings.call("col", {"."})
+    local c = fn.col(".")
     bindings.buf.let(0, buf_cursor_pos, c)
   end
 
   local displace = function ()
-    local c = bindings.call("col", {"."})
+    local c = fn.col(".")
     local pos = bindings.buf.var(0, buf_cursor_pos)
     if c ~= pos then
-      bindings.call("cursor", {0, pos})
+      fn.cursor(0, pos)
     end
   end
 

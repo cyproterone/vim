@@ -49,7 +49,7 @@ local registers = function ()
   bindings.set("clipboard", "unnamedplus")
 
   lua_clipboard = function ()
-    local text = bindings.call("getreg", {[[""]]})
+    local text = fn.getreg([[""]])
     io.pipe("c", text)
   end
 
@@ -82,9 +82,9 @@ local welcome_screen = function ()
 
   -- open with scratch buffer, like emacs
   local on_new = function (once)
-    local name = bindings.call("bufname", {1})
+    local name = fn.bufname(1)
     if name == "" then
-      bindings.buf.set(buf, "buftype", "nofile")
+      bindings.buf.set(1, "buftype", "nofile")
     end
     once()
   end

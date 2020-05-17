@@ -150,20 +150,6 @@ local win = function ()
 end
 
 
-local call = function (name, ...)
-  local len = select("#", ...)
-  if len == 2 then
-    local dict, args = ...
-    return api.nvim_call_dict_function(name, dict, args)
-  elseif len == 1 then
-    local args = ...
-    return api.nvim_call_function(name, args)
-  else
-    error("wrong number of arguments")
-  end
-end
-
-
 return {
   p_val = p_val,
   exec = exec,
@@ -172,7 +158,6 @@ return {
   map = map(),
   env = env,
   source = source,
-  call = call,
   buf = buf(),
   win = win(),
 }

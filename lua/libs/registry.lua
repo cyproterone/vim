@@ -52,7 +52,7 @@ local auto = function (events, func, filter)
   local done = "augroup END"
 
   for event in ipairs(evnts) do
-    assert(bindings.call("exists", {"##" .. event}))
+    assert(fn.exists("##" .. event))
   end
 
   api.nvim_command(group)
