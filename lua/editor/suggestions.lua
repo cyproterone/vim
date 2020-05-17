@@ -48,15 +48,9 @@ local hotkeys = function ()
   --
 
   -- tab comp
-  lua_tab_comp = function ()
-    if fn.pumvisible() then
-      api.nvim_input[[<C-n>]]
-    else
-      api.nvim_input[[<Tab>]]
-    end
-  end
-
-  bindings.map.insert("<Tab>", "v:lua.lua_tab_comp()", {expr = true})
+  local tab = "inoremap <silent><expr> "
+  bindings.exec(tab .. [[<Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"]])
+  bindings.exec(tab .. [[<S-Tab> pumvisible() ? "\<C-p>" : "\<C-h>"]])
 
 end
 registry.defer(hotkeys)
