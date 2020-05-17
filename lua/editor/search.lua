@@ -60,25 +60,20 @@ registry.defer(magic)
 
 local find = function ()
 
-  local marked_text = function ()
-    local r1, c1 = unpack(api.nvim_buf_get_mark(0, "["))
-    local r2, c2 = unpack(api.nvim_buf_get_mark(0, "]"))
-    local last_row = 1 + (r2 - r1)
-    c1, c2 = c1 + 1, c2 + 1
-
-    local lines = api.nvim_buf_get_lines(0, r1 - 1, r2, true)
-    if r1 == r2 then
-      lines[1] = string.sub(lines[1], c1, c2)
+  local fd_select = function (type)
+    local m = api.nvim_get_mode()
+    if m.mode == "v" then
+      bindings.exec[[execute "normal! gvy"]]
+    elseif type == "line" then
+      bindings.exec[[exe "normal! '[V']y"]]
     else
-      lines[1] = string.sub(lines[1], c1, string.len(lines[1]))
-      lines[last_row] = string.sub(lines[last_row], 1, c2)
+      bindings.exec[[exe "normal! `[v`]y"]]
     end
-
-    return table.concat(lines, "\n")
   end
 
   lua_fd = function (type)
-    local text = marked_text()
+    fd_select(type)
+    -- bindings.exec[[execute "normal! :BLines \<C-r>\""]]
   end
 
   bindings.map.normal("gf", ":set opfunc=v:lua.lua_fd<CR>g@")
