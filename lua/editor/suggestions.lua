@@ -9,7 +9,7 @@ local suggestions = function ()
   -- dont show too many opts
   bindings.set("pumheight", 10)
   -- transparency
-  bindings.set("pumblend", 10)
+  bindings.set("pumblend", 5)
 
   -- dont show suggestions menu
   bindings.set("shortmess", "c", [[+=]])
