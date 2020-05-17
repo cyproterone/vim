@@ -5,6 +5,7 @@ local ftp = require "libs/ftp"
 local registry = require "libs/registry"
 
 
+local ft = {"typescript"}
 local lang = function ()
 
   if not fn.executable("typescript-language-server") then
@@ -18,5 +19,4 @@ local lang = function ()
   })
 
 end
-ftp.defer(lang)
-
+ftp.defer(ft, lang)

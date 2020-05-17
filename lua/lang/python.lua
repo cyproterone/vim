@@ -5,6 +5,7 @@ local ftp = require "libs/ftp"
 local registry = require "libs/registry"
 
 
+local ft = {"python"}
 local lang = function ()
 
   if not fn.executable("dotnet") then
@@ -18,4 +19,4 @@ local lang = function ()
   })
 
 end
-ftp.defer(lang)
+ftp.defer(ft, lang)

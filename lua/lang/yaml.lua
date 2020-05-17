@@ -5,6 +5,7 @@ local ftp = require "libs/ftp"
 local registry = require "libs/registry"
 
 
+local ft = {"yaml"}
 local lang = function ()
 
   if not fn.executable("yaml-language-server") then
@@ -14,4 +15,4 @@ local lang = function ()
   require("nvim_lsp").yamlls.setup{}
 
 end
-ftp.defer(lang)
+ftp.defer(ft, lang)

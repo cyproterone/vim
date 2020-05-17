@@ -5,6 +5,7 @@ local ftp = require "libs/ftp"
 local registry = require "libs/registry"
 
 
+local ft = {"rust"}
 local lang = function ()
 
   if not fn.executable("rust-analyzer") then
@@ -19,4 +20,4 @@ local lang = function ()
   })
 
 end
-ftp.defer(lang)
+ftp.defer(ft, lang)

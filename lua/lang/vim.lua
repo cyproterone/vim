@@ -5,6 +5,7 @@ local ftp = require "libs/ftp"
 local registry = require "libs/registry"
 
 
+local ft = {"vim"}
 local lang = function ()
 
   if not fn.executable("vim-language-server") then
@@ -14,6 +15,4 @@ local lang = function ()
   require("nvim_lsp").vimls.setup{}
 
 end
-ftp.defer(lang)
-
-
+ftp.defer(ft, lang)

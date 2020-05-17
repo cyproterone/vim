@@ -5,6 +5,7 @@ local ftp = require "libs/ftp"
 local registry = require "libs/registry"
 
 
+local ft = {"html"}
 local lang = function ()
 
   if not fn.executable("vscode-html-languageserver-bin") then
@@ -14,5 +15,4 @@ local lang = function ()
   require("nvim_lsp").html.setup{}
 
 end
-ftp.defer(lang)
-
+ftp.defer(ft, lang)

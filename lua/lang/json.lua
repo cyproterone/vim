@@ -5,6 +5,7 @@ local ftp = require "libs/ftp"
 local registry = require "libs/registry"
 
 
+local ft = {"json"}
 local lang = function ()
 
   if not fn.executable("vscode-json-languageserver") then
@@ -14,4 +15,4 @@ local lang = function ()
   require("nvim_lsp").jsonls.setup{}
 
 end
-ftp.defer(lang)
+ftp.defer(ft, lang)
