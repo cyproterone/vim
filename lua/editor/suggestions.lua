@@ -61,9 +61,10 @@ if fn.has("nvim") then
 
     -- registry
     local setopt = fn["deoplete#custom#option"]
-    local getopt = fn["deoplete#custom#_get_option"]
-    registry.const["deo_omni"] = function (filetype, sources)
-      local omni = getopt("omni_patterns")
+    local getopt = fn["deoplete#custom#_get"]
+    registry.const["omni"] = function (filetype, sources)
+      local opt = getopt().option
+      local omni = opt["omni_patterns"]
       omni[filetype] = sources
       setopt("omni_patterns", omni)
     end
