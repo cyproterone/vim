@@ -92,7 +92,8 @@ local replace = function ()
 
   lua_op_sd = function (type)
     fd_select(type)
-    api.nvim_input([[:%s/\v<C-r>z//g<Left><Left>]])
+    -- NO MAGIC
+    api.nvim_input([[:%s/\V<C-r>z//g<Left><Left>]])
   end
 
   -- search buffer
