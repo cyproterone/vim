@@ -11,6 +11,7 @@ local misc = function ()
   bindings.set("hidden")
 
 end
+registry.defer(misc)
 
 
 -- modern split direction
@@ -72,6 +73,7 @@ local tabs_wm = function ()
   bindings.map.normal("<Leader>[", ":tabprevious<CR>")
   bindings.map.normal("<Leader>]", ":tabnext<CR>")
 
+  bindings.map.normal("<Leader>0", "g<Tab>")
   for i in std.range(1, 9) do
     bindings.map.normal("<Leader>" .. i, ":tabnext " .. i .. "<CR>")
   end
