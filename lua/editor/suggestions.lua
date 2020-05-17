@@ -68,7 +68,7 @@ local enable = function ()
   end
 
   -- keys
-  bindings.map.normal("<Leader>cc", ":lua lua_enable_comp()<CR>")
+  bindings.map.normal("gz", ":lua lua_enable_comp()<CR>")
 
 end
 registry.defer(enable)
