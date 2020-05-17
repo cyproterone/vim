@@ -33,24 +33,21 @@ local hotkeys = function ()
   -- cancel comp
   bindings.map.insert("<C-q>", "<C-e>")
 
-  --
-  -- c-p :: before
-  -- c-n :: after
-  -- c-l :: line
-  -- c-f :: files
-  -- c-o :: omni-func
-  --
-
-  --
-  -- c-k :: dictionary
-  -- c-t :: thesaurus
-  -- c-s :: spellcheck
-  --
-
   -- tab comp
   local tab = "inoremap <silent><expr> "
   bindings.exec(tab .. [[<Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"]])
   bindings.exec(tab .. [[<S-Tab> pumvisible() ? "\<C-p>" : "\<C-h>"]])
+
+  -- previous
+  bindings.map.insert("<C-p>", "<C-x><C-p>")
+  -- next
+  bindings.map.insert("<C-n>", "<C-x><C-n>")
+  -- line
+  bindings.map.insert("<C-l>", "<C-x><C-l>")
+  -- file
+  bindings.map.insert("<C-f>", "<C-x><C-f>")
+  -- omnifunc
+  bindings.map.insert("<C-o>", "<C-x><C-o>")
 
 end
 registry.defer(hotkeys)
