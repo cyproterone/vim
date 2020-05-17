@@ -46,15 +46,11 @@ registry.defer(improved_search)
 
 -- get selection
 local fd_select = function (type)
-  local m = api.nvim_get_mode()
-  if m.mode == "v" then
-    bindings.exec[[exe "norm! gv\"zy"]]
-  elseif type == "line" then
+  if type == "line" then
     bindings.exec[[exe "norm! '[V']\"zy"]]
   else
     bindings.exec[[exe "norm! `[v`]\"zy"]]
   end
-  return vim.fn.getreg("z", reg)
 end
 
 
@@ -65,8 +61,8 @@ local magic = function ()
   bindings.map.nv("?", [[?\v]], {silent = false})
 
   -- search buffer
-  bindings.map.normal("<Leader>r", [["zyiw:%s/\v<C-r>z//g<Left><Left>]], {silent = false})
-  bindings.map.normal("<Leader>R", [[:%s/\v//g<Left><Left><Left>]], {silent = false})
+  bindings.map.normal("gt", [["zyiw:%s/\v<C-r>z//g<Left><Left>]], {silent = false})
+  bindings.map.normal("gT", [[:%s/\v//g<Left><Left><Left>]], {silent = false})
 
 end
 registry.defer(magic)
@@ -75,20 +71,20 @@ registry.defer(magic)
 local find = function ()
 
   lua_op_fzf = function (type)
-    local selec = fd_select(type)
+    fd_select(type)
     bindings.exec[[exe "norm! :BLines \<C-r>z\<CR>"]]
   end
 
   lua_op_rg = function (type)
-    local selec = fd_select(type)
+    fd_select(type)
     bindings.exec[[exe "norm! :Rg \<C-r>z\<CR>"]]
   end
 
   bindings.map.normal("gf", ":set opfunc=v:lua.lua_op_fzf<CR>g@")
   bindings.map.normal("gF", ":set opfunc=v:lua.lua_op_rg<CR>g@")
 
-  bindings.map.visual("gf", ":call v:lua.lua_op_fzf()<CR>")
-  bindings.map.visual("gF", ":call v:lua.lua_op_rg()<CR>")
+  bindings.map.visual("gf", [["zy:BLines <C-r>z<CR>]])
+  bindings.map.visual("gF", [["zy:Rg <C-r>z<CR>]])
 
 end
 registry.defer(find)
