@@ -26,17 +26,16 @@ registry.defer(suggestions)
 
 local hotkeys = function ()
 
-  -- map c-space for completion
-  bindings.map.insert("<C-space>", "<C-x>")
-  bindings.map.normal("<C-space>")
-
   -- cancel comp
   bindings.map.insert("<C-q>", "<C-e>")
 
-  -- tab comp
-  local tab = "inoremap <silent><expr> "
-  bindings.exec(tab .. [[<Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"]])
-  bindings.exec(tab .. [[<S-Tab> pumvisible() ? "\<C-p>" : "\<C-h>"]])
+
+  -- cua comp
+  local remap = "inoremap <silent><expr> "
+  bindings.exec(remap .. [[<Esc>   pumvisible() ? "\<C-e>" : "\<Esc>"]])
+  bindings.exec(remap .. [[<Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"]])
+  bindings.exec(remap .. [[<S-Tab> pumvisible() ? "\<C-p>" : "\<C-h>"]])
+
 
   -- previous
   bindings.map.insert("<C-p>", "<C-x><C-p>")
@@ -57,7 +56,7 @@ if fn.has("nvim") then
   registry.install{"Shougo/deoplete.nvim", ["do"] = ":UpdateRemotePlugins"}
   registry.install("Shougo/deoplete-lsp")
 
-  local tab_comp =function ()
+  local comp = function ()
 
     -- registry
     local setopt = fn["deoplete#custom#option"]
@@ -71,8 +70,11 @@ if fn.has("nvim") then
     setopt("sources", {_ = {"around", "buffer"}})
 
 
-    -- bindings.let("deoplete#enable_at_startup", true)
+    -- keybinds
+    bindings.map.normal("<C-Space>", "i<C-Space>")
+    bindings.map.insert("<C-Space>", "deoplete#auto_complete()", {expr = true})
+
   end
-  registry.defer(tab_comp)
+  registry.defer(comp)
 end
 
