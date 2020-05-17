@@ -79,5 +79,7 @@ if fn.has("nvim") then
 
   end
   registry.defer(comp)
+else
+  registry.const["omni"] = function () end
 end
 
