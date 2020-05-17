@@ -53,6 +53,7 @@ registry.defer(hotkeys)
 
 if fn.has("nvim") then
   registry.install{"Shougo/deoplete.nvim", ["do"] = ":UpdateRemotePlugins"}
+  registry.install("Shougo/deoplete-lsp")
 end
 local tab_comp = function ()
   if not fn.has("nvim") then
