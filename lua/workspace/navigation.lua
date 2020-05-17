@@ -66,6 +66,9 @@ local fzf = function ()
   -- fzf use fd
   bindings.env("FZF_DEFAULT_COMMAND", "fd -HL -t f -t l")
 
+  -- fzf reuse buffers
+  bindings.let("fzf_buffers_jump", true)
+
   -- fzf use history
   bindings.let("fzf_history_dir", var_home .. "/fzf//")
 
