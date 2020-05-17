@@ -33,5 +33,27 @@ local hotkeys = function ()
   -- cancel comp
   bindings.map.insert("<C-q>", "<C-e>")
 
+  --
+  -- c-p :: before
+  -- c-n :: after
+  -- c-l :: line
+  -- c-f :: files
+  -- c-o :: omni-func
+  --
+
+  --
+  -- c-k :: dictionary
+  -- c-t :: thesaurus
+  -- c-s :: spellcheck
+  --
+
 end
 registry.defer(hotkeys)
+
+
+-- registry.install("")
+local tab_comp = function ()
+
+end
+registry.defer(tab_comp)
+
