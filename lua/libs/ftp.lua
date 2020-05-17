@@ -9,13 +9,14 @@ local registry = require "libs/registry"
 local _ftp = set.new({})
 
 
-local defer = function (ft, defer)
+local defer = function (ft, ftplugin)
   local ftp = function ()
-    if set.contains(_ftp, defer) then
+    if set.contains(_ftp, ftplugin) then
       return
     end
-    set.add(_ftp, defer)
-    defer()
+    set.add(_ftp, ftplugin)
+    ftplugin()
+    print("-- 加载: " .. table.concat(ft, ",") .. " --")
   end
   registry.auto("FileType", ftp, ft)
 end
