@@ -48,6 +48,8 @@ local hotkeys = function ()
   bindings.map.insert("<C-f>", "<C-x><C-f>")
   -- omnifunc
   bindings.map.insert("<C-o>", "<C-x><C-o>")
+  bindings.map.normal("<C-space>")
+  bindings.map.insert("<C-Space>", "<C-x><C-o>")
 
 end
 registry.defer(hotkeys)
@@ -80,6 +82,6 @@ if fn.has("nvim") then
   end
   registry.defer(comp)
 else
-  registry.const["omni"] = function () end
+  registry.const["omni"] = function (_, _) end
 end
 
