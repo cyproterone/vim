@@ -44,6 +44,24 @@ end
 registry.defer(improved_search)
 
 
+-- get selection
+local fd_select = function (type)
+  local norm = [["]]
+  local reg = vim.fn.getreg(norm)
+  local m = api.nvim_get_mode()
+  if m.mode == "v" then
+    bindings.exec[[exe "normal! gvy"]]
+  elseif type == "line" then
+    bindings.exec[[exe "normal! '[V']y"]]
+  else
+    bindings.exec[[exe "normal! `[v`]y"]]
+  end
+  local selec = vim.fn.getreg(norm)
+  vim.fn.setreg(norm, reg)
+  return selec
+end
+
+
 -- use very magic
 local magic = function ()
 
@@ -59,22 +77,6 @@ registry.defer(magic)
 
 
 local find = function ()
-
-  local fd_select = function (type)
-    local norm = [["]]
-    local reg = vim.fn.getreg(norm)
-    local m = api.nvim_get_mode()
-    if m.mode == "v" then
-      bindings.exec[[exe "normal! gvy"]]
-    elseif type == "line" then
-      bindings.exec[[exe "normal! '[V']y"]]
-    else
-      bindings.exec[[exe "normal! `[v`]y"]]
-    end
-    local selec = vim.fn.getreg(norm)
-    vim.fn.setreg(norm, reg)
-    return selec
-  end
 
   lua_fd = function (type)
     local selec = fd_select(type)
