@@ -89,12 +89,3 @@ local find = function ()
 end
 registry.defer(find)
 
-
---#################### Replace Region ####################
-
--- registry.install("ms-jpq/sd.vim")
-local sd = function ()
-
-
-end
--- registry.defer(sd)
