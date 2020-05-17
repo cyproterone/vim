@@ -80,6 +80,7 @@ local map = function ()
     terminal = partial{"t"},
     nv = partial{"n", "v"},
     ni = partial{"n", "i"},
+    nic = partial{"n", "i", "c"},
     nov = partial{"n", "o", "v"},
   }
 end

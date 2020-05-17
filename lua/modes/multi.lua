@@ -51,10 +51,10 @@ registry.defer(movement)
 
 local cua = function ()
 
-  bindings.map.ni("<M-Left>", "<C-Left>")
-  bindings.map.ni("<M-Right>", "<C-Right>")
-  bindings.map.ni("<M-Up>", "<C-Up>")
-  bindings.map.ni("<M-Down>", "<C-Down>")
+  bindings.map.nic("<M-Left>", "<C-Left>")
+  bindings.map.nic("<M-Right>", "<C-Right>")
+  bindings.map.nic("<M-Up>", "<C-Up>")
+  bindings.map.nic("<M-Down>", "<C-Down>")
 
 end
 registry.defer(cua)
