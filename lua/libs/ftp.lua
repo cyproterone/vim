@@ -2,11 +2,10 @@
 --#################### FTP Region ####################
 --#################### ########## ####################
 
-local std = require "libs/std"
 local set = require "libs/set"
 local registry = require "libs/registry"
 
-local _ftp = set.new({})
+local _ftp = set.new()
 
 
 local defer = function (ft, ftplugin)

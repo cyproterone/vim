@@ -4,7 +4,7 @@
 
 local new = function (tb)
   local acc = {}
-  for _, val in ipairs(tb) do
+  for _, val in ipairs(tb or {}) do
     acc[val] = true
   end
   return acc
