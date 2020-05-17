@@ -47,6 +47,17 @@ local hotkeys = function ()
   -- c-s :: spellcheck
   --
 
+  -- tab comp
+  lua_tab_comp = function ()
+    if fn.pumvisible() then
+      api.nvim_input[[<C-n>]]
+    else
+      api.nvim_input[[<Tab>]]
+    end
+  end
+
+  bindings.map.insert("<Tab>", "v:lua.lua_tab_comp()", {expr = true})
+
 end
 registry.defer(hotkeys)
 
@@ -70,7 +81,6 @@ if fn.has("nvim") then
 
 
     -- bindings.let("deoplete#enable_at_startup", true)
-
   end
   registry.defer(tab_comp)
 end
