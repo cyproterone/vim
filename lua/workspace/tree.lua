@@ -39,7 +39,7 @@ local tree = function ()
     bindings.win.set(win, "signcolumn", "no")
   end
 
-  registry.auto("FileType", sign_col, "nerdtree")
+  -- registry.auto("FileType", sign_col, "nerdtree")
 
 end
 registry.defer(tree)

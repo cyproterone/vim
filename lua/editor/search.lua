@@ -85,9 +85,10 @@ local find = function ()
   end
 
   bindings.map.normal("gf", ":set opfunc=v:lua.lua_op_fzf<CR>g@")
-  bindings.map.normal("gf", ":set opfunc=v:lua.lua_op_rg<CR>g@")
+  bindings.map.normal("gF", ":set opfunc=v:lua.lua_op_rg<CR>g@")
 
-  bindings.map.visual("gf", ":call v:lua.lua_fd()<CR>")
+  bindings.map.visual("gf", ":call v:lua.lua_op_fzf()<CR>")
+  bindings.map.visual("gF", ":call v:lua.lua_op_rg()<CR>")
 
 end
 registry.defer(find)
