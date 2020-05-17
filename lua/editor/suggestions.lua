@@ -55,6 +55,25 @@ end
 registry.defer(hotkeys)
 
 
+--#################### Auto Region ####################
+local enable = function ()
+
+  lua_enable_comp = function ()
+    if not fn.has("nvim") then
+      print("-- 无用 --")
+    else
+      fn["deoplete#enable"]()
+      print("-- 蛙 --")
+    end
+  end
+
+  -- keys
+  bindings.map.normal("<Leader>cc", ":lua lua_enable_comp()<CR>")
+
+end
+registry.defer(enable)
+
+
 if fn.has("nvim") then
   registry.install{"Shougo/deoplete.nvim", ["do"] = ":UpdateRemotePlugins"}
   registry.install("Shougo/deoplete-lsp")
@@ -75,9 +94,6 @@ if fn.has("nvim") then
     -- options
     setopt("auto_complete_delay", 200)
     setopt("sources", {_ = {"around", "buffer"}})
-
-    -- abbr
-    bindings.exec[[command! Deo call deoplete#enable()]]
 
   end
   registry.defer(comp)
