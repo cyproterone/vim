@@ -24,6 +24,9 @@ local hotkeys = function ()
   -- clear search result
   bindings.map.normal("<Leader>l", ":nohlsearch<CR>")
 
+  -- clear quickfix
+  bindings.map.normal("<Leader>L", ":cclose<CR>")
+
 end
 registry.defer(hotkeys)
 
