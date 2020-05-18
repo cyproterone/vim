@@ -45,6 +45,8 @@ local float_term = function ()
 
   -- hotkeys
   bindings.map.normal("<Leader>u", ":FloatermToggle<CR>")
+  bindings.map.normal("[z", ":FloatermPrev<CR>")
+  bindings.map.normal("]z", ":FloatermNext<CR>")
 
 end
 registry.defer(float_term)
