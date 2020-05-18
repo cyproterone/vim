@@ -71,7 +71,7 @@ end
 local init_plug = function ()
   local remote = "https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
   local plug = bin_home .. "/plug.vim"
-  local exists = fn.exists(plug)
+  local exists = fn.exists(plug) == 1
   if not exists then
     stdio.exec("wget -P " .. bin_home  .. " " .. remote)
   end
