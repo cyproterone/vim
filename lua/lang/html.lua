@@ -1,6 +1,7 @@
 --#################### ########### ####################
 --#################### Html Region ####################
 --#################### ########### ####################
+local bindings = require "libs/bindings"
 local ftp = require "libs/ftp"
 local registry = require "libs/registry"
 
