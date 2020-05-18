@@ -9,12 +9,14 @@ local _ftp = set.new()
 
 
 local defer = function (ft, ftplugin)
-  local ftp = function ()
-    if set.contains(_ftp, ftplugin) then
+  set.add(_ftp, ftplugin)
+  local ftp = function (kill)
+    if not set.contains(_ftp, ftplugin) then
       return
     end
-    set.add(_ftp, ftplugin)
+    set.subtract(_ftp, ftplugin)
     ftplugin()
+    kill()
     print("-- LSP 加载: " .. table.concat(ft, ",") .. " --")
   end
   registry.auto("FileType", ftp, ft)
