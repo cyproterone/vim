@@ -56,12 +56,12 @@ local auto = function (events, func, filter)
     assert(fn.exists("##" .. event))
   end
 
+  _callbacks[idx] = func
   api.nvim_command(group)
   api.nvim_command(cls)
   api.nvim_command(cmd)
   api.nvim_command(done)
 
-  _callbacks[idx] = func
   return function ()
     remove(idx)
   end
