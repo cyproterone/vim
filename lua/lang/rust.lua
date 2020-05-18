@@ -7,8 +7,9 @@ local registry = require "libs/registry"
 
 
 local ft = {"rust"}
-local lang = function ()
 
+
+local lsp = function ()
   if not bindings.executable("rust-analyzer") then
     return
   end
@@ -21,6 +22,10 @@ local lang = function ()
     "\\w\\.\\w*",
     "\\w::\\w*"
   })
+end
 
+
+local lang = function ()
+  lsp()
 end
 ftp.defer(ft, lang)

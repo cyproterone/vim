@@ -7,8 +7,9 @@ local registry = require "libs/registry"
 
 
 local ft = {"typescript"}
-local lang = function ()
 
+
+local lsp = function ()
   if not bindings.executable("typescript-language-server") then
     return
   end
@@ -20,6 +21,10 @@ local lang = function ()
   registry.const.omni("typescript", {
     "\\w\\.\\w*",
   })
+end
 
+
+local lang = function ()
+  lsp()
 end
 ftp.defer(ft, lang)

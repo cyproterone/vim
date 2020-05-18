@@ -7,8 +7,9 @@ local registry = require "libs/registry"
 
 
 local ft = {"css"}
-local lang = function ()
 
+
+local lsp = function ()
   if not bindings.executable("vscode-css-languageserver-bin") then
     return
   end
@@ -16,6 +17,10 @@ local lang = function ()
   local lsp = require "nvim_lsp"
   lsp.cssls.setup{}
   lsp.cssls.manager.try_add()
+end
 
+
+local lang = function ()
+  lsp()
 end
 ftp.defer(ft, lang)

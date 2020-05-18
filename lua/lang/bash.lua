@@ -7,8 +7,9 @@ local registry = require "libs/registry"
 
 
 local ft = {"sh", "zsh"}
-local lang = function ()
 
+
+local lsp = function ()
   if not bindings.executable("bash-language-server") then
     return
   end
@@ -16,6 +17,10 @@ local lang = function ()
   local lsp = require "nvim_lsp"
   lsp.bashls.setup{filetypes = {"sh", "zsh"}}
   lsp.bashls.manager.try_add()
+end
 
+
+local lang = function ()
+  lsp()
 end
 ftp.defer(ft, lang)

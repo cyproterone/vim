@@ -7,8 +7,19 @@ local registry = require "libs/registry"
 
 
 local ft = {"python"}
-local lang = function ()
 
+
+local format = function ()
+  bindings.let("neoformat_python_autopep8", {
+    exe = "autopep8",
+    args = {"-", "--indent-size=2"},
+    stdin = 1})
+
+  bindings.let("neoformat_enabled_python", {"autopep8"})
+end
+
+
+local lsp = function ()
   if not bindings.executable("dotnet") then
     return
   end
@@ -20,13 +31,11 @@ local lang = function ()
   registry.const.omni("python", {
     "\\w\\.\\w*",
   })
+end
 
+
+local lang = function ()
+  format()
+  lsp()
 end
 ftp.defer(ft, lang)
-
-local always = function (buf)
-
-  bindings.map.normal("gq", ":Neoformat autopep8<CR>", {buffer = buf})
-
-end
-ftp.always(ft, always)
