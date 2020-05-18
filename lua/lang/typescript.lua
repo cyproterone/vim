@@ -8,7 +8,7 @@ local registry = require "libs/registry"
 local ft = {"typescript"}
 local lang = function ()
 
-  if not fn.executable("typescript-language-server") then
+  if not bindings.executable("typescript-language-server") then
     return
   end
 

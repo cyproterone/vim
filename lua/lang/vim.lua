@@ -8,7 +8,7 @@ local registry = require "libs/registry"
 local ft = {"vim"}
 local lang = function ()
 
-  if not fn.executable("vim-language-server") then
+  if not bindings.executable("vim-language-server") then
     return
   end
 

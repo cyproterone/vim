@@ -151,6 +151,15 @@ local win = function ()
 end
 
 
+local executable = function (prog)
+  return fn.executable(prog) == 1
+end
+
+
+local has = function (name)
+  return fn.has(name)
+end
+
 return {
   p_val = p_val,
   exec = exec,
@@ -161,4 +170,6 @@ return {
   source = source,
   buf = buf(),
   win = win(),
+  executable = executable,
+  has = has,
 }

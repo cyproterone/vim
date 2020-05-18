@@ -8,7 +8,7 @@ local registry = require "libs/registry"
 local ft = {"lua"}
 local lang = function ()
 
-  if not fn.executable("lua-language-server") then
+  if not bindings.executable("lua-language-server") then
     return
   end
 

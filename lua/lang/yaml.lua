@@ -8,7 +8,7 @@ local registry = require "libs/registry"
 local ft = {"yaml"}
 local lang = function ()
 
-  if not fn.executable("yaml-language-server") then
+  if not bindings.executable("yaml-language-server") then
     return
   end
 

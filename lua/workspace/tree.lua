@@ -5,7 +5,7 @@ local registry = require "libs/registry"
 
 --#################### Tree Region ####################
 
-if fn.executable("ranger") then
+if bindings.executable("ranger") then
   registry.install("rbgrouleff/bclose.vim")
   registry.install("francoiscabrol/ranger.vim")
   local tree = function ()

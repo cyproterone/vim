@@ -8,7 +8,7 @@ local registry = require "libs/registry"
 local ft = {"python"}
 local lang = function ()
 
-  if not fn.executable("dotnet") then
+  if not bindings.executable("dotnet") then
     return
   end
 

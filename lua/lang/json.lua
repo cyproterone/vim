@@ -8,7 +8,7 @@ local registry = require "libs/registry"
 local ft = {"json"}
 local lang = function ()
 
-  if not fn.executable("vscode-json-languageserver") then
+  if not bindings.executable("vscode-json-languageserver") then
     return
   end
 

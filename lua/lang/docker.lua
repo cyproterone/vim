@@ -8,7 +8,7 @@ local registry = require "libs/registry"
 local ft = {"dockerfile"}
 local lang = function ()
 
-  if not fn.executable("dockerfile-language-server-nodejs") then
+  if not bindings.executable("dockerfile-language-server-nodejs") then
     return
   end
 

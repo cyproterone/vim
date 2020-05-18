@@ -8,7 +8,7 @@ local registry = require "libs/registry"
 local ft = {"sh", "zsh"}
 local lang = function ()
 
-  if not fn.executable("bash-language-server") then
+  if not bindings.executable("bash-language-server") then
     return
   end
 

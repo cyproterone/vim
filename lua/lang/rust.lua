@@ -8,7 +8,7 @@ local registry = require "libs/registry"
 local ft = {"rust"}
 local lang = function ()
 
-  if not fn.executable("rust-analyzer") then
+  if not bindings.executable("rust-analyzer") then
     return
   end
 
