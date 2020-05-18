@@ -95,11 +95,6 @@ local map = function ()
 end
 
 
-local env = function (opt, val)
-  vim.loop.os_setenv(opt, val)
-end
-
-
 local source = function (path)
   api.nvim_command("source " .. path)
 end
@@ -174,7 +169,6 @@ return {
   set = set,
   let = let,
   map = map(),
-  env = env,
   source = source,
   buf = buf(),
   win = win(),
