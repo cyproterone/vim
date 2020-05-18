@@ -1,12 +1,19 @@
+local std = require "libs/std"
 local bindings = require "libs/bindings"
 local registry = require "libs/registry"
 
 
 --#################### Tree Region ####################
 
-if fn.has("nvim") then
-  registry.install{"Shougo/defx.nvim", ["do"] = ":UpdateRemotePlugins"}
+if fn.executable("ranger") then
+  registry.install("rbgrouleff/bclose.vim")
+  registry.install("francoiscabrol/ranger.vim")
   local tree = function ()
+
+    bindings.let("ranger_replace_netrw", true)
+    bindings.let("ranger_map_keys", false)
+
+    bindings.map.normal("<Leader>i", ":Ranger<CR>")
 
   end
   registry.defer(tree)
