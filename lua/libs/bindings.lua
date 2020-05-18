@@ -65,8 +65,16 @@ local map = function ()
       local rhs = rhs or ""
       local opt = opt or {}
       local options = std.merge{base, opt}
-      for _, mode in ipairs(prefix) do
-        api.nvim_set_keymap(mode, lhs, rhs, options)
+      if options.buffer then
+        local buf = options.buffer
+        options.buffer = nil
+        for _, mode in ipairs(prefix) do
+          api.nvim_buf_set_keymap(buf, mode, lhs, rhs, options)
+        end
+      else
+        for _, mode in ipairs(prefix) do
+          api.nvim_set_keymap(mode, lhs, rhs, options)
+        end
       end
     end
   end

@@ -23,3 +23,10 @@ local lang = function ()
 
 end
 ftp.defer(ft, lang)
+
+local always = function (buf)
+
+  bindings.map.normal("gq", ":Neoformat autopep8<CR>", {buffer = buf})
+
+end
+ftp.always(ft, always)

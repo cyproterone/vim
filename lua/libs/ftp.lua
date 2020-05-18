@@ -24,7 +24,11 @@ end
 
 
 local always = function (ft, ftplugin)
-  registry.auto("FileType", ftplugin, ft)
+  local ftp = function ()
+    local buf = tonumber(fn.expand("<abuf>"))
+    ftplugin(buf)
+  end
+  registry.auto("FileType", ftp, ft)
 end
 
 
