@@ -24,7 +24,7 @@ end
 
 
 local always = function (ft, ftplugin)
-  registry.auto({"FileType", buffer = true}, ftplugin, ft)
+  registry.auto("FileType", ftplugin, ft)
 end
 
 
