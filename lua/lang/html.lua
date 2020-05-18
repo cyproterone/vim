@@ -9,6 +9,11 @@ local registry = require "libs/registry"
 local ft = {"html"}
 
 
+local format = function ()
+  bindings.let("neoformat_enabled_html", {"prettier"})
+end
+
+
 local lsp = function ()
   if not bindings.executable("vscode-html-languageserver-bin") then
     return
@@ -21,6 +26,7 @@ end
 
 
 local lang = function ()
+  format()
   lsp()
 end
 ftp.defer(ft, lang)

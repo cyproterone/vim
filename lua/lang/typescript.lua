@@ -6,7 +6,19 @@ local ftp = require "libs/ftp"
 local registry = require "libs/registry"
 
 
-local ft = {"typescript"}
+local ft = {
+  "javascript",
+  "javascriptreact",
+  "javascript.jsx",
+  "typescript",
+  "typescriptreact",
+  "typescript.tsx" }
+
+
+local format = function ()
+  bindings.let("neoformat_enabled_javascript", {"prettier"})
+  bindings.let("neoformat_enabled_typescript", {"prettier"})
+end
 
 
 local lsp = function ()
@@ -18,13 +30,16 @@ local lsp = function ()
   lsp.tsserver.setup{}
   lsp.tsserver.manager.try_add()
 
-  registry.const.omni("typescript", {
-    "\\w\\.\\w*",
-  })
+  for _, f in ipairs(ft) do
+    registry.const.omni(f, {
+      "\\w\\.\\w*",
+    })
+  end
 end
 
 
 local lang = function ()
+  format()
   lsp()
 end
 ftp.defer(ft, lang)
