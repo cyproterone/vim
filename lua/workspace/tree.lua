@@ -14,7 +14,7 @@ if bindings.executable("ranger") then
     bindings.let("ranger_map_keys", false)
 
     -- enable preview under root
-    bindings.let("ranger_command_override", "ranger --cmd='set preview_files=true'")
+    bindings.let("ranger_command_override", "ranger --cmd='set preview_files=true' --cmd='set use_preview_script=true'")
 
     -- keybindings
     bindings.map.normal("<Leader>i", ":Ranger<CR>")
