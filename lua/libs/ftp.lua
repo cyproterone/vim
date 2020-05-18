@@ -15,7 +15,7 @@ local defer = function (ft, ftplugin)
     end
     set.add(_ftp, ftplugin)
     ftplugin()
-    print("-- 加载: " .. table.concat(ft, ",") .. " --")
+    print("-- LSP 加载: " .. table.concat(ft, ",") .. " --")
   end
   registry.auto("FileType", ftp, ft)
 end
