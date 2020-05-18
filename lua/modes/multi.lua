@@ -24,6 +24,10 @@ local remap_keys = function ()
   -- normalize Y
   bindings.map.nv("Y", "y$")
 
+  -- leave cursor 1 behind
+  bindings.map.nv("p", "gp")
+  bindings.map.nv("P", "gP")
+
 end
 registry.defer(remap_keys)
 

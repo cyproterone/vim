@@ -12,10 +12,3 @@ registry.install("matze/vim-move")
 -- auto parens
 registry.install("Raimondi/delimitMate")
 
-
--- easy quoting
-registry.install("tpope/vim-surround")
-
-
--- easy commenting
-registry.install("tpope/vim-commentary")
