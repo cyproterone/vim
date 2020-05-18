@@ -20,13 +20,28 @@ end
 registry.defer(apperance)
 
 
+-- hotkeys
 local hotkeys = function ()
 
   -- leave terminal
   bindings.map.terminal("<C-g>", [[<C-\><C-n>]])
 
   -- enter terminal
-  bindings.map.normal("<Leader>u", ":terminal<CR>")
+  bindings.map.normal("<Leader>U", ":terminal<CR>")
 
 end
 registry.defer(hotkeys)
+
+
+-- floating terminal
+registry.install("voldikss/vim-floaterm")
+local float_term = function ()
+
+  bindings.let("floaterm_width", 0.8)
+  bindings.let("floaterm_height", 0.8)
+
+  -- hotkeys
+  bindings.map.normal("<Leader>u", ":FloatermToggle<CR>")
+
+end
+registry.defer(float_term)

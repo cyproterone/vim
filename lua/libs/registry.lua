@@ -95,6 +95,7 @@ local init_plugins = function ()
   local install_func = table.concat({plug_beign, plug_installs, plug_end}, "\n")
 
   bindings.exec(install_func)
+  _plugins = {}
 end
 
 
@@ -103,6 +104,7 @@ local init_defer = function ()
   for _, cmd in ipairs(_defer) do
     cmd()
   end
+  _defer = {}
 end
 
 

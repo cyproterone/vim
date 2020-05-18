@@ -58,13 +58,14 @@ end
 
 
 local map = function ()
+  local base = {noremap = true, silent = true}
+
   local partial = function (prefix)
     return function (lhs, rhs, opt)
       local rhs = rhs or ""
       local opt = opt or {}
-      local base = {noremap = true, silent = true}
       local options = std.merge{base, opt}
-      for i, mode in ipairs(prefix) do
+      for _, mode in ipairs(prefix) do
         api.nvim_set_keymap(mode, lhs, rhs, options)
       end
     end
