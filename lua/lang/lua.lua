@@ -12,7 +12,9 @@ local lang = function ()
     return
   end
 
-  require("nvim_lsp").sumneko_lua.setup{}
+  local lsp = require "nvim_lsp"
+  lsp.sumneko_lua.setup{}
+  lsp.sumneko_lua.manager.try_add()
 
   registry.const.omni("lua", {
     "\\w\\.\\w*",

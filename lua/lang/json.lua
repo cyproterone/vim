@@ -12,7 +12,9 @@ local lang = function ()
     return
   end
 
-  require("nvim_lsp").jsonls.setup{}
+  local lsp = require "nvim_lsp"
+  lsp.jsonls.setup{}
+  lsp.jsonls.manager.try_add()
 
 end
 ftp.defer(ft, lang)

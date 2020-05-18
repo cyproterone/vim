@@ -12,7 +12,9 @@ local lang = function ()
     return
   end
 
-  require("nvim_lsp").vimls.setup{}
+  local lsp = require "nvim_lsp"
+  lsp.vimls.setup{}
+  lsp.vimls.manager.try_add()
 
 end
 ftp.defer(ft, lang)

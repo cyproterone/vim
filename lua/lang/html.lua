@@ -12,7 +12,9 @@ local lang = function ()
     return
   end
 
-  require("nvim_lsp").html.setup{}
+  local lsp = require "nvim_lsp"
+  lsp.html.setup{}
+  lsp.html.manager.try_add()
 
 end
 ftp.defer(ft, lang)

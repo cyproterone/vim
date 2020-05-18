@@ -12,7 +12,9 @@ local lang = function ()
     return
   end
 
-  require("nvim_lsp").bashls.setup{filetypes = {"sh", "zsh"}}
+  local lsp = require "nvim_lsp"
+  lsp.bashls.setup{filetypes = {"sh", "zsh"}}
+  lsp.bashls.manager.try_add()
 
 end
 ftp.defer(ft, lang)

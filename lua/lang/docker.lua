@@ -12,7 +12,9 @@ local lang = function ()
     return
   end
 
-  require("nvim_lsp").dockerls.setup{}
+  local lsp = require "nvim_lsp"
+  lsp.dockerls.setup{}
+  lsp.dockerls.manager.try_add()
 
 end
 ftp.defer(ft, lang)

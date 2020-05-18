@@ -12,7 +12,9 @@ local lang = function ()
     return
   end
 
-  require("nvim_lsp").pyls_ms.setup{}
+  local lsp = require "nvim_lsp"
+  lsp.pyls_ms.setup{}
+  lsp.pyls_ms.manager.try_add()
 
   registry.const.omni("python", {
     "\\w\\.\\w*",
