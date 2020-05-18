@@ -13,7 +13,7 @@ local keys = function ()
   bindings.map.command("<C-q>", "<Esc>")
 
   -- enable paste
-  bindings.map.command("<C-v>", [[<C-r>"]])
+  bindings.map.command("<C-v>", [[<C-r>"]], {silent = false})
 
 end
 registry.defer(keys)
