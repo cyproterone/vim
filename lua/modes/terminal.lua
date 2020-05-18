@@ -42,8 +42,6 @@ local float_term = function ()
   -- size
   bindings.let("floaterm_width", 0.8)
   bindings.let("floaterm_height", 0.8)
-  -- transparency
-  bindings.let("floaterm_winblend", 3)
 
   -- hotkeys
   bindings.map.normal("<Leader>u", ":FloatermToggle<CR>")
