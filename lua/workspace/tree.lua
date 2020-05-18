@@ -6,18 +6,14 @@ local registry = require "libs/registry"
 --#################### Tree Region ####################
 
 if bindings.executable("ranger") then
-  registry.install("rbgrouleff/bclose.vim")
-  registry.install("francoiscabrol/ranger.vim")
   local tree = function ()
 
-    bindings.let("ranger_replace_netrw", true)
-    bindings.let("ranger_map_keys", false)
-
-    -- enable preview under root
-    bindings.let("ranger_command_override", "ranger --cmd='set preview_files=true' --cmd='set use_preview_script=true'")
+    local ranger1 = " --cmd='set preview_files=true'"
+    local ranger2 = " --cmd='set use_preview_script=true'"
+    local ranger = "ranger" .. ranger1 .. ranger2
 
     -- keybindings
-    bindings.map.normal("<Leader>i", ":Ranger<CR>")
+    bindings.map.normal("<Leader>i", ":FloatermNew " .. ranger .. "<CR>")
 
   end
   registry.defer(tree)
