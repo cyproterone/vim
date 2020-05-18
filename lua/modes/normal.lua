@@ -17,6 +17,7 @@ local map_keys = function ()
 
   -- use @ to do ^
   bindings.map.normal("@", "^")
+  bindings.map.normal("^", "@")
 
 end
 registry.defer(map_keys)
