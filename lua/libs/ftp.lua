@@ -23,6 +23,12 @@ local defer = function (ft, ftplugin)
 end
 
 
+local always = function (ft, ftplugin)
+  registry.auto({"FileType", buffer = true}, ftplugin, ft)
+end
+
+
 return {
-  defer = defer
+  defer = defer,
+  always = always,
 }

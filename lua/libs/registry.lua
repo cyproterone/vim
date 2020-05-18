@@ -44,12 +44,13 @@ end
 local auto = function (events, func, filter)
 
   local evnts = std.wrap(events)
+  local buf = evnts.buffer and " <buffer> " or " "
   local events = table.concat(evnts, ",")
   local filter = table.concat(std.wrap(filter or "*"), ",")
   local idx = inc()
   local group = "augroup " .. idx
   local cls = "autocmd!"
-  local cmd = "autocmd " .. events .. " " .. filter .. " lua require('" .. _registry .. "').call(" .. idx .. ")"
+  local cmd = "autocmd " .. events .. buf .. filter .. " lua require('" .. _registry .. "').call(" .. idx .. ")"
   local done = "augroup END"
 
   for event in ipairs(evnts) do
