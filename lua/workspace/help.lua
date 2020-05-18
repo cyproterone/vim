@@ -9,6 +9,8 @@ local help = function ()
 
   bindings.map.normal("<Leader>", ":WhichKey '<Space>'<CR>")
 
+  bindings.map.normal("g", ":WhichKey 'g'<CR>")
+
   bindings.map.normal("[", ":WhichKey '['<CR>")
   bindings.map.normal("]", ":WhichKey ']'<CR>")
 
