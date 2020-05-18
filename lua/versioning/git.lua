@@ -4,5 +4,5 @@ local registry = require "libs/registry"
 
 --#################### Git Region ####################
 
--- git in general
--- registry.install("tpope/vim-fugitive")
+-- gitter
+registry.install("airblade/vim-gitgutter")

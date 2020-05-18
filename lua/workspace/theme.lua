@@ -30,6 +30,9 @@ local intrinsic = function ()
   -- show line count
   bindings.set("number")
 
+  -- show cursor
+  bindings.set("cursorline")
+
 end
 registry.defer(intrinsic)
 

@@ -23,11 +23,11 @@ registry.defer(emacs_keys)
 local cursor_cross = function ()
 
   local show = function ()
-    bindings.set("cursorline")
+
   end
 
   local hide = function ()
-    bindings.set("nocursorline")
+
   end
 
   registry.auto("InsertEnter", show)
