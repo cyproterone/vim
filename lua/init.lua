@@ -51,6 +51,7 @@ require "lang/python"
 require "lang/rust"
 require "lang/typescript"
 require "lang/vim"
+require "lang/xml"
 require "lang/yaml"
 
 
