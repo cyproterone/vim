@@ -29,14 +29,11 @@ local hotkeys = function ()
   -- cancel comp
   bindings.map.insert("<C-q>", "<C-e>")
 
-
-  -- cua comp
-  local remap = "inoremap <silent><expr> "
-  -- bindings.exec(remap .. [[<Esc>   pumvisible() ? "\<C-e>" : "\<Esc>"]])
-  bindings.exec(remap .. [[<CR>    pumvisible() ? "\<C-y>" : "\<CR>" ]])
-  bindings.exec(remap .. [[<Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"]])
-  bindings.exec(remap .. [[<S-Tab> pumvisible() ? "\<C-p>" : "\<C-h>"]])
-
+  -- cua
+  -- bindings.map.insert("<Esc>",   "pumvisible() ? '<C-e>' : '<Esc>'", {expr = true})
+  bindings.map.insert("<CR>",    "pumvisible() ? '<C-y>' : '<CR>'",  {expr = true})
+  bindings.map.insert("<Tab>",   "pumvisible() ? '<C-n>' : '<Tab>'", {expr = true})
+  bindings.map.insert("<S-Tab>", "pumvisible() ? '<C-p>' : '<C-h>'", {expr = true})
 
   -- previous
   bindings.map.insert("<C-p>", "<C-x><C-p>")
