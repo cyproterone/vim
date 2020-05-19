@@ -11,6 +11,15 @@ local new = function (tb)
 end
 
 
+local to_list = function (set)
+  local acc = {}
+  for key, _ in pairs(set) do
+    table.insert(acc, key)
+  end
+  return acc
+end
+
+
 local contains = function (set, key)
   return set[key] ~= nil
 end
@@ -83,6 +92,7 @@ end
 
 return {
   new = new,
+  to_list = to_list,
   contains = contains,
   add = add,
   subtract = subtract,

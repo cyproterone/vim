@@ -41,8 +41,8 @@ local keymap = function (buf)
   bindings.map.normal("N",       "defx#async_action('new_multiple_files')",                       opts)
   bindings.map.normal("m",       "defx#async_action('new_directory')",                            opts)
 
-  bindings.map.normal("+",       "defx#async_action('resize', defx#get_context().winwidth + 10)", opts)
-  bindings.map.normal("-",       "defx#async_action('resize', defx#get_context().winwidth - 10)", opts)
+  bindings.map.normal(">",       "defx#async_action('resize', defx#get_context().winwidth + 10)", opts)
+  bindings.map.normal("<",       "defx#async_action('resize', defx#get_context().winwidth - 10)", opts)
   bindings.map.normal("<C-r>",   "defx#async_action('redraw')",                                   opts)
 
 
@@ -64,7 +64,6 @@ local options = function ()
     "-listed",
     "-resume",
     "-toggle",
-    "-sort=extension",
     "-columns=mark:indent:git:icons:filename:type",
     "-split=vertical",
     "-direction=topleft",
@@ -74,6 +73,7 @@ local options = function ()
 
 end
 registry.defer(options)
+
 
 local theme = function ()
   bindings.let("defx_icons_enable_syntax_highlight", false)

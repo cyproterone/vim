@@ -1,6 +1,7 @@
+local std = require "libs/std"
+local set = require "libs/set"
 local bindings = require "libs/bindings"
 local registry = require "libs/registry"
-local std = require "libs/std"
 
 
 --#################### Intrinsic WM Region ####################
@@ -50,7 +51,20 @@ local wm_close = function ()
   bindings.map.normal("<Leader>w", ":close<CR>")
 
   -- close other windows
-  bindings.map.normal("<Leader>W", ":only<CR>")
+  lua_window_only = function (keep_open)
+    local keep_open = set.new(keep_open)
+    local only_win = api.nvim_tabpage_get_win(0)
+    local wins = api.nvim_tabpage_list_wins(0)
+
+    for _, win in ipairs(wins) do
+      local buf = api.nvim_win_get_buf(win)
+      local ft = bindings.buf.opt(buf, "filetype")
+      if win ~= only_win and not set.contains(keep_open, ft) then
+        api.nvim_win_close(win, false)
+      end
+    end
+  end
+  bindings.map.normal("<Leader>W", [[:lua lua_window_only{"defx"}<CR>]])
 
   -- break window into tab
   bindings.map.normal("<Leader>k", "<C-w>T")
