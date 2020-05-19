@@ -84,8 +84,7 @@ if bindings.has("nvim") then
       "-columns=mark:indent:git:icons:filename:type",
       "-split=vertical",
       "-direction=topleft",
-      "-winwidth=40",
-    }
+      "-winwidth=40"}
 
     bindings.map.normal("<Leader>i", ":Defx " .. table.concat(args, " ") .. "<Cr>")
 
