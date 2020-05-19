@@ -10,9 +10,6 @@ local ft = {"rust"}
 
 
 local lsp = function ()
-  if not bindings.executable("rust-analyzer") then
-    return
-  end
 
   local lsp = require "nvim_lsp"
   lsp.rust_analyzer.setup{}

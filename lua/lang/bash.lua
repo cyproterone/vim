@@ -10,9 +10,6 @@ local ft = {"sh", "zsh"}
 
 
 local lsp = function ()
-  if not bindings.executable("bash-language-server") then
-    return
-  end
 
   local lsp = require "nvim_lsp"
   lsp.bashls.setup{filetypes = {"sh", "zsh"}}

@@ -10,9 +10,6 @@ local ft = {"dockerfile"}
 
 
 local lsp = function ()
-  if not bindings.executable("dockerfile-language-server-nodejs") then
-    return
-  end
 
   local lsp = require "nvim_lsp"
   lsp.dockerls.setup{}
