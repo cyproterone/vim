@@ -9,14 +9,14 @@ local registry = require "libs/registry"
 local emacs = function ()
 
   -- ea
-  bindings.map.insert("<C-a>", "<C-o>^")
-  bindings.map.insert("<C-x><C-a>", "<C-a>")
-  bindings.map.insert("<C-e>",  "pumvisible() ? '<C-e><End>' : '<End>'", {expr = true})
+  bindings.map.insert("<C-a>",       "<C-o>^")
+  bindings.map.insert("<C-x><C-a>",  "<C-a>")
+  bindings.map.insert("<C-e>",       "pumvisible() ? '<C-e><End>' : '<End>'", {expr = true})
 
   -- ea
-  bindings.map.command("<C-a>", "<Home>", {silent = false})
+  bindings.map.command("<C-a>",      "<Home>", {silent = false})
   bindings.map.command("<C-x><C-a>", "<C-a>", {silent = false})
-  bindings.map.command("<C-e>", "<End>", {silent = false})
+  bindings.map.command("<C-e>",      "<End>", {silent = false})
 
 end
 registry.defer(emacs)
@@ -59,7 +59,7 @@ local movement = function ()
   bindings.map.nv("}", "}zz")
 
   -- centre on page
-  bindings.map.nv("<S-Up>", "<Up>zz")
+  bindings.map.nv("<S-Up>",   "<Up>zz")
   bindings.map.nv("<S-Down>", "<Down>zz")
 
 end
@@ -68,10 +68,10 @@ registry.defer(movement)
 
 local cua = function ()
 
-  bindings.map.nic("<M-Left>", "<C-Left>")
+  bindings.map.nic("<M-Left>",  "<C-Left>")
   bindings.map.nic("<M-Right>", "<C-Right>")
-  bindings.map.nic("<M-Up>", "<C-Up>")
-  bindings.map.nic("<M-Down>", "<C-Down>")
+  bindings.map.nic("<M-Up>",    "<C-Up>")
+  bindings.map.nic("<M-Down>",  "<C-Down>")
 
 end
 registry.defer(cua)
