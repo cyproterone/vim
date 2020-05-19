@@ -40,48 +40,54 @@ if bindings.has("nvim") then
   local keymap = function (buf)
     local opts = {expr = true, buffer = buf}
 
-    bindings.map.normal("q",       "defx#async_action('quit')",                     opts)
+    bindings.map.normal("q",       "defx#async_action('quit')",                 opts)
 
-    bindings.map.normal("<Tab>",   "defx#async_action('open_tree', 'toggle')",      opts)
-    bindings.map.normal("<Enter>", "defx#async_action('open')",                     opts)
-    bindings.map.normal("<Up>",    "line('.') == 1 ? 'G' : '<Up>'",              opts)
-    bindings.map.normal("<Down>",  "line('.') == line('$') ? 'gg' : '<Down>'",   opts)
-    bindings.map.normal("<Right>", "defx#async_action('open')",                     opts)
-    bindings.map.normal("<Left>",  "defx#async_action('cd', ['..'])",               opts)
-    bindings.map.normal("~",       "defx#async_action('cd')",                       opts)
-    bindings.map.normal("cd",      "defx#async_action('change_vim_cwd')",           opts)
-    bindings.map.normal(".",       "defx#async_action('toggle_ignored_files')",     opts)
+    bindings.map.normal("<Tab>",   "defx#async_action('open_tree', 'toggle')",  opts)
+    bindings.map.normal("<Enter>", "defx#async_action('open')",                 opts)
+    bindings.map.normal("<Up>",    "line('.') == 1 ? 'G' : '<Up>'",             opts)
+    bindings.map.normal("<Down>",  "line('.') == line('$') ? 'gg' : '<Down>'",  opts)
+    bindings.map.normal("<Right>", "defx#async_action('open')",                 opts)
+    bindings.map.normal("<Left>",  "defx#async_action('cd', ['..'])",           opts)
+    bindings.map.normal("~",       "defx#async_action('cd')",                   opts)
+    bindings.map.normal("cd",      "defx#async_action('change_vim_cwd')",       opts)
+    bindings.map.normal(".",       "defx#async_action('toggle_ignored_files')", opts)
 
-    bindings.map.normal("<Space>", "defx#async_action('toggle_select') . '<Down>'", opts)
-    bindings.map.normal("*",       "defx#async_action('toggle_select_all')",        opts)
-    bindings.map.normal("y",       "defx#async_action('copy')",                     opts)
-    bindings.map.normal("p",       "defx#async_action('paste')",                    opts)
-    bindings.map.normal("r",       "defx#async_action('rename')",                   opts)
-    bindings.map.normal("m",       "defx#async_action('move')",                     opts)
-    bindings.map.normal("d",       "defx#async_action('remove')",                   opts)
-    bindings.map.normal("!",       "defx#async_action('execute_command')",          opts)
-    bindings.map.normal("x",       "defx#async_action('execute_system')",           opts)
-    bindings.map.normal(";",       "defx#async_action('repeat')",                   opts)
+    bindings.map.normal("<Space>", "defx#async_action('toggle_select')",        opts)
+    bindings.map.normal("*",       "defx#async_action('toggle_select_all')",    opts)
+    bindings.map.normal("y",       "defx#async_action('copy')",                 opts)
+    bindings.map.normal("p",       "defx#async_action('paste')",                opts)
+    bindings.map.normal("r",       "defx#async_action('rename')",               opts)
+    bindings.map.normal("m",       "defx#async_action('move')",                 opts)
+    bindings.map.normal("d",       "defx#async_action('remove')",               opts)
+    bindings.map.normal("!",       "defx#async_action('execute_command')",      opts)
+    bindings.map.normal("x",       "defx#async_action('execute_system')",       opts)
+    bindings.map.normal(";",       "defx#async_action('repeat')",               opts)
 
-    bindings.map.normal("n",       "defx#async_action('new_file')",                 opts)
-    bindings.map.normal("N",       "defx#async_action('new_multiple_files')",       opts)
-    bindings.map.normal("m",       "defx#async_action('new_directory')",            opts)
+    bindings.map.normal("n",       "defx#async_action('new_file')",             opts)
+    bindings.map.normal("N",       "defx#async_action('new_multiple_files')",   opts)
+    bindings.map.normal("m",       "defx#async_action('new_directory')",        opts)
 
-    bindings.map.normal("e",       "defx#async_action('open', 'vsplit')",           opts)
-    bindings.map.normal("E",       "defx#async_action('open', 'pedit')",            opts)
+    bindings.map.normal("e",       "defx#async_action('open', 'vsplit')",       opts)
+    bindings.map.normal("E",       "defx#async_action('open', 'pedit')",        opts)
 
-
-    bindings.map.normal("<C-l>",   "defx#async_action('redraw')",                   opts)
-    bindings.map.normal("<C-g>",   "defx#async_action('print')",                    opts)
-
-    bindings.map.normal("C", "defx#async_action('toggle_columns', 'mark:indent:icon:filename:type:size:time')", opts)
+    bindings.map.normal("<C-l>",   "defx#async_action('redraw')",               opts)
 
   end
   registry.auto("FileType", keymap, "defx")
 
   local options = function ()
+    local args = {
+      "-listed",
+      "-resume",
+      "-toggle",
+      "-sort=extension",
+      "-columns=mark:indent:git:icons:filename:type",
+      "-split=vertical",
+      "-direction=topleft",
+      "-winwidth=40",
+    }
 
-    bindings.map.normal("<Leader>i", ":Defx<Cr>")
+    bindings.map.normal("<Leader>i", ":Defx " .. table.concat(args, " ") .. "<Cr>")
 
   end
   registry.defer(options)
