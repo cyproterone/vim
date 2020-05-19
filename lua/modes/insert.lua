@@ -1,6 +1,5 @@
 local bindings = require "libs/bindings"
 local registry = require "libs/registry"
-local theme = require "libs/theme"
 
 
 --#################### Insert Region ####################
