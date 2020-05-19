@@ -5,7 +5,7 @@ local registry = require "libs/registry"
 
 --#################### File Manager Region ####################
 
-if bindings.has("nvim") then
+if bindings.has("python") then
 
   registry.install{"Shougo/defx.nvim", ["do"] = ":UpdateRemotePlugins"}
   registry.install("kristijanhusak/defx-icons")

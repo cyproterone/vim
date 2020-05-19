@@ -71,7 +71,8 @@ end
 registry.defer(enable)
 
 
-if bindings.has("nvim") then
+if bindings.has("python") then
+
   registry.install{"Shougo/deoplete.nvim", ["do"] = ":UpdateRemotePlugins"}
   registry.install("Shougo/deoplete-lsp")
   registry.install{"tbodt/deoplete-tabnine", ["do"] = "./install.sh"}
