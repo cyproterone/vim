@@ -44,6 +44,18 @@ local cursors = function ()
   -- dont change cursor styling
   bindings.set("guicursor", "", [[=]])
 
+  -- change cursor line colour
+  local enter = function ()
+    theme.highlight{CursorLine = {guibg = "#f2d9fa"}}
+  end
+
+  local leave = function ()
+    theme.highlight{CursorLine = {guibg = "#f1f4f6"}}
+  end
+
+  registry.auto("InsertEnter", enter)
+  registry.auto("InsertLeave", leave)
+
 end
 registry.defer(cursors)
 
