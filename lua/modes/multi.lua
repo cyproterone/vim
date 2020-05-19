@@ -5,8 +5,21 @@ local registry = require "libs/registry"
 
 --#################### Multi-Mode Region ####################
 
--- add eamcs keybinds in insert / command mode
-registry.install("tpope/vim-rsi")
+-- add emacs key binds
+local emacs = function ()
+
+  -- ea
+  bindings.map.insert("<C-a>", "<C-o>^")
+  bindings.map.insert("<C-x><C-a>", "<C-a>")
+  bindings.map.insert("<C-e>", "pumvisible()?<Lt>C-e><Lt>End>:<Lt>End>", {expr = true})
+
+  -- ea
+  bindings.map.command("<C-a>", "<Home>", {silent = false})
+  bindings.map.command("<C-x><C-a>", "<C-a>", {silent = false})
+  bindings.map.command("<C-e>", "<End>", {silent = false})
+
+end
+registry.defer(emacs)
 
 
 local remap_keys = function ()
