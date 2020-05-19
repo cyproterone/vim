@@ -76,11 +76,9 @@ local init_plug = function (cont)
     bindings.source(plug)
     cont()
   end
-  bindings.exec[[
-  function! InstallVimPlug (job_id, code, event_type)
-    v:lua.lua_cont_init()
-  endfunction
-  ]]
+  bindings.exec[[function! InstallVimPlug (job_id, code, event_type)
+    lua lua_cont_init()
+  endfunction]]
   if not stdio.file_exists(plug) then
     fn.termopen({"curl", "--create-dirs", "-o", plug, remote}, {on_exit = "InstallVimPlug"})
   else
