@@ -15,8 +15,8 @@ local emacs = function ()
 
   -- ea
   bindings.map.command("<C-a>",      "<Home>", {silent = false})
-  bindings.map.command("<C-x><C-a>", "<C-a>", {silent = false})
-  bindings.map.command("<C-e>",      "<End>", {silent = false})
+  bindings.map.command("<C-x><C-a>", "<C-a>",  {silent = false})
+  bindings.map.command("<C-e>",      "<End>",  {silent = false})
 
 end
 registry.defer(emacs)
