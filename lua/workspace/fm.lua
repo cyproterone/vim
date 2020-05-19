@@ -5,8 +5,8 @@ local registry = require "libs/registry"
 
 --#################### File Manager Region ####################
 
-
-registry.install{"Shougo/defx.nvim", ["do"] = ":UpdateRemotePlugins"}
+-- needs :UpdateRemotePlugins
+registry.install("Shougo/defx.nvim")
 registry.install("kristijanhusak/defx-icons")
 registry.install("kristijanhusak/defx-git")
 local keymap = function (buf)

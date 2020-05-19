@@ -71,7 +71,8 @@ end
 registry.defer(enable)
 
 
-registry.install{"Shougo/deoplete.nvim", ["do"] = ":UpdateRemotePlugins"}
+-- needs :UpdateRemotePlugins
+registry.install("Shougo/deoplete.nvim")
 registry.install("Shougo/deoplete-lsp")
 registry.install{"tbodt/deoplete-tabnine", ["do"] = "./install.sh"}
 local comp = function ()
