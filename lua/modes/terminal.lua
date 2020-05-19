@@ -42,7 +42,6 @@ local float_term = function ()
 
   -- hotkeys
   bindings.map.normal("<Leader>u", ":FloatermToggle<CR>")
-  bindings.map.normal("<Leader>U", ":FloatermNew! ", {silent = false})
   bindings.map.normal("[z", ":FloatermPrev<CR>")
   bindings.map.normal("]z", ":FloatermNext<CR>")
 

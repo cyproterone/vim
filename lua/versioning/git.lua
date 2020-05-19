@@ -7,7 +7,7 @@ local registry = require "libs/registry"
 -- lazygit
 local lg = function ()
 
-  bindings.map.normal("<Leader>I", ":FloatermNew lazygit<CR>")
+  bindings.map.normal("<Leader>U", ":FloatermNew lazygit<CR>")
 
 end
 registry.defer(lg)
