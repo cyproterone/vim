@@ -3,6 +3,7 @@
 --#################### ############### ####################
 
 local std = require "libs/std"
+local a = require "libs/async"
 local stdio = require "libs/io"
 local bindings = require "libs/bindings"
 
@@ -68,14 +69,23 @@ local auto = function (events, func, filter)
 end
 
 
-local init_plug = function ()
+local init_plug = function (cont)
   local remote = "https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
   local plug = bin_home .. "/plug.vim"
-  if not stdio.file_exists(plug) then
-    -- TODO: fn.termopen({"sh", "-c", script}, {on_exit = viml_on_exit})
-    stdio.exec("wget -P " .. bin_home  .. " " .. remote)
+  lua_cont_init = function ()
+    bindings.source(plug)
+    cont()
   end
-  bindings.source(plug)
+  bindings.exec[[
+  function! InstallVimPlug (job_id, code, event_type)
+    v:lua.lua_cont_init()
+  endfunction
+  ]]
+  if not stdio.file_exists(plug) then
+    fn.termopen({"curl", "--create-dirs", "-o", plug, remote}, {on_exit = "InstallVimPlug"})
+  else
+    lua_cont_init()
+  end
 end
 
 
@@ -109,11 +119,11 @@ local init_defer = function ()
 end
 
 
-local materialize = function ()
-  init_plug()
+local materialize = a.sync(function ()
+  a.wait(init_plug)
   init_plugins()
   init_defer()
-end
+end)
 
 
 return {
