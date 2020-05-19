@@ -59,22 +59,6 @@ end
 registry.defer(registers)
 
 
--- clean up where files are stored
-local var_files = function ()
-
-  -- backup files
-    bindings.set("backupdir", var_home .. "/backup//")
-
-    -- undo files
-    bindings.set("undodir", var_home .. "/undo//")
-
-    -- swap files
-    bindings.set("directory", var_home .. "/swap//")
-
-end
-registry.defer(var_files)
-
-
 local welcome_screen = function ()
 
   -- remove welcome message
