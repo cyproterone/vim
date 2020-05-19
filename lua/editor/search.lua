@@ -111,7 +111,7 @@ local replace = function ()
 
   -- no magic
   bindings.map.normal("gt", ":set opfunc=v:lua.lua_op_sd<CR>g@")
-
+  bindings.map.visual("gt", [["zy:%s/\V<C-r>z//g<Left><Left>]], {silent = false})
   -- very magic
   bindings.map.normal("gT", [[:%s/\v//g<Left><Left><Left>]], {silent = false})
 
