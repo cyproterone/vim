@@ -4,22 +4,6 @@ local registry = require "libs/registry"
 
 --#################### Terminal Region ####################
 
-local apperance = function ()
-
-  -- set window options
-  local win_ui = function ()
-    local buf = fn.expand("<abuf>")
-    local win = fn.bufwinid(tonumber(buf))
-    bindings.win(win).set("signcolumn", "no")
-    bindings.win(win).set("number", false)
-  end
-
-  registry.auto("TermOpen", win_ui)
-
-end
-registry.defer(apperance)
-
-
 -- hotkeys
 local hotkeys = function ()
 
