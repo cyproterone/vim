@@ -34,10 +34,10 @@ registry.defer(hotkeys)
 local improved_search = function ()
 
   -- search without moving
-  bindings.map.normal("*", "*N")
-  bindings.map.normal("#", "*N")
-  bindings.map.normal("g*", "g*N")
-  bindings.map.normal("g#", "g*N")
+  bindings.map.normal("*", "*Nzz")
+  bindings.map.normal("#", "*Nzz")
+  bindings.map.normal("g*", "g*Nzz")
+  bindings.map.normal("g#", "g*Nzz")
 
   -- centre on search result
   bindings.map.normal("n", "nzz")
@@ -45,16 +45,6 @@ local improved_search = function ()
 
 end
 registry.defer(improved_search)
-
-
--- get selection
-local fd_select = function (type)
-  if type == "line" then
-    bindings.exec[[exe "norm! '[V']\"zy"]]
-  else
-    bindings.exec[[exe "norm! `[v`]\"zy"]]
-  end
-end
 
 
 -- use no magic
@@ -65,6 +55,16 @@ local nomagic = function ()
 
 end
 registry.defer(nomagic)
+
+
+-- get selection
+local fd_select = function (type)
+  if type == "line" then
+    bindings.exec[[exe "norm! '[V']\"zy"]]
+  else
+    bindings.exec[[exe "norm! `[v`]\"zy"]]
+  end
+end
 
 
 -- find selection
