@@ -1,7 +1,6 @@
 --#################### ############# ####################
 --#################### Python Region ####################
 --#################### ############# ####################
-local bindings = require "libs/bindings"
 local ftp = require "libs/ftp"
 local registry = require "libs/registry"
 
@@ -20,10 +19,6 @@ end
 
 
 local lsp = function ()
-  if not bindings.executable("dotnet") then
-    return
-  end
-
   local lsp = require "nvim_lsp"
   lsp.pyls_ms.setup{}
   lsp.pyls_ms.manager.try_add()

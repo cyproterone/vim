@@ -159,10 +159,6 @@ local win = function (id)
 end
 
 
-local executable = function (prog)
-  return fn.executable(prog) == 1
-end
-
 
 return {
   p_val = p_val,
@@ -174,5 +170,4 @@ return {
   source = source,
   buf = buf,
   win = win,
-  executable = executable,
 }
