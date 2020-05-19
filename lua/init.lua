@@ -7,6 +7,7 @@ local registry = require "libs/registry"
 
 -- workspace
 require "workspace/help"
+require "workspace/fm"
 require "workspace/keyboard"
 require "workspace/misc"
 require "workspace/mouse"
@@ -14,7 +15,6 @@ require "workspace/navigation"
 require "workspace/proj"
 require "workspace/tasks"
 require "workspace/theme"
-require "workspace/tree"
 require "workspace/wm"
 
 -- modes
