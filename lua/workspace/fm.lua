@@ -72,12 +72,12 @@ if bindings.has("nvim") then
     bindings.map.normal("-",       "defx#async_action('resize', defx#get_context().winwidth - 10)", opts)
     bindings.map.normal("<C-l>",   "defx#async_action('redraw')",                                   opts)
 
-    bindings.map.normal("[",       "<Plug>(defx-git-prev)",                                         {noremap: true})
-    bindings.map.normal("]",       "<Plug>(defx-git-next)",                                         {noremap: true})
+    bindings.map.normal("[",       "<Plug>(defx-git-prev)",                                         {noremap = false})
+    bindings.map.normal("]",       "<Plug>(defx-git-next)",                                         {noremap = false})
 
-    bindings.map.normal("s",       "<Plug>(defx-git-stage)",                                        {noremap: true})
-    bindings.map.normal("u",       "<Plug>(defx-git-reset)",                                        {noremap: true})
-    bindings.map.normal("U",       "<Plug>(defx-git-discard)",                                      {noremap: true})
+    bindings.map.normal("s",       "<Plug>(defx-git-stage)",                                        {noremap = false})
+    bindings.map.normal("u",       "<Plug>(defx-git-reset)",                                        {noremap = false})
+    bindings.map.normal("U",       "<Plug>(defx-git-discard)",                                      {noremap = false})
 
   end
   registry.auto("FileType", keymap, "defx")
