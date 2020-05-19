@@ -22,8 +22,17 @@ local modern_split = function ()
   bindings.set("splitbelow")
 
   -- split windows
-  bindings.map.normal("<Leader>=", ":vsplit<CR>")
-  bindings.map.normal("<Leader>-", ":split<CR>")
+  lua_new_window = function(vertical)
+    if vertical then
+      bindings.exec[[vsplit]]
+    else
+      bindings.exec[[split]]
+    end
+    local buf = api.nvim_create_buf(false, true)
+    api.nvim_win_set_buf(0, buf)
+  end
+  bindings.map.normal("<Leader>=", ":lua lua_new_window(true)<CR>")
+  bindings.map.normal("<Leader>-", ":lua lua_new_window(false)<CR>")
 
   -- has to use C for direction
   bindings.map.normal("<C-h>", "<C-w>h")
@@ -39,10 +48,6 @@ local modern_split = function ()
 
 end
 registry.defer(modern_split)
-
-
-local new_window = function ()
-end
 
 
 -- modern wm
@@ -86,7 +91,6 @@ local tabs_wm = function ()
   -- create new tab
   lua_new_tab = function ()
     bindings.exec[[tabnew]]
-    local buf = api.nvim_get_current_buf()
     bindings.buf(0).set("buftype", "nofile")
   end
   bindings.map.normal("<Leader>t", ":lua lua_new_tab()<CR>")
