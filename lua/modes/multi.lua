@@ -8,10 +8,11 @@ local registry = require "libs/registry"
 -- add emacs key binds
 local emacs = function ()
 
+  local remap = "inoremap <silent><expr> "
   -- ea
   bindings.map.insert("<C-a>", "<C-o>^")
   bindings.map.insert("<C-x><C-a>", "<C-a>")
-  bindings.map.insert("<C-e>", "pumvisible()?<Lt>C-e><Lt>End>:<Lt>End>", {expr = true})
+  bindings.exec(remap .. [[<C-e> pumvisible() ? "\<C-e>\<End>" : "\<End>"]])
 
   -- ea
   bindings.map.command("<C-a>", "<Home>", {silent = false})
