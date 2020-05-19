@@ -14,7 +14,6 @@ local highlight = function (highlights)
     local clause = table.concat(acc, " ")
     local hi = "highlight " .. group .. " " .. clause
     bindings.exec(hi)
-    print(hi)
   end
 end
 
