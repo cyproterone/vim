@@ -72,6 +72,7 @@ local init_plug = function ()
   local remote = "https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
   local plug = bin_home .. "/plug.vim"
   if not stdio.file_exists(plug) then
+    -- TODO: fn.termopen({"sh", "-c", script}, {on_exit = viml_on_exit})
     stdio.exec("wget -P " .. bin_home  .. " " .. remote)
   end
   bindings.source(plug)
