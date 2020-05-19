@@ -78,8 +78,8 @@ local fzf = function ()
                    height = 0.8}})
 
   -- keybindings
-  bindings.map.normal("<C-p>", ":Commands<CR>")
-  bindings.map.normal("<C-n>", ":History:<CR>")
+  bindings.map.normal("<C-p>",     ":Commands<CR>")
+  bindings.map.normal("<C-n>",     ":History:<CR>")
   bindings.map.normal("<Leader>p", ":Files<CR>")
   bindings.map.normal("<Leader>P", ":History<CR>")
   bindings.map.normal("<Leader>o", ":BLines<CR>")
