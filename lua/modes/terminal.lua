@@ -10,9 +10,6 @@ local hotkeys = function ()
   -- leave terminal
   bindings.map.terminal("<C-g>", [[<C-\><C-n>]])
 
-  -- launch terminal
-  bindings.map.normal("<Leader>U", ":terminal<CR>")
-
 end
 registry.defer(hotkeys)
 
