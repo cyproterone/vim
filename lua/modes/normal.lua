@@ -30,12 +30,12 @@ local no_stepback = function ()
 
   local record_pos = function ()
     local c = fn.col(".")
-    bindings.buf.let(0, buf_cursor_pos, c)
+    bindings.buf(0).let(buf_cursor_pos, c)
   end
 
   local displace = function ()
     local c = fn.col(".")
-    local pos = bindings.buf.var(0, buf_cursor_pos)
+    local pos = bindings.buf(0).var(buf_cursor_pos)
     if c ~= pos then
       fn.cursor(0, pos)
     end

@@ -68,7 +68,7 @@ local welcome_screen = function ()
   local on_new = function (once)
     local name = fn.bufname(1)
     if name == "" then
-      bindings.buf.set(1, "buftype", "nofile")
+      bindings.buf(1).set("buftype", "nofile")
     end
     once()
   end

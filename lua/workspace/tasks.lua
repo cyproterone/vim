@@ -32,7 +32,7 @@ local autosave = function ()
   local save = function ()
     local bufs = api.nvim_list_bufs()
     for _, buf in ipairs(bufs) do
-      local modified = bindings.buf.opt(buf, "modified")
+      local modified = bindings.buf(buf).opt("modified")
       if modified ~= "nomodified" then
         bindings.exec("silent! wa")
         break

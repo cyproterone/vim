@@ -10,8 +10,8 @@ local apperance = function ()
   local win_ui = function ()
     local buf = fn.expand("<abuf>")
     local win = fn.bufwinid(tonumber(buf))
-    bindings.win.set(win, "signcolumn", "no")
-    bindings.win.set(win, "number", false)
+    bindings.win(win).set("signcolumn", "no")
+    bindings.win(win).set("number", false)
   end
 
   registry.auto("TermOpen", win_ui)

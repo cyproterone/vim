@@ -100,22 +100,22 @@ local source = function (path)
 end
 
 
-local buf = function ()
+local buf = function (id)
 
-  local let = function (buf, var, val)
-    return api.nvim_buf_set_var(buf, var, val)
+  local let = function (var, val)
+    return api.nvim_buf_set_var(id, var, val)
   end
 
-  local var = function (buf, var)
-    return api.nvim_buf_get_var(buf, var)
+  local var = function (var)
+    return api.nvim_buf_get_var(id, var)
   end
 
-  local set = function (buf, var, val)
-    return api.nvim_buf_set_option(buf, var, val)
+  local set = function (var, val)
+    return api.nvim_buf_set_option(id, var, val)
   end
 
-  local opt = function (buf, var)
-    return api.nvim_buf_get_option(buf, var)
+  local opt = function (var)
+    return api.nvim_buf_get_option(id, var)
   end
 
   return {
@@ -127,22 +127,22 @@ local buf = function ()
 end
 
 
-local win = function ()
+local win = function (id)
 
-  local let = function (win, var, val)
-    return api.nvim_win_set_var(win, var, val)
+  local let = function (var, val)
+    return api.nvim_win_set_var(id, var, val)
   end
 
-  local var = function (win, var)
-    return api.nvim_win_get_var(win, var)
+  local var = function (var)
+    return api.nvim_win_get_var(id, var)
   end
 
-  local set = function (win, var, val)
-    return api.nvim_win_set_option(win, var, val)
+  local set = function (var, val)
+    return api.nvim_win_set_option(id, var, val)
   end
 
-  local opt = function (win, var)
-    return api.nvim_win_get_option(win, var)
+  local opt = function (var)
+    return api.nvim_win_get_option(id, var)
   end
 
   return {
@@ -166,7 +166,7 @@ return {
   let = let,
   map = map(),
   source = source,
-  buf = buf(),
-  win = win(),
+  buf = buf,
+  win = win,
   executable = executable,
 }

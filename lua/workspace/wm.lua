@@ -62,7 +62,7 @@ local wm_close = function ()
 
     for _, win in ipairs(wins) do
       local buf = api.nvim_win_get_buf(win)
-      local ft = bindings.buf.opt(buf, "filetype")
+      local ft = bindings.buf(buf).opt("filetype")
       if win ~= only_win and not set.contains(keep_open, ft) then
         api.nvim_win_close(win, false)
       end
@@ -86,8 +86,8 @@ local tabs_wm = function ()
   -- create new tab
   lua_new_tab = function ()
     bindings.exec[[tabnew]]
-    local buf = api.nvim_get_current_buf() 
-    bindings.buf.set(0, "buftype", "nofile")
+    local buf = api.nvim_get_current_buf()
+    bindings.buf(0).set("buftype", "nofile")
   end
   bindings.map.normal("<Leader>t", ":lua lua_new_tab()<CR>")
   bindings.map.normal("<Leader>n", ":lua lua_new_tab()<CR>")
