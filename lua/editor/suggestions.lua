@@ -77,6 +77,7 @@ registry.defer(enable)
 if bindings.has("nvim") then
   registry.install{"Shougo/deoplete.nvim", ["do"] = ":UpdateRemotePlugins"}
   registry.install("Shougo/deoplete-lsp")
+  registry.install{"tbodt/deoplete-tabnine", ["do"] = "./install.sh"}
 
   local comp = function ()
 
@@ -92,7 +93,10 @@ if bindings.has("nvim") then
 
 
     -- options
-    setopt("sources", {_ = {"around", "buffer", "member", "file"}})
+    setopt("sources", {_ = {"tabnine"}})
+    fn["deoplete#custom#var"]("tabnine", {
+      line_limit = 96,
+      max_num_results = 6})
 
   end
   registry.defer(comp)

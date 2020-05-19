@@ -27,7 +27,7 @@ registry.defer(fs_consistency)
 local autosave = function ()
 
   -- auto backup
-  bindings.set("backup")
+  -- bindings.set("backup")
 
   local save = function ()
     local bufs = api.nvim_list_bufs()
