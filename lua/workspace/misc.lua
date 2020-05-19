@@ -24,6 +24,9 @@ local misc = function ()
   -- performance
   bindings.set("ttyfast")
 
+  -- no swap files
+  bindings.set("noswapfile")
+
 end
 registry.defer(misc)
 
