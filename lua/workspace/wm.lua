@@ -24,9 +24,9 @@ local modern_split = function ()
   -- split windows
   lua_new_window = function(vertical)
     if vertical then
-      bindings.exec[[vsplit]]
+      bindings.exec[[vnew]]
     else
-      bindings.exec[[split]]
+      bindings.exec[[new]]
     end
     local buf = api.nvim_create_buf(false, true)
     api.nvim_win_set_buf(0, buf)
@@ -34,17 +34,21 @@ local modern_split = function ()
   bindings.map.normal("<Leader>=", ":lua lua_new_window(true)<CR>")
   bindings.map.normal("<Leader>-", ":lua lua_new_window(false)<CR>")
 
-  -- has to use C for direction
-  bindings.map.normal("<C-h>", "<C-w>h")
-  bindings.map.normal("<C-l>", "<C-w>l")
-  bindings.map.normal("<C-k>", "<C-w>k")
-  bindings.map.normal("<C-j>", "<C-w>j")
-
-  -- has to use M for direction
+  -- move between windows
   bindings.map.normal("<C-Left>",  "<C-w>h")
   bindings.map.normal("<C-Right>", "<C-w>l")
   bindings.map.normal("<C-Up>",    "<C-w>k")
   bindings.map.normal("<C-Down>",  "<C-w>j")
+
+  -- swap windows
+  bindings.map.normal("<Leader>'", "<C-w>r")
+  bindings.map.normal("<Leader>;", "<C-w>R")
+
+  -- reformat windows
+  bindings.map.normal("<S-Left>",  "<C-w>H")
+  bindings.map.normal("<S-Right>", "<C-w>L")
+  bindings.map.normal("<S-Up>",    "<C-w>K")
+  bindings.map.normal("<S-Down>",  "<C-w>J")
 
 end
 registry.defer(modern_split)

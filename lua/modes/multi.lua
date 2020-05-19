@@ -58,9 +58,6 @@ local movement = function ()
   bindings.map.nv("{", "{zz")
   bindings.map.nv("}", "}zz")
 
-  -- centre on page
-  bindings.map.nv("<S-Up>",   "<Up>zz")
-  bindings.map.nv("<S-Down>", "<Down>zz")
 
 end
 registry.defer(movement)
