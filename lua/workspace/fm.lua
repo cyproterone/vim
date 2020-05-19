@@ -12,7 +12,8 @@ if bindings.has("nvim") then
   registry.install("kristijanhusak/defx-git")
 
   local keymap = function (buf)
-    local opts = {expr = true,     buffer = buf}
+    local opts = {expr = true, buffer = buf}
+    local git_opts = {noremap = false, buffer = buf}
 
     bindings.map.normal("q",       "defx#async_action('quit')",                                     opts)
 
@@ -46,12 +47,13 @@ if bindings.has("nvim") then
     bindings.map.normal("-",       "defx#async_action('resize', defx#get_context().winwidth - 10)", opts)
     bindings.map.normal("<C-r>",   "defx#async_action('redraw')",                                   opts)
 
-    bindings.map.normal("[",       "<Plug>(defx-git-prev)",                                         {noremap = false})
-    bindings.map.normal("]",       "<Plug>(defx-git-next)",                                         {noremap = false})
 
-    bindings.map.normal("s",       "<Plug>(defx-git-stage)",                                        {noremap = false})
-    bindings.map.normal("u",       "<Plug>(defx-git-reset)",                                        {noremap = false})
-    bindings.map.normal("U",       "<Plug>(defx-git-discard)",                                      {noremap = false})
+    bindings.map.normal("[",       "<Plug>(defx-git-prev)",                                         git_opts)
+    bindings.map.normal("]",       "<Plug>(defx-git-next)",                                         git_opts)
+
+    bindings.map.normal("s",       "<Plug>(defx-git-stage)",                                        git_opts)
+    bindings.map.normal("u",       "<Plug>(defx-git-reset)",                                        git_opts)
+    bindings.map.normal("U",       "<Plug>(defx-git-discard)",                                      git_opts)
 
   end
   registry.auto("FileType", keymap, "defx")
