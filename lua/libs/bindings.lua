@@ -90,7 +90,7 @@ local map = function ()
     nv = partial{"n", "v"},
     ni = partial{"n", "i"},
     nic = partial{"n", "i", "c"},
-    nov = partial{"n", "o", "v"},
+    niv = partial{"n", "i", "v"},
   }
 end
 

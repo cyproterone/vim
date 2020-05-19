@@ -48,25 +48,25 @@ registry.defer(remap_keys)
 local movement = function ()
 
   -- centre on up down
-  bindings.map.nv("<C-u>", "<C-u>zz")
-  bindings.map.nv("<C-d>", "<C-d>zz")
-  bindings.map.nv("<C-f>", "<C-f>zz")
-  bindings.map.nv("<C-b>", "<C-b>zz")
+  bindings.map.niv("<C-u>", "<C-u>zz")
+  bindings.map.niv("<C-d>", "<C-d>zz")
+  bindings.map.niv("<C-f>", "<C-f>zz")
+  bindings.map.niv("<C-b>", "<C-b>zz")
 
 
   -- centre on paragraph
-  bindings.map.nv("{", "{zz")
-  bindings.map.nv("}", "}zz")
+  bindings.map.niv("{", "{zz")
+  bindings.map.niv("}", "}zz")
 
   -- centre on page
-  bindings.map.nv("<S-Up>",   "<Up>zz")
-  bindings.map.nv("<S-Down>", "<Down>zz")
+  bindings.map.niv("<S-Up>",   "<Up>zz")
+  bindings.map.niv("<S-Down>", "<Down>zz")
 
 end
 registry.defer(movement)
 
 
-local cua = function ()
+local arrow = function ()
 
   bindings.map.nic("<M-Left>",  "<C-Left>")
   bindings.map.nic("<M-Right>", "<C-Right>")
@@ -74,4 +74,4 @@ local cua = function ()
   bindings.map.nic("<M-Down>",  "<C-Down>")
 
 end
-registry.defer(cua)
+registry.defer(arrow)
