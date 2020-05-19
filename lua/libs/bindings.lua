@@ -37,6 +37,11 @@ local exec = function (opt)
 end
 
 
+local norm = function (exec)
+  api.nvim_command([[silent execute "normal! ]] .. exec .. [["]])
+end
+
+
 local let = function (opt, val)
   api.nvim_set_var(opt, val)
 end
@@ -162,6 +167,7 @@ end
 return {
   p_val = p_val,
   exec = exec,
+  norm = norm,
   set = set,
   let = let,
   map = map(),

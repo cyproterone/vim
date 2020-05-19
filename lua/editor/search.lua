@@ -68,9 +68,9 @@ end
 -- get selection
 local fd_select = function (type)
   if type == "line" then
-    bindings.exec[[exe "norm! '[V']\"zy"]]
+    bindings.norm[['[V']\"zy]]
   else
-    bindings.exec[[exe "norm! `[v`]\"zy"]]
+    bindings.norm[[`[v`]\"zy]]
   end
 end
 
@@ -81,13 +81,13 @@ local find = function ()
   lua_op_fzf = function (type)
     local _ = type and fd_select(type)
     hlselect()
-    bindings.exec[[exe "norm! :BLines \<C-r>z\<CR>"]]
+    bindings.norm[[:BLines \<C-r>z\<CR>]]
   end
 
   lua_op_rg = function (type)
     local _ = type and fd_select(type)
     hlselect()
-    bindings.exec[[exe "norm! :Rg \<C-r>z\<CR>"]]
+    bindings.norm[[:Rg \<C-r>z\<CR>]]
   end
 
   bindings.map.normal("gf", ":set opfunc=v:lua.lua_op_fzf<CR>g@")

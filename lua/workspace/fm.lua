@@ -22,7 +22,7 @@ local options = function ()
 
   lua_fileman_open = function (toggle)
     local args = std.concat{args, toggle and {"-toggle"} or {}}
-    bindings.exec([[exe "norm! :Defx ]] .. table.concat(args, " ") .. [[\<CR>"]])
+    bindings.norm(":Defx " .. table.concat(args, " ") .. [[\<CR>]])
   end
 
 end

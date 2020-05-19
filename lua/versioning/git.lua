@@ -7,7 +7,7 @@ local registry = require "libs/registry"
 -- lazygit
 local lg = function ()
 
-  bindings.map.normal("<Leader>u", ":FloatermNew lazygit<CR>")
+  bindings.map.normal("<Leader>U", ":FloatermNew lazygit<CR>")
   bindings.map.normal("<Leader>y", ":FloatermNew tig<CR>")
 
 end
