@@ -70,7 +70,7 @@ if bindings.has("nvim") then
 
     bindings.map.normal("+",       "defx#async_action('resize', defx#get_context().winwidth + 10)", opts)
     bindings.map.normal("-",       "defx#async_action('resize', defx#get_context().winwidth - 10)", opts)
-    bindings.map.normal("<C-l>",   "defx#async_action('redraw')",                                   opts)
+    bindings.map.normal("<C-r>",   "defx#async_action('redraw')",                                   opts)
 
     bindings.map.normal("[",       "<Plug>(defx-git-prev)",                                         {noremap = false})
     bindings.map.normal("]",       "<Plug>(defx-git-next)",                                         {noremap = false})
