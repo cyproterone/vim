@@ -1,5 +1,6 @@
 local bindings = require "libs/bindings"
 local registry = require "libs/registry"
+local theme = require "libs/theme"
 
 
 --#################### Insert Region ####################
@@ -22,16 +23,16 @@ registry.defer(emacs_keys)
 -- add a cursor cross in insert mode
 local cursor_cross = function ()
 
-  local show = function ()
-
+  local enter = function ()
+    theme.highlight{CursorLine = {guibg = "#f2d9fa"}}
   end
 
-  local hide = function ()
-
+  local leave = function ()
+    theme.highlight{CursorLine = {guibg = "#f1f4f6"}}
   end
 
-  registry.auto("InsertEnter", show)
-  registry.auto("InsertLeave", hide)
+  registry.auto("InsertEnter", enter)
+  registry.auto("InsertLeave", leave)
 
 end
 registry.defer(cursor_cross)
