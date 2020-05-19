@@ -48,19 +48,19 @@ registry.defer(remap_keys)
 local movement = function ()
 
   -- centre on up down
-  bindings.map.niv("<C-u>", "<C-u>zz")
-  bindings.map.niv("<C-d>", "<C-d>zz")
-  bindings.map.niv("<C-f>", "<C-f>zz")
-  bindings.map.niv("<C-b>", "<C-b>zz")
+  bindings.map.nv("<C-u>", "<C-u>zz")
+  bindings.map.nv("<C-d>", "<C-d>zz")
+  bindings.map.nv("<C-f>", "<C-f>zz")
+  bindings.map.nv("<C-b>", "<C-b>zz")
 
 
   -- centre on paragraph
-  bindings.map.niv("{", "{zz")
-  bindings.map.niv("}", "}zz")
+  bindings.map.nv("{", "{zz")
+  bindings.map.nv("}", "}zz")
 
   -- centre on page
-  bindings.map.niv("<S-Up>",   "<Up>zz")
-  bindings.map.niv("<S-Down>", "<Down>zz")
+  bindings.map.nv("<S-Up>",   "<Up>zz")
+  bindings.map.nv("<S-Down>", "<Down>zz")
 
 end
 registry.defer(movement)
@@ -70,6 +70,9 @@ local arrow = function ()
 
   bindings.map.niv("<M-Left>",  "<S-Left>")
   bindings.map.niv("<M-Right>", "<S-Right>")
+
+  bindings.map.command("<M-Left>",  "<S-Left>",  {silent = false})
+  bindings.map.command("<M-Right>", "<S-Right>", {silent = false})
 
 end
 registry.defer(arrow)
