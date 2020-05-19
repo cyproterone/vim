@@ -1,4 +1,5 @@
 local bindings = require "libs/bindings"
+  bindings.map.visual("gf", [["zy:lua lua_op_fzf()<CR>]])
 local registry = require "libs/registry"
 
 
@@ -57,6 +58,13 @@ end
 registry.defer(nomagic)
 
 
+-- hi select
+local hlselect = function ()
+  fn.setreg("/", "\\V" .. fn.getreg("z"))
+  bindings.exec[[set hlsearch]]
+end
+
+
 -- get selection
 local fd_select = function (type)
   if type == "line" then
@@ -71,20 +79,22 @@ end
 local find = function ()
 
   lua_op_fzf = function (type)
-    fd_select(type)
+    local _ = type and fd_select(type)
+    hlselect()
     bindings.exec[[exe "norm! :BLines \<C-r>z\<CR>"]]
   end
 
   lua_op_rg = function (type)
-    fd_select(type)
+    local _ = type and fd_select(type)
+    hlselect()
     bindings.exec[[exe "norm! :Rg \<C-r>z\<CR>"]]
   end
 
   bindings.map.normal("gf", ":set opfunc=v:lua.lua_op_fzf<CR>g@")
   bindings.map.normal("gF", ":set opfunc=v:lua.lua_op_rg<CR>g@")
 
-  bindings.map.visual("gf", [["zy:BLines <C-r>z<CR>]])
-  bindings.map.visual("gF", [["zy:Rg <C-r>z<CR>]])
+  bindings.map.visual("gf", [["zy:lua lua_op_fzf()<CR>]])
+  bindings.map.visual("gF", [["zy:lua lua_op_rg()<CR>]])
 
 end
 registry.defer(find)
