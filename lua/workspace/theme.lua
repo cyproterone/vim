@@ -90,8 +90,3 @@ local powerline = function ()
 
 end
 registry.defer(powerline)
-
-
--- iconpack
-registry.install("ryanoasis/vim-devicons")
-
