@@ -19,7 +19,6 @@ require "workspace/wm"
 
 -- modes
 require "modes/command"
-require "modes/insert"
 require "modes/normal"
 require "modes/multi"
 require "modes/visual"
