@@ -53,6 +53,11 @@ registry.defer(hotkeys)
 
 
 --#################### Auto Region ####################
+
+-- needs :UpdateRemotePlugins
+registry.install("Shougo/deoplete.nvim")
+registry.install("Shougo/deoplete-lsp")
+registry.install{"tbodt/deoplete-tabnine", ["do"] = "./install.sh"}
 local enable = function ()
 
   lua_enable_comp = function ()
@@ -71,10 +76,6 @@ end
 registry.defer(enable)
 
 
--- needs :UpdateRemotePlugins
-registry.install("Shougo/deoplete.nvim")
-registry.install("Shougo/deoplete-lsp")
-registry.install{"tbodt/deoplete-tabnine", ["do"] = "./install.sh"}
 local comp = function ()
 
   -- registry
