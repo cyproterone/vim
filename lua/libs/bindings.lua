@@ -159,10 +159,6 @@ local executable = function (prog)
 end
 
 
-local has = function (name)
-  return fn.has(name)
-end
-
 return {
   p_val = p_val,
   exec = exec,
@@ -173,5 +169,4 @@ return {
   buf = buf(),
   win = win(),
   executable = executable,
-  has = has,
 }
