@@ -77,6 +77,8 @@ if bindings.has("nvim") then
 
   local options = function ()
     local args = {
+      "-buffer-name=文件",
+      "-root-marker=[根]",
       "-listed",
       "-resume",
       "-toggle",
