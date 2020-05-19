@@ -16,13 +16,13 @@ local keymap = function (buf)
   bindings.map.normal("q",       "defx#async_action('quit')",                                     opts)
 
   bindings.map.normal("<Tab>",   "defx#async_action('open_tree', 'toggle')",                      opts)
-  bindings.map.normal("o",       "defx#async_action('open_tree', ['toggle', 'recursive'])",       opts)
+  bindings.map.normal("<S-Tab>", "defx#async_action('open_tree', ['toggle', 'recursive'])",       opts)
   bindings.map.normal("<Enter>", "defx#async_action('drop')",                                     opts)
   bindings.map.normal("<Up>",    "line('.') == 1 ? 'G' : '<Up>'",                                 opts)
   bindings.map.normal("<Down>",  "line('.') == line('$') ? 'gg' : '<Down>'",                      opts)
   bindings.map.normal("<Right>", "defx#async_action('drop')",                                     opts)
   bindings.map.normal("<Left>",  "defx#async_action('cd', ['..'])",                               opts)
-  bindings.map.normal("~",       "defx#async_action('cd')",                                       opts)
+  bindings.map.normal("~",       "defx#async_action('cd', [getcwd()])",                           opts)
   bindings.map.normal("cd",      "defx#async_action('change_vim_cwd')",                           opts)
   bindings.map.normal(".",       "defx#async_action('toggle_ignored_files')",                     opts)
 
@@ -55,6 +55,7 @@ local keymap = function (buf)
 
 end
 registry.auto("FileType", keymap, "defx")
+
 
 local options = function ()
   local args = {
