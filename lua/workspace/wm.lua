@@ -41,6 +41,10 @@ end
 registry.defer(modern_split)
 
 
+local new_window = function ()
+end
+
+
 -- modern wm
 local wm_close = function ()
 
@@ -80,8 +84,13 @@ local tabs_wm = function ()
   bindings.map.normal("<Leader>q", ":tabclose<CR>")
 
   -- create new tab
-  bindings.map.normal("<Leader>t", ":tabnew<CR>")
-  bindings.map.normal("<Leader>n", ":tabnew<CR>")
+  lua_new_tab = function ()
+    bindings.exec[[tabnew]]
+    local buf = api.nvim_get_current_buf() 
+    bindings.buf.set(0, "buftype", "nofile")
+  end
+  bindings.map.normal("<Leader>t", ":lua lua_new_tab()<CR>")
+  bindings.map.normal("<Leader>n", ":lua lua_new_tab()<CR>")
 
   -- cycle between tabs
   bindings.map.normal("<Leader>[", ":tabprevious<CR>")
