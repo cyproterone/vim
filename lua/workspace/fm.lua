@@ -9,16 +9,19 @@ local registry = require "libs/registry"
 registry.install("Shougo/defx.nvim")
 registry.install("kristijanhusak/defx-icons")
 registry.install("kristijanhusak/defx-git")
-local args = {
-  "-buffer-name=文件",
-  "-root-marker=[根]",
-  "-listed",
-  "-resume",
-  "-columns=mark:indent:git:icons:filename:type",
-  "-split=vertical",
-  "-direction=topleft",
-  "-winwidth=40"}
-local cmd = ":Defx " .. table.concat(args, " ")
+
+local options = function ()
+  fn["defx#custom#option"]("_", {
+    buffer_name = "文件",
+    root_marker = "[根]",
+    listed = true,
+    resume = true,
+    columns = "mark:indent:git:icons:filename:type",
+    split = "vertical",
+    direction = "topleft",
+    winwidth = 40})
+end
+registry.defer(options)
 
 
 local keymap = function (buf)
@@ -30,7 +33,7 @@ local keymap = function (buf)
   bindings.map.normal("<Tab>",   "defx#async_action('open_tree', 'toggle')",                      opts)
   bindings.map.normal("<S-Tab>", "defx#async_action('open_tree', ['toggle', 'recursive'])",       opts)
   bindings.map.normal("<Enter>", "defx#async_action('drop')",                                     opts)
-  bindings.map.normal("`",       "defx#async_action('drop') . '" .. cmd ..  "<CR>'",              opts)
+  bindings.map.normal("`",       "defx#async_action('drop') . ':Defx <CR>'",              opts)
   bindings.map.normal("<Up>",    "line('.') == 1 ? 'G' : '<Up>'",                                 opts)
   bindings.map.normal("<Down>",  "line('.') == line('$') ? 'gg' : '<Down>'",                      opts)
   bindings.map.normal("<Right>", "defx#async_action('drop')",                                     opts)
@@ -71,7 +74,7 @@ registry.auto("FileType", keymap, "defx")
 
 
 local key = function ()
-  bindings.map.normal("<Leader>i", cmd .. " -toggle<CR>")
+  bindings.map.normal("<Leader>i", ":Defx -toggle<CR>")
 end
 registry.defer(key)
 
