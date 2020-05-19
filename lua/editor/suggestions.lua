@@ -71,34 +71,27 @@ end
 registry.defer(enable)
 
 
-if bindings.has("python") then
+registry.install{"Shougo/deoplete.nvim", ["do"] = ":UpdateRemotePlugins"}
+registry.install("Shougo/deoplete-lsp")
+registry.install{"tbodt/deoplete-tabnine", ["do"] = "./install.sh"}
+local comp = function ()
 
-  registry.install{"Shougo/deoplete.nvim", ["do"] = ":UpdateRemotePlugins"}
-  registry.install("Shougo/deoplete-lsp")
-  registry.install{"tbodt/deoplete-tabnine", ["do"] = "./install.sh"}
-
-  local comp = function ()
-
-    -- registry
-    local setopt = fn["deoplete#custom#option"]
-    local getopt = fn["deoplete#custom#_get"]
-    registry.const["omni"] = function (filetype, sources)
-      local opt = getopt().option
-      local omni = opt["omni_patterns"]
-      omni[filetype] = sources
-      setopt("omni_patterns", omni)
-    end
-
-
-    -- options
-    setopt("sources", {_ = {"tabnine"}})
-    fn["deoplete#custom#var"]("tabnine", {
-      line_limit = 96,
-      max_num_results = 6})
-
+  -- registry
+  local setopt = fn["deoplete#custom#option"]
+  local getopt = fn["deoplete#custom#_get"]
+  registry.const["omni"] = function (filetype, sources)
+    local opt = getopt().option
+    local omni = opt["omni_patterns"]
+    omni[filetype] = sources
+    setopt("omni_patterns", omni)
   end
-  registry.defer(comp)
-else
-  registry.const["omni"] = function (_, _) end
-end
 
+
+  -- options
+  setopt("sources", {_ = {"tabnine"}})
+  fn["deoplete#custom#var"]("tabnine", {
+    line_limit = 96,
+    max_num_results = 6})
+
+end
+registry.defer(comp)
