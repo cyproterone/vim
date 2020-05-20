@@ -69,7 +69,7 @@ local welcome_screen = function ()
 
   -- open with scratch buffer, like emacs
   local on_new = function (once)
-    local name = fn.bufname(1)
+    local name = api.nvim_buf_get_name(1)
     if name == "" then
       bindings.buf(1).set("buftype", "nofile")
     end

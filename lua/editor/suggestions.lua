@@ -60,12 +60,8 @@ registry.install("Shougo/deoplete-lsp")
 local enable = function ()
 
   lua_enable_comp = function ()
-    if not fn.has("nvim") then
-      print("-- 无用 --")
-    else
-      fn["deoplete#enable"]()
-      print("-- 蛙 --")
-    end
+    fn["deoplete#enable"]()
+    print("-- 蛙 --")
   end
 
   -- keys

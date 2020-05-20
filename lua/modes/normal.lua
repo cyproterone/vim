@@ -29,15 +29,15 @@ local no_stepback = function ()
   local buf_cursor_pos = "_buf_cursor_pos_"
 
   local record_pos = function ()
-    local c = fn.col(".")
+    local _, c = unpack(api.nvim_win_get_cursor(0))
     bindings.buf(0).let(buf_cursor_pos, c)
   end
 
   local displace = function ()
-    local c = fn.col(".")
+    local r, c = unpack(api.nvim_win_get_cursor(0))
     local pos = bindings.buf(0).var(buf_cursor_pos)
     if c ~= pos then
-      fn.cursor(0, pos)
+      api.nvim_win_set_cursor(0, {r, pos})
     end
   end
 
