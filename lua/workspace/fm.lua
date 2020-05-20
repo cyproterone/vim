@@ -85,6 +85,7 @@ registry.defer(key)
 local theme = function ()
   bindings.let("defx_icons_enable_syntax_highlight", false)
 
-  fn["defx#custom#column"]("git", "show_ignored", true)
+  -- neat idea, doesn't work
+  fn["defx#custom#column"]("git", "show_ignored", false)
 end
 registry.defer(theme)
