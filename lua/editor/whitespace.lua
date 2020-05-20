@@ -42,10 +42,9 @@ local trailing_whitespace = function ()
     if m.mode ~= "n" then
       return
     end
-    local l = fn.line(".")
-    local c = fn.col(".")
+    local pos = api.nvim_win_get_cursor(0)
     bindings.exec[[%s/\s\+$//e]]
-    fn.cursor(l, c)
+    api.nvim_win_set_cursor(0, pos)
   end
 
   registry.auto("BufWritePre", strip)
