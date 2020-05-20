@@ -6,7 +6,7 @@ local ftp = require "libs/ftp"
 local registry = require "libs/registry"
 
 
-local ft = {"css"}
+local ft = {"css", "scss", "less"}
 
 
 local format = function ()
