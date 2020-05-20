@@ -59,12 +59,10 @@ registry.defer(fzf_cmds)
 local fzf = function ()
 
   -- fzf remove default border
-  local fzf_opts = os.getenv("FZF_DEFAULT_OPTS")
-  local fzf_newopts = fzf_opts .. " --no-border"
-  fn.setenv("FZF_DEFAULT_OPTS", fzf_newopts)
+  env["FZF_DEFAULT_OPTS"] = env["FZF_DEFAULT_OPTS"] .. " --no-border"
 
   -- fzf use fd
-  fn.setenv("FZF_DEFAULT_COMMAND", "fd -HL -t f -t l")
+  env["FZF_DEFAULT_COMMAND"] = "fd -HL -t f -t l"
 
   -- fzf reuse buffers
   bindings.let("fzf_buffers_jump", true)

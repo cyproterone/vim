@@ -77,7 +77,7 @@ local wm_close = function ()
       end
     end
   end
-  bindings.map.normal("<Leader>W", [[:lua lua_window_only{"defx"}<CR>]])
+  bindings.map.normal("<Leader>W", [[:lua lua_window_only{"defx", "qf"}<CR>]])
 
   -- break window into tab
   bindings.map.normal("<Leader>k", "<C-w>T")
