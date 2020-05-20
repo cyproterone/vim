@@ -1,7 +1,7 @@
-local std = require "libs/std"
-local set = require "libs/set"
 local bindings = require "libs/bindings"
 local registry = require "libs/registry"
+local set = require "libs/set"
+local std = require "libs/std"
 
 
 --#################### Intrinsic WM Region ####################

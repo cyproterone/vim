@@ -1,6 +1,6 @@
 local bindings = require "libs/bindings"
-local registry = require "libs/registry"
 local io = require "libs/io"
+local registry = require "libs/registry"
 
 
 --#################### Misc Region ####################

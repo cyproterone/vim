@@ -1,4 +1,3 @@
-local std = require "libs/std"
 local bindings = require "libs/bindings"
 local registry = require "libs/registry"
 

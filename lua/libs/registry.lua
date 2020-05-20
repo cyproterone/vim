@@ -1,11 +1,10 @@
 --#################### ############### ####################
 --#################### Registry Region ####################
 --#################### ############### ####################
-
-local std = require "libs/std"
 local a = require "libs/async"
-local stdio = require "libs/io"
 local bindings = require "libs/bindings"
+local std = require "libs/std"
+local stdio = require "libs/io"
 
 
 local _registry = "libs/registry"

@@ -1,9 +1,8 @@
 --#################### ########## ####################
 --#################### STD Region ####################
 --#################### ########## ####################
-
-local set = require "libs/set"
 local co = coroutine
+local set = require "libs/set"
 
 
 local id = function (...)
