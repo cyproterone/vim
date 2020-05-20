@@ -3,7 +3,6 @@
 --#################### ########### ####################
 local bindings = require "libs/bindings"
 local ftp = require "libs/ftp"
-local registry = require "libs/registry"
 
 
 local ft = {"json"}
@@ -15,7 +14,6 @@ end
 
 
 local lsp = function ()
-
   local lsp = require "nvim_lsp"
   lsp.jsonls.setup{}
   lsp.jsonls.manager.try_add()

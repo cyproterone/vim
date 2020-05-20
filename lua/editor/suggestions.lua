@@ -56,42 +56,28 @@ registry.defer(hotkeys)
 
 -- needs :UpdateRemotePlugins
 registry.install("Shougo/deoplete.nvim")
-registry.install("Shougo/deoplete-lsp")
 local enable = function ()
 
+  fn["deoplete#custom#option"]("auto_complete_delay", 200)
+
+  -- keys
   lua_enable_comp = function ()
     fn["deoplete#enable"]()
     print("-- 蛙 --")
   end
-
-  -- keys
   bindings.map.normal("gz", ":lua lua_enable_comp()<CR>")
 
 end
 registry.defer(enable)
 
 
-local comp = function ()
-
-  -- registry
-  registry.const["omni"] = function (filetype, sources)
-    local opt = fn["deoplete#custom#_get"]().option
-    local omni = opt["omni_patterns"]
-    omni[filetype] = sources
-    fn["deoplete#custom#option"]("omni_patterns", omni)
-  end
-
-  fn["deoplete#custom#option"]("auto_complete_delay", 200)
-
-end
-registry.defer(comp)
-
-
+registry.install("Shougo/deoplete-lsp")
 registry.install{"tbodt/deoplete-tabnine", ["do"] = "./install.sh"}
 local tabnine = function ()
 
-  fn["deoplete#custom#option"]("sources", {_ = {"tabnine"}})
+  fn["deoplete#custom#option"]("sources", {_ = {"lsp", "tabnine"}})
 
+  -- fn["deoplete#custom#source"]("tabnine", {"rank", 200})
   fn["deoplete#custom#var"]("tabnine", {
     line_limit = 96,
     max_num_results = 6})

@@ -3,7 +3,6 @@
 --#################### ############# ####################
 local bindings = require "libs/bindings"
 local ftp = require "libs/ftp"
-local registry = require "libs/registry"
 
 
 local ft = {"python"}
@@ -23,10 +22,6 @@ local lsp = function ()
   local lsp = require "nvim_lsp"
   lsp.pyls_ms.setup{}
   lsp.pyls_ms.manager.try_add()
-
-  registry.const.omni("python", {
-    "\\w\\.\\w*",
-  })
 end
 
 

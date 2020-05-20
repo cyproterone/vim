@@ -3,7 +3,6 @@
 --#################### ########### ####################
 local bindings = require "libs/bindings"
 local ftp = require "libs/ftp"
-local registry = require "libs/registry"
 
 
 local ft = {"yaml"}
@@ -15,7 +14,6 @@ end
 
 
 local lsp = function ()
-
   local lsp = require "nvim_lsp"
   lsp.yamlls.setup{}
   lsp.yamlls.manager.try_add()
