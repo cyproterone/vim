@@ -1,5 +1,4 @@
 local bindings = require "libs/bindings"
-  bindings.map.visual("gf", [["zy:lua lua_op_fzf()<CR>]])
 local registry = require "libs/registry"
 
 
