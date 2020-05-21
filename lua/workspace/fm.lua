@@ -25,53 +25,61 @@ registry.defer(options)
 
 
 local keymap = function (buf)
-  local opts     = {expr = true,     buffer = buf}
+  local opts = {expr = true, buffer = buf}
   local git_opts = {noremap = false, buffer = buf}
-  local map      = bindings.map.normal
 
-  map("q",         "defx#async_action('quit')",                                                                                 opts)
+  local map = function (opts)
+    return function (lhs, rhs)
+      bindings.map.normal(lhs, rhs ,opts)
+    end
+  end
 
-  map("<Tab>",     "defx#is_directory() ? defx#async_action('open_tree', 'toggle') : defx#async_action('drop') . ':Defx <CR>'", opts)
-  map("`",         "defx#async_action('open_tree', ['toggle', 'recursive'])",                                                   opts)
-  map("<Enter>",   "defx#async_action('drop')",                                                                                 opts)
-  map("<Up>",      "line('.') == 1 ? 'G' : '<Up>'",                                                                             opts)
-  map("<Down>",    "line('.') == line('$') ? 'gg' : '<Down>'",                                                                  opts)
-  map("<Left>",    "line('.') == 1 ? 'G' : '<Up>'",                                                                             opts)
-  map("<Right>",   "line('.') == line('$') ? 'gg' : '<Down>'",                                                                  opts)
-  map("<M-Left>",  "defx#async_action('cd', ['..'])",                                                                           opts)
-  map("<M-Right>", "defx#async_action('drop')",                                                                                 opts)
-  map("~",         "defx#async_action('cd', [getcwd()])",                                                                       opts)
-  map("cd",        "defx#async_action('change_vim_cwd')",                                                                       opts)
-  map(".",         "defx#async_action('toggle_ignored_files')",                                                                 opts)
+  local m1 = map(opts)
+  local m2 = map(git_opts)
 
-  map("<Space>",   "defx#async_action('toggle_select')",                                                                        opts)
-  map("*",         "defx#async_action('toggle_select_all')",                                                                    opts)
-  map("w",         "defx#async_action('clear_select_all')",                                                                     opts)
-  map("y",         "defx#async_action('copy')",                                                                                 opts)
-  map("yy",        "defx#async_action('yank_path')",                                                                            opts)
-  map("p",         "defx#async_action('paste')",                                                                                opts)
-  map("r",         "defx#async_action('rename')",                                                                               opts)
-  map("m",         "defx#async_action('move')",                                                                                 opts)
-  map("d",         "defx#async_action('remove')",                                                                               opts)
-  map("t",         "defx#async_action('remove_trash')",                                                                         opts)
-  map("!",         "defx#async_action('execute_command')",                                                                      opts)
-  map("o",         "defx#async_action('execute_system')",                                                                       opts)
-  map(";",         "defx#async_action('repeat')",                                                                               opts)
+  m1("q",         "defx#async_action('quit')")
 
-  map("n",         "defx#async_action('new_file')",                                                                             opts)
-  map("N",         "defx#async_action('new_directory')",                                                                        opts)
+  m1("<Tab>",     "defx#is_directory() ? defx#async_action('open_tree', 'toggle') : defx#async_action('drop') . ':Defx <CR>'")
+  m1("`",         "defx#async_action('open_tree', ['toggle', 'recursive'])")
+  m1("<Enter>",   "defx#async_action('drop')")
+  m1("<Up>",      "line('.') == 1 ? 'G' : '<Up>'")
+  m1("<Down>",    "line('.') == line('$') ? 'gg' : '<Down>'")
+  m1("<Left>",    "line('.') == 1 ? 'G' : '<Up>'")
+  m1("<Right>",   "line('.') == line('$') ? 'gg' : '<Down>'")
+  m1("<M-Left>",  "defx#async_action('cd', ['..'])")
+  m1("<M-Right>", "defx#async_action('drop')")
+  m1("~",         "defx#async_action('cd', [getcwd()])")
+  m1("cd",        "defx#async_action('change_vim_cwd')")
+  m1(".",         "defx#async_action('toggle_ignored_files')")
 
-  map(">",         "defx#async_action('resize', defx#get_context().winwidth + 10)",                                             opts)
-  map("<",         "defx#async_action('resize', defx#get_context().winwidth - 10)",                                             opts)
-  map("<C-r>",     "defx#async_action('redraw')",                                                                               opts)
+  m1("<Space>",   "defx#async_action('toggle_select')")
+  m1("*",         "defx#async_action('toggle_select_all')")
+  m1("w",         "defx#async_action('clear_select_all')")
+  m1("y",         "defx#async_action('copy')")
+  m1("yy",        "defx#async_action('yank_path')")
+  m1("p",         "defx#async_action('paste')")
+  m1("r",         "defx#async_action('rename')")
+  m1("m",         "defx#async_action('move')")
+  m1("d",         "defx#async_action('remove')")
+  m1("t",         "defx#async_action('remove_trash')")
+  m1("!",         "defx#async_action('execute_command')")
+  m1("o",         "defx#async_action('execute_system')")
+  m1(";",         "defx#async_action('repeat')")
+
+  m1("n",         "defx#async_action('new_file')")
+  m1("N",         "defx#async_action('new_directory')")
+
+  m1(">",         "defx#async_action('resize', defx#get_context().winwidth + 10)")
+  m1("<",         "defx#async_action('resize', defx#get_context().winwidth - 10)")
+  m1("<C-r>",     "defx#async_action('redraw')")
 
 
-  map("[",         "<Plug>(defx-git-prev)",                                                                                     git_opts)
-  map("]",         "<Plug>(defx-git-next)",                                                                                     git_opts)
+  m2("[",         "<Plug>(defx-git-prev)")
+  m2("]",         "<Plug>(defx-git-next)")
 
-  map("s",         "<Plug>(defx-git-stage)",                                                                                    git_opts)
-  map("u",         "<Plug>(defx-git-reset)",                                                                                    git_opts)
-  map("U",         "<Plug>(defx-git-discard)",                                                                                  git_opts)
+  m2("s",         "<Plug>(defx-git-stage)")
+  m2("u",         "<Plug>(defx-git-reset)")
+  m2("U",         "<Plug>(defx-git-discard)")
 
 end
 registry.auto("FileType", keymap, "defx")
