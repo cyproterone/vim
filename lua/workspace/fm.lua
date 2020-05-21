@@ -56,8 +56,7 @@ local keymap = function (buf)
   map(";",       "defx#async_action('repeat')",                                   opts)
 
   map("n",       "defx#async_action('new_file')",                                 opts)
-  map("N",       "defx#async_action('new_multiple_files')",                       opts)
-  map("m",       "defx#async_action('new_directory')",                            opts)
+  map("N",       "defx#async_action('new_directory')",                            opts)
 
   map(">",       "defx#async_action('resize', defx#get_context().winwidth + 10)", opts)
   map("<",       "defx#async_action('resize', defx#get_context().winwidth - 10)", opts)
