@@ -52,7 +52,23 @@ local registers = function ()
   -- use system clipboard
   bindings.set("clipboard", "unnamedplus")
 
-  if vim.env["SSH_TTY"] then
+  if env["TMUX"] then
+    local tmux_cp = function ()
+      a.sync(function ()
+        local event = api.nvim_get_vvar("event")
+        if event.regname ~= "" then
+          return
+        end
+        local text = table.concat(event.regcontents, "")
+        local code, _, err = a.wait(loop.spawn(
+          "tmux", {args = {"set-buffer", text}}))
+        assert(code == 0, err)
+      end)()
+    end
+    registry.auto("TextYankPost", tmux_cp)
+  end
+
+  if env["SSH_TTY"] then
     local remote_cp = function ()
       a.sync(function ()
         local event = api.nvim_get_vvar("event")
