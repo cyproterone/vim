@@ -1,7 +1,7 @@
 --#################### ########### ####################
 --#################### Loop Region ####################
 --#################### ########### ####################
-
+local a = require "libs/async"
 local uv = vim.loop
 
 local spawn = function (shell, opts, cb)
@@ -17,13 +17,10 @@ local spawn = function (shell, opts, cb)
 
   process, pid = uv.spawn(shell, args, function (code)
     local handles = {stdin, stdout, stderr, process}
-    local val = {code = code,
-                 out = table.concat(out, ""),
-                 err = table.concat(errs, "")}
     for _, handle in ipairs(handles) do
       pcall(uv.close, handle)
     end
-    cb(val)
+    cb(code, table.concat(out, ""), table.concat(errs, ""))
   end)
   assert(process, pid)
 
@@ -60,7 +57,7 @@ end
 
 
 return {
-  spawn = spawn,
+  spawn = a.wrap(spawn),
   main = main,
 }
 

@@ -1,5 +1,6 @@
+local a = require "libs/async"
 local bindings = require "libs/bindings"
-local io = require "libs/io"
+local loop = require "libs/loop"
 local registry = require "libs/registry"
 
 
@@ -51,12 +52,21 @@ local registers = function ()
   -- use system clipboard
   bindings.set("clipboard", "unnamedplus")
 
-  lua_clipboard = function ()
-    local text = fn.getreg([[""]])
-    io.pipe("c", text)
+  if vim.env["SSH_TTY"] then
+    local remote_cp = function ()
+      a.sync(function ()
+        local event = api.nvim_get_vvar("event")
+        if event.regname ~= "" then
+          return
+        end
+        local text = table.concat(event.regcontents, "")
+        local code, out, err = a.wait(loop.spawn("c", {stream = text}))
+        assert(code == 0, err)
+        print(out)
+      end)()
+    end
+    registry.auto("TextYankPost", remote_cp)
   end
-
-  bindings.exec[[command! Clip call v:lua.lua_clipboard()]]
 
 end
 registry.defer(registers)
