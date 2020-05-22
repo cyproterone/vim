@@ -41,7 +41,7 @@ local spawn = function (shell, opts, cb)
   if opts.stream then
     uv.write(stdin, opts.stream, function (err)
       assert(not err, err)
-      uv.shutdown(stdin, function (err) 
+      uv.shutdown(stdin, function (err)
         assert(not err, err)
       end)
     end)
