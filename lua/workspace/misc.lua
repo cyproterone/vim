@@ -50,7 +50,7 @@ registry.defer(scroll)
 local registers = function ()
 
   -- use system clipboard
-  bindings.set("clipboard", "unnamedplus")
+  bindings.set("clipboard", "unnamed")
 
   if env["TMUX"] then
     local tmux_cp = function ()
@@ -68,20 +68,18 @@ local registers = function ()
     registry.auto("TextYankPost", tmux_cp)
   end
 
-  if env["SSH_TTY"] then
-    local remote_cp = function ()
-      a.sync(function ()
-        local event = api.nvim_get_vvar("event")
-        if event.regname ~= "" then
-          return
-        end
-        local text = table.concat(event.regcontents, "")
-        local code, _, err = a.wait(loop.spawn("c", {stream = text}))
-        assert(code == 0, err)
-      end)()
-    end
-    registry.auto("TextYankPost", remote_cp)
+  local isomorphic_cp = function ()
+    a.sync(function ()
+      local event = api.nvim_get_vvar("event")
+      if event.regname ~= "" then
+        return
+      end
+      local text = table.concat(event.regcontents, "")
+      local code, _, err = a.wait(loop.spawn("c", {stream = text}))
+      assert(code == 0, err)
+    end)()
   end
+  registry.auto("TextYankPost", isomorphic_cp)
 
 end
 registry.defer(registers)
