@@ -60,9 +60,8 @@ local registers = function ()
           return
         end
         local text = table.concat(event.regcontents, "")
-        local code, out, err = a.wait(loop.spawn("c", {stream = text}))
+        local code, _, err = a.wait(loop.spawn("c", {stream = text}))
         assert(code == 0, err)
-        print(out)
       end)()
     end
     registry.auto("TextYankPost", remote_cp)
