@@ -50,7 +50,7 @@ registry.defer(scroll)
 local registers = function ()
 
   -- use system clipboard
-  bindings.set("clipboard", "unnamed")
+  bindings.set("clipboard", "unnamedplus")
 
   local isomorphic_cp = function ()
     a.sync(function ()
