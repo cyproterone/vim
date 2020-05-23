@@ -58,7 +58,7 @@ local registers = function ()
       if event.regname ~= "" then
         return
       end
-      local text = table.concat(event.regcontents, "")
+      local text = table.concat(event.regcontents, "\n")
       local code, _, err = a.wait(loop.spawn("c", {stream = text}))
       assert(code == 0, err)
     end)()
