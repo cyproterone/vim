@@ -75,7 +75,7 @@ local colours = function ()
 
 
   bindings.let("edge_style", "neon")
-  bindings.let("edge_transparent_background", true)
+  -- bindings.let("edge_transparent_background", true)
   bindings.let("edge_menu_selection_background", "purple")
 
 end
