@@ -11,7 +11,7 @@ local copy_highlight = function ()
   local highlighter = require "vim/highlight"
 
   local highlight_yank = function ()
-    highlighter.on_yank("IncSearch", 500, vim.v.event)
+    highlighter.on_yank()
   end
   registry.auto("TextYankPost", highlight_yank)
 
