@@ -15,7 +15,6 @@ local _consts = {}
 local _callbacks = {}
 local inc = std.count()
 
-
 local install = function (p)
   table.insert(_plugins, p)
 end
@@ -46,7 +45,7 @@ local auto = function (events, func, filter, modifiers)
   local evnts = std.wrap(events)
   local events = table.concat(evnts, ",")
   local filter = table.concat(std.wrap(filter or "*"), ",")
-  local modifiers = table.concat(std.wrap(modifiers or {}), " ")
+  local modifiers = " " .. table.concat(std.wrap(modifiers or {}), " ")
   local idx = inc()
   local group = "augroup " .. idx
   local cls = "autocmd!"
