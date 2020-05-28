@@ -33,7 +33,7 @@ local hotkeys = function ()
   bindings.map.insert("<C-q>", "<C-e>")
 
   -- cua
-  bindings.map.insert("<CR>", "pumvisible() ? (empty(v:completed_item) ? '<C-y><CR>' : '<C-y>') : '<CR>'",  {expr = true})
+  bindings.map.insert("<CR>", "pumvisible() ? (complete_info().selected == -1 ? '<C-y><CR>' : '<C-y>') : '<CR>'",  {expr = true})
 
   bindings.map.insert("<Tab>",   "pumvisible() ? '<C-n>' : '<Tab>'", {expr = true})
   bindings.map.insert("<S-Tab>", "pumvisible() ? '<C-p>' : '<BS>'",  {expr = true})
