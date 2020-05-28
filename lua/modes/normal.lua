@@ -26,16 +26,14 @@ registry.defer(map_keys)
 -- fix cursor pos moving 1 back
 local no_stepback = function ()
 
-  local buf_cursor_pos = "_buf_cursor_pos_"
-
   local record_pos = function ()
     local _, c = unpack(api.nvim_win_get_cursor(0))
-    bindings.buf(0).let(buf_cursor_pos, c)
+    vim.b._buf_cursor_pos_ = c
   end
 
   local displace = function ()
     local r, c = unpack(api.nvim_win_get_cursor(0))
-    local pos = bindings.buf(0).var(buf_cursor_pos)
+    local pos = vim.b._buf_cursor_pos_
     if c ~= pos then
       api.nvim_win_set_cursor(0, {r, pos})
     end

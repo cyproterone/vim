@@ -42,11 +42,6 @@ local norm = function (exec)
 end
 
 
-local let = function (opt, val)
-  api.nvim_set_var(opt, val)
-end
-
-
 local set = function (opt, val, operator)
   local p_statement = function ()
     if not val then
@@ -132,42 +127,12 @@ local buf = function (id)
 end
 
 
-local win = function (id)
-
-  local let = function (var, val)
-    return api.nvim_win_set_var(id, var, val)
-  end
-
-  local var = function (var)
-    return api.nvim_win_get_var(id, var)
-  end
-
-  local set = function (var, val)
-    return api.nvim_win_set_option(id, var, val)
-  end
-
-  local opt = function (var)
-    return api.nvim_win_get_option(id, var)
-  end
-
-  return {
-    let = let,
-    var = var,
-    set = set,
-    opt = opt,
-  }
-end
-
-
-
 return {
   p_val = p_val,
   exec = exec,
   norm = norm,
   set = set,
-  let = let,
   map = map(),
   source = source,
   buf = buf,
-  win = win,
 }
