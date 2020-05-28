@@ -10,6 +10,7 @@ local lsp_recommends = function ()
   bindings.set("omnifunc",     "v:lua.vim.lsp.omnifunc")
   bindings.set("completefunc", "v:lua.vim.lsp.omnifunc")
 
+  bindings.map.normal("H", "K")
   bindings.map.normal("K", "<cmd>lua vim.lsp.buf.hover()<CR>")
   bindings.map.normal("L", "<cmd>lua vim.lsp.buf.rename()<CR>")
 
