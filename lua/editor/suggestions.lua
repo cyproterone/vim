@@ -33,8 +33,8 @@ local hotkeys = function ()
   bindings.map.insert("<C-q>", "<C-e>")
 
   -- cua
-  -- bindings.map.insert("<Esc>",   "pumvisible() ? '<C-e>' : '<Esc>'", {expr = true})
-  bindings.map.insert("<CR>",    "pumvisible() ? '<C-y>' : '<CR>'",  {expr = true})
+  bindings.map.insert("<CR>", "pumvisible() ? (empty(v:completed_item) ? '<C-y><CR>' : '<C-y>') : '<CR>'",  {expr = true})
+
   bindings.map.insert("<Tab>",   "pumvisible() ? '<C-n>' : '<Tab>'", {expr = true})
   bindings.map.insert("<S-Tab>", "pumvisible() ? '<C-p>' : '<BS>'",  {expr = true})
 
