@@ -77,16 +77,3 @@ registry.defer(enable)
 
 
 registry.install("Shougo/deoplete-lsp")
-registry.install{"tbodt/deoplete-tabnine", ["do"] = "./install.sh"}
-local tabnine = function ()
-
-  fn["deoplete#custom#option"]("sources", {_ = {"lsp", "tabnine"}})
-
-  fn["deoplete#custom#source"]("tabnine", {rank = 200})
-  fn["deoplete#custom#var"]("tabnine", {
-    line_limit = 96,
-    max_num_results = 6})
-
-end
-registry.defer(tabnine)
-
