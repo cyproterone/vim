@@ -6,13 +6,14 @@ local theme = require "libs/theme"
 --#################### Highlight Region ####################
 
 -- highlight copied region
-registry.install("machakann/vim-highlightedyank")
 local copy_highlight = function ()
 
-  bindings.let("highlightedyank_highlight_duration", 500)
+  local highlighter = require "vim/highlight"
 
-  theme.override{
-    HighlightedyankRegion = {cterm = "reverse", gui = "reverse"}}
+  local highlight_yank = function ()
+    highlighter.on_yank("IncSearch", 500, vim.v.event)
+  end
+  registry.auto("TextYankPost", highlight_yank)
 
 end
 registry.defer(copy_highlight)
