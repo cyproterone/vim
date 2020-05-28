@@ -44,7 +44,7 @@ local autosave = function ()
     {"TextChanged", "InsertLeave", "CursorHoldI"},
     save,
     {"*"},
-    true)
+    "nested")
 
 end
 registry.defer(autosave)

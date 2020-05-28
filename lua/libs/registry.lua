@@ -41,16 +41,16 @@ local call = function (idx, ...)
 end
 
 
-local auto = function (events, func, filter, nested)
+local auto = function (events, func, filter, modifiers)
 
   local evnts = std.wrap(events)
   local events = table.concat(evnts, ",")
   local filter = table.concat(std.wrap(filter or "*"), ",")
-  local nested = nested and " nested" or ""
+  local modifiers = table.concat(std.wrap(modifiers or {}), " ")
   local idx = inc()
   local group = "augroup " .. idx
   local cls = "autocmd!"
-  local cmd = "autocmd " .. events .. " " .. filter .. nested .. " lua require('" .. _registry .. "').call(" .. idx .. ")"
+  local cmd = "autocmd " .. events .. " " .. filter .. modifiers .. " lua require('" .. _registry .. "').call(" .. idx .. ")"
   local done = "augroup END"
 
   for event in ipairs(evnts) do
