@@ -65,15 +65,14 @@ local fzf = function ()
   env["FZF_DEFAULT_COMMAND"] = "fd -HL -t f -t l"
 
   -- fzf reuse buffers
-  bindings.let("fzf_buffers_jump", true)
+  vim.g.fzf_buffers_jump = true
 
   -- fzf use preview
-  bindings.let("fzf_preview_window", "right:wrap")
+  vim.g.fzf_preview_window = "right:wrap"
 
-  bindings.let("fzf_layout",
-               {window = {
-                   width = 0.8,
-                   height = 0.8}})
+  vim.g.fzf_layout = {window = {
+    width = 0.8,
+    height = 0.8}}
 
   -- keybindings
   bindings.map.normal("<C-p>",     ":Commands<CR>")

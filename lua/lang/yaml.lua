@@ -9,7 +9,7 @@ local ft = {"yaml"}
 
 
 local format = function ()
-  bindings.let("neoformat_enabled_yaml", {"prettier"})
+  vim.g.neoformat_enabled_yaml = {"prettier"}
 end
 
 

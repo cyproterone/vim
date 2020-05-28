@@ -9,7 +9,7 @@ local ft = {"xml"}
 
 
 local format = function ()
-  bindings.let("neoformat_enabled_xml", {"prettier"})
+  vim.g.neoformat_enabled_xml = {"prettier"}
 end
 
 

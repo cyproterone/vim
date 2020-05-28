@@ -9,7 +9,7 @@ local ft = {"html"}
 
 
 local format = function ()
-  bindings.let("neoformat_enabled_html", {"prettier"})
+  vim.g.neoformat_enabled_html = {"prettier"}
 end
 
 

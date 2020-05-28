@@ -108,8 +108,8 @@ end
 
 
 local init_defer = function ()
-  bindings.let("mapleader", " ")
-  bindings.let("maplocalleader", " ")
+  vim.g.mapleader = " "
+  vim.g.maplocalleader = " "
   for _, cmd in ipairs(_defer) do
     cmd()
   end

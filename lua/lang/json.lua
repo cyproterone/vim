@@ -9,7 +9,7 @@ local ft = {"json"}
 
 
 local format = function ()
-  bindings.let("neoformat_enabled_json", {"prettier"})
+  vim.g.neoformat_enabled_json = {"prettier"}
 end
 
 

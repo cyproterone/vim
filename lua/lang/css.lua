@@ -9,7 +9,7 @@ local ft = {"css", "scss", "less"}
 
 
 local format = function ()
-  bindings.let("neoformat_enabled_css", {"prettier"})
+  vim.g.neoformat_enabled_css = {"prettier"}
 end
 
 

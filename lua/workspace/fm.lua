@@ -95,7 +95,7 @@ registry.defer(key)
 
 
 local theme = function ()
-  bindings.let("defx_icons_enable_syntax_highlight", false)
+  vim.g.defx_icons_enable_syntax_highlight = false
 
   -- neat idea, doesn't work
   fn["defx#custom#column"]("git", "show_ignored", false)

@@ -19,10 +19,10 @@ registry.install("voldikss/vim-floaterm")
 local float_term = function ()
 
   -- close on exit code 0
-  bindings.let("floaterm_autoclose", 1)
+  vim.g.floaterm_autoclose = 1
   -- size
-  bindings.let("floaterm_width", 0.9)
-  bindings.let("floaterm_height", 0.9)
+  vim.g.floaterm_width = 0.9
+  vim.g.floaterm_height = 0.9
 
   -- hotkeys
   bindings.map.normal("<Leader>u", ":FloatermToggle<CR>")

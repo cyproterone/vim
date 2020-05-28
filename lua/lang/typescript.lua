@@ -15,8 +15,8 @@ local ft = {
 
 
 local format = function ()
-  bindings.let("neoformat_enabled_javascript", {"prettier"})
-  bindings.let("neoformat_enabled_typescript", {"prettier"})
+  vim.g.neoformat_enabled_javascript = {"prettier"}
+  vim.g.neoformat_enabled_typescript = {"prettier"}
 end
 
 

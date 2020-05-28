@@ -74,9 +74,8 @@ local colours = function ()
   bindings.exec("colorscheme edge")
 
 
-  bindings.let("edge_style", "neon")
-  -- bindings.let("edge_transparent_background", true)
-  bindings.let("edge_menu_selection_background", "purple")
+  vim.g.edge_style = "neon"
+  vim.g.edge_menu_selection_background = "purple"
 
 end
 registry.defer(colours)
@@ -86,7 +85,7 @@ registry.defer(colours)
 registry.install("itchyny/lightline.vim")
 local powerline = function ()
 
-  bindings.let("lightline", {colorscheme = "edge"})
+  vim.g.lightline = {colorscheme = "edge"}
 
 end
 registry.defer(powerline)
