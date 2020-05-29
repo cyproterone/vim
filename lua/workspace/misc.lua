@@ -25,6 +25,9 @@ local misc = function ()
   -- no swap files
   bindings.set("noswapfile")
 
+  -- line wrap follow indent
+  bindings.set("breakindent")
+
 end
 registry.defer(misc)
 

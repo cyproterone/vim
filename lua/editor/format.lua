@@ -4,6 +4,15 @@ local registry = require "libs/registry"
 
 --#################### Format Region ####################
 
+local misc = function ()
+
+  -- join only add 1 space
+  bindings.set("nojoinspaces")
+
+end
+registry.defer(misc)
+
+
 local sort = function ()
 
   local p_marks = function (type)
