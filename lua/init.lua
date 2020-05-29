@@ -33,9 +33,10 @@ require "editor/highlight"
 require "editor/lsp"
 require "editor/macros"
 require "editor/operators"
-require "editor/textobj"
 require "editor/search"
 require "editor/suggestions"
+require "editor/textobj"
+require "editor/undo"
 require "editor/whitespace"
 
 -- lang

@@ -6,7 +6,6 @@ local registry = require "libs/registry"
 
 -- drag regions around
 registry.install("matze/vim-move")
--- default: M-j, M-k, M-h, M-l
 
 
 -- auto parens
