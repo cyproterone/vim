@@ -43,12 +43,11 @@ local hotkeys = function ()
   bindings.map.insert("<C-l>", "<C-x><C-l>")
   -- file
   bindings.map.insert("<C-f>", "<C-x><C-f>")
-  -- userfunc
-  bindings.map.insert("<C-u>", "<C-x><C-u>")
   -- omnifunc
   bindings.map.insert("<C-o>", "<C-x><C-o>")
+  -- userfunc
   bindings.map.nv("<C-space>")
-  bindings.map.insert("<C-Space>", "<C-x><C-o>")
+  bindings.map.insert("<C-Space>", "<C-x><C-u>")
 
 end
 registry.defer(hotkeys)
