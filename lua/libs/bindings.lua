@@ -4,34 +4,6 @@
 local std = require "libs/std"
 
 
-local p_val = nil
-p_val = function (val)
-  local reduce = function (acc, val, key)
-    local trans = p_val(key) .. " : " .. p_val(val)
-    table.insert(acc, trans)
-    return acc
-  end
-
-  if type(val) == "number" then
-    return val
-  elseif type(val) == "string" then
-    return "'" .. val .. "'"
-  elseif type(val) == "boolean" then
-    return val and 1 or 0
-  elseif type(val) == "table" and val[1] ~= nil then
-    local entries = std.map(val, p_val)
-    local cat = table.concat(entries, " , ")
-    return "[" .. cat .. "]"
-  elseif type(val) == "table" then
-      local entries = std.reduce(val, {}, reduce)
-      local cat = table.concat(entries, " , ")
-      return "{" .. cat .. "}"
-  else
-    error("invalid type")
-  end
-end
-
-
 local exec = function (opt)
   api.nvim_command(opt)
 end
@@ -128,7 +100,6 @@ end
 
 
 return {
-  p_val = p_val,
   exec = exec,
   norm = norm,
   set = set,

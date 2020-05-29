@@ -91,17 +91,16 @@ local init_plugins = function ()
     local args = std.wrap(p)
     local name = assert(args[1])
     local opts = std.exclude(args, {1})
-    return "Plug '" .. name .. "' , " .. bindings.p_val(opts)
+    opts[true] = vim.types.dictionary
+    fn["plug#"](name, opts)
   end
 
-  local plug_lines = std.map(_plugins, plug)
-  local plug_installs = table.concat(plug_lines, "\n")
+  fn["plug#begin"](vim_home .. "/plugged")
+  for _, plugin in ipairs(_plugins) do
+    plug(plugin)
+  end
+  fn["plug#end"]()
 
-  local plug_beign = "call plug#begin('" .. vim_home .. "/plugged" .. "')"
-  local plug_end = "call plug#end()"
-  local install_func = table.concat({plug_beign, plug_installs, plug_end}, "\n")
-
-  bindings.exec(install_func)
   _plugins = {}
 end
 
