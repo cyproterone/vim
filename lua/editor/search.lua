@@ -15,6 +15,9 @@ local modern_search = function ()
   -- search results shown on side
   bindings.set("inccommand", "nosplit")
 
+  -- use ripgrep
+  bindings.set("grepprg", [[rg\ --vimgrep]])
+
 end
 registry.defer(modern_search)
 

@@ -35,8 +35,8 @@ registry.defer(misc)
 local scroll = function ()
 
   -- scroll activation margin
-  bindings.set("scrolloff", 2)
-  bindings.set("sidescrolloff", 5)
+  bindings.set("scrolloff", 1)
+  bindings.set("sidescrolloff", 3)
 
   -- normalize cursor pos
   bindings.set("virtualedit", "onemore")
