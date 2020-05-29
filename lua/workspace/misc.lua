@@ -13,9 +13,6 @@ local misc = function ()
   -- cursor hold time
   bindings.set("updatetime", 300)
 
-  -- show as much as possible
-  bindings.set("display", "lastline", [[+=]])
-
   -- vim session state
   bindings.set("shada", "!", [[+=]])
 
