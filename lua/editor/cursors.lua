@@ -10,4 +10,9 @@ registry.install("matze/vim-move")
 
 -- auto parens
 registry.install("Raimondi/delimitMate")
+local match_cursor = function ()
 
+  bindings.set("matchpairs", [[<:>,":",':']], [[+=]])
+
+end
+registry.auto(match_cursor)
