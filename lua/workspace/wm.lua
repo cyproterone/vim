@@ -11,6 +11,9 @@ local misc = function ()
   -- hide background buffers
   bindings.set("hidden")
 
+  -- reuse buf
+  bindings.set("switchbuf", "useopen,usetab", [[+=]])
+
 end
 registry.defer(misc)
 

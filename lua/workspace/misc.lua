@@ -10,6 +10,9 @@ local misc = function ()
 
   bindings.set("encoding", "utf-8")
 
+  -- more secure
+  bindings.set("secure")
+
   -- cursor hold time
   bindings.set("updatetime", 300)
 
@@ -18,9 +21,6 @@ local misc = function ()
 
   -- min lines changed to report
   bindings.set("report", 0)
-
-  -- performance
-  bindings.set("ttyfast")
 
   -- no swap files
   bindings.set("noswapfile")
@@ -36,7 +36,7 @@ local scroll = function ()
   bindings.set("sidescrolloff", 3)
 
   -- normalize cursor pos
-  bindings.set("virtualedit", "onemore")
+  bindings.set("virtualedit", "onemore,block")
   bindings.map.normal("$", "$<Right>")
 
 end
