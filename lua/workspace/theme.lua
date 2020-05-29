@@ -10,12 +10,6 @@ local intrinsic = function ()
   -- use 256 colours
   bindings.set("termguicolors")
 
-  -- show current mode
-  bindings.set("showmode")
-
-  -- show command history
-  bindings.set("showcmd")
-
   -- always show status line
   bindings.set("laststatus", 2)
 
