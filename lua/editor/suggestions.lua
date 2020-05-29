@@ -20,9 +20,6 @@ local suggestions = function ()
   -- complete menu
   bindings.set("completeopt", "menuone,preview,noinsert,noselect")
 
-  -- user comp func
-  bindings.set("completefunc", "")
-
 end
 registry.defer(suggestions)
 
