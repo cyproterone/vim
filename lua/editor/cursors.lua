@@ -12,7 +12,7 @@ registry.install("matze/vim-move")
 registry.install("Raimondi/delimitMate")
 local match_cursor = function ()
 
-  bindings.set("matchpairs", [[<:>]], [[+=]])
+  bindings.set("matchpairs", "<:>", [[+=]])
 
 end
 registry.defer(match_cursor)
