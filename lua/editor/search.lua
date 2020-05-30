@@ -60,43 +60,63 @@ end
 registry.defer(nomagic)
 
 
--- hi select
-local hlselect = function ()
-  fn.setreg("/", "\\V" .. fn.getreg("z"))
-  bindings.exec[[set hlsearch]]
+-- get selection
+local p_marks = function (type)
+  local m1, m2 = unpack(type and {"[", "]"} or {"<", ">"})
+  local r1, c1 = unpack(api.nvim_buf_get_mark(0, m1))
+  local r2, c2 = unpack(api.nvim_buf_get_mark(0, m2))
+  return r1, c1, r2, c2
 end
 
 
 -- get selection
-local fd_select = function (type)
-  if type == "line" then
-    bindings.norm[['[V']\"zy]]
+local p_selection = function (type)
+  local r1, c1, r2, c2 = p_marks(type)
+  -- vim has mixed indexing
+  r1, r2 = r1 - 1, r2 - 1 + 1
+  c1, c2 = c1 + 1, c2 + 1
+  local lines = api.nvim_buf_get_lines(0, r1, r2, true)
+  if r2 == r1 + 1 then
+    lines[1] = string.sub(lines[1], c1, c2)
   else
-    bindings.norm[[`[v`]\"zy]]
+    local last = r2 - r1
+    lines[1] = string.sub(lines[1], c1)
+    lines[last] = string.sub(lines[last], 1, c2)
   end
+  return table.concat(lines, "\n")
 end
 
 
 -- find selection
 local find = function ()
 
+  local hlselect = function (text)
+    fn.setreg("/", text)
+    bindings.exec[[set hlsearch]]
+  end
+
+  local fd_select = function (type)
+    local selection = p_selection(type)
+    local escaped = bindings.magic_escape(selection)
+    hlselect(escaped)
+    return selection
+  end
+
   lua_op_fzf = function (type)
-    local _ = type and fd_select(type)
-    hlselect()
-    bindings.norm[[:BLines \<C-r>z\<CR>]]
+    local selection = fd_select(type)
+    bindings.exec("BLines " .. selection)
   end
 
   lua_op_rg = function (type)
-    local _ = type and fd_select(type)
-    hlselect()
-    bindings.norm[[:Rg \<C-r>z\<CR>]]
+    local selection = fd_select(type)
+    bindings.exec("Rg " .. selection)
   end
 
   bindings.map.normal("gf", ":set opfunc=v:lua.lua_op_fzf<CR>g@")
   bindings.map.normal("gF", ":set opfunc=v:lua.lua_op_rg<CR>g@")
 
-  bindings.map.visual("gf", [["zy:lua lua_op_fzf()<CR>]])
-  bindings.map.visual("gF", [["zy:lua lua_op_rg()<CR>]])
+  bindings.map.visual("gf", "<Esc>:lua lua_op_fzf()<CR>")
+  bindings.map.visual("gF", "<Esc>:lua lua_op_rg()<CR>")
 
 end
 registry.defer(find)
@@ -106,7 +126,6 @@ registry.defer(find)
 local replace = function ()
 
   lua_op_sd = function (type)
-    fd_select(type)
     -- no magic
     api.nvim_input[[:%s/\V<C-r>z//g<Left><Left>]]
   end
