@@ -55,6 +55,22 @@ end
 registry.defer(cursors)
 
 
+-- highlight word under cursor
+local hold = function ()
+
+  local highlight = function ()
+    local word = fn.expand("<cword>")
+    if word ~= "" then
+      bindings.exec([[match CurrentWord /\V]] .. word .. "/")
+    end
+  end
+
+  registry.auto({"CursorHold", "CursorHoldI"}, highlight)
+
+end
+registry.defer(hold)
+
+
 --#################### Colours Region ####################
 
 -- colour theme::
