@@ -59,7 +59,7 @@ registry.defer(hotkeys)
 registry.install("Shougo/deoplete.nvim")
 local enable = function ()
 
-  fn["deoplete#custom#option"]("auto_complete_delay", 200)
+  fn["deoplete#custom#option"]("auto_complete_delay", 0)
 
   -- keys
   lua_enable_comp = function ()
