@@ -87,11 +87,17 @@ local p_selection = function (type)
 end
 
 
+local magic_escape = function (word)
+  local escaped = fn.escape(word, [[/\]])
+  return [[\V]] .. escaped
+end
+
+
 -- find selection
 local find = function ()
 
   local hlselect = function (text)
-    fn.setreg("/", [[\V]] .. text)
+    fn.setreg("/", magic_escape(text))
     bindings.exec[[set hlsearch]]
   end
 

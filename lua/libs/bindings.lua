@@ -99,12 +99,6 @@ local buf = function (id)
 end
 
 
-local magic_escape = function (word)
-  local escaped = fn.escape(word, [[/\]])
-  return [[\V\<]] .. escaped .. [[\>]]
-end
-
-
 return {
   exec = exec,
   norm = norm,
@@ -112,5 +106,4 @@ return {
   map = map(),
   source = source,
   buf = buf,
-  magic_escape = magic_escape,
 }

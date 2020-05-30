@@ -58,10 +58,15 @@ registry.defer(cursors)
 -- highlight word under cursor
 local hold = function ()
 
+  local magic_escape = function (word)
+    local escaped = fn.escape(word, [[/\]])
+    return [[\V\<]] .. escaped .. [[\>]]
+  end
+
   local highlight = function ()
     local word = fn.expand("<cword>")
     if word ~= "" then
-      local escaped = bindings.magic_escape(word)
+      local escaped = magic_escape(word)
       local group = "CurrentWord"
       local match = "match " .. group .. " /" .. escaped .. "/"
       bindings.exec(match)
