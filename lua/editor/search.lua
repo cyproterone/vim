@@ -91,24 +91,19 @@ end
 local find = function ()
 
   local hlselect = function (text)
-    fn.setreg("/", text)
+    fn.setreg("/", [[\V]] .. text)
     bindings.exec[[set hlsearch]]
   end
 
-  local fd_select = function (type)
-    local selection = p_selection(type)
-    local escaped = bindings.magic_escape(selection)
-    hlselect(escaped)
-    return selection
-  end
-
   lua_op_fzf = function (type)
-    local selection = fd_select(type)
+    local selection = p_selection(type)
+    hlselect(selection)
     bindings.exec("BLines " .. selection)
   end
 
   lua_op_rg = function (type)
-    local selection = fd_select(type)
+    local selection = p_selection(type)
+    hlselect(selection)
     bindings.exec("Rg " .. selection)
   end
 
