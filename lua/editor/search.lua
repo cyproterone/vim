@@ -121,13 +121,15 @@ registry.defer(find)
 local replace = function ()
 
   lua_op_sd = function (type)
+    local selection = p_selection(type)
     -- no magic
-    api.nvim_input[[:%s/\V<C-r>z//g<Left><Left>]]
+    local input = [[:%s/\V]] .. selection .. "//g<Left><Left>"
+    api.nvim_input(input)
   end
 
   -- no magic
   bindings.map.normal("gt", ":set opfunc=v:lua.lua_op_sd<CR>g@")
-  bindings.map.visual("gt", [["zy:%s/\V<C-r>z//g<Left><Left>]], {silent = false})
+  bindings.map.visual("gt", "<ESC>:lua lua_op_sd()<CR>")
   -- very magic
   bindings.map.normal("gT", [[:%s/\v//g<Left><Left><Left>]], {silent = false})
 
