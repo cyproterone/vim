@@ -62,7 +62,9 @@ local hold = function ()
     local word = fn.expand("<cword>")
     if word ~= "" then
       local escaped = bindings.magic_escape(word)
-      bindings.exec("match CurrentWord /" .. escaped .. "/")
+      local group = "CurrentWord"
+      local match = "match " .. group .. " /" .. escaped .. "/"
+      bindings.exec(match)
     end
   end
 
