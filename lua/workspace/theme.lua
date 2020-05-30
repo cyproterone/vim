@@ -61,7 +61,8 @@ local hold = function ()
   local highlight = function ()
     local word = fn.expand("<cword>")
     if word ~= "" then
-      bindings.exec([[match CurrentWord /\V]] .. word .. "/")
+      local escaped = bindings.magic_escape(word)
+      bindings.exec("match CurrentWord /" .. escaped .. "/")
     end
   end
 
