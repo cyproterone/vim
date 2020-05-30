@@ -89,7 +89,7 @@ end
 
 local magic_escape = function (word)
   local escaped = fn.escape(word, [[/\]])
-  return [[\V]] .. escaped
+  return [[\V]] .. string.gsub(escaped, "\n", [[\n]])
 end
 
 
@@ -128,8 +128,9 @@ local replace = function ()
 
   lua_op_sd = function (type)
     local selection = p_selection(type)
+    local escaped = magic_escape(selection)
     -- no magic
-    local input = [[:%s/\V]] .. selection .. "//g<Left><Left>"
+    local input = [[:%s/]] .. escaped .. "//g<Left><Left>"
     api.nvim_input(input)
   end
 
