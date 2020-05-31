@@ -3,9 +3,11 @@
 --#################### ########### ####################
 local bindings = require "libs/bindings"
 local ftp = require "libs/ftp"
+local registry = require "libs.registry"
 
 
 local ft = {"yaml"}
+registry.install("stephpy/vim-yaml")
 
 
 local format = function ()
