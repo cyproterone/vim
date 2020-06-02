@@ -79,7 +79,6 @@ local welcome_screen = function ()
     local name = api.nvim_buf_get_name(1)
     if name == "" then
       api.nvim_buf_set_option(1, "buftype", "nofile")
-      bindings.buf(1).set("buftype", "nofile")
     end
     once()
   end

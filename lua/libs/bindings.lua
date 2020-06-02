@@ -72,38 +72,10 @@ local source = function (path)
 end
 
 
-local buf = function (id)
-
-  local let = function (var, val)
-    return api.nvim_buf_set_var(id, var, val)
-  end
-
-  local var = function (var)
-    return api.nvim_buf_get_var(id, var)
-  end
-
-  local set = function (var, val)
-    return api.nvim_buf_set_option(id, var, val)
-  end
-
-  local opt = function (var)
-    return api.nvim_buf_get_option(id, var)
-  end
-
-  return {
-    let = let,
-    var = var,
-    set = set,
-    opt = opt,
-  }
-end
-
-
 return {
   exec = exec,
   norm = norm,
   set = set,
   map = map(),
   source = source,
-  buf = buf,
 }
