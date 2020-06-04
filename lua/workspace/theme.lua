@@ -55,30 +55,6 @@ end
 registry.defer(cursors)
 
 
--- highlight word under cursor
-local hold = function ()
-
-  local magic_escape = function (word)
-    local escaped = fn.escape(word, [[/\]])
-    return [[\V\<]] .. escaped .. [[\>]]
-  end
-
-  local highlight = function ()
-    local word = fn.expand("<cword>")
-    if word ~= "" then
-      local escaped = magic_escape(word)
-      local group = "CurrentWord"
-      local match = "match " .. group .. " /" .. escaped .. "/"
-      bindings.exec(match)
-    end
-  end
-
-  registry.auto({"CursorHold", "CursorHoldI"}, highlight)
-
-end
-registry.defer(hold)
-
-
 --#################### Colours Region ####################
 
 -- colour theme::
