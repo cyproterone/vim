@@ -120,6 +120,7 @@ end
 
 
 local materialize = a.sync(function ()
+  env["PATH"] = vim_home .. "/bin:" .. env["PATH"]
   local inst = a.wait(init_plug)
   init_plugins()
   if inst then

@@ -1,0 +1,10 @@
+#!/usr/bin/env python3
+
+from locale import strxfrm
+from sys import stdin
+from typing import List
+
+lines: List[str] = stdin.readlines()
+lines.sort(key=strxfrm)
+
+print(*lines)
