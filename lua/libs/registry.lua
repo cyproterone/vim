@@ -127,6 +127,7 @@ local materialize = a.sync(function ()
     init_defer()
   else
     bindings.exec[[PlugInstall]]
+    bindings.exec[[UpdateRemotePlugins]]
     bindings.norm[[:qa!\<CR>]]
   end
 end)
