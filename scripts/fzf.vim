@@ -6,4 +6,4 @@ function! s:p(bang, ...)
   return {}
 endfunction
 
-command! -bang -nargs=* Rg call fzf#vim#grep("rg --hidden --column --line-number --no-heading --color=always --smart-case ".shellescape(<q-args>), 1, s:p(<bang>0), <bang>0)
+command! -bang -nargs=* Rg call fzf#vim#grep("rg --column --line-number --no-heading --color=always  ".shellescape(<q-args>), 1, s:p(<bang>0), <bang>0)
