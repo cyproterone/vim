@@ -71,7 +71,7 @@ end
 
 local init_plug = function (cont)
   local remote = "https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
-  local plug = bin_home .. "/plug.vim"
+  local plug = vim_home .. "/plug.vim"
   local cont_init = function (inst)
     bindings.source(plug)
     cont(inst)
