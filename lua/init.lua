@@ -25,6 +25,7 @@ require "modes/terminal"
 
 -- versioning
 require "versioning/git"
+require "versioning/vc"
 
 -- editor
 require "editor/cursors"

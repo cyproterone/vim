@@ -14,4 +14,4 @@ registry.defer(lg)
 
 
 -- gitter
-registry.install("airblade/vim-gitgutter")
+-- registry.install("airblade/vim-gitgutter")
