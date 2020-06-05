@@ -121,6 +121,7 @@ local materialize = a.sync(function ()
   if inst then
     init_defer()
   else
+    bindings.exec[[PlugInstall]]
     bindings.norm[[:qa!\<CR>]]
   end
 end)
