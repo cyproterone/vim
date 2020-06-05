@@ -72,20 +72,18 @@ end
 local init_plug = function (cont)
   local remote = "https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
   local plug = vim_home .. "/plug.vim"
-  local cont_init = function (inst)
+  lua_cont_init = function (inst)
     bindings.source(plug)
     cont(inst)
   end
+  bindings.exec[[function! InstallVimPlug (job_id, code, event_type)
+    lua lua_cont_init()
+  endfunction]]
   if not stdio.file_exists(plug) then
-    a.sync(function ()
-      local args = {"--create-dirs", "-o", plug, remote}
-      local code, _, err = a.wait(loop.spawn("curl", {args = args}))
-      a.wait(loop.main)
-      assert(code == 0, err)
-      cont_init(false)
-    end)()
+    local on_exit = {on_exit = "InstallVimPlug"}
+    fn.termopen({"curl", "--create-dirs", "-o", plug, remote}, on_exit)
   else
-    cont_init(true)
+    lua_cont_init(true)
   end
 end
 
