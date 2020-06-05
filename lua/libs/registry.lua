@@ -128,6 +128,7 @@ local materialize = a.sync(function ()
   else
     bindings.exec[[PlugInstall]]
     bindings.exec[[UpdateRemotePlugins]]
+    bindings.norm[[:sleep 1\<CR>]]
     bindings.norm[[:qa!\<CR>]]
   end
 end)
