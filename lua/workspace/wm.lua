@@ -60,9 +60,6 @@ registry.defer(modern_split)
 -- modern wm
 local wm_close = function ()
 
-  -- quit vim
-  bindings.map.normal("QQ", ":qa<CR>")
-
   -- close window
   bindings.map.normal("<Leader>w", ":close<CR>")
 

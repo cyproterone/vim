@@ -4,15 +4,6 @@ local registry = require "libs/registry"
 
 --#################### Normal Region ####################
 
-local unmap_keys = function ()
-
-  -- unmap exmode
-  bindings.map.normal("Q", "<Esc>")
-
-end
-registry.defer(unmap_keys)
-
-
 local map_keys = function ()
 
   -- use @ to do ^
