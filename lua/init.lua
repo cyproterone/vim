@@ -41,6 +41,7 @@ require "editor/undo"
 require "editor/whitespace"
 
 -- lang
+require "lang/_lang"
 require "lang/bash"
 require "lang/css"
 require "lang/docker"

@@ -3,11 +3,9 @@
 --#################### ############# ####################
 local bindings = require "libs/bindings"
 local ftp = require "libs/ftp"
-local registry = require "libs/registry"
 
 
 local ft = {"python"}
-registry.install("vim-python/python-syntax")
 
 
 local format = function ()
