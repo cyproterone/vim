@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 from argparse import ArgumentParser, Namespace
-from os import getcwd
+from os import getcwd, makedirs
 from os.path import basename, isdir, join, splitext
 from subprocess import run
 from sys import stdin
@@ -9,13 +9,14 @@ from typing import List, Iterable
 from urllib.parse import urlparse
 
 
-def call(prog: str, *args: List[str], cwd: str) -> None:
+def call(prog: str, *args: List[str], cwd=getcwd()) -> None:
   ret = run([prog, *args], cwd=cwd)
   if ret.returncode != 0:
     exit(ret.returncode)
 
 
-def expand_uri(repo: str) -> str:
+def expand_uri(line: str) -> str:
+  repo = line.strip()
   if repo.startswith("https://"):
     return repo
   elif repo.startswith("git@"):
@@ -51,7 +52,9 @@ def main() -> None:
   args = parse_args()
   repos: Iterable[str] = (expand_uri(line)
                           for line in stdin.readlines())
-  if not isdir(args.path):
-    pass
+  makedirs(args.path, exist_ok=True)
   for repo in repos:
     install_pkg(repo, args.path)
+
+
+main()

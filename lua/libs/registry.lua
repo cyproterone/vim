@@ -117,14 +117,36 @@ local init_defer = function ()
 end
 
 
-local materialize = a.sync(function ()
-  env["PATH"] = vim_home .. "/bin:" .. env["PATH"]
+local normal = function ()
   local inst = a.wait(init_plug)
   init_plugins()
   if inst then
     init_defer()
   else
     bindings.exec[[PlugInstall]]
+  end
+end
+
+
+local scripted = function ()
+  local plugins = std.map(_plugins, function (plug)
+    return std.wrap(plug)[1]
+  end)
+  local stream = table.concat(plugins, "\n")
+  local args = {args = {"plugged"}, stream = stream}
+  a.sync(function ()
+    local code = a.wait(loop.spawn("git-package", args))
+    os.exit(code)
+  end)()
+end
+
+
+local materialize = a.sync(function ()
+  env["PATH"] = vim_home .. "/bin:" .. env["PATH"]
+  if env["VIM_INIT"] then
+    scripted()
+  else
+    normal()
   end
 end)
 
