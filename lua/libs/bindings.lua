@@ -62,8 +62,7 @@ local map = function ()
     no = partial{"n", "o"},
     nv = partial{"n", "v"},
     ni = partial{"n", "i"},
-    nic = partial{"n", "i", "c"},
-    niv = partial{"n", "i", "v"},
+    nov = partial{"n", "o", "v"},
   }
 end
 
