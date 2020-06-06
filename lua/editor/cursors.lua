@@ -8,11 +8,11 @@ local std = require "libs/std"
 local get_visual = function ()
   local r1, c1 = unpack(api.nvim_buf_get_mark(0, "<"))
   local r2, c2 = unpack(api.nvim_buf_get_mark(0, ">"))
-  return r1 - 1, c1, r2 - 1, c2
+  return r1 , c1, r2, c2
 end
 
 
-local select_visual = function ()
+local select_visual = function (r1, c1, r2, c2)
 end
 
 
@@ -46,17 +46,25 @@ end
 
 lua_move_v_down = function ()
   local r1, c1, r2, c2 = get_visual()
+  if r1 <= 1 then
+    return
+  end
+  r1, r2 = r1 - 1, r2 - 1
   local r, c = unpack(api.nvim_win_get_cursor(0))
+  select_visual(r1 - 1, c1, r2 - 1, c2)
   api.nvim_win_set_cursor(0, {r - 1, c})
-  select_visual()
 end
 
 
 lua_move_v_up = function ()
   local r1, c1, r2, c2 = get_visual()
+  if r2 >= api.nvim_buf_line_count(0) then
+    return
+  end
+  r1, r2 = r1 - 1, r2 - 1
   local r, c = unpack(api.nvim_win_get_cursor(0))
+  select_visual(r1 + 1, c1, r2 + 1, c2)
   api.nvim_win_set_cursor(0, {r + 1, c})
-  select_visual()
 end
 
 
