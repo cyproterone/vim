@@ -9,6 +9,10 @@ local stdio = require "libs/io"
 
 
 local _registry = "libs/registry"
+local vim_plug_remote = "https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
+local vim_plug = vim_home .. "/plug.vim"
+local plugin_dir = "plugged"
+
 
 local _plugins = {}
 local _defer = {}
@@ -70,18 +74,16 @@ end
 
 
 local init_plug = function (cont)
-  local remote = "https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
-  local plug = vim_home .. "/plug.vim"
   lua_cont_init = function (inst)
-    bindings.source(plug)
+    bindings.source(vim_plug)
     cont(inst)
   end
   bindings.exec[[function! InstallVimPlug (job_id, code, event_type)
     lua lua_cont_init()
   endfunction]]
-  if not stdio.file_exists(plug) then
+  if not stdio.file_exists(vim_plug) then
     local on_exit = {on_exit = "InstallVimPlug"}
-    fn.termopen({"curl", "--create-dirs", "-o", plug, remote}, on_exit)
+    fn.termopen({"curl", "--create-dirs", "-o", vim_plug, vim_plug_remote}, on_exit)
   else
     lua_cont_init(true)
   end
@@ -97,7 +99,7 @@ local init_plugins = function ()
     fn["plug#"](name, opts)
   end
 
-  fn["plug#begin"](vim_home .. "/plugged")
+  fn["plug#begin"](vim_home .. "/".. plugin_dir)
   for _, plugin in ipairs(_plugins) do
     plug(plugin)
   end
@@ -132,9 +134,15 @@ local scripted = function ()
   local plugins = std.map(_plugins, function (plug)
     return std.wrap(plug)[1]
   end)
-  local stream = table.concat(plugins, "\n")
-  local args = {args = {"plugged"}, stream = stream}
   a.sync(function ()
+    local args = {"--create-dirs", "-o", vim_plug, vim_plug_remote}
+    local code = a.wait(loop.spawn("curl", args))
+    if code ~= 0 then
+      os.exit(code)
+    end
+
+    local stream = table.concat(plugins, "\n")
+    local args = {args = {plugin_dir}, stream = stream}
     local code = a.wait(loop.spawn("git-package", args))
     os.exit(code)
   end)()
