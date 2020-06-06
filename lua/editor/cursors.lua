@@ -6,9 +6,9 @@ local std = require "libs/std"
 --#################### Cursors Region ####################
 
 local get_visual = function ()
-  local r1, _ = unpack(api.nvim_buf_get_mark(0, "<"))
-  local r2, _ = unpack(api.nvim_buf_get_mark(0, ">"))
-  return r1, r2
+  local r1, c1 = unpack(api.nvim_buf_get_mark(0, "<"))
+  local r2, c2 = unpack(api.nvim_buf_get_mark(0, ">"))
+  return r1 - 1, c1, r2 - 1, c2
 end
 
 
@@ -45,13 +45,20 @@ end
 
 
 lua_move_v_down = function ()
+  local r1, c1, r2, c2 = get_visual()
   local r, c = unpack(api.nvim_win_get_cursor(0))
+  api.nvim_win_set_cursor(0, {r - 1, c})
+  select_visual()
 end
 
 
 lua_move_v_up = function ()
+  local r1, c1, r2, c2 = get_visual()
   local r, c = unpack(api.nvim_win_get_cursor(0))
+  api.nvim_win_set_cursor(0, {r + 1, c})
+  select_visual()
 end
+
 
 -- drag regions around
 local vim_move = function ()
