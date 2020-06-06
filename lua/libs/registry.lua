@@ -130,12 +130,13 @@ local normal = function ()
 end
 
 
+-- run in daemon mode
 local scripted = function ()
   local plugins = std.map(_plugins, function (plug)
     return std.wrap(plug)[1]
   end)
   a.sync(function ()
-    local args = {"--create-dirs", "-o", vim_plug, vim_plug_remote}
+    local args = {args = {"--create-dirs", "-o", vim_plug, vim_plug_remote}}
     local code = a.wait(loop.spawn("curl", args))
     if code ~= 0 then
       os.exit(code)
