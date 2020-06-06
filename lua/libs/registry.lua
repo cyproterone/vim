@@ -11,7 +11,7 @@ local stdio = require "libs/io"
 local _registry = "libs/registry"
 local vim_plug_remote = "https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
 local vim_plug = vim_home .. "/plug.vim"
-local plugin_dir = "plugged"
+local plugin_dir = vim_home .. "/plugged"
 
 
 local _plugins = {}
@@ -99,7 +99,7 @@ local init_plugins = function ()
     fn["plug#"](name, opts)
   end
 
-  fn["plug#begin"](vim_home .. "/".. plugin_dir)
+  fn["plug#begin"](plugin_dir)
   for _, plugin in ipairs(_plugins) do
     plug(plugin)
   end
