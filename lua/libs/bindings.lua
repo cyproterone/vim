@@ -59,6 +59,7 @@ local map = function ()
     replace = partial{"r"},
     operator = partial{"o"},
     terminal = partial{"t"},
+    no = partial{"n", "o"},
     nv = partial{"n", "v"},
     ni = partial{"n", "i"},
     nic = partial{"n", "i", "c"},

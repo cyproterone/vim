@@ -4,16 +4,6 @@ local registry = require "libs/registry"
 
 --#################### Normal Region ####################
 
-local map_keys = function ()
-
-  -- use @ to do ^
-  bindings.map.normal("@", "^")
-  bindings.map.normal("^", "@")
-
-end
-registry.defer(map_keys)
-
-
 -- fix cursor pos moving 1 back
 local no_stepback = function ()
 
