@@ -5,7 +5,6 @@ local registry = require "libs/registry"
 --#################### Cursors Region ####################
 
 -- drag regions around
-registry.install("matze/vim-move")
 local vim_move = function ()
 
   local get_visual = function ()
@@ -21,15 +20,15 @@ local vim_move = function ()
         return
       end
       local top = r2 + 1
-      local lines = api.nvim_buf_get_lines(0, r1, top, true)
-      api.nvim_buf_set_lines(0, r1, top, true, lines)
+      local lines = api.nvim_buf_get_lines(0, r1, top + 1, true)
+      api.nvim_buf_set_lines(0, r1, top + 1, true, lines)
     else
       if r1 <= 0 then
         return
       end
       local btm = r1 - 1
-      local lines = api.nvim_buf_get_lines(0, btm, r2, true)
-      api.nvim_buf_set_lines(0, btm, r2, true, lines)
+      local lines = api.nvim_buf_get_lines(0, btm, r2 + 1, true)
+      api.nvim_buf_set_lines(0, btm, r2 + 1, true, lines)
     end
   end
 
@@ -38,7 +37,8 @@ local vim_move = function ()
       local r1, r2 = get_visual()
       swap(visual, down, r1, r2)
     else
-      local r = unpack(api.nvim_win_get_cursor(0))
+      local r, _ = unpack(api.nvim_win_get_cursor(0))
+      r = r - 1
       swap(visual, down, r, r)
     end
   end
