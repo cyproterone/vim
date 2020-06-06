@@ -16,21 +16,30 @@ local vim_move = function ()
 
   local swap = function (visual, down, r1, r2)
     if down then
-      local lines = api.nvim_buf_get_lines(0, r1, r2, true)
-      api.nvim_buf_set_lines(0, r1, r2, true, lines)
+      local max = api.nvim_buf_line_count(0)
+      if r2 >= max then
+        return
+      end
+      local top = r2 + 1
+      local lines = api.nvim_buf_get_lines(0, r1, top, true)
+      api.nvim_buf_set_lines(0, r1, top, true, lines)
     else
-      local lines = api.nvim_buf_get_lines(0, r1, r2, true)
-      api.nvim_buf_set_lines(0, r1, r2, true, lines)
+      if r1 <= 0 then
+        return
+      end
+      local btm = r1 - 1
+      local lines = api.nvim_buf_get_lines(0, btm, r2, true)
+      api.nvim_buf_set_lines(0, btm, r2, true, lines)
     end
   end
 
   lua_move = function (visual, down)
     if visual then
       local r1, r2 = get_visual()
-      swap(true, down, r1, r2)
+      swap(visual, down, r1, r2)
     else
       local r = unpack(api.nvim_win_get_cursor(0))
-      swap(true, down, r, r)
+      swap(visual, down, r, r)
     end
   end
 
