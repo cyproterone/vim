@@ -12,8 +12,8 @@ local keys = function ()
   bindings.map.visual(">", ">gv")
 
   -- dont shirt move too much
-  bindings.map.visual("<S-Up>",   "<Up>zz")
-  bindings.map.visual("<S-Down>", "<Down>zz")
+  bindings.map.visual("<S-Up>",   "<Up>")
+  bindings.map.visual("<S-Down>", "<Down>")
 
 end
 registry.defer(keys)
