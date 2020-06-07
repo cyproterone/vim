@@ -20,6 +20,10 @@ end
 
 
 lv.move_up = function ()
+  if not vim.bo.modifiable then
+    return
+  end
+
   local r, c = unpack(api.nvim_win_get_cursor(0))
   if r <= 1 then
     return
@@ -34,6 +38,10 @@ end
 
 
 lv.move_down = function ()
+  if not vim.bo.modifiable then
+    return
+  end
+
   local r, c = unpack(api.nvim_win_get_cursor(0))
   if r >= api.nvim_buf_line_count(0) then
     return
@@ -48,6 +56,10 @@ end
 
 
 lv.move_v_up = function ()
+  if not vim.bo.modifiable then
+    return
+  end
+
   local r1, c1, r2, c2 = get_visual()
   if r1 <= 1 then
     bindings.norm[[gv]]
@@ -66,6 +78,10 @@ end
 
 
 lv.move_v_down = function ()
+  if not vim.bo.modifiable then
+    return
+  end
+
   local r1, c1, r2, c2 = get_visual()
   if r2 >= api.nvim_buf_line_count(0) then
     bindings.norm[[gv]]
