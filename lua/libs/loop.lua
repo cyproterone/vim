@@ -59,7 +59,12 @@ end
 local function set_timeout(timeout, callback, ...)
   local timer = uv.new_timer()
   local args = {...}
+  local closed = false
   local stop = function ()
+    if closed then
+      return
+    end
+    closed = true
     uv.timer_stop(timer)
     uv.close(timer)
   end
