@@ -50,6 +50,7 @@ end
 lua_move_v_up = function ()
   local r1, c1, r2, c2 = get_visual()
   if r1 <= 1 then
+    bindings.norm[[gv]]
     return
   end
   r1, r2 = r1 - 1, r2 - 1
@@ -69,6 +70,7 @@ end
 lua_move_v_down = function ()
   local r1, c1, r2, c2 = get_visual()
   if r2 >= api.nvim_buf_line_count(0) then
+    bindings.norm[[gv]]
     return
   end
   r1, r2 = r1 - 1, r2 - 1
