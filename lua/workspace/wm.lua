@@ -63,9 +63,10 @@ local wm_close = function ()
   -- close window
   bindings.map.normal("<Leader>w", ":close<CR>")
 
+  local keep_open = set.new{"qf", "LuaTree"}
+
   -- close other windows
   lv.window_only = function (keep_open)
-    local keep_open = set.new(keep_open)
     local only_win = api.nvim_tabpage_get_win(0)
     local wins = api.nvim_tabpage_list_wins(0)
 
@@ -77,7 +78,7 @@ local wm_close = function ()
       end
     end
   end
-  bindings.map.normal("<Leader>W", [[:lua lv.window_only{"defx", "qf"}<CR>]])
+  bindings.map.normal("<Leader>W", [[:lua lv.window_only{}<CR>]])
 
   -- break window into tab
   bindings.map.normal("<Leader>k", "<C-w>T")
