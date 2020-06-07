@@ -149,7 +149,7 @@ local scripted = function ()
       os.exit(code)
     end
 
-    os.exit(0)
+    bindings.exec[[quitall]]
   end)()
 end
 
