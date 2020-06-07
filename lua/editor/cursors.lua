@@ -44,25 +44,37 @@ lua_move_down = function ()
 end
 
 
-lua_move_v_down = function ()
+lua_move_v_up = function ()
   local r1, c1, r2, c2 = get_visual()
   if r1 <= 1 then
     return
   end
   r1, r2 = r1 - 1, r2 - 1
   local r, c = unpack(api.nvim_win_get_cursor(0))
+
+  local curr = api.nvim_buf_get_lines(0, r1, r2 + 1, true)
+  local nxt  = api.nvim_buf_get_lines(0, r1 - 1, r1, true)
+  local new = std.concat{curr, nxt}
+  api.nvim_buf_set_lines(0, r1 - 1, r2 + 1, true, new)
+
   select_visual(r1 - 1, c1, r2 - 1, c2)
   api.nvim_win_set_cursor(0, {r - 1, c})
 end
 
 
-lua_move_v_up = function ()
+lua_move_v_down = function ()
   local r1, c1, r2, c2 = get_visual()
   if r2 >= api.nvim_buf_line_count(0) then
     return
   end
   r1, r2 = r1 - 1, r2 - 1
   local r, c = unpack(api.nvim_win_get_cursor(0))
+
+  local curr = api.nvim_buf_get_lines(0, r1, r2 + 1, true)
+  local nxt  = api.nvim_buf_get_lines(0, r2 + 1, r2 + 2, true)
+  local new = std.concat{nxt, curr}
+  api.nvim_buf_set_lines(0, r1, r2 + 2, true, new)
+
   select_visual(r1 + 1, c1, r2 + 1, c2)
   api.nvim_win_set_cursor(0, {r + 1, c})
 end
