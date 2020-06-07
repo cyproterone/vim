@@ -18,7 +18,7 @@ local spawn = function (shell, opts, cb)
   process, pid = uv.spawn(shell, args, function (code)
     local handles = {stdin, stdout, stderr, process}
     for _, handle in ipairs(handles) do
-      pcall(uv.close, handle)
+      uv.close(handle)
     end
     cb(code, table.concat(out, ""), table.concat(errs, ""))
   end)
@@ -56,16 +56,24 @@ local main = function (f)
 end
 
 
-local debounce = function (f)
-  return function (...)
-    f(...)
+local function set_timeout(timeout, callback, ...)
+  local timer = uv.new_timer()
+  local args = {...}
+  local stop = function ()
+    uv.timer_stop(timer)
+    uv.close(timer)
   end
+  uv.timer_start(timer, timeout, 0, function ()
+    stop()
+    callback(unpack(args))
+  end)
+  return stop
 end
 
 
 return {
   spawn = a.wrap(spawn),
   main = main,
-  debounce = debounce,
+  set_timeout = set_timeout,
 }
 

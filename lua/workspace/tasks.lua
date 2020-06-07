@@ -1,4 +1,5 @@
 local bindings = require "libs/bindings"
+local decorators = require "libs/decorators"
 local registry = require "libs/registry"
 
 
@@ -40,9 +41,11 @@ local autosave = function ()
     end
   end
 
+  local smol_save = decorators.debounce(500, save)
+
   registry.auto(
     {"TextChanged", "InsertLeave", "CursorHoldI"},
-    save,
+    smol_save,
     {"*"},
     "nested")
 
