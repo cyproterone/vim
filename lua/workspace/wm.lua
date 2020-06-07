@@ -25,7 +25,7 @@ local modern_split = function ()
   bindings.set("splitbelow")
 
   -- split windows
-  lua_new_window = function(vertical)
+  lv.new_window = function(vertical)
     if vertical then
       bindings.exec[[vnew]]
     else
@@ -34,8 +34,8 @@ local modern_split = function ()
     local buf = api.nvim_create_buf(false, true)
     api.nvim_win_set_buf(0, buf)
   end
-  bindings.map.normal("<Leader>=", ":lua lua_new_window(true)<CR>")
-  bindings.map.normal("<Leader>-", ":lua lua_new_window(false)<CR>")
+  bindings.map.normal("<Leader>=", ":lua lv.new_window(true)<CR>")
+  bindings.map.normal("<Leader>-", ":lua lv.new_window(false)<CR>")
 
   -- move between windows
   bindings.map.normal("<C-Left>",  "<C-w>h")
@@ -64,7 +64,7 @@ local wm_close = function ()
   bindings.map.normal("<Leader>w", ":close<CR>")
 
   -- close other windows
-  lua_window_only = function (keep_open)
+  lv.window_only = function (keep_open)
     local keep_open = set.new(keep_open)
     local only_win = api.nvim_tabpage_get_win(0)
     local wins = api.nvim_tabpage_list_wins(0)
@@ -77,7 +77,7 @@ local wm_close = function ()
       end
     end
   end
-  bindings.map.normal("<Leader>W", [[:lua lua_window_only{"defx", "qf"}<CR>]])
+  bindings.map.normal("<Leader>W", [[:lua lv.window_only{"defx", "qf"}<CR>]])
 
   -- break window into tab
   bindings.map.normal("<Leader>k", "<C-w>T")
@@ -93,12 +93,12 @@ local tabs_wm = function ()
   bindings.map.normal("<Leader>q", ":tabclose<CR>")
 
   -- create new tab
-  lua_new_tab = function ()
+  lv.new_tab = function ()
     bindings.exec[[tabnew]]
     vim.bo.buftype = "nofile"
   end
-  bindings.map.normal("<Leader>t", ":lua lua_new_tab()<CR>")
-  bindings.map.normal("<Leader>n", ":lua lua_new_tab()<CR>")
+  bindings.map.normal("<Leader>t", ":lua lv.new_tab()<CR>")
+  bindings.map.normal("<Leader>n", ":lua lv.new_tab()<CR>")
 
   -- cycle between tabs
   bindings.map.normal("<Leader>[", ":tabprevious<CR>")

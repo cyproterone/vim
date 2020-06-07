@@ -101,23 +101,23 @@ local find = function ()
     bindings.exec[[set hlsearch]]
   end
 
-  lua_op_fzf = function (type)
+  lv.op_fzf = function (type)
     local selection = p_selection(type)
     hlselect(selection)
     bindings.exec("BLines " .. selection)
   end
 
-  lua_op_rg = function (type)
+  lv.op_rg = function (type)
     local selection = p_selection(type)
     hlselect(selection)
     bindings.exec("Rg " .. selection)
   end
 
-  bindings.map.normal("gf", ":set opfunc=v:lua.lua_op_fzf<CR>g@")
-  bindings.map.normal("gF", ":set opfunc=v:lua.lua_op_rg<CR>g@")
+  bindings.map.normal("gf", ":set opfunc=v:lua.lv.op_fzf<CR>g@")
+  bindings.map.normal("gF", ":set opfunc=v:lua.lv.op_rg<CR>g@")
 
-  bindings.map.visual("gf", "<Esc>:lua lua_op_fzf()<CR>")
-  bindings.map.visual("gF", "<Esc>:lua lua_op_rg()<CR>")
+  bindings.map.visual("gf", "<Esc>:lua lv.op_fzf()<CR>")
+  bindings.map.visual("gF", "<Esc>:lua lv.op_rg()<CR>")
 
 end
 registry.defer(find)
@@ -126,7 +126,7 @@ registry.defer(find)
 -- replace selection
 local replace = function ()
 
-  lua_op_sd = function (type)
+  lv.op_sd = function (type)
     local selection = p_selection(type)
     local escaped = magic_escape(selection)
     -- no magic
@@ -135,8 +135,8 @@ local replace = function ()
   end
 
   -- no magic
-  bindings.map.normal("gt", ":set opfunc=v:lua.lua_op_sd<CR>g@")
-  bindings.map.visual("gt", "<ESC>:lua lua_op_sd()<CR>")
+  bindings.map.normal("gt", ":set opfunc=v:lua.lv.op_sd<CR>g@")
+  bindings.map.visual("gt", "<ESC>:lua lv.op_sd()<CR>")
   -- very magic
   bindings.map.normal("gT", [[:%s/\v//g<Left><Left><Left>]], {silent = false})
 

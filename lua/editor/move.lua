@@ -19,7 +19,7 @@ local select_visual = function (r1, c1, r2, c2)
 end
 
 
-lua_move_up = function ()
+lv.move_up = function ()
   local r, c = unpack(api.nvim_win_get_cursor(0))
   if r <= 1 then
     return
@@ -33,7 +33,7 @@ lua_move_up = function ()
 end
 
 
-lua_move_down = function ()
+lv.move_down = function ()
   local r, c = unpack(api.nvim_win_get_cursor(0))
   if r >= api.nvim_buf_line_count(0) then
     return
@@ -47,7 +47,7 @@ lua_move_down = function ()
 end
 
 
-lua_move_v_up = function ()
+lv.move_v_up = function ()
   local r1, c1, r2, c2 = get_visual()
   if r1 <= 1 then
     bindings.norm[[gv]]
@@ -65,7 +65,7 @@ lua_move_v_up = function ()
 end
 
 
-lua_move_v_down = function ()
+lv.move_v_down = function ()
   local r1, c1, r2, c2 = get_visual()
   if r2 >= api.nvim_buf_line_count(0) then
     bindings.norm[[gv]]
@@ -86,11 +86,11 @@ end
 -- drag regions around
 local vim_move = function ()
 
-  bindings.map.normal("<M-Up>",   ":lua lua_move_up()<CR>")
-  bindings.map.normal("<M-Down>", ":lua lua_move_down()<CR>")
+  bindings.map.normal("<M-Up>",   ":lua lv.move_up()<CR>")
+  bindings.map.normal("<M-Down>", ":lua lv.move_down()<CR>")
 
-  bindings.map.visual("<M-Up>",   "<Esc>:lua lua_move_v_up()<CR>")
-  bindings.map.visual("<M-Down>", "<Esc>:lua lua_move_v_down()<CR>")
+  bindings.map.visual("<M-Up>",   "<Esc>:lua lv.move_v_up()<CR>")
+  bindings.map.visual("<M-Down>", "<Esc>:lua lv.move_v_down()<CR>")
 
 end
 registry.defer(vim_move)

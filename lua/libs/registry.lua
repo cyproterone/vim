@@ -74,18 +74,18 @@ end
 
 
 local init_plug = function (cont)
-  lua_cont_init = function (inst)
+  lv.cont_init = function (inst)
     bindings.source(vim_plug)
     cont(inst)
   end
   bindings.exec[[function! InstallVimPlug (job_id, code, event_type)
-    lua lua_cont_init()
+    lua lv.cont_init()
   endfunction]]
   if not stdio.file_exists(vim_plug) then
     local on_exit = {on_exit = "InstallVimPlug"}
     fn.termopen({"curl", "--create-dirs", "-o", vim_plug, vim_plug_remote}, on_exit)
   else
-    lua_cont_init(true)
+    lv.cont_init(true)
   end
 end
 

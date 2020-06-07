@@ -22,7 +22,7 @@ local sort = function ()
     return r1, c1, r2, c2
   end
 
-  lua_sort_lines = function (type)
+  lv.sort_lines = function (type)
     local r1, _, r2, _ = p_marks(type)
     -- vim has mixed indexing
     r1, r2 = r1 - 1, r2 - 1 + 1
@@ -33,8 +33,8 @@ local sort = function ()
     api.nvim_buf_set_lines(0, r1, r2, true, lines)
   end
 
-  bindings.map.normal("gs", ":set opfunc=v:lua.lua_sort_lines<CR>g@")
-  bindings.map.visual("gs", "<Esc>:lua lua_sort_lines()<CR>")
+  bindings.map.normal("gs", ":set opfunc=v:lua.lv.sort_lines<CR>g@")
+  bindings.map.visual("gs", "<Esc>:lua lv.sort_lines()<CR>")
 
 end
 registry.defer(sort)

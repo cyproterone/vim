@@ -62,11 +62,11 @@ local enable = function ()
   fn["deoplete#custom#option"]("auto_complete_delay", 0)
 
   -- keys
-  lua_enable_comp = function ()
+  lv.enable_comp = function ()
     fn["deoplete#enable"]()
     print("-- 蛙 --")
   end
-  bindings.map.normal("gz", ":lua lua_enable_comp()<CR>")
+  bindings.map.normal("gz", ":lua lv.enable_comp()<CR>")
 
 end
 registry.defer(enable)
