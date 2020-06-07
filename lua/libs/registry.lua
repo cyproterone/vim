@@ -149,12 +149,7 @@ local scripted = function ()
       os.exit(code)
     end
 
-    a.wait(loop.main)
-    bindings.exec[[UpdateRemotePlugins]]
-    loop.set_timeout(1000, function ()
-      os.exit(0)
-    end)
-
+    os.exit(0)
   end)()
 end
 
