@@ -149,6 +149,7 @@ local scripted = function ()
       os.exit(code)
     end
 
+    a.wait(loop.main)
     bindings.exec[[quitall]]
   end)()
 end
