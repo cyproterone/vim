@@ -21,6 +21,7 @@ local key = function ()
   local remap = function ()
 
     bindings.map.normal("R", ":LuaTreeRefresh<CR>")
+    bindings.map.normal("`", "<Enter>", {noremap = false})
 
   end
   registry.auto("FileType", remap, "LuaTree")
