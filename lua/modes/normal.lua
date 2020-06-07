@@ -26,3 +26,12 @@ local no_stepback = function ()
 end
 registry.defer(no_stepback)
 
+
+local remap = function ()
+
+    -- normalize Y
+  bindings.map.normal("Y", "y$")
+
+end
+registry.defer(remap)
+

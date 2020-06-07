@@ -44,9 +44,6 @@ local remap_keys = function ()
   bindings.map.nv("c", [["_c]])
   bindings.map.nv("C", [["_C]])
 
-  -- normalize Y
-  bindings.map.nv("Y", "y$")
-
   -- leave cursor 1 behind
   bindings.map.nv("p", "gp")
   bindings.map.nv("P", "gP")
