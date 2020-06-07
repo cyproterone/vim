@@ -66,7 +66,7 @@ local wm_close = function ()
   local keep_open = set.new{"qf", "defx"}
 
   -- close other windows
-  lv.window_only = function (keep_open)
+  lv.window_only = function ()
     local only_win = api.nvim_tabpage_get_win(0)
     local wins = api.nvim_tabpage_list_wins(0)
 
