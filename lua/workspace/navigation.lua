@@ -92,3 +92,4 @@ registry.defer(fzf)
 
 -- use [ ] to navigate various lists, ie quickfix
 registry.install("tpope/vim-unimpaired")
+

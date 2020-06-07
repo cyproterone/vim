@@ -26,3 +26,4 @@ registry.defer(copy_highlight)
 
 -- end
 -- registry.defer(colour_highlight)
+

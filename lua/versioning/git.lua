@@ -15,3 +15,4 @@ registry.defer(lg)
 
 -- gitter
 -- registry.install("airblade/vim-gitgutter")
+
