@@ -28,12 +28,12 @@ require "versioning/git"
 require "versioning/vc"
 
 -- editor
-require "editor/cursors"
 require "editor/format"
 require "editor/highlight"
 require "editor/lsp"
 require "editor/macros"
 require "editor/misc"
+require "editor/move"
 require "editor/operators"
 require "editor/search"
 require "editor/suggestions"
