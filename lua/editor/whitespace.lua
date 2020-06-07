@@ -44,11 +44,11 @@ local trailing_whitespace = function ()
     end
     local pos = api.nvim_win_get_cursor(0)
     bindings.exec[[%s/\v\s+$//e]]
-    bindings.exec[[%s/\v[$\n\s*]*%$/\r/e]]
+    bindings.exec[[%s/\v($\n\s*)*%$/\r/e]]
     api.nvim_win_set_cursor(0, pos)
   end
 
-  registry.auto("BufWritePre", strip)
+  registry.auto("BufWritePre", strip, "*", "silent")
 
 end
 registry.defer(trailing_whitespace)
