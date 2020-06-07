@@ -46,8 +46,10 @@ local autosave = function ()
   registry.auto(
     {"CursorHold", "CursorHoldI"},
     smol_save,
-    {"*"},
+    "*",
     "nested")
+
+  registry.auto("VimLeavePre", save, "*", "nested")
 
 end
 registry.defer(autosave)
