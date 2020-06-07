@@ -95,3 +95,13 @@ local vim_move = function ()
 end
 registry.defer(vim_move)
 
+
+-- indent
+local indent = function ()
+
+  -- keep selected when indenting
+  bindings.map.visual("<", "<gv")
+  bindings.map.visual(">", ">gv")
+
+end
+registry.defer(indent)
