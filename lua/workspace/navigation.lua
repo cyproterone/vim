@@ -16,7 +16,7 @@ local wild = function ()
   bindings.set("history", 10000)
 
   -- view messages
-  bindings.map.normal("<Leader>m", ":messages<CR>")
+  bindings.map.normal("<Leader>m", "<cmd>messages<CR>")
 
 end
 registry.defer(wild)
@@ -75,14 +75,14 @@ local fzf = function ()
     height = 0.8}}
 
   -- keybindings
-  bindings.map.normal("<C-p>",     ":Commands<CR>")
-  bindings.map.normal("<C-n>",     ":History:<CR>")
-  bindings.map.normal("<Leader>p", ":Files<CR>")
-  bindings.map.normal("<Leader>P", ":History<CR>")
-  bindings.map.normal("<Leader>o", ":BLines<CR>")
+  bindings.map.normal("<C-p>",     "<cmd>Commands<CR>")
+  bindings.map.normal("<C-n>",     "<cmd>History:<CR>")
+  bindings.map.normal("<Leader>p", "<cmd>Files<CR>")
+  bindings.map.normal("<Leader>P", "<cmd>History<CR>")
+  bindings.map.normal("<Leader>o", "<cmd>BLines<CR>")
   bindings.map.normal("<Leader>O", ":Rg ", {silent = false})
-  bindings.map.normal("<Leader>I", ":Buffers<CR>")
-  bindings.map.normal("<Leader>M", ":Maps<CR>")
+  bindings.map.normal("<Leader>I", "<cmd>Buffers<CR>")
+  bindings.map.normal("<Leader>M", "<cmd>Maps<CR>")
 
 end
 registry.defer(fzf)

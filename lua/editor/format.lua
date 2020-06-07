@@ -34,7 +34,7 @@ local sort = function ()
   end
 
   bindings.map.normal("gs", ":set opfunc=v:lua.lv.sort_lines<CR>g@")
-  bindings.map.visual("gs", "<Esc>:lua lv.sort_lines()<CR>")
+  bindings.map.visual("gs", "<Esc><cmd>lua lv.sort_lines()<CR>")
 
 end
 registry.defer(sort)
@@ -45,8 +45,8 @@ registry.install("sbdchd/neoformat")
 local prettier = function ()
 
   -- remove default formatter
-  bindings.map.normal("gq", ":Neoformat<CR>")
-  bindings.map.normal("gQ", ":Neoformat<CR>")
+  bindings.map.normal("gq", "<cmd>Neoformat<CR>")
+  bindings.map.normal("gQ", "<cmd>Neoformat<CR>")
 
 end
 registry.defer(prettier)

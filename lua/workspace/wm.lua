@@ -34,8 +34,8 @@ local modern_split = function ()
     local buf = api.nvim_create_buf(false, true)
     api.nvim_win_set_buf(0, buf)
   end
-  bindings.map.normal("<Leader>=", ":lua lv.new_window(true)<CR>")
-  bindings.map.normal("<Leader>-", ":lua lv.new_window(false)<CR>")
+  bindings.map.normal("<Leader>=", "<cmd>lua lv.new_window(true)<CR>")
+  bindings.map.normal("<Leader>-", "<cmd>lua lv.new_window(false)<CR>")
 
   -- move between windows
   bindings.map.normal("<C-Left>",  "<C-w>h")
@@ -61,7 +61,7 @@ registry.defer(modern_split)
 local wm_close = function ()
 
   -- close window
-  bindings.map.normal("<Leader>w", ":close<CR>")
+  bindings.map.normal("<Leader>w", "<cmd>close<CR>")
 
   local keep_open = set.new{"qf", "LuaTree"}
 
@@ -91,23 +91,23 @@ registry.defer(wm_close)
 local tabs_wm = function ()
 
   -- close tab
-  bindings.map.normal("<Leader>q", ":tabclose<CR>")
+  bindings.map.normal("<Leader>q", "<cmd>tabclose<CR>")
 
   -- create new tab
   lv.new_tab = function ()
     bindings.exec[[tabnew]]
     vim.bo.buftype = "nofile"
   end
-  bindings.map.normal("<Leader>t", ":lua lv.new_tab()<CR>")
-  bindings.map.normal("<Leader>n", ":lua lv.new_tab()<CR>")
+  bindings.map.normal("<Leader>t", "<cmd>lua lv.new_tab()<CR>")
+  bindings.map.normal("<Leader>n", "<cmd>lua lv.new_tab()<CR>")
 
   -- cycle between tabs
-  bindings.map.normal("<Leader>[", ":tabprevious<CR>")
-  bindings.map.normal("<Leader>]", ":tabnext<CR>")
+  bindings.map.normal("<Leader>[", "<cmd>tabprevious<CR>")
+  bindings.map.normal("<Leader>]", "<cmd>tabnext<CR>")
 
   bindings.map.normal("<Leader>0", "g<Tab>")
   for i in std.range(1, 9) do
-    bindings.map.normal("<Leader>" .. i, ":tabnext " .. i .. "<CR>")
+    bindings.map.normal("<Leader>" .. i, "<cmd>tabnext " .. i .. "<CR>")
   end
 
 end
@@ -119,7 +119,7 @@ registry.defer(tabs_wm)
 -- buffer region
 local buffers = function ()
 
-  bindings.map.normal("<Leader>X", ":bwipeout!<CR>")
+  bindings.map.normal("<Leader>X", "<cmd>bwipeout!<CR>")
 
 end
 registry.defer(buffers)

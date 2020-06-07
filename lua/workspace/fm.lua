@@ -20,13 +20,13 @@ local key = function ()
 
   local remap = function ()
 
-    bindings.map.normal("R", ":LuaTreeRefresh<CR>")
+    bindings.map.normal("R", "<cmd>LuaTreeRefresh<CR>")
     bindings.map.normal("`", "<Enter>", {noremap = false})
 
   end
   registry.auto("FileType", remap, "LuaTree")
 
-  bindings.map.normal("<Leader>i", ":LuaTreeToggle<CR>")
+  bindings.map.normal("<Leader>i", "<cmd>LuaTreeToggle<CR>")
 
 end
 registry.defer(key)

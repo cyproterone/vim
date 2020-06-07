@@ -25,9 +25,9 @@ local float_term = function ()
   vim.g.floaterm_height = 0.9
 
   -- hotkeys
-  bindings.map.normal("<Leader>u", ":FloatermToggle<CR>")
-  bindings.map.normal("[z", ":FloatermPrev<CR>")
-  bindings.map.normal("]z", ":FloatermNext<CR>")
+  bindings.map.normal("<Leader>u", "<cmd>FloatermToggle<CR>")
+  bindings.map.normal("[z", "<cmd>FloatermPrev<CR>")
+  bindings.map.normal("]z", "<cmd>FloatermNext<CR>")
 
 end
 registry.defer(float_term)

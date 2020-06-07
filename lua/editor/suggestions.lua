@@ -66,7 +66,7 @@ local enable = function ()
     fn["deoplete#enable"]()
     print("-- 蛙 --")
   end
-  bindings.map.normal("gz", ":lua lv.enable_comp()<CR>")
+  bindings.map.normal("gz", "<cmd>lua lv.enable_comp()<CR>")
 
 end
 registry.defer(enable)

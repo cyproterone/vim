@@ -25,10 +25,10 @@ registry.defer(modern_search)
 local hotkeys = function ()
 
   -- clear search result
-  bindings.map.normal("<Leader>l", ":nohlsearch<CR>")
+  bindings.map.normal("<Leader>l", "<cmd>nohlsearch<CR>")
 
   -- clear quickfix
-  bindings.map.normal("<Leader>L", ":cclose<CR>")
+  bindings.map.normal("<Leader>L", "<cmd>cclose<CR>")
 
 end
 registry.defer(hotkeys)
@@ -116,8 +116,8 @@ local find = function ()
   bindings.map.normal("gf", ":set opfunc=v:lua.lv.op_fzf<CR>g@")
   bindings.map.normal("gF", ":set opfunc=v:lua.lv.op_rg<CR>g@")
 
-  bindings.map.visual("gf", "<Esc>:lua lv.op_fzf()<CR>")
-  bindings.map.visual("gF", "<Esc>:lua lv.op_rg()<CR>")
+  bindings.map.visual("gf", "<Esc><cmd>lua lv.op_fzf()<CR>")
+  bindings.map.visual("gF", "<Esc><cmd>lua lv.op_rg()<CR>")
 
 end
 registry.defer(find)
