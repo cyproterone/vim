@@ -145,7 +145,15 @@ local scripted = function ()
     local stream = table.concat(plugins, "\n")
     local args = {args = {plugin_dir}, stream = stream}
     local code = a.wait(loop.spawn("git-package", args))
-    os.exit(code)
+    if code ~= 0 then
+      os.exit(code)
+    end
+
+    bindings.exec[[UpdateRemotePlugins]]
+    loop.set_timeout(1000, function ()
+      os.exit(0)
+    end)
+
   end)()
 end
 
