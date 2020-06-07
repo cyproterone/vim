@@ -63,7 +63,7 @@ local wm_close = function ()
   -- close window
   bindings.map.normal("<Leader>w", "<cmd>close<CR>")
 
-  local keep_open = set.new{"qf", "LuaTree"}
+  local keep_open = set.new{"qf", "defx"}
 
   -- close other windows
   lv.window_only = function (keep_open)
