@@ -13,6 +13,7 @@ local lsp_recommends = function ()
   bindings.map.normal("H", "<cmd>lua vim.lsp.util.show_line_diagnostics()<CR>")
   bindings.map.normal("K", "<cmd>lua vim.lsp.buf.hover()<CR>")
   bindings.map.normal("L", "<cmd>lua vim.lsp.buf.rename()<CR>")
+  bindings.map.normal("M", "<cmd>lua vim.lsp.buf.code_action()<CR>")
 
   bindings.map.normal("gp", "<cmd>lua vim.lsp.buf.definition()<CR>")
   bindings.map.normal("gP", "<cmd>lua vim.lsp.buf.references()<CR>")
