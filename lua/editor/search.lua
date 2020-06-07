@@ -113,8 +113,8 @@ local find = function ()
     bindings.exec("Rg " .. selection)
   end
 
-  bindings.map.normal("gf", ":set opfunc=v:lua.lv.op_fzf<CR>g@")
-  bindings.map.normal("gF", ":set opfunc=v:lua.lv.op_rg<CR>g@")
+  bindings.map.normal("gf", "<cmd>set opfunc=v:lua.lv.op_fzf<CR>g@")
+  bindings.map.normal("gF", "<cmd>set opfunc=v:lua.lv.op_rg<CR>g@")
 
   bindings.map.visual("gf", "<Esc><cmd>lua lv.op_fzf()<CR>")
   bindings.map.visual("gF", "<Esc><cmd>lua lv.op_rg()<CR>")
@@ -135,7 +135,7 @@ local replace = function ()
   end
 
   -- no magic
-  bindings.map.normal("gt", ":set opfunc=v:lua.lv.op_sd<CR>g@")
+  bindings.map.normal("gt", "<cmd>set opfunc=v:lua.lv.op_sd<CR>g@")
   bindings.map.visual("gt", "<ESC>:lua lv.op_sd()<CR>")
   -- very magic
   bindings.map.normal("gT", [[:%s/\v//g<Left><Left><Left>]], {silent = false})

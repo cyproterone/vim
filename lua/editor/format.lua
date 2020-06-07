@@ -33,7 +33,7 @@ local sort = function ()
     api.nvim_buf_set_lines(0, r1, r2, true, lines)
   end
 
-  bindings.map.normal("gs", ":set opfunc=v:lua.lv.sort_lines<CR>g@")
+  bindings.map.normal("gs", "<cmd>set opfunc=v:lua.lv.sort_lines<CR>g@")
   bindings.map.visual("gs", "<Esc><cmd>lua lv.sort_lines()<CR>")
 
 end
