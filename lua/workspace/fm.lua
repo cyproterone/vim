@@ -22,17 +22,6 @@ local key = function ()
 
     bindings.map.normal("R", ":LuaTreeRefresh<CR>")
 
-    lv.tree_preview = function ()
-      local pos = api.nvim_win_get_cursor(0)
-      local tree = require "tree"
-      tree.on_keypress("edit")
-      bindings.exec[[LuaTreeClose]]
-      bindings.exec[[LuaTreeOpen]]
-      api.nvim_win_set_cursor(0, pos)
-    end
-
-    bindings.map.normal("<Tab>", ":lua lv.tree_preview()<CR>")
-
   end
   registry.auto("FileType", remap, "LuaTree")
 
