@@ -54,7 +54,6 @@ lua_move_v_up = function ()
     return
   end
   r1, r2 = r1 - 1, r2 - 1
-  local r, c = unpack(api.nvim_win_get_cursor(0))
 
   local curr = api.nvim_buf_get_lines(0, r1, r2 + 1, true)
   local nxt  = api.nvim_buf_get_lines(0, r1 - 1, r1, true)
@@ -62,7 +61,6 @@ lua_move_v_up = function ()
   api.nvim_buf_set_lines(0, r1 - 1, r2 + 1, true, new)
 
   select_visual(r1, c1, r2, c2)
-  api.nvim_win_set_cursor(0, {r - 1, c})
   bindings.norm[[gv]]
 end
 
@@ -74,7 +72,6 @@ lua_move_v_down = function ()
     return
   end
   r1, r2 = r1 - 1, r2 - 1
-  local r, c = unpack(api.nvim_win_get_cursor(0))
 
   local curr = api.nvim_buf_get_lines(0, r1, r2 + 1, true)
   local nxt  = api.nvim_buf_get_lines(0, r2 + 1, r2 + 2, true)
@@ -82,7 +79,6 @@ lua_move_v_down = function ()
   api.nvim_buf_set_lines(0, r1, r2 + 2, true, new)
 
   select_visual(r1 + 2, c1, r2 + 2, c2)
-  api.nvim_win_set_cursor(0, {r + 1, c})
   bindings.norm[[gv]]
 end
 
