@@ -56,8 +56,16 @@ local main = function (f)
 end
 
 
+local debounce = function (f)
+  return function (...)
+    f(...)
+  end
+end
+
+
 return {
   spawn = a.wrap(spawn),
   main = main,
+  debounce = debounce,
 }
 
