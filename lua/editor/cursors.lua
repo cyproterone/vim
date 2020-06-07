@@ -13,6 +13,9 @@ end
 
 
 local select_visual = function (r1, c1, r2, c2)
+  print(r1, c1, r2, c2)
+  fn.setpos("'<", {0, r1, c1 + 1, 0})
+  fn.setpos("'>", {0, r2, c2 + 1, 0})
 end
 
 
@@ -57,8 +60,9 @@ lua_move_v_up = function ()
   local new = std.concat{curr, nxt}
   api.nvim_buf_set_lines(0, r1 - 1, r2 + 1, true, new)
 
-  select_visual(r1 - 1, c1, r2 - 1, c2)
+  select_visual(r1, c1, r2, c2)
   api.nvim_win_set_cursor(0, {r - 1, c})
+  bindings.norm[[gv]]
 end
 
 
@@ -75,8 +79,9 @@ lua_move_v_down = function ()
   local new = std.concat{nxt, curr}
   api.nvim_buf_set_lines(0, r1, r2 + 2, true, new)
 
-  select_visual(r1 + 1, c1, r2 + 1, c2)
+  select_visual(r1 + 2, c1, r2 + 2, c2)
   api.nvim_win_set_cursor(0, {r + 1, c})
+  bindings.norm[[gv]]
 end
 
 
