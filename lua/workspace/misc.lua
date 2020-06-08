@@ -52,6 +52,9 @@ local registers = function ()
   -- use system clipboard
   bindings.set("clipboard", "unnamedplus")
 
+  -- set custom clipboard
+  vim.g.clipboard = "nvim-cp"
+
 end
 registry.defer(registers)
 
