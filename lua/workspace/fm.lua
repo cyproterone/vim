@@ -98,3 +98,20 @@ local theme = function ()
 end
 registry.defer(theme)
 
+
+-- auto update
+local update = function ()
+
+  local check = function ()
+    vim.fn["defx#async_action"]("redraw")
+  end
+  registry.auto("FocusGained", check)
+
+  local auto_check = function ()
+    registry.auto("BufEnter", check, "<buffer>")
+  end
+  registry.auto("FileType", auto_check, "defx")
+
+end
+registry.defer(update)
+
