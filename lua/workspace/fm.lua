@@ -103,7 +103,7 @@ registry.defer(theme)
 local update = function ()
 
   local check = function ()
-    vim.fn["defx#call_async_action"]("redraw")
+    vim.fn["defx#call_async_action"]("check_redraw")
   end
   registry.auto("FocusGained", check)
 
