@@ -52,19 +52,6 @@ local registers = function ()
   -- use system clipboard
   bindings.set("clipboard", "unnamedplus")
 
-  local isomorphic_cp = function ()
-    a.sync(function ()
-      local event = api.nvim_get_vvar("event")
-      if event.regname ~= "" then
-        return
-      end
-      local text = table.concat(event.regcontents, "\n")
-      local code, _, err = a.wait(loop.spawn("c", {stream = text}))
-      assert(code == 0, err)
-    end)()
-  end
-  registry.auto("TextYankPost", isomorphic_cp)
-
 end
 registry.defer(registers)
 
