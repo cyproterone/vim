@@ -53,7 +53,13 @@ local registers = function ()
   bindings.set("clipboard", "unnamedplus")
 
   -- set custom clipboard
-  vim.g.clipboard = "nvim-cp"
+  vim.g.clipboard = {
+    name          = "nvim-cp",
+    cache_enabled = true,
+    copy          = {["+"] = "nvim-cp",
+                     ["*"] = "nvim-cp"},
+    paste         = {["+"] = "nvim-pp",
+                     ["*"] = "nvim-pp"}}
 
 end
 registry.defer(registers)
