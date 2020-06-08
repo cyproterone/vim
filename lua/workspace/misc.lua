@@ -52,14 +52,8 @@ local registers = function ()
   -- use system clipboard
   bindings.set("clipboard", "unnamedplus")
 
-  -- set custom clipboard
-  vim.g.clipboard = {
-    name          = "nvim-cp",
-    cache_enabled = true,
-    copy          = {["+"] = "nvim-cp",
-                     ["*"] = "nvim-cp"},
-    paste         = {["+"] = "nvim-pp",
-                     ["*"] = "nvim-pp"}}
+  -- fake DISPLAY for xclip
+  env["DISPLAY"] = env[""] or "VIM_FAKE_DISPLAY"
 
 end
 registry.defer(registers)
