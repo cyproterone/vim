@@ -53,7 +53,7 @@ local registers = function ()
   bindings.set("clipboard", "unnamedplus")
 
   -- fake DISPLAY for xclip
-  env["DISPLAY"] = env[""] or "VIM_FAKE_DISPLAY"
+  env["DISPLAY"] = env["DISPLAY"] or "VIM_FAKE_DISPLAY"
 
 end
 registry.defer(registers)
