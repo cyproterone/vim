@@ -24,6 +24,23 @@ end
 registry.defer(options)
 
 
+-- auto update
+local update = function ()
+
+  local check = function ()
+    vim.fn["defx#call_async_action"]("redraw")
+  end
+  registry.auto("FocusGained", check)
+
+  local auto_check = function ()
+    registry.auto("BufEnter", check, "<buffer>")
+  end
+  registry.auto("FileType", auto_check, "defx")
+
+end
+registry.defer(update)
+
+
 local keymap = function (buf)
   local opts = {expr = true, buffer = buf}
   local git_opts = {noremap = false, buffer = buf}
@@ -97,21 +114,4 @@ local theme = function ()
   fn["defx#custom#column"]("git", "show_ignored", false)
 end
 registry.defer(theme)
-
-
--- auto update
-local update = function ()
-
-  local check = function ()
-    vim.fn["defx#call_async_action"]("check_redraw")
-  end
-  registry.auto("FocusGained", check)
-
-  local auto_check = function ()
-    registry.auto("BufEnter", check, "<buffer>")
-  end
-  registry.auto("FileType", auto_check, "defx")
-
-end
-registry.defer(update)
 
