@@ -81,7 +81,7 @@ local keymap = function (buf)
   m1("!",             "defx#async_action('execute_command')")
   m1("o",             "defx#async_action('execute_system')")
   m1(";",             "defx#async_action('repeat')")
-  m1("n",             "defx#async_action('new_file')")
+  m1("a",             "defx#async_action('new_file')")
 
 
   m1(">",             "defx#async_action('resize', defx#get_context().winwidth + 10)")
