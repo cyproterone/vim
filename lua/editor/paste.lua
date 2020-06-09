@@ -7,7 +7,6 @@ local registry = require "libs/registry"
 
 local go_replace = function ()
 
-
   lv.op_go_replace = function (selec)
     local r1, c1, r2, c2 = bindings.p_op_marks(selec)
     r1, r2 = r1 - 1, r2 - 1
