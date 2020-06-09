@@ -26,6 +26,10 @@ local go_replace = function ()
 
 
   lv.op_go_replace_line = function ()
+    local r, _ = unpack(api.nvim_win_get_cursor(0))
+    r = r - 1
+    local text = fn.getreg("*")
+    api.nvim_buf_set_lines(0, r, r + 1, true, {text})
   end
 
   bindings.map.normal("grr", "<cmd>lua lv.op_go_replace_line()<CR>")
