@@ -72,8 +72,8 @@ local source = function (path)
 end
 
 
-local p_op_marks = function (type)
-  local m1, m2 = unpack(type and {"[", "]"} or {"<", ">"})
+local p_op_marks = function (selec)
+  local m1, m2 = unpack(selec and {"[", "]"} or {"<", ">"})
   local r1, c1 = unpack(api.nvim_buf_get_mark(0, m1))
   local r2, c2 = unpack(api.nvim_buf_get_mark(0, m2))
   return r1, c1, r2, c2
