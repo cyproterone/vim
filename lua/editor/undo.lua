@@ -15,6 +15,9 @@ local undo_hist = function ()
   -- maximum number lines to save for undo on a buffer reload
   bindings.set("undoreload", 1000)
 
+  bindings.map.normal("-", "<cmd>earlier<CR>")
+  bindings.map.normal("+", "<cmd>later<CR>")
+
 end
 registry.defer(undo_hist)
 
