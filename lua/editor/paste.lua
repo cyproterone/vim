@@ -4,7 +4,6 @@ local registry = require "libs/registry"
 
 --#################### Paste Region ####################
 
-
 local go_replace = function ()
 
   lv.op_go_replace = function (selec)
