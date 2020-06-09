@@ -5,7 +5,6 @@ local a = require "libs/async"
 local bindings = require "libs/bindings"
 local loop = require "libs/loop"
 local std = require "libs/std"
-local stdio = require "libs/io"
 
 
 local _registry = "libs/registry"
@@ -81,7 +80,7 @@ local init_plug = function (cont)
   bindings.exec[[function! InstallVimPlug (job_id, code, event_type)
     lua lv.cont_init()
   endfunction]]
-  if not stdio.file_exists(vim_plug) then
+  if fn.filereadable(vim_plug) == 0 then
     local on_exit = {on_exit = "InstallVimPlug"}
     fn.termopen({"curl", "--create-dirs", "-o", vim_plug, vim_plug_remote}, on_exit)
   else
