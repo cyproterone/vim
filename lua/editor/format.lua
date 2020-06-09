@@ -15,15 +15,8 @@ registry.defer(misc)
 
 local sort = function ()
 
-  local p_marks = function (type)
-    local m1, m2 = unpack(type and {"[", "]"} or {"<", ">"})
-    local r1, c1 = unpack(api.nvim_buf_get_mark(0, m1))
-    local r2, c2 = unpack(api.nvim_buf_get_mark(0, m2))
-    return r1, c1, r2, c2
-  end
-
-  lv.sort_lines = function (type)
-    local r1, _, r2, _ = p_marks(type)
+  lv.sort_lines = function (selec)
+    local r1, _, r2, _ = bindings.p_op_marks(selec)
     -- vim has mixed indexing
     r1, r2 = r1 - 1, r2 - 1 + 1
     local lines = api.nvim_buf_get_lines(0, r1, r2, true)

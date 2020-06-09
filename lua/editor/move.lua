@@ -5,13 +5,6 @@ local std = require "libs/std"
 
 --#################### Cursors Region ####################
 
-local get_visual = function ()
-  local r1, c1 = unpack(api.nvim_buf_get_mark(0, "<"))
-  local r2, c2 = unpack(api.nvim_buf_get_mark(0, ">"))
-  return r1 , c1, r2, c2
-end
-
-
 local select_visual = function (r1, c1, r2, c2)
   print(r1, c1, r2, c2)
   fn.setpos("'<", {0, r1, c1 + 1, 0})
@@ -60,7 +53,7 @@ lv.move_v_up = function ()
     return
   end
 
-  local r1, c1, r2, c2 = get_visual()
+  local r1, c1, r2, c2 = bindings.p_op_marks()
   if r1 <= 1 then
     bindings.norm[[gv]]
     return
@@ -82,7 +75,7 @@ lv.move_v_down = function ()
     return
   end
 
-  local r1, c1, r2, c2 = get_visual()
+  local r1, c1, r2, c2 = bindings.p_op_marks()
   if r2 >= api.nvim_buf_line_count(0) then
     bindings.norm[[gv]]
     return
