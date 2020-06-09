@@ -61,8 +61,8 @@ registry.defer(nomagic)
 
 
 -- get selection
-local p_marks = function (type)
-  local m1, m2 = unpack(type and {"[", "]"} or {"<", ">"})
+local p_marks = function (selc)
+  local m1, m2 = unpack(selc and {"[", "]"} or {"<", ">"})
   local r1, c1 = unpack(api.nvim_buf_get_mark(0, m1))
   local r2, c2 = unpack(api.nvim_buf_get_mark(0, m2))
   return r1, c1, r2, c2
@@ -70,8 +70,8 @@ end
 
 
 -- get selection
-local p_selection = function (type)
-  local r1, c1, r2, c2 = p_marks(type)
+local p_selection = function (selc)
+  local r1, c1, r2, c2 = p_marks(selc)
   -- vim has mixed indexing
   r1, r2 = r1 - 1, r2 - 1 + 1
   c1, c2 = c1 + 1, c2 + 1
@@ -101,17 +101,27 @@ local find = function ()
     bindings.exec[[set hlsearch]]
   end
 
-  lv.op_fzf = function (type)
-    local selection = p_selection(type)
+  local selecthl = function (selc)
+    local selection = p_selection(selc)
     hlselect(selection)
+    return selection
+  end
+
+  lv.op_search = function (selc)
+    selecthl(selc)
+  end
+
+  lv.op_fzf = function (selc)
+    local selection = selecthl(selc)
     bindings.exec("BLines " .. selection)
   end
 
-  lv.op_rg = function (type)
-    local selection = p_selection(type)
-    hlselect(selection)
+  lv.op_rg = function (selc)
+    local selection = selecthl(selc)
     bindings.exec("Rg " .. selection)
   end
+
+  bindings.map.normal("gs", "<cmd>set opfunc=v:lua.lv.op_search<CR>g@")
 
   bindings.map.normal("gf", "<cmd>set opfunc=v:lua.lv.op_fzf<CR>g@")
   bindings.map.normal("gF", "<cmd>set opfunc=v:lua.lv.op_rg<CR>g@")
@@ -126,8 +136,8 @@ registry.defer(find)
 -- replace selection
 local replace = function ()
 
-  lv.op_sd = function (type)
-    local selection = p_selection(type)
+  lv.op_sd = function (selc)
+    local selection = p_selection(selc)
     local escaped = magic_escape(selection)
     -- no magic
     local input = [[:%s/]] .. escaped .. "//g<Left><Left>"
