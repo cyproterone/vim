@@ -24,8 +24,8 @@ local lsp_recommends = function ()
   bindings.map.normal("go", "<cmd>lua vim.lsp.buf.signature_help()<CR>")
   bindings.map.normal("gO", "<cmd>lua vim.lsp.buf.type_definition()<CR>")
 
-  bindings.map.normal("gu", "<cmd>lua vim.lsp.buf.document_symbol()<CR>")
-  bindings.map.normal("gU", "<cmd>lua vim.lsp.buf.workspace_symbol()<CR>")
+  bindings.map.normal("ge", "<cmd>lua vim.lsp.buf.document_symbol()<CR>")
+  bindings.map.normal("gE", "<cmd>lua vim.lsp.buf.workspace_symbol()<CR>")
 
 end
 registry.defer(lsp_recommends)
