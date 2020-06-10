@@ -44,7 +44,7 @@ local autosave = function ()
   local smol_save = decorators.debounce(500, save)
 
   registry.auto(
-    {"CursorHold", "CursorHoldI"},
+    {"CursorHold", "CursorHoldI", "TextChanged"},
     smol_save,
     "*",
     "nested")

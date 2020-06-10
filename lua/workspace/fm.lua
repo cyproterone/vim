@@ -30,10 +30,10 @@ local update = function ()
   local check = function ()
     vim.fn["defx#call_async_action"]("redraw")
   end
-  registry.auto("FocusGained", check)
+  registry.auto("FocusGained", check, "*", "silent")
 
   local auto_check = function ()
-    registry.auto("BufEnter", check, "<buffer>")
+    registry.auto("BufEnter", check, "<buffer>", "silent")
   end
   registry.auto("FileType", auto_check, "defx")
 
