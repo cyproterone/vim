@@ -10,6 +10,11 @@ from sys import stdin
 from typing import Any
 
 
+class Little():
+  def __lt__(self, other: Any) -> bool:
+    return True
+
+
 class JsonType(IntEnum):
   Dict = 1
   List = 2
@@ -24,11 +29,21 @@ class SortBox:
 
     if type(element) is dict:
       self.type = JsonType.Dict
-      self.key = min(map(strxfrm, element.keys()))
+      key = None
+      for k in element.keys():
+        key = k
+        break
+      if key is None:
+        self.key = Little()
+      else:
+        self.key = key
 
     elif type(element) is list:
       self.type = JsonType.List
-      self.key = min(map(strxfrm, element))
+      if len(element):
+        self.key = element[0]
+      else:
+        self.key = Little()
 
     elif type(element) is str:
       self.type = JsonType.String
