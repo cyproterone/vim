@@ -13,7 +13,7 @@ local lsp = function ()
     return
   end
   local lsp = require "nvim_lsp"
-  lsp.sumneko_lua.setup{}
+  lsp.sumneko_lua.setup{cmd={"lua-ls"}}
   lsp.sumneko_lua.manager.try_add()
 end
 
