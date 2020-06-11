@@ -1,17 +1,61 @@
 #!/usr/bin/env python3
 
+from __future__ import annotations
 from argparse import ArgumentParser, Namespace
+from enum import IntEnum
+from functools import total_ordering
 from json import loads, dumps
+from locale import strxfrm
 from sys import stdin
 from typing import Any
+
+
+class JsonType(IntEnum):
+  Dict = 1
+  List = 2
+  String = 3
+  Number = 4
+
+
+@total_ordering
+class SortBox:
+
+  def __init__(self, element: Any):
+
+    if type(element) is dict:
+      self.type = JsonType.Dict
+      self.key = min(map(strxfrm, element))
+
+    elif type(element) is list:
+      self.type = JsonType.List
+      self.key = min(map(strxfrm, element))
+
+    elif type(element) is str:
+      self.type = JsonType.String
+      self.key = strxfrm(element)
+
+    elif type(element) is int:
+      self.type = JsonType.Number
+      self.key = element
+    else:
+      assert False
+
+  def __lt__(self, other: Jsort) -> bool:
+    if self.type == other.type:
+      return self.key < other.key
+    else:
+      return self.type < other.type
+
+  def __eq__(self, other: Jsort) -> bool:
+    self.key = other.key
 
 
 def recur_sort(data: Any) -> Any:
   if type(data) is dict:
     return {k: recur_sort(data[k])
-            for k in sorted(data.keys())}
+            for k in sorted(data.keys(), key=SortBox)}
   elif type(data) is list:
-    return sorted(map(recur_sort, data))
+    return sorted(map(recur_sort, data), key=SortBox)
   else:
     return data
 

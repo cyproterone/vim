@@ -6,10 +6,4 @@ local registry = require "libs/registry"
 
 -- auto parens
 registry.install("Raimondi/delimitMate")
-local match_cursor = function ()
-
-  bindings.set("matchpairs", "<:>", [[+=]])
-
-end
-registry.defer(match_cursor)
 
