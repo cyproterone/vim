@@ -19,7 +19,7 @@ end
 
 
 local lsp = function ()
-  if not bindings.executable("python-ms-ls") then
+  if not bindings.executable("pyls-ms") then
     return
   end
   local lsp = require "nvim_lsp"

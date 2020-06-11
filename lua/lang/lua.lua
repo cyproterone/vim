@@ -9,7 +9,7 @@ local ft = {"lua"}
 
 
 local lsp = function ()
-  if not bindings.executable("lua-language-server") then
+  if not bindings.executable("lua-ls") then
     return
   end
   local lsp = require "nvim_lsp"
