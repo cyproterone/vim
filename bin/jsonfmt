@@ -1,2 +1,31 @@
 #!/usr/bin/env python3
 
+from argparse import ArgumentParser, Namespace
+from json import loads, dumps
+from sys import stdin
+from typing import Any
+
+
+def recur_sort(data: Any) -> Any:
+  if type(data) is dict:
+    return {k: recur_sort(data[k])
+            for k in sorted(data.keys())}
+  elif type(data) is list:
+    return sorted(map(recur_sort, data))
+  else:
+    return data
+
+
+def parse_args() -> Namespace:
+  parser = ArgumentParser()
+  return parser.parse_args()
+
+
+def main() -> None:
+  data = loads(stdin.read())
+  new = recur_sort(data)
+  print(dumps(new, indent=2))
+
+
+main()
+
