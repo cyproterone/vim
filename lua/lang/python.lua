@@ -19,6 +19,9 @@ end
 
 
 local lsp = function ()
+  if not bindings.executable("python-ms-ls") then
+    return
+  end
   local lsp = require "nvim_lsp"
   lsp.pyls_ms.setup{}
   lsp.pyls_ms.manager.try_add()

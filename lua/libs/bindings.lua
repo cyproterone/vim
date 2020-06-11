@@ -80,6 +80,11 @@ local p_op_marks = function (selec)
 end
 
 
+local executable = function (exe)
+  return fn.executable(exe) == 1
+end
+
+
 return {
   exec = exec,
   norm = norm,
@@ -87,5 +92,6 @@ return {
   map = map(),
   source = source,
   p_op_marks = p_op_marks,
+  executable = executable,
 }
 

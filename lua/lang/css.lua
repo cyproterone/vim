@@ -14,6 +14,9 @@ end
 
 
 local lsp = function ()
+  if not bindings.executable("css-languageserver") then
+    return
+  end
   local lsp = require "nvim_lsp"
   lsp.cssls.setup{}
   lsp.cssls.manager.try_add()

@@ -9,6 +9,9 @@ local ft = {"vim"}
 
 
 local lsp = function ()
+  if not bindings.executable("vim-language-server") then
+    return
+  end
   local lsp = require "nvim_lsp"
   lsp.vimls.setup{}
   lsp.vimls.manager.try_add()
