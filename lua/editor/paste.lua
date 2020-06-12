@@ -16,7 +16,11 @@ local go_replace = function ()
     local pre = string.sub(lines[1], 1, c1 - 1)
     local post = string.sub(lines[lst], c2 + 1, string.len(lines[lst]))
     local replacement = pre .. text .. post
-    api.nvim_buf_set_lines(0, r1, r2 + 1, true, {replacement})
+    local new_lines = {}
+    for line in vim.gsplit(replacement, "\n", true) do
+      table.insert(new_lines, line)
+    end
+    api.nvim_buf_set_lines(0, r1, r2 + 1, true, new_lines)
   end
 
   bindings.map.normal("gr", "<cmd>set opfunc=v:lua.lv.op_go_replace<CR>g@")
