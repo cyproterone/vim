@@ -9,7 +9,7 @@ local go_replace = function ()
 
   local split_newline = function (str)
     local new_lines = {}
-    for line in vim.gsplit(replacement, "\n", true) do
+    for line in vim.gsplit(str, "\n", true) do
       table.insert(new_lines, line)
     end
     return new_lines
