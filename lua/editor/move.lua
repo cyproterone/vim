@@ -6,7 +6,6 @@ local std = require "libs/std"
 --#################### Cursors Region ####################
 
 local select_visual = function (r1, c1, r2, c2)
-  print(r1, c1, r2, c2)
   fn.setpos("'<", {0, r1, c1 + 1, 0})
   fn.setpos("'>", {0, r2, c2 + 1, 0})
 end
