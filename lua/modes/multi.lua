@@ -34,6 +34,8 @@ registry.defer(emacs)
 local remap_keys = function ()
 
   -- delete dont copy
+  bindings.map.normal("s",     [["_s]])
+  bindings.map.normal("S",     [["_S]])
   bindings.map.normal("x",     [["_x]])
   bindings.map.normal("X",     [["_X]])
   bindings.map.normal("<Del>", [["_<Del>]])
