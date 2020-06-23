@@ -61,9 +61,6 @@ local fzf = function ()
   -- fzf remove default border
   env["FZF_DEFAULT_OPTS"] = env["FZF_DEFAULT_OPTS"] .. " --no-border"
 
-  -- fzf use fd
-  env["FZF_DEFAULT_COMMAND"] = "fd -HL -t f -t l"
-
   -- fzf reuse buffers
   vim.g.fzf_buffers_jump = true
 
