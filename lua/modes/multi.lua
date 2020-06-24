@@ -4,16 +4,6 @@ local registry = require "libs/registry"
 
 --#################### Multi-Mode Region ####################
 
-local map_keys = function ()
-
-  -- use @ to do ^
-  bindings.map.no("@", "^", {nowait = true})
-  bindings.map.no("^", "@", {nowait = true})
-
-end
-registry.defer(map_keys)
-
-
 -- add emacs key binds
 local emacs = function ()
 
