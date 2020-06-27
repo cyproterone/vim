@@ -69,13 +69,13 @@ local fzf = function ()
     height = 0.8}}
 
   -- keybindings
-  bindings.map.normal("<C-p>",     "<cmd>Commands<CR>")
-  bindings.map.normal("<C-n>",     "<cmd>History:<CR>")
-  bindings.map.normal("<Leader>p", "<cmd>Files<CR>")
-  bindings.map.normal("<Leader>P", "<cmd>History<CR>")
-  bindings.map.normal("<Leader>o", "<cmd>BLines<CR>")
+  bindings.map.normal("<C-p>",     "<cmd>Commands<cr>")
+  bindings.map.normal("<C-n>",     "<cmd>History:<cr>")
+  bindings.map.normal("<Leader>p", "<cmd>Files<cr>")
+  bindings.map.normal("<Leader>P", "<cmd>History<cr>")
+  bindings.map.normal("<Leader>o", "<cmd>BLines<cr>")
   bindings.map.normal("<Leader>O", ":Rg ", {silent = false})
-  bindings.map.normal("<Leader>I", "<cmd>Buffers<CR>")
+  bindings.map.normal("<Leader>I", "<cmd>Buffers<cr>")
 
 end
 registry.defer(fzf)

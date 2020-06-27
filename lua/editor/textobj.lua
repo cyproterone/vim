@@ -20,10 +20,10 @@ local entire = function ()
     bindings.exec[[norm! gv]]
   end
 
-  bindings.map.operator("ie", "<cmd>lua lv.textobj_entire()<CR>")
-  bindings.map.operator("ae", "<cmd>lua lv.textobj_entire()<CR>")
-  bindings.map.visual("ie",   "<Esc><cmd>lua lv.textobj_entire()<CR>")
-  bindings.map.visual("ae",   "<Esc><cmd>lua lv.textobj_entire()<CR>")
+  bindings.map.operator("ie", "<cmd>lua lv.textobj_entire()<cr>")
+  bindings.map.operator("ae", "<cmd>lua lv.textobj_entire()<cr>")
+  bindings.map.visual("ie",   "<esc><cmd>lua lv.textobj_entire()<cr>")
+  bindings.map.visual("ae",   "<esc><cmd>lua lv.textobj_entire()<cr>")
 
 end
 registry.defer(entire)
@@ -53,10 +53,10 @@ local line = function ()
     bindings.exec[[norm! gv]]
   end
 
-  bindings.map.operator("il", "<cmd>lua lv.textobj_line(true)<CR>")
-  bindings.map.operator("al", "<cmd>lua lv.textobj_line(false)<CR>")
-  bindings.map.visual("il",   "<Esc><cmd>lua lv.textobj_line(true)<CR>")
-  bindings.map.visual("al",   "<Esc><cmd>lua lv.textobj_line(false)<CR>")
+  bindings.map.operator("il", "<cmd>lua lv.textobj_line(true)<cr>")
+  bindings.map.operator("al", "<cmd>lua lv.textobj_line(false)<cr>")
+  bindings.map.visual("il",   "<esc><cmd>lua lv.textobj_line(true)<cr>")
+  bindings.map.visual("al",   "<esc><cmd>lua lv.textobj_line(false)<cr>")
 
 end
 registry.defer(line)

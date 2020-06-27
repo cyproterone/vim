@@ -56,8 +56,8 @@ local keymap = function (buf)
 
   m1("q",             "defx#async_action('quit')")
 
-  m1("<Tab>",         "defx#is_directory() ? defx#async_action('open_tree', 'toggle') : defx#async_action('drop') . ':Defx <CR>'")
-  m1("<2-LeftMouse>", "defx#is_directory() ? defx#async_action('open_tree', 'toggle') : defx#async_action('drop') . ':Defx <CR>'")
+  m1("<Tab>",         "defx#is_directory() ? defx#async_action('open_tree', 'toggle') : defx#async_action('drop') . ':Defx <cr>'")
+  m1("<2-LeftMouse>", "defx#is_directory() ? defx#async_action('open_tree', 'toggle') : defx#async_action('drop') . ':Defx <cr>'")
   m1("`",             "defx#async_action('open_tree', ['toggle', 'recursive'])")
   m1("<Enter>",       "defx#async_action('drop')")
   m1("<M-Up>",        "defx#async_action('cd', ['..'])")
@@ -101,7 +101,7 @@ registry.auto("FileType", keymap, "defx")
 
 
 local key = function ()
-  bindings.map.normal("<Leader>i", "<cmd>Defx -toggle<CR>")
+  bindings.map.normal("<Leader>i", "<cmd>Defx -toggle<cr>")
 end
 registry.defer(key)
 

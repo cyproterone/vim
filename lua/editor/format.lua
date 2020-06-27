@@ -27,8 +27,8 @@ local sort = function ()
     api.nvim_buf_set_lines(0, r1, r2, true, lines)
   end
 
-  bindings.map.normal("gu", "<cmd>set opfunc=v:lua.lv.sort_lines<CR>g@")
-  bindings.map.visual("gu", "<Esc><cmd>lua lv.sort_lines()<CR>")
+  bindings.map.normal("gu", "<cmd>set opfunc=v:lua.lv.sort_lines<cr>g@")
+  bindings.map.visual("gu", "<esc><cmd>lua lv.sort_lines()<cr>")
 
 end
 registry.defer(sort)
@@ -39,8 +39,8 @@ local prettier = function ()
   lv.format = fmt.do_fmt
 
   -- remove default formatter
-  bindings.map.normal("gq", "<cmd>lua lv.format()<CR>")
-  bindings.map.normal("gQ", "<cmd>lua lv.format()<CR>")
+  bindings.map.normal("gq", "<cmd>lua lv.format()<cr>")
+  bindings.map.normal("gQ", "<cmd>lua lv.format()<cr>")
 
 end
 registry.defer(prettier)

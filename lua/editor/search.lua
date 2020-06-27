@@ -25,13 +25,13 @@ registry.defer(modern_search)
 local hotkeys = function ()
 
   -- clear search result
-  bindings.map.normal("<Leader>l", "<cmd>nohlsearch<CR>")
+  bindings.map.normal("<Leader>l", "<cmd>nohlsearch<cr>")
 
   -- clear quickfix
-  bindings.map.normal("<Leader>L", "<cmd>cclose<CR>")
+  bindings.map.normal("<Leader>L", "<cmd>cclose<cr>")
 
   -- clear preview
-  bindings.map.normal("<Leader>M", "<cmd>pclose<CR>")
+  bindings.map.normal("<Leader>M", "<cmd>pclose<cr>")
 
 end
 registry.defer(hotkeys)
@@ -115,13 +115,13 @@ local find = function ()
     bindings.exec("Rg " .. selection)
   end
 
-  bindings.map.normal("gs", "<cmd>set opfunc=v:lua.lv.op_search<CR>g@")
+  bindings.map.normal("gs", "<cmd>set opfunc=v:lua.lv.op_search<cr>g@")
 
-  bindings.map.normal("gf", "<cmd>set opfunc=v:lua.lv.op_fzf<CR>g@")
-  bindings.map.normal("gF", "<cmd>set opfunc=v:lua.lv.op_rg<CR>g@")
+  bindings.map.normal("gf", "<cmd>set opfunc=v:lua.lv.op_fzf<cr>g@")
+  bindings.map.normal("gF", "<cmd>set opfunc=v:lua.lv.op_rg<cr>g@")
 
-  bindings.map.visual("gf", "<Esc><cmd>lua lv.op_fzf()<CR>")
-  bindings.map.visual("gF", "<Esc><cmd>lua lv.op_rg()<CR>")
+  bindings.map.visual("gf", "<esc><cmd>lua lv.op_fzf()<cr>")
+  bindings.map.visual("gF", "<esc><cmd>lua lv.op_rg()<cr>")
 
 end
 registry.defer(find)
@@ -139,8 +139,8 @@ local replace = function ()
   end
 
   -- no magic
-  bindings.map.normal("gt", "<cmd>set opfunc=v:lua.lv.op_sd<CR>g@")
-  bindings.map.visual("gt", "<ESC>:lua lv.op_sd()<CR>")
+  bindings.map.normal("gt", "<cmd>set opfunc=v:lua.lv.op_sd<cr>g@")
+  bindings.map.visual("gt", "<ESC>:lua lv.op_sd()<cr>")
   -- very magic
   bindings.map.normal("gT", [[:%s/\v//g<Left><Left><Left>]], {silent = false})
 

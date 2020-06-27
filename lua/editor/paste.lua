@@ -29,8 +29,8 @@ local go_replace = function ()
     api.nvim_buf_set_lines(0, r1, r2 + 1, true, new_lines)
   end
 
-  bindings.map.normal("gr", "<cmd>set opfunc=v:lua.lv.op_go_replace<CR>g@")
-  bindings.map.visual("gr", "<Esc><cmd>lua lv.op_go_replace()<CR>")
+  bindings.map.normal("gr", "<cmd>set opfunc=v:lua.lv.op_go_replace<cr>g@")
+  bindings.map.visual("gr", "<esc><cmd>lua lv.op_go_replace()<cr>")
 
 
   lv.op_go_replace_line = function ()
@@ -41,7 +41,7 @@ local go_replace = function ()
     api.nvim_buf_set_lines(0, r, r + 1, true, new_lines)
   end
 
-  bindings.map.normal("grr", "<cmd>lua lv.op_go_replace_line()<CR>")
+  bindings.map.normal("grr", "<cmd>lua lv.op_go_replace_line()<cr>")
 
 end
 registry.defer(go_replace)

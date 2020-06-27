@@ -30,7 +30,7 @@ local hotkeys = function ()
   bindings.map.insert("<C-q>", "<C-e>")
 
   -- cua
-  bindings.map.insert("<CR>", "pumvisible() ? (complete_info().selected == -1 ? '<C-y><CR>' : '<C-y>') : '<CR>'",  {expr = true})
+  bindings.map.insert("<cr>", "pumvisible() ? (complete_info().selected == -1 ? '<C-y><cr>' : '<C-y>') : '<cr>'",  {expr = true})
 
   bindings.map.insert("<Tab>",   "pumvisible() ? '<C-n>' : '<Tab>'", {expr = true})
   bindings.map.insert("<S-Tab>", "pumvisible() ? '<C-p>' : '<BS>'",  {expr = true})
@@ -66,7 +66,7 @@ local enable = function ()
     fn["deoplete#enable"]()
     print("-- 蛙 --")
   end
-  bindings.map.normal("gz", "<cmd>lua lv.enable_comp()<CR>")
+  bindings.map.normal("gz", "<cmd>lua lv.enable_comp()<cr>")
 
 end
 registry.defer(enable)
