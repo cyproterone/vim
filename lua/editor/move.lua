@@ -12,7 +12,7 @@ end
 
 
 local reselect_visual = function ()
-  bindings.exec[[execute 'undojoin | norm! gv']]
+  bindings.exec[[undojoin | norm! gv]]
 end
 
 
