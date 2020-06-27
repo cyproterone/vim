@@ -9,9 +9,11 @@ local std = require "libs/std"
 local _formatters = {}
 local _formatter_assoc = {}
 
+local fmt_type = {lsp="lsp", stream="stream", fs="fs"}
 
-local add_fmt = function (prog, stdin, args)
-  _formatters[prog] = {stdin=stdin, prog=prog, args=args}
+
+local add_fmt = function (prog, fmt_type, args)
+  _formatters[prog] = {fmt_type=fmt_type, prog=prog, args=args}
 end
 
 
@@ -37,6 +39,11 @@ local fmt_args = function (args)
     end
   end)
   return new_args
+end
+
+
+local fmt_lsp = function ()
+  error("fmt_lsp")
 end
 
 
@@ -70,19 +77,31 @@ local fmt_fs = function (prog, args)
 end
 
 
-local do_fmt = function()
+local do_fmt = function ()
   local ft = vim.bo.filetype
   local formatter = _formatter_assoc[ft]
   if formatter == nil then
     error("no fmt associated with ft -- " .. ft)
   else
-    local fmt = formatter.stdin and fmt_stream or fmt_fs
+    local fmt = (function ()
+      local fm_type = formatter.fmt_type
+      if fm_type == fmt_type.lsp then
+        return fmt_lsp
+      elseif fm_type == fmt_type.stream then
+        return fmt_stream
+      elseif fm_type == fmt_type.fs then
+        return fmt_fs
+      else
+        error("unknown fmt type -- " .. fmt_type)
+      end
+    end)()
     fmt(formatter.prog, formatter.args)
   end
 end
 
 
 return {
+  fmt_type = fmt_type,
   add_fmt = add_fmt,
   assoc_fmt = assoc_fmt,
   do_fmt = do_fmt,

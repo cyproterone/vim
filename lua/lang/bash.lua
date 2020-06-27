@@ -2,6 +2,7 @@
 --#################### Bash Region ####################
 --#################### ########### ####################
 local bindings = require "libs/bindings"
+local fmt = require "libs/fmt"
 local ftp = require "libs/ftp"
 
 
@@ -19,6 +20,7 @@ end
 
 
 local lang = function ()
+  fmt.assoc_fmt("shfmt", ft)
   lsp()
 end
 ftp.defer(ft, lang)
