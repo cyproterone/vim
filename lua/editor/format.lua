@@ -1,5 +1,8 @@
+local a = require "libs/async"
 local bindings = require "libs/bindings"
+local loop = require "libs/loop"
 local registry = require "libs/registry"
+local std = require "libs/std"
 
 
 --#################### Format Region ####################
@@ -36,12 +39,31 @@ registry.defer(sort)
 -- prettiers
 local prettier = function ()
 
-  local fmt_stream = function ()
-    local lines = vim.api
+  local fmt_stream = function (prog, args)
+    local lines = api.nvim_buf_get_lines(0, 0, -1, true)
+    a.sync(function ()
+      local args = {args = args, stream = table.concat(lines)}
+      local code, new_lines, err = a.wait(loop.spawn(prog, args))
+      if code ~= 0 then
+        print(table.concat(err, ""))
+      else
+        a.wait(loop.main)
+        api.nvim_buf_set_lines(0, 0, -1, true, new_lines)
+      end
+    end)()
   end
 
-  local fmt_fs = function ()
-    bindings.exec[[checktime]]
+  local fmt_fs = function (prog, args)
+    a.sync(function ()
+      local filename = vim.fn.bufname("%")
+      local args = {args = std.concat{args, {filename}}}
+      local code, _, err = a.wait(loop.spawn(prog, args))
+      if code ~= 0 then
+        print(table.concat(err, ""))
+      end
+      a.wait(loop.main)
+      bindings.exec[[checktime]]
+    end)()
   end
 
   lv.formatters = {}
@@ -49,6 +71,8 @@ local prettier = function ()
   lv.format = function ()
     local ft = vim.bo.filetype
     local formatter = lv.formatters[ft]
+    local fmt = formatter.stdin and fmt_stream or fmt_fs
+    fmt(formatter.prog, formatter.args)
   end
 
   -- remove default formatter
