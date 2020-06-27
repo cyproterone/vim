@@ -78,8 +78,13 @@ end
 
 
 local do_fmt = function ()
+  if not vim.bo.modifiable then
+    return
+  end
+
   local ft = vim.bo.filetype
   local formatter = _formatter_assoc[ft]
+
   if formatter == nil then
     error("no fmt associated with ft -- " .. ft)
   else
