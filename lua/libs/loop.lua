@@ -20,7 +20,7 @@ local spawn = function (shell, opts, cb)
     for _, handle in ipairs(handles) do
       uv.close(handle)
     end
-    cb(code, table.concat(out, ""), table.concat(errs, ""))
+    cb(code, table.concat(out), table.concat(errs))
   end)
   assert(process, pid)
 

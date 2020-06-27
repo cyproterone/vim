@@ -44,7 +44,7 @@ local fmt_stream = function (prog, args)
   local lines = api.nvim_buf_get_lines(0, 0, -1, true)
   a.sync(function ()
     local args = {args = fmt_args(args),
-                  stream = table.concat(lines)}
+                  stream = table.concat(lines, "\n")}
     local code, text, err = a.wait(loop.spawn(prog, args))
     if code ~= 0 then
       error(err)
