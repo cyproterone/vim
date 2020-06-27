@@ -63,12 +63,12 @@ registry.defer(line)
 local indent = function ()
 
   local p_indent = function (line)
-    return string.find(line, "%S")
+    return string.find(line, "%S") or 0
   end
 
   local p_accept = function (level, line)
     local lv = p_indent(line)
-    return lv == nil or lv >= level
+    return lv == 0 or lv >= level
   end
 
   local line_at = function (row)
