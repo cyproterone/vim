@@ -19,7 +19,6 @@ end
 
 
 local range = function (start, stop, step)
-  local nxt = start
   local step = step or 1
   assert(step ~= 0)
   local cmp = (function ()
@@ -29,6 +28,7 @@ local range = function (start, stop, step)
       return function (l, r) return l >= r end
     end
   end)()
+  local nxt = start
   return co.wrap(function ()
     while cmp(nxt, stop) do
       co.yield(nxt)
