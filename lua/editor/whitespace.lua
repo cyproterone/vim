@@ -48,7 +48,7 @@ local trailing_whitespace = function ()
     api.nvim_win_set_cursor(0, pos)
   end
 
-  registry.auto("BufWritePre", strip, "*", "silent")
+  registry.auto("BufWritePre", strip, "*", "silent undojoin |")
 
 end
 registry.defer(trailing_whitespace)
