@@ -19,12 +19,12 @@ end
 
 
 local lsp = function ()
-  if not bindings.executable("pyls-ms") then
+  if not bindings.executable("pyls") then
     return
   end
   local lsp = require "nvim_lsp"
-  lsp.pyls_ms.setup{cmd={"pyls-ms"}}
-  lsp.pyls_ms.manager.try_add()
+  lsp.pyls.setup{}
+  lsp.pyls.manager.try_add()
 end
 
 

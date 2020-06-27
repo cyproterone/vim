@@ -44,7 +44,7 @@ local trailing_whitespace = function ()
     end
     local pos = api.nvim_win_get_cursor(0)
     bindings.exec[[%s/\v\s+$//e]]
-    bindings.exec[[%s/\v$\n*%$/\r/e]]
+    bindings.exec[[%s/\v$\n*%$//e]]
     api.nvim_win_set_cursor(0, pos)
   end
 
