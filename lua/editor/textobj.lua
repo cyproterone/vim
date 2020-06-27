@@ -79,8 +79,9 @@ local indent = function ()
     local seen = false
     return function (row)
       local lv = indent_at(row)
-      seen = seen or lv <= level
-      return lv <= level and not seen
+      local prev = seen
+      seen = seen or lv > level
+      return not prev
     end
   end
 
