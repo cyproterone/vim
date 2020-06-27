@@ -31,9 +31,10 @@ registry.defer(entire)
 local line = function ()
 
   local p_inner = function (line)
+    local len = string.len(line)
     local enil = string.reverse(line)
     local top = string.find(line, "%S")
-    local btm = string.len(line) - string.find(enil, "%S") + 1
+    local btm = len - string.find(enil, "%S") + 1
     return top, btm
   end
 
@@ -62,21 +63,33 @@ registry.defer(line)
 
 local indent = function ()
 
+  local inc = function (r) return r + 1 end
+  local dec = function (r) return r - 1 end
+
   local line_at = function (row)
     return unpack(api.nvim_buf_get_lines(0, row, row + 1, true))
   end
 
-  local p_indent = function (line)
+  local indent_at = function (row)
+    local line = line_at(row)
     return string.find(line, "%S") or 0
   end
 
-  local p_accept = function (level, row)
-    local line = line_at(row)
-    local lv = p_indent(line)
-    return lv == 0 or lv >= level
+  local p_accept_more = function (level)
+    return function (row)
+      local lv = indent_at(row)
+      return lv == 0
+    end
   end
 
-  local seek = function (row, level, inc)
+  local p_accept_next = function (level)
+    return function (row)
+      local lv = indent_at(row)
+      return lv == 0 or lv >= level
+    end
+  end
+
+  local seek = function (row, inc, accept)
     local min = 0
     local max = api.nvim_buf_line_count(0) - 1
     local acc = row
@@ -85,7 +98,7 @@ local indent = function ()
       if nxt < min or nxt > max then
         break
       end
-      if p_accept(level, nxt) then
+      if accept(nxt) then
         acc = nxt
       else
         break
@@ -97,19 +110,17 @@ local indent = function ()
   lv.textobj_indent = function ()
     local row, _ = unpack(api.nvim_win_get_cursor(0))
     row = row - 1
-    local line = api.nvim_get_current_line()
-    local level = p_indent(line)
-
+    local level = indent_at(row)
     if level == 0 then
-      return
+      local t = seek(row, inc, p_accept_more(level))
+      local b = seek(row, dec, p_accept_more(level))
     end
 
-    local top = seek(row, level, function (r) return r + 1 end)
-    local btm = seek(row, level, function (r) return r - 1 end)
-    local top_line = line_at(top)
-    local top_len = string.len(top_line)
+    local top = seek(row, inc, p_accept_next(level))
+    local btm = seek(row, dec, p_accept_next(level))
+
     fn.setpos("'<", {0, btm + 1, 1, 0})
-    fn.setpos("'>", {0, top + 1, top_len, 0})
+    fn.setpos("'>", {0, top + 1, 1, 0})
     bindings.exec[[norm! `<V`>]]
   end
 
