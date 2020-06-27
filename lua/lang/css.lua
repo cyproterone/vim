@@ -2,6 +2,7 @@
 --#################### CSS Region ####################
 --#################### ########## ####################
 local bindings = require "libs/bindings"
+local fmt = require "libs/fmt"
 local ftp = require "libs/ftp"
 
 
@@ -9,7 +10,7 @@ local ft = {"css", "scss", "less"}
 
 
 local format = function ()
-  vim.g.neoformat_enabled_css = {"prettier"}
+  fmt.assoc_fmt("prettier", ft)
 end
 
 

@@ -2,6 +2,7 @@
 --#################### Typescript Region ####################
 --#################### ################# ####################
 local bindings = require "libs/bindings"
+local fmt = require "libs/fmt"
 local ftp = require "libs/ftp"
 
 
@@ -15,8 +16,7 @@ local ft = {
 
 
 local format = function ()
-  vim.g.neoformat_enabled_javascript = {"prettier"}
-  vim.g.neoformat_enabled_typescript = {"prettier"}
+  fmt.assoc_fmt("prettier", ft)
 end
 
 

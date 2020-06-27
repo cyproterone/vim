@@ -15,7 +15,7 @@ local add_fmt = function (prog, stdin, args)
 end
 
 
-local fmt_assoc = function (fmt, filetypes)
+local assoc_fmt = function (fmt, filetypes)
   local formatter = _formatters[fmt]
   if formatter ~= nil then
     error("fmt not found -- " .. fmt)
@@ -83,6 +83,6 @@ end
 
 return {
   add_fmt = add_fmt,
-  fmt_assoc = fmt_assoc,
+  assoc_fmt = assoc_fmt,
   do_fmt = do_fmt,
 }

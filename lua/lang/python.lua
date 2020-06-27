@@ -2,6 +2,7 @@
 --#################### Python Region ####################
 --#################### ############# ####################
 local bindings = require "libs/bindings"
+local fmt = require "libs/fmt"
 local ftp = require "libs/ftp"
 
 
@@ -9,7 +10,7 @@ local ft = {"python"}
 
 
 local format = function ()
-  vim.g.neoformat_enabled_python = {"black"}
+  fmt.assoc_fmt("black", ft)
 end
 
 

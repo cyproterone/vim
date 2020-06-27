@@ -2,6 +2,7 @@
 --#################### JSON Region ####################
 --#################### ########### ####################
 local bindings = require "libs/bindings"
+local fmt = require "libs/fmt"
 local ftp = require "libs/ftp"
 
 
@@ -9,7 +10,7 @@ local ft = {"json"}
 
 
 local format = function ()
-  vim.g.neoformat_enabled_json = {"prettier"}
+  fmt.assoc_fmt("prettier", ft)
 end
 
 
