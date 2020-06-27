@@ -62,17 +62,18 @@ registry.defer(line)
 
 local indent = function ()
 
+  local line_at = function (row)
+    return unpack(api.nvim_buf_get_lines(0, row, row + 1, true))
+  end
+
   local p_indent = function (line)
     return string.find(line, "%S") or 0
   end
 
-  local p_accept = function (level, line)
+  local p_accept = function (level, row)
+    local line = line_at(row)
     local lv = p_indent(line)
     return lv == 0 or lv >= level
-  end
-
-  local line_at = function (row)
-    return unpack(api.nvim_buf_get_lines(0, row, row + 1, true))
   end
 
   local seek = function (row, level, inc)
@@ -84,8 +85,7 @@ local indent = function ()
       if nxt < min or nxt > max then
         break
       end
-      local line = line_at(nxt)
-      if p_accept(level, line) then
+      if p_accept(level, nxt) then
         acc = nxt
       else
         break
@@ -99,6 +99,10 @@ local indent = function ()
     row = row - 1
     local line = api.nvim_get_current_line()
     local level = p_indent(line)
+
+    if level == 0 then
+      return
+    end
 
     local top = seek(row, level, function (r) return r + 1 end)
     local btm = seek(row, level, function (r) return r - 1 end)
