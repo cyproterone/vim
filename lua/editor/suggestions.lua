@@ -73,4 +73,3 @@ registry.defer(enable)
 
 
 registry.install("Shougo/deoplete-lsp")
-

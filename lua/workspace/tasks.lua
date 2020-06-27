@@ -53,4 +53,3 @@ local autosave = function ()
 
 end
 registry.defer(autosave)
-

@@ -29,4 +29,3 @@ local lsp_recommends = function ()
 
 end
 registry.defer(lsp_recommends)
-

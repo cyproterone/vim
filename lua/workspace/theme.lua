@@ -83,4 +83,3 @@ local powerline = function ()
 
 end
 registry.defer(powerline)
-

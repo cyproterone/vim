@@ -45,4 +45,3 @@ local go_replace = function ()
 
 end
 registry.defer(go_replace)
-

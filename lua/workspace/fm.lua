@@ -113,4 +113,3 @@ local theme = function ()
   fn["defx#custom#column"]("git", "show_ignored", false)
 end
 registry.defer(theme)
-

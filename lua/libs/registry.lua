@@ -172,4 +172,3 @@ return {
   materialize = materialize,
   call = call,
 }
-

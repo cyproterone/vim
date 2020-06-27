@@ -77,4 +77,3 @@ local welcome_screen = function ()
 
 end
 registry.defer(welcome_screen)
-

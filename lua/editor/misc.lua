@@ -6,4 +6,3 @@ local registry = require "libs/registry"
 
 -- auto parens
 registry.install("Raimondi/delimitMate")
-

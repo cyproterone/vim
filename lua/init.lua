@@ -61,4 +61,3 @@ require "lang/yaml"
 
 
 registry.materialize()
-

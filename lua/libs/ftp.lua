@@ -35,4 +35,3 @@ return {
   defer = defer,
   always = always,
 }
-

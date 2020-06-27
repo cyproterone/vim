@@ -43,4 +43,3 @@ local prettier = function ()
 
 end
 registry.defer(prettier)
-

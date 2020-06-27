@@ -52,4 +52,3 @@ local trailing_whitespace = function ()
 
 end
 registry.defer(trailing_whitespace)
-

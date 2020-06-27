@@ -20,4 +20,3 @@ local normalize_keystrokes = function ()
 
 end
 registry.defer(normalize_keystrokes)
-

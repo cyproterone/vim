@@ -30,4 +30,3 @@ return {
   highlight = highlight,
   override = override,
 }
-

@@ -5,7 +5,7 @@ from os import getcwd, makedirs
 from os.path import basename, isdir, join, splitext
 from subprocess import run
 from sys import stdin
-from typing import List, Iterable
+from typing import Iterable, List
 from urllib.parse import urlparse
 
 
@@ -58,4 +58,3 @@ def main() -> None:
 
 
 main()
-
