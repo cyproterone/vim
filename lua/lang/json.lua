@@ -10,7 +10,7 @@ local ft = {"json"}
 
 
 local format = function ()
-  fmt.assoc_fmt("prettier", ft)
+  fmt.assoc_fmt("fmt-json", ft)
 end
 
 

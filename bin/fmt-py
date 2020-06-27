@@ -3,4 +3,4 @@
 set -eu
 set -o pipefail
 
-isort - < /dev/stdin | black -
+isort - | black -
