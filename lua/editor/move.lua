@@ -11,11 +11,6 @@ local select_visual = function (r1, c1, r2, c2)
 end
 
 
-local reselect_visual = function ()
-  bindings.exec[[undojoin | norm! gv]]
-end
-
-
 lv.move_up = function ()
   if not vim.bo.modifiable then
     return
@@ -49,6 +44,11 @@ lv.move_down = function ()
   local new = std.concat{nxt, curr}
   api.nvim_buf_set_lines(0, r, r + 2, true, new)
   api.nvim_win_set_cursor(0, {r + 2, c})
+end
+
+
+local reselect_visual = function ()
+  bindings.exec[[undojoin | norm! gv]]
 end
 
 

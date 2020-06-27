@@ -16,7 +16,7 @@ local entire = function ()
     local len = string.len(line)
     fn.setpos("'<", {0, 1, 1, 0})
     fn.setpos("'>", {0, count, len, 0})
-    bindings.exec[[norm! gv]]
+    bindings.exec[[norm! `<V`>]]
   end
 
   bindings.map.operator("ie", "<cmd>lua lv.textobj_entire()<cr>")
@@ -48,7 +48,7 @@ local line = function ()
     local top, btm = (inner and p_inner or p_outer)(line)
     fn.setpos("'<", {0, row, top, 0})
     fn.setpos("'>", {0, row, btm, 0})
-    bindings.exec[[norm! gv]]
+    bindings.exec[[norm! `<v`>]]
   end
 
   bindings.map.operator("il", "<cmd>lua lv.textobj_line(true)<cr>")
@@ -97,9 +97,11 @@ local indent = function ()
 
     local top = seek(row, level, function (r) return r + 1 end)
     local btm = seek(row, level, function (r) return r - 1 end)
-    fn.setpos("'<", {0, top + 1, 1, 0})
-    fn.setpos("'>", {0, btm + 1, 1, 0})
-    bindings.exec[[norm! gv]]
+    local top_line = line_at(top)
+    local top_len = string.len(top_line)
+    fn.setpos("'<", {0, btm + 1, 1, 0})
+    fn.setpos("'>", {0, top + 1, top_len, 0})
+    bindings.exec[[norm! `<V`>]]
   end
 
   bindings.map.operator("ii", "<cmd>lua lv.textobj_indent()<cr>")

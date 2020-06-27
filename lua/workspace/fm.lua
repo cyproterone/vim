@@ -42,6 +42,7 @@ registry.defer(update)
 
 
 local keymap = function (buf)
+
   local opts = {expr = true, buffer = buf}
   local git_opts = {noremap = false, buffer = buf}
 
