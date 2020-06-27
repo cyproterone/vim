@@ -10,7 +10,7 @@ local ft = {"python"}
 
 
 local format = function ()
-  fmt.assoc_fmt("black", ft)
+  fmt.assoc_fmt("py-fmt", ft)
 end
 
 

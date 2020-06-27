@@ -17,7 +17,7 @@ end
 
 local assoc_fmt = function (fmt, filetypes)
   local formatter = _formatters[fmt]
-  if formatter ~= nil then
+  if formatter == nil then
     error("fmt not found -- " .. fmt)
   else
     for _, ft in ipairs(filetypes) do
@@ -45,13 +45,13 @@ local fmt_stream = function (prog, args)
   a.sync(function ()
     local args = {args = fmt_args(args),
                   stream = table.concat(lines)}
-    local code, new_lines, err = a.wait(loop.spawn(prog, args))
+    local code, text, err = a.wait(loop.spawn(prog, args))
     if code ~= 0 then
-      error(table.concat(err, ""))
-    else
-      a.wait(loop.main)
-      api.nvim_buf_set_lines(0, 0, -1, true, new_lines)
+      error(err)
     end
+    local new_lines = vim.split(text, "\n", true)
+    a.wait(loop.main)
+    api.nvim_buf_set_lines(0, 0, -1, true, new_lines)
   end)()
 end
 
@@ -63,7 +63,7 @@ local fmt_fs = function (prog, args)
     a.wait(loop.main)
     bindings.exec[[checktime]]
     if code ~= 0 then
-      error(table.concat(err, ""))
+      error(err)
     end
   end)()
 end
