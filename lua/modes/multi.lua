@@ -63,14 +63,14 @@ registry.defer(movement)
 
 local arrow = function ()
 
-  bindings.map.nov("<M-Left>",  "b")
-  bindings.map.nov("<M-Right>", "e")
+  bindings.map.nov("<m-Left>",  "b")
+  bindings.map.nov("<m-Right>", "e")
 
-  bindings.map.insert("<M-Left>",  "<c-o>b")
-  bindings.map.insert("<M-Right>", "<c-o>e")
+  bindings.map.insert("<m-Left>",  "<c-o>b")
+  bindings.map.insert("<m-Right>", "<c-o>e")
 
-  bindings.map.command("<M-Left>",  "<S-Left>",  {silent = false})
-  bindings.map.command("<M-Right>", "<S-Right>", {silent = false})
+  bindings.map.command("<m-Left>",  "<S-Left>",  {silent = false})
+  bindings.map.command("<m-Right>", "<S-Right>", {silent = false})
 
 end
 registry.defer(arrow)

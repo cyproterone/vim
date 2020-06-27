@@ -99,11 +99,11 @@ end
 -- drag regions around
 local vim_move = function ()
 
-  bindings.map.normal("<M-Up>",   "<cmd>lua lv.move_up()<cr>")
-  bindings.map.normal("<M-Down>", "<cmd>lua lv.move_down()<cr>")
+  bindings.map.normal("<m-Up>",   "<cmd>lua lv.move_up()<cr>")
+  bindings.map.normal("<m-Down>", "<cmd>lua lv.move_down()<cr>")
 
-  bindings.map.visual("<M-Up>",   "<esc><cmd>lua lv.move_v_up()<cr>")
-  bindings.map.visual("<M-Down>", "<esc><cmd>lua lv.move_v_down()<cr>")
+  bindings.map.visual("<m-Up>",   "<esc><cmd>lua lv.move_v_up()<cr>")
+  bindings.map.visual("<m-Down>", "<esc><cmd>lua lv.move_v_down()<cr>")
 
 end
 registry.defer(vim_move)
