@@ -9,11 +9,6 @@ local ftp = require "libs/ftp"
 local ft = {"python"}
 
 
-local format = function ()
-  fmt.assoc_fmt("fmt-py", ft)
-end
-
-
 local lsp = function ()
   if not bindings.executable("pyls") then
     return
@@ -25,7 +20,7 @@ end
 
 
 local lang = function ()
-  format()
+  fmt.assoc_fmt("fmt-py", ft)
   lsp()
 end
 ftp.defer(ft, lang)

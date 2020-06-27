@@ -9,11 +9,6 @@ local ftp = require "libs/ftp"
 local ft = {"json"}
 
 
-local format = function ()
-  fmt.assoc_fmt("fmt-json", ft)
-end
-
-
 local lsp = function ()
   if not bindings.executable("vscode-json-languageserver") then
     return
@@ -25,7 +20,7 @@ end
 
 
 local lang = function ()
-  format()
+  fmt.assoc_fmt("fmt-json", ft)
   lsp()
 end
 ftp.defer(ft, lang)

@@ -9,12 +9,7 @@ local ftp = require "libs/ftp"
 local ft = {"markdown"}
 
 
-local format = function ()
-  fmt.assoc_fmt("prettier", ft)
-end
-
-
 local lang = function ()
-  format()
+  fmt.assoc_fmt("prettier", ft)
 end
 ftp.defer(ft, lang)

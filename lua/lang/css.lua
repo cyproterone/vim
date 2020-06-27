@@ -9,11 +9,6 @@ local ftp = require "libs/ftp"
 local ft = {"css", "scss", "less"}
 
 
-local format = function ()
-  fmt.assoc_fmt("prettier", ft)
-end
-
-
 local lsp = function ()
   if not bindings.executable("css-languageserver") then
     return
@@ -25,7 +20,7 @@ end
 
 
 local lang = function ()
-  format()
+  fmt.assoc_fmt("prettier", ft)
   lsp()
 end
 ftp.defer(ft, lang)
