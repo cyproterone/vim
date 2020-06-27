@@ -33,7 +33,7 @@ local hotkeys = function ()
   bindings.map.insert("<cr>", "pumvisible() ? (complete_info().selected == -1 ? '<c-y><cr>' : '<c-y>') : '<cr>'",  {expr = true})
 
   bindings.map.insert("<tab>",   "pumvisible() ? '<c-n>' : '<tab>'", {expr = true})
-  bindings.map.insert("<S-Tab>", "pumvisible() ? '<c-p>' : '<bs>'",  {expr = true})
+  bindings.map.insert("<s-tab>", "pumvisible() ? '<c-p>' : '<bs>'",  {expr = true})
 
   -- previous
   bindings.map.insert("<c-p>", "<c-x><c-p>")
@@ -47,7 +47,7 @@ local hotkeys = function ()
   bindings.map.insert("<c-o>", "<c-x><c-o>")
   -- userfunc
   bindings.map.nv("<c-space>")
-  bindings.map.insert("<c-Space>", "<c-x><c-u>")
+  bindings.map.insert("<c-space>", "<c-x><c-u>")
 
 end
 registry.defer(hotkeys)

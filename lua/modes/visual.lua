@@ -8,8 +8,8 @@ local registry = require "libs/registry"
 local keys = function ()
 
   -- dont shirt move too much
-  bindings.map.visual("<S-Up>",   "<Up>")
-  bindings.map.visual("<S-Down>", "<Down>")
+  bindings.map.visual("<s-up>",   "<up>")
+  bindings.map.visual("<s-down>", "<down>")
 
 end
 registry.defer(keys)

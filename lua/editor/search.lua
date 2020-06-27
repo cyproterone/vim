@@ -134,7 +134,7 @@ local replace = function ()
     local selection = p_selection(selc)
     local escaped = magic_escape(selection)
     -- no magic
-    local input = [[:%s/]] .. escaped .. "//g<Left><Left>"
+    local input = [[:%s/]] .. escaped .. "//g<left><left>"
     api.nvim_input(input)
   end
 
@@ -142,7 +142,7 @@ local replace = function ()
   bindings.map.normal("gt", "<cmd>set opfunc=v:lua.lv.op_sd<cr>g@")
   bindings.map.visual("gt", "<ESC>:lua lv.op_sd()<cr>")
   -- very magic
-  bindings.map.normal("gT", [[:%s/\v//g<Left><Left><Left>]], {silent = false})
+  bindings.map.normal("gT", [[:%s/\v//g<left><left><left>]], {silent = false})
 
 end
 registry.defer(replace)

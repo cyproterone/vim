@@ -38,20 +38,20 @@ local modern_split = function ()
   bindings.map.normal("<leader>-", "<cmd>lua lv.new_window(false)<cr>")
 
   -- move between windows
-  bindings.map.normal("<c-Left>",  "<c-w>h")
-  bindings.map.normal("<c-Right>", "<c-w>l")
-  bindings.map.normal("<c-Up>",    "<c-w>k")
-  bindings.map.normal("<c-Down>",  "<c-w>j")
+  bindings.map.normal("<c-left>",  "<c-w>h")
+  bindings.map.normal("<c-right>", "<c-w>l")
+  bindings.map.normal("<c-up>",    "<c-w>k")
+  bindings.map.normal("<c-down>",  "<c-w>j")
 
   -- swap windows
   bindings.map.normal("<leader>'", "<c-w>r")
   bindings.map.normal("<leader>;", "<c-w>R")
 
   -- reformat windows
-  bindings.map.normal("<S-Left>",  "<c-w>H")
-  bindings.map.normal("<S-Right>", "<c-w>L")
-  bindings.map.normal("<S-Up>",    "<c-w>K")
-  bindings.map.normal("<S-Down>",  "<c-w>J")
+  bindings.map.normal("<s-left>",  "<c-w>H")
+  bindings.map.normal("<s-right>", "<c-w>L")
+  bindings.map.normal("<s-up>",    "<c-w>K")
+  bindings.map.normal("<s-down>",  "<c-w>J")
 
 end
 registry.defer(modern_split)
