@@ -27,10 +27,24 @@ local fmt_assoc = function (fmt, filetypes)
 end
 
 
+local fmt_args = function (args)
+  local filename = vim.fn.bufname("%")
+  local new_args = std.map(args, function (arg)
+    if arg == "%" then
+      return filename
+    else
+      return arg
+    end
+  end)
+  return new_args
+end
+
+
 local fmt_stream = function (prog, args)
   local lines = api.nvim_buf_get_lines(0, 0, -1, true)
   a.sync(function ()
-    local args = {args = args, stream = table.concat(lines)}
+    local args = {args = fmt_args(args),
+                  stream = table.concat(lines)}
     local code, new_lines, err = a.wait(loop.spawn(prog, args))
     if code ~= 0 then
       error(table.concat(err, ""))
@@ -44,8 +58,7 @@ end
 
 local fmt_fs = function (prog, args)
   a.sync(function ()
-    local filename = vim.fn.bufname("%")
-    local args = {args = std.concat{args, {filename}}}
+    local args = {args = fmt_args(args)}
     local code, _, err = a.wait(loop.spawn(prog, args))
     a.wait(loop.main)
     bindings.exec[[checktime]]
