@@ -1,6 +1,6 @@
 local bindings = require "libs/bindings"
-local registry = require "libs/registry"
 local fmt = require "libs/fmt"
+local registry = require "libs/registry"
 
 
 --#################### Format Region ####################
