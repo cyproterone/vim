@@ -9,11 +9,6 @@ local exec = function (opt)
 end
 
 
-local norm = function (exec)
-  api.nvim_command([[silent execute "normal! ]] .. exec .. [["]])
-end
-
-
 local set = function (opt, val, operator)
   local p_statement = function ()
     if not val then
@@ -87,7 +82,6 @@ end
 
 return {
   exec = exec,
-  norm = norm,
   set = set,
   map = map(),
   source = source,

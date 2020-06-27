@@ -11,6 +11,11 @@ local select_visual = function (r1, c1, r2, c2)
 end
 
 
+local reselect_visual = function ()
+  bindings.exec[[execute 'undojoin | norm! gv']]
+end
+
+
 lv.move_up = function ()
   if not vim.bo.modifiable then
     return
@@ -54,7 +59,7 @@ lv.move_v_up = function ()
 
   local r1, c1, r2, c2 = bindings.p_op_marks()
   if r1 <= 1 then
-    bindings.norm[[gv]]
+    reselect_visual()
     return
   end
   r1, r2 = r1 - 1, r2 - 1
@@ -65,7 +70,7 @@ lv.move_v_up = function ()
   api.nvim_buf_set_lines(0, r1 - 1, r2 + 1, true, new)
 
   select_visual(r1, c1, r2, c2)
-  bindings.norm[[gv]]
+  reselect_visual()
 end
 
 
@@ -76,7 +81,7 @@ lv.move_v_down = function ()
 
   local r1, c1, r2, c2 = bindings.p_op_marks()
   if r2 >= api.nvim_buf_line_count(0) then
-    bindings.norm[[gv]]
+    reselect_visual()
     return
   end
   r1, r2 = r1 - 1, r2 - 1
@@ -87,7 +92,7 @@ lv.move_v_down = function ()
   api.nvim_buf_set_lines(0, r1, r2 + 2, true, new)
 
   select_visual(r1 + 2, c1, r2 + 2, c2)
-  bindings.norm[[gv]]
+  reselect_visual()
 end
 
 
