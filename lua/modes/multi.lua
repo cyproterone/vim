@@ -28,7 +28,6 @@ local remap_keys = function ()
   bindings.map.normal("S",     [["_S]])
   bindings.map.normal("x",     [["_x]])
   bindings.map.normal("X",     [["_X]])
-  bindings.map.normal("<Del>", [["_<Del>]])
 
   bindings.map.nv("d", [["_d]])
   bindings.map.nv("D", [["_D]])
