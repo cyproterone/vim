@@ -68,7 +68,7 @@ local keymap = function (buf)
   m1("cd",            "defx#async_action('change_vim_cwd')")
   m1(".",             "defx#async_action('toggle_ignored_files')")
 
-  m1("<space>",       "defx#async_action('toggle_select')")
+  m1("c",             "defx#async_action('toggle_select')")
   m1("*",             "defx#async_action('toggle_select_all')")
   m1("w",             "defx#async_action('clear_select_all')")
   m1("y",             "defx#async_action('copy')")

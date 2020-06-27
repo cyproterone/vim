@@ -45,11 +45,10 @@ local line = function ()
 
   lv.textobj_line = function (inner)
     local row, _ = unpack(api.nvim_win_get_cursor(0))
-    row = row - 1
-    local line = unpack(api.nvim_buf_get_lines(0, row, row + 1, true))
+    local line = api.nvim_get_current_line()
     local top, btm = (inner and p_inner or p_outer)(line)
-    fn.setpos("'<", {0, row + 1, top, 0})
-    fn.setpos("'>", {0, row + 1, btm, 0})
+    fn.setpos("'<", {0, row, top, 0})
+    fn.setpos("'>", {0, row, btm, 0})
     bindings.exec[[norm! gv]]
   end
 
@@ -60,3 +59,34 @@ local line = function ()
 
 end
 registry.defer(line)
+
+
+local indent = function ()
+
+  local p_indent = function (line)
+    return string.find(line, "%S") - 1
+  end
+
+  local p_accept = function (level, line)
+    local lv = p_indent(line)
+    return lv == nil or lv >= level
+  end
+
+  lv.textobj_indent = function ()
+    local row, _ = unpack(api.nvim_win_get_cursor(0))
+    row = row - 1
+    local line = api.nvim_get_current_line()
+    local level = p_indent(line)
+
+    local top, btm = row, row
+    while true do
+      break
+    end
+    while true do
+      break
+    end
+
+  end
+
+end
+registry.defer(indent)
