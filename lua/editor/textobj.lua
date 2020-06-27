@@ -79,8 +79,8 @@ local indent = function ()
     local seen = false
     return function (row)
       local lv = indent_at(row)
-      seen = seen or lv >= level
-      return lv <= level or seen
+      seen = seen or lv <= level
+      return lv <= level and not seen
     end
   end
 
@@ -116,7 +116,7 @@ local indent = function ()
     if level == 0 then
       local t = seek(row, inc, p_accept_more(level))
       local b = seek(row, dec, p_accept_more(level))
-      level = math.max(t, b)
+      level = math.max(indent_at(t),indent_at(b))
     end
 
     local top = seek(row, inc, p_accept_next(level))
