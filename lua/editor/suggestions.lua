@@ -27,27 +27,27 @@ registry.defer(suggestions)
 local hotkeys = function ()
 
   -- cancel comp
-  bindings.map.insert("<C-q>", "<C-e>")
+  bindings.map.insert("<c-q>", "<c-e>")
 
   -- cua
-  bindings.map.insert("<cr>", "pumvisible() ? (complete_info().selected == -1 ? '<C-y><cr>' : '<C-y>') : '<cr>'",  {expr = true})
+  bindings.map.insert("<cr>", "pumvisible() ? (complete_info().selected == -1 ? '<c-y><cr>' : '<c-y>') : '<cr>'",  {expr = true})
 
-  bindings.map.insert("<Tab>",   "pumvisible() ? '<C-n>' : '<Tab>'", {expr = true})
-  bindings.map.insert("<S-Tab>", "pumvisible() ? '<C-p>' : '<BS>'",  {expr = true})
+  bindings.map.insert("<tab>",   "pumvisible() ? '<c-n>' : '<tab>'", {expr = true})
+  bindings.map.insert("<S-Tab>", "pumvisible() ? '<c-p>' : '<bs>'",  {expr = true})
 
   -- previous
-  bindings.map.insert("<C-p>", "<C-x><C-p>")
+  bindings.map.insert("<c-p>", "<c-x><c-p>")
   -- next
-  bindings.map.insert("<C-n>", "<C-x><C-n>")
+  bindings.map.insert("<c-n>", "<c-x><c-n>")
   -- line
-  bindings.map.insert("<C-l>", "<C-x><C-l>")
+  bindings.map.insert("<c-l>", "<c-x><c-l>")
   -- file
-  bindings.map.insert("<C-f>", "<C-x><C-f>")
+  bindings.map.insert("<c-f>", "<c-x><c-f>")
   -- omnifunc
-  bindings.map.insert("<C-o>", "<C-x><C-o>")
+  bindings.map.insert("<c-o>", "<c-x><c-o>")
   -- userfunc
-  bindings.map.nv("<C-space>")
-  bindings.map.insert("<C-Space>", "<C-x><C-u>")
+  bindings.map.nv("<c-space>")
+  bindings.map.insert("<c-Space>", "<c-x><c-u>")
 
 end
 registry.defer(hotkeys)

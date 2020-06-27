@@ -8,7 +8,7 @@ local registry = require "libs/registry"
 local hotkeys = function ()
 
   -- leave terminal
-  bindings.map.terminal("<C-g>", [[<C-\><C-n>]])
+  bindings.map.terminal("<c-g>", [[<c-\><c-n>]])
 
 end
 registry.defer(hotkeys)
@@ -25,7 +25,7 @@ local float_term = function ()
   vim.g.floaterm_height = 0.9
 
   -- hotkeys
-  bindings.map.normal("<Leader>u", "<cmd>FloatermToggle<cr>")
+  bindings.map.normal("<leader>u", "<cmd>FloatermToggle<cr>")
   bindings.map.normal("[z", "<cmd>FloatermPrev<cr>")
   bindings.map.normal("]z", "<cmd>FloatermNext<cr>")
 

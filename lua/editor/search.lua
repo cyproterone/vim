@@ -25,13 +25,13 @@ registry.defer(modern_search)
 local hotkeys = function ()
 
   -- clear search result
-  bindings.map.normal("<Leader>l", "<cmd>nohlsearch<cr>")
+  bindings.map.normal("<leader>l", "<cmd>nohlsearch<cr>")
 
   -- clear quickfix
-  bindings.map.normal("<Leader>L", "<cmd>cclose<cr>")
+  bindings.map.normal("<leader>L", "<cmd>cclose<cr>")
 
   -- clear preview
-  bindings.map.normal("<Leader>M", "<cmd>pclose<cr>")
+  bindings.map.normal("<leader>M", "<cmd>pclose<cr>")
 
 end
 registry.defer(hotkeys)

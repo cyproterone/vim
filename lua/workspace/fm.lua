@@ -56,7 +56,7 @@ local keymap = function (buf)
 
   m1("q",             "defx#async_action('quit')")
 
-  m1("<Tab>",         "defx#is_directory() ? defx#async_action('open_tree', 'toggle') : defx#async_action('drop') . ':Defx <cr>'")
+  m1("<tab>",         "defx#is_directory() ? defx#async_action('open_tree', 'toggle') : defx#async_action('drop') . ':Defx <cr>'")
   m1("<2-LeftMouse>", "defx#is_directory() ? defx#async_action('open_tree', 'toggle') : defx#async_action('drop') . ':Defx <cr>'")
   m1("`",             "defx#async_action('open_tree', ['toggle', 'recursive'])")
   m1("<Enter>",       "defx#async_action('drop')")
@@ -86,7 +86,7 @@ local keymap = function (buf)
 
   m1(">",             "defx#async_action('resize', defx#get_context().winwidth + 10)")
   m1("<",             "defx#async_action('resize', defx#get_context().winwidth - 10)")
-  m1("<C-r>",         "defx#async_action('redraw')")
+  m1("<c-r>",         "defx#async_action('redraw')")
 
 
   m2("[",             "<Plug>(defx-git-prev)")
@@ -101,7 +101,7 @@ registry.auto("FileType", keymap, "defx")
 
 
 local key = function ()
-  bindings.map.normal("<Leader>i", "<cmd>Defx -toggle<cr>")
+  bindings.map.normal("<leader>i", "<cmd>Defx -toggle<cr>")
 end
 registry.defer(key)
 

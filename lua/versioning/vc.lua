@@ -9,13 +9,13 @@ registry.install("mhinz/vim-signify")
 local signify = function ()
 
   -- undo
-  bindings.map.normal("<Leader>hu", "<cmd>SignifyHunkUndo<cr>")
+  bindings.map.normal("<leader>hu", "<cmd>SignifyHunkUndo<cr>")
 
   -- hunk diff
-  bindings.map.normal("<Leader>hp", "<cmd>SignifyHunkDiff<cr>")
+  bindings.map.normal("<leader>hp", "<cmd>SignifyHunkDiff<cr>")
 
   -- whole page diff
-  bindings.map.normal("<Leader>hd", "<cmd>SignifyDiff<cr>")
+  bindings.map.normal("<leader>hd", "<cmd>SignifyDiff<cr>")
 
 end
 registry.defer(signify)

@@ -8,12 +8,12 @@ local registry = require "libs/registry"
 local keys = function ()
 
   -- dont go into ex mode
-  bindings.map.command("<C-f>")
+  bindings.map.command("<c-f>")
 
-  bindings.map.command("<C-q>", "<esc>")
+  bindings.map.command("<c-q>", "<esc>")
 
   -- enable paste
-  bindings.map.command("<C-v>", [[<C-r>"]], {silent = false})
+  bindings.map.command("<c-v>", [[<c-r>"]], {silent = false})
 
 end
 registry.defer(keys)

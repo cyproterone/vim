@@ -7,7 +7,7 @@ local registry = require "libs/registry"
 registry.install("liuchengxu/vim-which-key")
 local help = function ()
 
-  bindings.map.normal("<Leader>", "<cmd>WhichKey '<Space>'<cr>")
+  bindings.map.normal("<leader>", "<cmd>WhichKey '<Space>'<cr>")
 
   bindings.map.normal("[", "<cmd>WhichKey '['<cr>")
   bindings.map.normal("]", "<cmd>WhichKey ']'<cr>")

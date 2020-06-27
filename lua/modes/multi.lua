@@ -8,14 +8,14 @@ local registry = require "libs/registry"
 local emacs = function ()
 
   -- ea
-  bindings.map.insert("<C-a>",       "<C-o>^")
-  bindings.map.insert("<C-x><C-a>",  "<C-a>")
-  bindings.map.insert("<C-e>",       "pumvisible() ? '<C-e><End>' : '<End>'", {expr = true})
+  bindings.map.insert("<c-a>",       "<c-o>^")
+  bindings.map.insert("<c-x><c-a>",  "<c-a>")
+  bindings.map.insert("<c-e>",       "pumvisible() ? '<c-e><End>' : '<End>'", {expr = true})
 
   -- ea
-  bindings.map.command("<C-a>",      "<Home>", {silent = false})
-  bindings.map.command("<C-x><C-a>", "<C-a>",  {silent = false})
-  bindings.map.command("<C-e>",      "<End>",  {silent = false})
+  bindings.map.command("<c-a>",      "<Home>", {silent = false})
+  bindings.map.command("<c-x><c-a>", "<c-a>",  {silent = false})
+  bindings.map.command("<c-e>",      "<End>",  {silent = false})
 
 end
 registry.defer(emacs)
@@ -46,10 +46,10 @@ registry.defer(remap_keys)
 local movement = function ()
 
   -- centre on up down
-  bindings.map.nv("<C-u>", "<C-u>zz")
-  bindings.map.nv("<C-d>", "<C-d>zz")
-  bindings.map.nv("<C-f>", "<C-f>zz")
-  bindings.map.nv("<C-b>", "<C-b>zz")
+  bindings.map.nv("<c-u>", "<c-u>zz")
+  bindings.map.nv("<c-d>", "<c-d>zz")
+  bindings.map.nv("<c-f>", "<c-f>zz")
+  bindings.map.nv("<c-b>", "<c-b>zz")
 
 
   -- centre on paragraph
@@ -66,8 +66,8 @@ local arrow = function ()
   bindings.map.nov("<M-Left>",  "b")
   bindings.map.nov("<M-Right>", "e")
 
-  bindings.map.insert("<M-Left>",  "<C-o>b")
-  bindings.map.insert("<M-Right>", "<C-o>e")
+  bindings.map.insert("<M-Left>",  "<c-o>b")
+  bindings.map.insert("<M-Right>", "<c-o>e")
 
   bindings.map.command("<M-Left>",  "<S-Left>",  {silent = false})
   bindings.map.command("<M-Right>", "<S-Right>", {silent = false})
