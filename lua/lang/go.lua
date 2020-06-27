@@ -2,6 +2,7 @@
 --#################### Rust Region ####################
 --#################### ########### ####################
 local bindings = require "libs/bindings"
+local fmt = require "libs/fmt"
 local ftp = require "libs/ftp"
 
 

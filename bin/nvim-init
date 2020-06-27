@@ -3,6 +3,7 @@
 set -eux
 set -o pipefail
 
+
 pip3 install pynvim
 VIM_INIT=1 nvim --headless
 nvim --headless +UpdateRemotePlugins +quit
