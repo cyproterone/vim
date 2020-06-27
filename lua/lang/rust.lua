@@ -2,10 +2,16 @@
 --#################### Rust Region ####################
 --#################### ########### ####################
 local bindings = require "libs/bindings"
+local fmt = require "libs/fmt"
 local ftp = require "libs/ftp"
 
 
 local ft = {"rust"}
+
+
+local format = function ()
+  fmt.assoc_fmt("cargo", ft)
+end
 
 
 local lsp = function ()
@@ -19,6 +25,7 @@ end
 
 
 local lang = function ()
+  format()
   lsp()
 end
 ftp.defer(ft, lang)
