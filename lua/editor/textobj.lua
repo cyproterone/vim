@@ -76,9 +76,14 @@ local indent = function ()
   end
 
   local seek = function (row, level, inc)
+    local min = 0
+    local max = api.nvim_buf_line_count(0) - 1
     local acc = row
     while true do
       local nxt = inc(acc)
+      if nxt < min or nxt > max then
+        break
+      end
       local line = line_at(nxt)
       if p_accept(level, line) then
         acc = nxt
