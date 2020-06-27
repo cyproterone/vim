@@ -32,20 +32,9 @@ registry.defer(entire)
 local line = function ()
 
   local p_inner = function (line)
-    local len = string.len(line)
-    local top, btm = 1, len
-    for i in std.range(1, len) do
-      if string.sub(line, i, i) ~= " " then
-        top = i
-        break
-      end
-    end
-    for i in std.range(len, 1, -1) do
-      if string.sub(line, i, i) ~= " " then
-        btm = i
-        break
-      end
-    end
+    local enil = string.reverse(line)
+    local top = string.find(line, "%S")
+    local btm = string.len(line) - string.find(enil, "%S") + 1
     return top, btm
   end
 
