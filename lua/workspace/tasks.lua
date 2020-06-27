@@ -11,7 +11,7 @@ local fs_consistency = function ()
   bindings.set("autoread")
 
   local reload_file = function ()
-    bindings.exec("checktime")
+    bindings.exec[[checktime]]
   end
 
   registry.auto({"FocusGained", "BufEnter"}, reload_file)

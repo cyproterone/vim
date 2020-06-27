@@ -34,12 +34,26 @@ registry.defer(sort)
 
 
 -- prettiers
-registry.install("sbdchd/neoformat")
 local prettier = function ()
 
+  local fmt_stream = function ()
+    local lines = vim.api
+  end
+
+  local fmt_fs = function ()
+    bindings.exec[[checktime]]
+  end
+
+  lv.formatters = {}
+
+  lv.format = function ()
+    local ft = vim.bo.filetype
+    local formatter = lv.formatters[ft]
+  end
+
   -- remove default formatter
-  bindings.map.normal("gq", "<cmd>Neoformat<CR>")
-  bindings.map.normal("gQ", "<cmd>Neoformat<CR>")
+  bindings.map.normal("gq", "<cmd>lv.format()<CR>")
+  bindings.map.normal("gQ", "<cmd>lv.format()<CR>")
 
 end
 registry.defer(prettier)
