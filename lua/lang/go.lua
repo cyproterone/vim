@@ -20,6 +20,7 @@ end
 
 
 local lang = function ()
+  fmt.assoc_fmt("gofmt", ft)
   lsp()
 end
 ftp.defer(ft, lang)
