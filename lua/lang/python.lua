@@ -9,12 +9,7 @@ local ft = {"python"}
 
 
 local format = function ()
-  vim.g.neoformat_python_autopep8 = {
-    exe = "autopep8",
-    args = {"-", "--indent-size=2"},
-    stdin = 1}
-
-  vim.g.neoformat_enabled_python = {"autopep8"}
+  vim.g.neoformat_enabled_python = {"black"}
 end
 
 
