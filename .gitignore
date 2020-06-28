@@ -3,6 +3,4 @@
 .DS_Store
 plug.vim
 plugged/*
-/node_modules/
-package.json
-package-lock.json
+vars/*
