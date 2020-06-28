@@ -20,7 +20,6 @@ local lsp = function ()
       plugins = {
         pyls_mypy = {
           enabled = true,
-          live_mode = true,
         }
       }
     },
