@@ -1,5 +1,6 @@
 --#################### Libs Region ####################
 require "libs/consts"
+local ftp = require "libs/ftp"
 local registry = require "libs/registry"
 
 
@@ -61,4 +62,4 @@ require "lang/xml"
 require "lang/yaml"
 
 
-registry.materialize()
+registry.materialize(ftp.materialize)

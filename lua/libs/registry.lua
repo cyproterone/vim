@@ -118,11 +118,12 @@ local init_defer = function ()
 end
 
 
-local normal = function ()
+local normal = function (post)
   local inst = a.wait(init_plug)
   init_plugins()
   if inst then
     init_defer()
+    post()
   else
     bindings.exec[[PlugInstall]]
   end
@@ -154,14 +155,16 @@ local scripted = function ()
 end
 
 
-local materialize = a.sync(function ()
-  env["PATH"] = vim_home .. "/bin:" .. env["PATH"]
-  if env["VIM_INIT"] then
-    scripted()
-  else
-    normal()
-  end
-end)
+local materialize = function (post)
+  a.sync(function ()
+    env["PATH"] = vim_home .. "/bin:" .. env["PATH"]
+    if env["VIM_INIT"] then
+      scripted()
+    else
+      normal(post)
+    end
+  end)()
+end
 
 
 return {
