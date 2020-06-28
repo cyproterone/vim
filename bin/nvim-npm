@@ -4,8 +4,9 @@ set -eu
 set -o pipefail
 
 
-cd "$(dirname "$0")/.." || exit
+cd "$(dirname "$0")/../vars" || exit
 
-PKGS=($(< 'npm.txt'))
 
+PKGS=($(< '../npm.txt'))
+npm init -yes
 npm install "${PKGS[@]}"
