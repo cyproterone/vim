@@ -10,7 +10,7 @@ local _shebang = {}
 
 local shebang = function (ft, lines)
   for _, line in ipairs(lines) do
-    local escaped = [[\V]] .. fn.escape(line, [[\]])
+    local escaped = [[\V\^]] .. fn.escape(line, [[\]])
     _shebang[escaped] = ft
   end
 end
