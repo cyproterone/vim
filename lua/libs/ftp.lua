@@ -10,7 +10,8 @@ local _shebang = {}
 
 local shebang = function (ft, lines)
   for _, line in ipairs(lines) do
-    _shebang[line] = ft
+    local escaped = [[\V]] .. fn.escape(line, [[\]])
+    _shebang[escaped] = ft
   end
 end
 
@@ -43,9 +44,9 @@ local materialize = function ()
 
   local shebang = function ()
     local buf = tonumber(fn.expand("<abuf>"))
-    local line = api.nvim_buf_get_lines(buf, 0, 1, true)
+    local line = unpack(api.nvim_buf_get_lines(buf, 0, 1, true))
     for sb, ft in pairs(_shebang) do
-      if sb == line then
+      if fn.match(line, sb) ~= -1 then
         api.nvim_buf_set_option(buf, "filetype", ft)
         break
       end
