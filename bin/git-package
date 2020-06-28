@@ -5,11 +5,11 @@ from os import getcwd, makedirs
 from os.path import basename, isdir, join, splitext
 from subprocess import run
 from sys import stdin
-from typing import Iterable, List
+from typing import Iterator
 from urllib.parse import urlparse
 
 
-def call(prog: str, *args: List[str], cwd=getcwd()) -> None:
+def call(prog: str, *args: str, cwd=getcwd()) -> None:
     ret = run([prog, *args], cwd=cwd)
     if ret.returncode != 0:
         exit(ret.returncode)
@@ -42,7 +42,7 @@ def install_pkg(uri: str, location: str) -> None:
         call("git", "clone", "--depth=1", uri, install_target)
 
 
-def parse_args() -> Namespace():
+def parse_args() -> Namespace:
     parser = ArgumentParser()
     parser.add_argument("path")
     return parser.parse_args()
@@ -50,7 +50,7 @@ def parse_args() -> Namespace():
 
 def main() -> None:
     args = parse_args()
-    repos: Iterable[str] = (expand_uri(line) for line in stdin.readlines())
+    repos: Iterator[str] = (expand_uri(line) for line in stdin.readlines())
     makedirs(args.path, exist_ok=True)
     for repo in repos:
         install_pkg(repo, args.path)
