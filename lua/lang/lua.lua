@@ -20,6 +20,6 @@ end
 
 
 local lang = function ()
-  lsp()
+  -- lsp()
 end
 ftp.defer(ft, lang)
