@@ -6,15 +6,6 @@ local registry = require "libs/registry"
 
 local go_replace = function ()
 
-
-  local split_newline = function (str)
-    local new_lines = {}
-    for line in vim.gsplit(str, "\n", true) do
-      table.insert(new_lines, line)
-    end
-    return new_lines
-  end
-
   lv.op_go_replace = function (selec)
     local r1, c1, r2, c2 = bindings.p_op_marks(selec)
     r1, r2 = r1 - 1, r2 - 1
@@ -25,7 +16,7 @@ local go_replace = function ()
     local pre = string.sub(lines[1], 1, c1 - 1)
     local post = string.sub(lines[lst], c2 + 1, string.len(lines[lst]))
     local replacement = pre .. text .. post
-    local new_lines = split_newline(replacement)
+    local new_lines = vim.split(replacement, "\n", true)
     api.nvim_buf_set_lines(0, r1, r2 + 1, true, new_lines)
   end
 
@@ -37,7 +28,7 @@ local go_replace = function ()
     local r, _ = unpack(api.nvim_win_get_cursor(0))
     r = r - 1
     local replacement = fn.getreg("*")
-    local new_lines = split_newline(replacement)
+    local new_lines = vim.split(replacement, "\n", true)
     api.nvim_buf_set_lines(0, r, r + 1, true, new_lines)
   end
 
