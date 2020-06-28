@@ -1,0 +1,10 @@
+prettier
+vscode-json-languageserver
+yaml-language-server
+bash-language-server
+dockerfile-language-server-nodejs
+typescript-language-server
+typescript
+vscode-html-languageserver-bin
+vscode-css-languageserver-bin
+vim-language-server
