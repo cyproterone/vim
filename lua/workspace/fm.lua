@@ -4,8 +4,7 @@ local registry = require "libs/registry"
 
 --#################### File Manager Region ####################
 
--- needs :UpdateRemotePlugins
-registry.install("Shougo/defx.nvim")
+registry.install("Shougo/defx.nvim", {["do"] = ":UpdateRemotePlugins"})
 registry.install("kristijanhusak/defx-icons")
 registry.install("kristijanhusak/defx-git")
 

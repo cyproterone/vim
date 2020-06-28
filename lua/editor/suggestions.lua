@@ -55,8 +55,8 @@ registry.defer(hotkeys)
 
 --#################### Auto Region ####################
 
--- needs :UpdateRemotePlugins
-registry.install("Shougo/deoplete.nvim")
+registry.install("Shougo/deoplete.nvim", {["do"] = ":UpdateRemotePlugins"})
+registry.install("Shougo/deoplete-lsp")
 local enable = function ()
 
   fn["deoplete#custom#option"]("auto_complete_delay", 0)
@@ -70,6 +70,3 @@ local enable = function ()
 
 end
 registry.defer(enable)
-
-
-registry.install("Shougo/deoplete-lsp")
