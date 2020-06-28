@@ -158,6 +158,7 @@ end
 local materialize = function (post)
   a.sync(function ()
     env["PATH"] = vim_home .. "/bin:" .. env["PATH"]
+    env["PATH"] = vim_home .. "/node_modules/.bin:" .. env["PATH"]
     if env["VIM_INIT"] then
       scripted()
     else
