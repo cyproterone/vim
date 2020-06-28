@@ -13,9 +13,11 @@ local lsp = function ()
   if not bindings.executable("docker-langserver") then
     return
   end
-  local lsp = require "nvim_lsp"
-  lsp.dockerls.setup{}
-  lsp.dockerls.manager.try_add()
+  local lsp = require "nvim_lsp".dockerls
+  lsp.setup{
+    root_dir = ftp.lsp_root,
+  }
+  lsp.manager.try_add()
 end
 
 

@@ -13,9 +13,11 @@ local lsp = function ()
   if not bindings.executable("pyls") then
     return
   end
-  local lsp = require "nvim_lsp"
-  lsp.pyls.setup{}
-  lsp.pyls.manager.try_add()
+  local lsp = require "nvim_lsp".pyls
+  lsp.setup{
+    root_dir = ftp.lsp_root,
+  }
+  lsp.manager.try_add()
 end
 
 

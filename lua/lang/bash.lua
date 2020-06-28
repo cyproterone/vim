@@ -13,9 +13,12 @@ local lsp = function ()
   if not bindings.executable("bash-language-server") then
     return
   end
-  local lsp = require "nvim_lsp"
-  lsp.bashls.setup{filetypes = {"sh", "zsh"}}
-  lsp.bashls.manager.try_add()
+  local lsp = require "nvim_lsp".bashls
+  lsp.setup{
+    filetypes = {"sh", "zsh"},
+    root_dir = ftp.lsp_root,
+  }
+  lsp.manager.try_add()
 end
 
 

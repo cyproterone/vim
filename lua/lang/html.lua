@@ -13,9 +13,11 @@ local lsp = function ()
   if not bindings.executable("html-languageserver") then
     return
   end
-  local lsp = require "nvim_lsp"
-  lsp.html.setup{}
-  lsp.html.manager.try_add()
+  local lsp = require "nvim_lsp".html
+  lsp.setup{
+    root_dir = ftp.lsp_root,
+  }
+  lsp.manager.try_add()
 end
 
 

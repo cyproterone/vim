@@ -16,6 +16,11 @@ local shebang = function (ft, lines)
 end
 
 
+local lsp_root = function (file_name)
+  return fn.getcwd()
+end
+
+
 local defer = function (ft, ftplugin)
   set.add(_ftp, ftplugin)
   local ftp = function (kill)
@@ -59,6 +64,7 @@ end
 
 return {
   shebang = shebang,
+  lsp_root = lsp_root,
   defer = defer,
   always = always,
   materialize = materialize,

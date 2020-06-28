@@ -13,9 +13,11 @@ local lsp = function ()
   if not bindings.executable("gopls") then
     return
   end
-  local lsp = require "nvim_lsp"
-  lsp.gopls.setup{}
-  lsp.gopls.manager.try_add()
+  local lsp = require "nvim_lsp".gopls
+  lsp.setup{
+    root_dir = ftp.lsp_root,
+  }
+  lsp.manager.try_add()
 end
 
 

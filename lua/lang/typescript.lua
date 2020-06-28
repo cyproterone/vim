@@ -19,9 +19,11 @@ local lsp = function ()
   if not bindings.executable("typescript-language-server") then
     return
   end
-  local lsp = require "nvim_lsp"
-  lsp.tsserver.setup{}
-  lsp.tsserver.manager.try_add()
+  local lsp = require "nvim_lsp".tsserver
+  lsp.setup{
+    root_dir = ftp.lsp_root,
+  }
+  lsp.manager.try_add()
 end
 
 

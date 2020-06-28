@@ -13,9 +13,12 @@ local lsp = function ()
   if not bindings.executable("lua-ls") then
     return
   end
-  local lsp = require "nvim_lsp"
-  lsp.sumneko_lua.setup{cmd={"lua-ls"}}
-  lsp.sumneko_lua.manager.try_add()
+  local lsp = require "nvim_lsp".sumneko_lua
+  lsp.setup{
+    cmd={"lua-ls"},
+    root_dir = ftp.lsp_root,
+  }
+  lsp.manager.try_add()
 end
 
 
