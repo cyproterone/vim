@@ -6,7 +6,6 @@ local fmt = require "libs/fmt"
 local ftp = require "libs/ftp"
 
 
-local ft = {"prolog"}
 local shebang = {"#!/usr/bin/env swipl"}
 
 
