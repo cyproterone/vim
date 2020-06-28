@@ -49,7 +49,7 @@ local autosave = function ()
     "*",
     "nested")
 
-  registry.auto("VimLeavePre", save, "*", "nested")
+  registry.auto({"FocusLost", "VimLeavePre"}, save, "*", "nested")
 
 end
 registry.defer(autosave)
