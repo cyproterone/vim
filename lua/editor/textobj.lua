@@ -33,8 +33,8 @@ local line = function ()
   local p_inner = function (line)
     local len = string.len(line)
     local enil = string.reverse(line)
-    local top = string.find(line, "%S")
-    local btm = len - string.find(enil, "%S") + 1
+    local top = string.find(line, "%S") or 0
+    local btm = len - (string.find(enil, "%S") or 0) + 1
     return top, btm
   end
 
