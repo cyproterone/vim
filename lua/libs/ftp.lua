@@ -1,8 +1,9 @@
 --#################### ########## ####################
 --#################### FTP Region ####################
 --#################### ########## ####################
-local set = require "libs/set"
 local registry = require "libs/registry"
+local set = require "libs/set"
+
 
 local _ftp = set.new()
 local _shebang = {}
