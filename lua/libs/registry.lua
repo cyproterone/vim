@@ -79,7 +79,13 @@ local init_plug = function (cont)
   endfunction]]
   if fn.filereadable(vim_plug) == 0 then
     local on_exit = {on_exit = "InstallVimPlug"}
-    fn.termopen({"curl", "--create-dirs", "-o", vim_plug, vim_plug_remote}, on_exit)
+    fn.termopen({"curl",
+      "--location",
+      "--create-dirs",
+      "--output",
+      vim_plug,
+      vim_plug_remote},
+    on_exit)
   else
     lv.cont_init(true)
   end
@@ -134,7 +140,12 @@ local scripted = function ()
     return std.wrap(plug)[1]
   end)
   a.sync(function ()
-    local args = {args = {"--create-dirs", "-o", vim_plug, vim_plug_remote}}
+    local args = {args = {
+      "--location",
+      "--create-dirs",
+      "--output",
+      vim_plug,
+      vim_plug_remote}}
     local code = a.wait(loop.spawn("curl", args))
     if code ~= 0 then
       os.exit(code)
