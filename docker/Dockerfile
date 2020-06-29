@@ -7,7 +7,7 @@ RUN apt update && \
     apt update && \
     apt install -y && \
     neovim \
-    git \
+    git curl \
     python3 python3-pip \
     nodejs
 
