@@ -11,4 +11,4 @@ VIMPLUG_HOME='autoload/plug.vim'
 curl --location --create-dirs --output "$VIMPLUG_HOME" -- "$VIMPLUG_REMOTE"
 
 PIP_HOME='vars/pip_modules'
-yes | pip3 install --upgrade --target "$PIP_HOME" -- pynvim
+pip3 install --upgrade --target "$PIP_HOME" -- pynvim < /dev/null
