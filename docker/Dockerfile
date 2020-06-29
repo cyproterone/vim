@@ -6,7 +6,7 @@ RUN apt update && \
     add-apt-repository ppa:neovim-ppa/unstable && \
     apt update && \
     apt install -y && \
-    neovim \
+    nvim \
     git curl \
     python3 python3-pip \
     nodejs
