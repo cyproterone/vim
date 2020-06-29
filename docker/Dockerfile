@@ -9,7 +9,7 @@ RUN apt update && \
     neovim \
     git curl \
     python3 python3-pip \
-    nodejs
+    nodejs npm
 
 
 COPY . /root/.config/nvim
