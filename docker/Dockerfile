@@ -1,6 +1,7 @@
 FROM ubuntu:latest
 
 
+ENV DEBIAN_FRONTEND=noninteractive
 RUN apt update && \
     apt install -y software-properties-common && \
     add-apt-repository ppa:neovim-ppa/unstable && \
