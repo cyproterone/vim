@@ -1,6 +1,6 @@
 !.gitkeep
 /.git/
 .DS_Store
-plug.vim
+autoload/plug.vim
 plugged/*
 vars/*
