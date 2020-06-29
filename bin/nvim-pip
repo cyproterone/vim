@@ -7,5 +7,7 @@ set -o pipefail
 cd "$(dirname "$0")/../vars" || exit
 
 
+ROOT="pip_modules"
+mkdir -p "$ROOT"
 PKGS=($(< '../pip.txt'))
-echo "${PKGS[@]}"
+# "${PKGS[@]}"
