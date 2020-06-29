@@ -9,4 +9,4 @@ cd "$(dirname "$0")/../vars" || exit
 
 PKGS=($(< '../npm.txt'))
 npm init --yes
-npm install --upgrade "${PKGS[@]}"
+npm install --upgrade -- "${PKGS[@]}"

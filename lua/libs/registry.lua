@@ -155,10 +155,25 @@ local scripted = function ()
 end
 
 
-local materialize = function (post)
+local paths = function ()
   local vars_home = vim_home .. "/vars"
-  env["PATH"] = vim_home .. "/bin:" .. env["PATH"]
-  env["PATH"] = vars_home .. "/node_modules/.bin:" .. env["PATH"]
+  local pip_home = vars_home .. "/pip_modules"
+  local npm_home = vars_home .. "/node_modules"
+
+  env["PATH"] = vim_home .. "/bin:"  .. env["PATH"]
+  env["PATH"] = pip_home .. "/bin:"  .. env["PATH"]
+  env["PATH"] = npm_home .. "/.bin:" .. env["PATH"]
+
+  if env["PYTHONPATH"] then
+    env["PYTHONPATH"] =  pip_home .. ":" .. env["PYTHONPATH"]
+  else
+    env["PYTHONPATH"] = pip_home
+  end
+end
+
+
+local materialize = function (post)
+  paths()
   a.sync(function ()
     if env["VIM_INIT"] then
       scripted()
