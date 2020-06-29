@@ -1,9 +1,11 @@
 FROM ubuntu:latest
 
 
-RUN add-apt-repository ppa:neovim-ppa/unstable && \
+RUN apt update && \
+    apt install -y software-properties-common && \
+    add-apt-repository ppa:neovim-ppa/unstable && \
     apt update && \
-    apt install -y \
+    apt install -y && \
     neovim \
     git \
     python3 python3-pip \
