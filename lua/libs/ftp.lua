@@ -17,8 +17,10 @@ local shebang = function (ft, lines)
 end
 
 
-local lsp_root = function (file_name)
-  return fn.getcwd()
+local lsp_root = function ()
+  return function (file_name)
+    return fn.getcwd()
+  end
 end
 
 

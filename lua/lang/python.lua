@@ -15,7 +15,7 @@ local lsp = function ()
   end
   local lsp = require "nvim_lsp".pyls
   lsp.setup{
-    root_dir = ftp.lsp_root,
+    root_dir = ftp.lsp_root{},
     settings = {
       plugins = {
         pyls_mypy = {

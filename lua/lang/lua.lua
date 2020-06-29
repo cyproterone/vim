@@ -16,7 +16,7 @@ local lsp = function ()
   local lsp = require "nvim_lsp".sumneko_lua
   lsp.setup{
     cmd={"lua-ls"},
-    root_dir = ftp.lsp_root,
+    root_dir = ftp.lsp_root{},
   }
   lsp.manager.try_add()
 end

@@ -16,7 +16,7 @@ local lsp = function ()
   local lsp = require "nvim_lsp".bashls
   lsp.setup{
     filetypes = {"sh", "zsh"},
-    root_dir = ftp.lsp_root,
+    root_dir = ftp.lsp_root{},
   }
   lsp.manager.try_add()
 end

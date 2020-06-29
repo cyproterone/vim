@@ -15,7 +15,7 @@ local lsp = function ()
   end
   local lsp = require "nvim_lsp".rust_analyzer
   lsp.setup{
-    root_dir = ftp.lsp_root,
+    root_dir = ftp.lsp_root{},
   }
   lsp.manager.try_add()
 end
