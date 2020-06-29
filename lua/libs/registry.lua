@@ -8,14 +8,11 @@ local std = require "libs/std"
 
 
 local _registry = "libs/registry"
-local vim_plug_remote = "https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
-local vim_plug = vim_home .. "/autoload/plug.vim"
 local plugin_home = vars_home .. "/vim_modules"
 local pip_home = vars_home .. "/pip_modules"
 local npm_home = vars_home .. "/node_modules"
-
-local curl_args = {"--location", "--create-dirs", "--output", vim_plug, "--", vim_plug_remote}
-local pip_args = {"install", "--upgrade", "--target", pip_home, "--", "pynvim"}
+local vim_plug = vim_home .. "/autoload/plug.vim"
+local vim_inst = vim_home .. "/init.sh"
 
 
 local _plugins = {}
@@ -79,26 +76,12 @@ end
 
 local init_plug = function (cont)
   if fn.filereadable(vim_plug) == 0 then
-    local rpc = function (cb)
-      local on_exit = {on_exit = "InstallRPC"}
-      lv.cont_init_rpc = cb
-      bindings.exec[[function! InstallRPC (job_id, code, event_type)
-        lua lv.cont_init_rpc()
-      endfunction]]
-      fn.termopen(std.concat{{"pip3"}, pip_args}, on_exit)
-    end
-    local plug = function (cb)
-      local on_exit = {on_exit = "InstallPlug"}
-      lv.cont_init_plug = cb
-      bindings.exec[[function! InstallPlug (job_id, code, event_type)
-        lua lv.cont_init_plug()
-      endfunction]]
-      fn.termopen(std.concat{{"curl"}, curl_args}, on_exit)
-    end
-    a.sync(function ()
-      a.wait_all{rpc, plug}
-      cont(false)
-    end)()
+    local on_exit = {on_exit = "InitVIMtinI"}
+    lv.cont_init = cont
+    bindings.exec[[function! InitVIMtinI (job_id, code, event_type)
+      lua lv.cont_init()
+    endfunction]]
+    fn.termopen({vim_inst}, on_exit)
   else
     cont(true)
   end
@@ -153,14 +136,7 @@ local scripted = function ()
     return std.wrap(plug)[1]
   end)
   a.sync(function ()
-    local args = {args = curl_args}
-    local code = a.wait(loop.spawn("curl", args))
-    if code ~= 0 then
-      os.exit(code)
-    end
-
-    local args = {args = pip_args}
-    local code = a.wait(loop.spawn("pip3", args))
+    local code = a.wait(loop.spawn(vim_inst, {args = {}}))
     if code ~= 0 then
       os.exit(code)
     end
