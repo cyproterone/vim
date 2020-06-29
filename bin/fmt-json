@@ -4,7 +4,7 @@ from json import JSONDecodeError, dumps, loads
 from locale import strxfrm
 from subprocess import run
 from sys import argv, stderr, stdin
-from typing import Any
+from typing import Any, NoReturn
 
 
 def recur_sort(data: Any) -> Any:
@@ -16,7 +16,7 @@ def recur_sort(data: Any) -> Any:
         return data
 
 
-def main() -> None:
+def main() -> NoReturn:
     data = stdin.read()
     name = argv[1]
     try:
