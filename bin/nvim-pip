@@ -9,5 +9,5 @@ cd "$(dirname "$0")/../vars" || exit
 
 ROOT="pip_modules"
 mkdir -p "$ROOT"
-PKGS=($(< '../pip.txt'))
-pip install --upgrade --target "$ROOT" -- "${PKGS[@]}"
+mapfile -t PKGS < '../pip.txt'
+pip install --upgrade --target "$ROOT" -- "${PKGS[@]}" < /dev/null
