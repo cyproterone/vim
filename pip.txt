@@ -1,4 +1,3 @@
-pynvim
 python-language-server[all]
 mypy
 pyls-mypy

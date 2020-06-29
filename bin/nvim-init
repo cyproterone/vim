@@ -4,9 +4,9 @@ set -eux
 set -o pipefail
 
 
-cd "$(dirname "$0")" || exit
+cd "$(dirname "$0")/.." || exit
 
 
+pip install --upgrade --target "vars/pip_modules" -- pynvim
 VIM_INIT=1 nvim --headless
-./nvim-pip
 nvim --headless +UpdateRemotePlugins +quit
