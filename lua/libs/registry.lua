@@ -9,7 +9,7 @@ local std = require "libs/std"
 
 local _registry = "libs/registry"
 local vim_plug_remote = "https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
-local vim_plug = vim_home .. "/plug.vim"
+local vim_plug = vim_home .. "/autoload/plug.vim"
 local plugin_dir = vim_home .. "/plugged"
 
 
@@ -73,10 +73,7 @@ end
 
 
 local init_plug = function (cont)
-  lv.cont_init = function (inst)
-    bindings.source(vim_plug)
-    cont(inst)
-  end
+  lv.cont_init = cont
   bindings.exec[[function! InstallVimPlug (job_id, code, event_type)
     lua lv.cont_init()
   endfunction]]
@@ -125,6 +122,7 @@ local normal = function (post)
     init_defer()
     post()
   else
+    bindings.source(vim_plug)
     bindings.exec[[PlugInstall]]
   end
 end
