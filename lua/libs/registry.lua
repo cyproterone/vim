@@ -10,7 +10,9 @@ local std = require "libs/std"
 local _registry = "libs/registry"
 local vim_plug_remote = "https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
 local vim_plug = vim_home .. "/autoload/plug.vim"
-local plugin_dir = vim_home .. "/plugged"
+local plugin_home = vars_home .. "/vim_modules"
+local pip_home = vars_home .. "/pip_modules"
+local npm_home = vars_home .. "/node_modules"
 
 
 local _plugins = {}
@@ -101,7 +103,7 @@ local init_plugins = function ()
     fn["plug#"](name, opts)
   end
 
-  fn["plug#begin"](plugin_dir)
+  fn["plug#begin"](plugin_home)
   for _, plugin in ipairs(_plugins) do
     plug(plugin)
   end
@@ -152,7 +154,7 @@ local scripted = function ()
     end
 
     local stream = table.concat(plugins, "\n")
-    local args = {args = {plugin_dir}, stream = stream}
+    local args = {args = {plugin_home}, stream = stream}
     local code = a.wait(loop.spawn("git-package", args))
     if code ~= 0 then
       os.exit(code)
@@ -165,10 +167,6 @@ end
 
 
 local paths = function ()
-  local vars_home = vim_home .. "/vars"
-  local pip_home = vars_home .. "/pip_modules"
-  local npm_home = vars_home .. "/node_modules"
-
   env["PATH"] = vim_home .. "/bin:"  .. env["PATH"]
   env["PATH"] = pip_home .. "/bin:"  .. env["PATH"]
   env["PATH"] = npm_home .. "/.bin:" .. env["PATH"]
