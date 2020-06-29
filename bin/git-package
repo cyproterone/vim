@@ -6,7 +6,7 @@ from asyncio.subprocess import PIPE
 from os import getcwd, makedirs
 from os.path import basename, isdir, join, splitext
 from sys import stderr, stdin
-from typing import Set, Tuple
+from typing import Set, Tuple, cast
 from urllib.parse import urlparse
 
 Triple = Tuple[int, str, str]
@@ -16,7 +16,8 @@ async def call(prog: str, *args: str, cwd=getcwd()) -> Triple:
     proc = await create_subprocess_exec(prog, *args, cwd=cwd, stdout=PIPE, stderr=PIPE)
     stdout, stderr = await proc.communicate()
     out, err = stdout.decode(), stderr.decode()
-    return proc.returncode, out, err
+    code = cast(int, proc.returncode)
+    return code, out, err
 
 
 def expand_uri(line: str) -> str:
