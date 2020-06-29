@@ -4,7 +4,7 @@ set -eu
 set -o pipefail
 
 
-cd "$(dirname "$0")/../vars" || exit
+cd "$(dirname "$0")/../vars" || exit 1
 
 
 mapfile -t PKGS < '../npm.txt'
