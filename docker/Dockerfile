@@ -14,6 +14,7 @@ RUN apt update && \
 
 COPY . /root/.config/nvim
 WORKDIR /root/.config/nvim
+ENV XDG_CONFIG_HOME=/root/.config
 RUN ./bin/nvim-init && \
     ./bin/nvim-pip && \
     ./bin/nvim-npm
