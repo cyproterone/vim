@@ -1,18 +1,22 @@
 #!/usr/bin/env python3
 
 from argparse import ArgumentParser, Namespace
+from asyncio import Queue, create_subprocess_exec, ensure_future, gather, run
+from asyncio.subprocess import PIPE
 from os import getcwd, makedirs
 from os.path import basename, isdir, join, splitext
-from subprocess import run
-from sys import stdin
-from typing import Iterator
+from sys import stderr, stdin
+from typing import Set, Tuple
 from urllib.parse import urlparse
 
+Triple = Tuple[int, str, str]
 
-def call(prog: str, *args: str, cwd=getcwd()) -> None:
-    ret = run([prog, *args], cwd=cwd)
-    if ret.returncode != 0:
-        exit(ret.returncode)
+
+async def call(prog: str, *args: str, cwd=getcwd()) -> Triple:
+    proc = await create_subprocess_exec(prog, *args, cwd=cwd, stdout=PIPE, stderr=PIPE)
+    stdout, stderr = await proc.communicate()
+    out, err = stdout.decode(), stderr.decode()
+    return proc.returncode, out, err
 
 
 def expand_uri(line: str) -> str:
@@ -33,13 +37,24 @@ def p_name(uri: str) -> str:
     return target
 
 
-def install_pkg(uri: str, location: str) -> None:
+async def install_pkg(chan: Queue[Triple], uri: str, location: str) -> None:
     install_target = join(location, p_name(uri))
-    print(f"安装: {uri}")
     if isdir(install_target):
-        call("git", "pull", cwd=install_target.encode())
+        ret = await call("git", "pull", cwd=install_target.encode())
+        await chan.put(ret)
     else:
-        call("git", "clone", "--depth=1", uri, install_target)
+        ret = await call("git", "clone", "--depth=1", uri, install_target)
+        await chan.put(ret)
+
+
+async def print_msg(chan: Queue[Triple]) -> None:
+    while True:
+        code, out, err = await chan.get()
+        print(out, end="")
+        print(err, end="", file=stderr)
+        if code != 0:
+            exit(code)
+        chan.task_done()
 
 
 def parse_args() -> Namespace:
@@ -48,12 +63,16 @@ def parse_args() -> Namespace:
     return parser.parse_args()
 
 
-def main() -> None:
+async def main() -> None:
     args = parse_args()
-    repos: Iterator[str] = (expand_uri(line) for line in stdin.readlines())
     makedirs(args.path, exist_ok=True)
-    for repo in repos:
-        install_pkg(repo, args.path)
+    repos: Set[str] = {expand_uri(line) for line in stdin.readlines()}
+    chan: Queue[Triple] = Queue(1)
+    producers = (install_pkg(chan, repo, args.path) for repo in repos)
+    consumer = ensure_future(print_msg(chan))
+    await gather(*producers)
+    await chan.join()
+    consumer.cancel()
 
 
-main()
+run(main())

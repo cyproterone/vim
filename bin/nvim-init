@@ -7,6 +7,6 @@ set -o pipefail
 cd "$(dirname "$0")/.." || exit
 
 
-pip install --upgrade --target "vars/pip_modules" -- pynvim
+pip3 install --upgrade --target "vars/pip_modules" -- pynvim
 VIM_INIT=1 nvim --headless
 nvim --headless +UpdateRemotePlugins +quit
