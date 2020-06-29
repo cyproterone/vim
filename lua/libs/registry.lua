@@ -96,7 +96,7 @@ local init_plug = function (cont)
       fn.termopen(std.concat{{"curl"}, curl_args}, on_exit)
     end
     a.sync(function ()
-      a.wait(rpc, plug)
+      a.wait_all{rpc, plug}
       cont(false)
     end)()
   else
