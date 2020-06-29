@@ -65,8 +65,8 @@ local fzf = function ()
   vim.g.fzf_preview_window = "right:wrap"
 
   vim.g.fzf_layout = {window = {
-    width = 0.8,
-    height = 0.8}}
+    width = 0.9,
+    height = 0.9}}
 
   -- keybindings
   bindings.map.normal("<c-p>",     "<cmd>Commands<cr>")
