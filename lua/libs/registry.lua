@@ -14,6 +14,9 @@ local plugin_home = vars_home .. "/vim_modules"
 local pip_home = vars_home .. "/pip_modules"
 local npm_home = vars_home .. "/node_modules"
 
+local curl_args = {"--location", "--create-dirs", "--output", vim_plug, "--", vim_plug_remote}
+local pip_args = {"install", "--upgrade", "--target", pip_home, "--", "pynvim"}
+
 
 local _plugins = {}
 local _defer = {}
@@ -75,21 +78,29 @@ end
 
 
 local init_plug = function (cont)
-  lv.cont_init = cont
-  bindings.exec[[function! InstallVimPlug (job_id, code, event_type)
-    lua lv.cont_init()
-  endfunction]]
   if fn.filereadable(vim_plug) == 0 then
-    local on_exit = {on_exit = "InstallVimPlug"}
-    fn.termopen({"curl",
-      "--location",
-      "--create-dirs",
-      "--output",
-      vim_plug,
-      vim_plug_remote},
-    on_exit)
+    local rpc = function (cb)
+      local on_exit = {on_exit = "InstallRPC"}
+      lv.cont_init_rpc = cb
+      bindings.exec[[function! InstallRPC (job_id, code, event_type)
+        lua lv.cont_init_rpc()
+      endfunction]]
+      fn.termopen(std.concat{{"pip3"}, pip_args}, on_exit)
+    end
+    local plug = function (cb)
+      local on_exit = {on_exit = "InstallPlug"}
+      lv.cont_init_plug = cb
+      bindings.exec[[function! InstallPlug (job_id, code, event_type)
+        lua lv.cont_init_plug()
+      endfunction]]
+      fn.termopen(std.concat{{"curl"}, curl_args}, on_exit)
+    end
+    a.sync(function ()
+      a.wait(rpc, plug)
+      cont(false)
+    end)()
   else
-    lv.cont_init(true)
+    cont(true)
   end
 end
 
@@ -142,13 +153,14 @@ local scripted = function ()
     return std.wrap(plug)[1]
   end)
   a.sync(function ()
-    local args = {args = {
-      "--location",
-      "--create-dirs",
-      "--output",
-      vim_plug,
-      vim_plug_remote}}
+    local args = {args = curl_args}
     local code = a.wait(loop.spawn("curl", args))
+    if code ~= 0 then
+      os.exit(code)
+    end
+
+    local args = {args = pip_args}
+    local code = a.wait(loop.spawn("pip3", args))
     if code ~= 0 then
       os.exit(code)
     end
