@@ -47,11 +47,9 @@ local lint_stream = function (prog, args)
   a.sync(function ()
     local args = {args = lint_args(args),
                   stream = table.concat(lines, "\n")}
-    local code, text, err = a.wait(loop.spawn(prog, args))
-    if code ~= 0 then
-      error(err)
-    end
+    local _, text, err = a.wait(loop.spawn(prog, args))
     a.wait(loop.main)
+    print(err)
     print(text)
   end)()
 end
@@ -60,13 +58,9 @@ end
 local lint_fs = function (prog, args)
   a.sync(function ()
     local args = {args = lint_args(args)}
-    local code, text, err = a.wait(loop.spawn(prog, args))
+    local _, text, err = a.wait(loop.spawn(prog, args))
     a.wait(loop.main)
-    bindings.exec[[checktime]]
-    if code ~= 0 then
-      error(err)
-    end
-    a.wait(loop.main)
+    print(err)
     print(text)
   end)()
 end
