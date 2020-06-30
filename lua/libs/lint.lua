@@ -42,6 +42,19 @@ local lint_args = function (args)
 end
 
 
+local open_preview = function (buf)
+  for _, win in ipairs(api.nvim_tabpage_list_wins(0)) do
+    if api.nvim_win_get_option(win, "previewwindow") then
+      api.nvim_win_set_buf(win, buf)
+      return
+    end
+  end
+  bindings.exec[[new]]
+  vim.wo.previewwindow = true
+  api.nvim_win_set_buf(0, buf)
+end
+
+
 local print_message = function (code, err, out)
   local msg = (code == 0 and "成功" or "失败") .. "\n"
   local lines = msg .. err .. out
@@ -50,9 +63,7 @@ local print_message = function (code, err, out)
   a.wait(loop.main)
   local buf = api.nvim_create_buf(false, true)
   api.nvim_buf_set_lines(buf, 0, -1, true, new_lines)
-  bindings.exec[[new]]
-  vim.wo.previewwindow = true
-  api.nvim_win_set_buf(0, buf)
+  open_preview(buf)
 end
 
 
