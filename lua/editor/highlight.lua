@@ -22,7 +22,11 @@ registry.defer(copy_highlight)
 registry.install("norcalli/nvim-colorizer.lua")
 local colour_highlight = function ()
 
-  bindings.exec[[lua require("colorizer").setup()]]
+  local setup = function (kill)
+    kill()
+    require("colorizer").setup()
+  end
+  registry.auto("VimEnter", setup)
 
 end
 registry.defer(colour_highlight)
