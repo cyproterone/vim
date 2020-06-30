@@ -42,16 +42,15 @@ local lint_args = function (args)
 end
 
 
-local open_preview = function (buf)
+local open_preview = function ()
   for _, win in ipairs(api.nvim_tabpage_list_wins(0)) do
     if api.nvim_win_get_option(win, "previewwindow") then
-      api.nvim_win_set_buf(win, buf)
-      return
+      return win
     end
   end
   bindings.exec[[new]]
   vim.wo.previewwindow = true
-  api.nvim_win_set_buf(0, buf)
+  return 0
 end
 
 
@@ -63,7 +62,10 @@ local print_message = function (code, err, out)
   a.wait(loop.main)
   local buf = api.nvim_create_buf(false, true)
   api.nvim_buf_set_lines(buf, 0, -1, true, new_lines)
-  open_preview(buf)
+  local height = math.min(vim.o.previewheight, #new_lines)
+  local win = open_preview()
+  api.nvim_win_set_buf(win, buf)
+  api.nvim_win_set_height(win, height)
 end
 
 
