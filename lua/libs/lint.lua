@@ -90,10 +90,6 @@ end
 
 
 local do_lint = function ()
-  if not vim.bo.modifiable then
-    return
-  end
-
   local ft = vim.bo.filetype
   local linter = _linter_assoc[ft]
 
