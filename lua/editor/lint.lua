@@ -1,12 +1,13 @@
 local bindings = require "libs/bindings"
+local lint = require "libs/lint"
 local registry = require "libs/registry"
 
 
 --#################### Lint Region ####################
 
-local lint =  function ()
+local linter =  function ()
 
-  lv.lint = function () end
+  lv.lint = lint.do_lint
 
   -- run linter
   bindings.map.normal("gw", "<cmd>lua lv.lint()<cr>")
@@ -15,4 +16,4 @@ local lint =  function ()
   bindings.map.normal("gww")
 
 end
-registry.defer(lint)
+registry.defer(linter)

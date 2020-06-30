@@ -47,6 +47,7 @@ require "editor/whitespace"
 -- lang
 require "lang/_lang"
 require "lang/_fmt"
+require "lang/_lint"
 require "lang/bash"
 require "lang/css"
 require "lang/docker"
