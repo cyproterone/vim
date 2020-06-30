@@ -24,7 +24,10 @@ local colour_highlight = function ()
 
   local setup = function (kill)
     kill()
-    require("colorizer").setup()
+    local go, colourizer = pcall(require, "colorizer")
+    if go then
+      colourizer.setup()
+    end
   end
   registry.auto("VimEnter", setup)
 
