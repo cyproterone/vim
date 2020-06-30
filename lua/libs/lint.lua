@@ -50,14 +50,9 @@ local print_message = function (code, err, out)
   a.wait(loop.main)
   local buf = api.nvim_create_buf(false, true)
   api.nvim_buf_set_lines(buf, 0, -1, true, new_lines)
-  bindings.exec[[pedit]]
-  for _, win in ipairs(api.nvim_tabpage_list_wins(0)) do
-    local preview = api.nvim_win_get_option(win, "previewwindow")
-    if preview then
-      api.nvim_win_set_buf(0, buf)
-      break
-    end
-  end
+  bindings.exec[[new]]
+  vim.wo.previewwindow = true
+  api.nvim_win_set_buf(0, buf)
 end
 
 
