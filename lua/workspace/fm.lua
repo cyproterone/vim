@@ -89,12 +89,12 @@ local keymap = function (buf)
   m1("<c-r>",         "defx#async_action('redraw')")
 
 
-  m2("[",             "<Plug>(defx-git-prev)")
-  m2("]",             "<Plug>(defx-git-next)")
+  m2("[",             "<plug>(defx-git-prev)")
+  m2("]",             "<plug>(defx-git-next)")
 
-  m2("s",             "<Plug>(defx-git-stage)")
-  m2("u",             "<Plug>(defx-git-reset)")
-  m2("U",             "<Plug>(defx-git-discard)")
+  m2("s",             "<plug>(defx-git-stage)")
+  m2("u",             "<plug>(defx-git-reset)")
+  m2("U",             "<plug>(defx-git-discard)")
 
 end
 registry.auto("FileType", keymap, "defx")

@@ -29,8 +29,9 @@ require "versioning/git"
 require "versioning/vc"
 
 -- editor
-require "editor/format"
+require "editor/fmt"
 require "editor/highlight"
+require "editor/lint"
 require "editor/lsp"
 require "editor/macros"
 require "editor/misc"

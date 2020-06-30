@@ -14,7 +14,7 @@ registry.install("tpope/vim-commentary")
 registry.install("junegunn/vim-easy-align")
 local align = function ()
 
-  bindings.map.nv("ga", "<Plug>(EasyAlign)", {noremap = false})
+  bindings.map.nv("ga", "<plug>(EasyAlign)", {noremap = false})
 
 end
 registry.defer(align)
