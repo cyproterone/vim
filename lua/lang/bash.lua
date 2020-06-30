@@ -3,6 +3,7 @@
 --#################### ########### ####################
 local bindings = require "libs/bindings"
 local fmt = require "libs/fmt"
+local lint = require "libs/lint"
 local ftp = require "libs/ftp"
 
 
@@ -23,6 +24,7 @@ end
 
 
 local lang = function ()
+  lint.assoc_linter("shellcheck", ft)
   lsp()
 end
 ftp.defer(ft, lang)
