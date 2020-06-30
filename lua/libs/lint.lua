@@ -42,15 +42,26 @@ local lint_args = function (args)
 end
 
 
-local print_message = function (err, out)
+local print_message = function (code, err, out)
   local msg = (function ()
-    if err ~= "" then
-      return err .. "\n" .. out
+    if code ~= 0 then
+      return "-- 失败 --\n" .. err
     else
-      return out
+      return "-- 成功 --\n" .. out
     end
   end)()
-  api.nvim_out_write(msg .. "\n")
+  local new_lines = vim.split(msg, "\n", true)
+  a.wait(loop.main)
+  local buf = api.nvim_create_buf(false, true)
+  api.nvim_buf_set_lines(buf, 0, -1, true, new_lines)
+  bindings.exec[[pedit]]
+  for _, win in ipairs(api.nvim_tabpage_list_wins(0)) do
+    local preview = api.nvim_win_get_option(win, "previewwindow")
+    if preview then
+      api.nvim_win_set_buf(0, buf)
+      break
+    end
+  end
 end
 
 
@@ -59,9 +70,8 @@ local lint_stream = function (prog, args)
   a.sync(function ()
     local args = {args = lint_args(args),
                   stream = table.concat(lines, "\n")}
-    local _, out, err = a.wait(loop.spawn(prog, args))
-    a.wait(loop.main)
-    print_message(err, out)
+    local code, out, err = a.wait(loop.spawn(prog, args))
+    print_message(code, err, out)
   end)()
 end
 
@@ -69,9 +79,8 @@ end
 local lint_fs = function (prog, args)
   a.sync(function ()
     local args = {args = lint_args(args)}
-    local _, out, err = a.wait(loop.spawn(prog, args))
-    a.wait(loop.main)
-    print_message(err, out)
+    local code, out, err = a.wait(loop.spawn(prog, args))
+    print_message(code, err, out)
   end)()
 end
 
