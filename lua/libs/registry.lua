@@ -26,7 +26,13 @@ local install = function (p)
 end
 
 
-local defer = function (d)
+local defer = function (d, thunk)
+  if thunk then
+    local f = d
+    d = function ()
+      vim.schedule(f)
+    end
+  end
   table.insert(_defer, d)
 end
 

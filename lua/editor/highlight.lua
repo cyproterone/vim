@@ -22,12 +22,10 @@ registry.defer(copy_highlight)
 registry.install("norcalli/nvim-colorizer.lua")
 local colour_highlight = function ()
 
-  bindings.exec[[lua lv.colourizer={pcall(require, "colorizer")}]]
-  local go, colourizer = unpack(lv.colourizer)
-  lv.colourizer = nil
+  local go, colourizer = pcall(require, "colorizer")
   if go then
     colourizer.setup()
   end
 
 end
-registry.defer(colour_highlight)
+registry.defer(colour_highlight, true)
