@@ -132,7 +132,7 @@ local preview_wm = function ()
   end
 
   -- resize preview
-  bindings.map.normal("<leader>m", "<cmd>lv.resize_preview()<cr>")
+  bindings.map.normal("<leader>m", "<cmd>lua lv.resize_preview()<cr>")
 
 end
 registry.defer(preview_wm)
