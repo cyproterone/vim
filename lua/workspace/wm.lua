@@ -114,6 +114,30 @@ end
 registry.defer(tabs_wm)
 
 
+local preview_wm = function ()
+
+  -- preview height
+  bindings.set("previewheight", 15)
+
+  -- clear preview
+  bindings.map.normal("<leader>M", "<cmd>pclose<cr>")
+
+  lv.resize_preview = function ()
+    for _, win in ipairs(api.nvim_tabpage_list_wins(0)) do
+      if api.nvim_win_get_option(win, "previewwindow") then
+        local height = vim.o.previewheight
+        api.nvim_win_set_height(win, height)
+      end
+    end
+  end
+
+  -- resize preview
+  bindings.map.normal("<leader>m", "<cmd>lv.resize_preview()<cr>")
+
+end
+registry.defer(preview_wm)
+
+
 --#################### Intrinsic Buffers Region ####################
 
 -- buffer region

@@ -30,9 +30,6 @@ local hotkeys = function ()
   -- clear quickfix
   bindings.map.normal("<leader>L", "<cmd>cclose<cr>")
 
-  -- clear preview
-  bindings.map.normal("<leader>M", "<cmd>pclose<cr>")
-
 end
 registry.defer(hotkeys)
 
