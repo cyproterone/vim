@@ -39,10 +39,7 @@ local prettier = function ()
   lv.format = fmt.do_fmt
 
   -- run formatters
-  bindings.map.normal("gq", "<cmd>lua lv.format()<cr>")
-  bindings.map.visual("gq", "<esc><cmd>lua lv.format()<cr>")
-  bindings.map.normal("gqgq")
-  bindings.map.normal("gqq")
+  bindings.map.normal("<leader>q", "<cmd>lua lv.format()<cr>")
 
 end
 registry.defer(prettier)

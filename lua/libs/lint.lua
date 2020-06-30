@@ -42,12 +42,15 @@ local lint_args = function (args)
 end
 
 
-local join_message = function (err, out)
-  if err ~= "" then
-    return err .. "\n" .. out
-  else
-    return out
-  end
+local print_message = function (err, out)
+  local msg = (function ()
+    if err ~= "" then
+      return err .. "\n" .. out
+    else
+      return out
+    end
+  end)()
+  api.nvim_out_write(msg .. "\n")
 end
 
 
@@ -57,9 +60,8 @@ local lint_stream = function (prog, args)
     local args = {args = lint_args(args),
                   stream = table.concat(lines, "\n")}
     local _, out, err = a.wait(loop.spawn(prog, args))
-    local msg = join_message(err, out)
     a.wait(loop.main)
-    print(msg)
+    print_message(err, out)
   end)()
 end
 
@@ -68,9 +70,8 @@ local lint_fs = function (prog, args)
   a.sync(function ()
     local args = {args = lint_args(args)}
     local _, out, err = a.wait(loop.spawn(prog, args))
-    local msg = join_message(err, out)
     a.wait(loop.main)
-    print(msg)
+    print_message(err, out)
   end)()
 end
 

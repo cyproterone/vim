@@ -10,10 +10,7 @@ local linter =  function ()
   lv.lint = lint.do_lint
 
   -- run linter
-  bindings.map.normal("gw", "<cmd>lua lv.lint()<cr>")
-  bindings.map.visual("gw", "<esc><cmd>lua lv.lint()<cr>")
-  bindings.map.normal("gwgw")
-  bindings.map.normal("gww")
+  bindings.map.normal("M", "<cmd>lua lv.lint()<cr>")
 
 end
 registry.defer(linter)
