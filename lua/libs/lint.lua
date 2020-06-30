@@ -43,14 +43,10 @@ end
 
 
 local print_message = function (code, err, out)
-  local msg = (function ()
-    if code ~= 0 then
-      return "-- 失败 --\n" .. err
-    else
-      return "-- 成功 --\n" .. out
-    end
-  end)()
-  local new_lines = vim.split(msg, "\n", true)
+  local msg = (code == 0 and "成功" or "失败") .. "\n"
+  local lines = msg .. err .. out
+  local new_lines = vim.split(lines, "\n", true)
+
   a.wait(loop.main)
   local buf = api.nvim_create_buf(false, true)
   api.nvim_buf_set_lines(buf, 0, -1, true, new_lines)
