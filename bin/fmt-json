@@ -1,34 +1,7 @@
-#!/usr/bin/env python3
+#!/usr/bin/env bash
 
-from json import JSONDecodeError, dumps, loads
-from locale import strxfrm
-from subprocess import run
-from sys import argv, stderr, stdin
-from typing import Any, NoReturn
+set -eu
+set -o pipefail
 
 
-def recur_sort(data: Any) -> Any:
-    if type(data) is dict:
-        return {k: recur_sort(data[k]) for k in sorted(data, key=strxfrm)}
-    elif type(data) is list:
-        return [recur_sort(el) for el in data]
-    else:
-        return data
-
-
-def main() -> NoReturn:
-    data = stdin.read()
-    name = argv[1]
-    try:
-        json = loads(data)
-    except JSONDecodeError:
-        print(f"ERROR! -- Failed to parse:\n\n{data}", file=stderr)
-        exit(1)
-    else:
-        new = recur_sort(json)
-        data = dumps(new)
-        ret = run(["prettier", "--stdin-filepath", name], input=data.encode())
-        exit(ret.returncode)
-
-
-main()
+sjson -i 0 | prettier --stdin-filepath 'json.json'

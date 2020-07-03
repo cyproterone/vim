@@ -1,3 +1,4 @@
+sortd
 python-language-server[all]
 mypy
 isort
