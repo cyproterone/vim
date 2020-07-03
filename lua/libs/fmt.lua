@@ -100,7 +100,10 @@ local do_fmt = function ()
         error("unknown fmt type -- " .. fmt_type)
       end
     end)()
+
+    local pos = api.nvim_win_get_cursor(0)
     fmt(formatter.prog, formatter.args)
+    api.nvim_win_set_cursor(0, pos)
   end
 end
 
