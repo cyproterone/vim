@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 from argparse import ArgumentParser, Namespace
-from asyncio import Queue, create_subprocess_exec, ensure_future, gather, run
+from asyncio import Queue, create_subprocess_exec, create_task, gather, run
 from asyncio.subprocess import PIPE
 from os import getcwd, makedirs
 from os.path import basename, isdir, join, splitext
@@ -71,7 +71,7 @@ async def main() -> None:
     repos: Set[str] = {expand_uri(line) for line in stdin.readlines()}
     chan: Queue = Queue(1)
     producers = (install_pkg(chan, repo, args.path) for repo in repos)
-    consumer = ensure_future(print_msg(chan))
+    consumer = create_task(print_msg(chan))
     await gather(*producers)
     await chan.join()
     consumer.cancel()
