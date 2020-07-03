@@ -49,7 +49,7 @@ end
 
 local fmt_stream = function (prog, args)
   local lines = api.nvim_buf_get_lines(0, 0, -1, true)
-  a.sync(function ()
+  return a.sync(function ()
     local args = {args = fmt_args(args),
                   stream = table.concat(lines, "\n")}
     local code, text, err = a.wait(loop.spawn(prog, args))
@@ -60,12 +60,12 @@ local fmt_stream = function (prog, args)
     a.wait(loop.main)
     new_lines[#new_lines] = nil
     api.nvim_buf_set_lines(0, 0, -1, true, new_lines)
-  end)()
+  end)
 end
 
 
 local fmt_fs = function (prog, args)
-  a.sync(function ()
+  return a.sync(function ()
     local args = {args = fmt_args(args)}
     local code, _, err = a.wait(loop.spawn(prog, args))
     a.wait(loop.main)
@@ -73,7 +73,7 @@ local fmt_fs = function (prog, args)
     if code ~= 0 then
       error(err)
     end
-  end)()
+  end)
 end
 
 
@@ -101,9 +101,11 @@ local do_fmt = function ()
       end
     end)()
 
-    local pos = api.nvim_win_get_cursor(0)
-    fmt(formatter.prog, formatter.args)
-    api.nvim_win_set_cursor(0, pos)
+    a.sync(function ()
+      local pos = api.nvim_win_get_cursor(0)
+      a.wait(fmt(formatter.prog, formatter.args))
+      api.nvim_win_set_cursor(0, pos)
+    end)()
   end
 end
 
