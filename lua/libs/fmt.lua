@@ -102,9 +102,10 @@ local do_fmt = function ()
     end)()
 
     a.sync(function ()
-      local pos = api.nvim_win_get_cursor(0)
+      local row, col = unpack(api.nvim_win_get_cursor(0))
       a.wait(fmt(formatter.prog, formatter.args))
-      api.nvim_win_set_cursor(0, pos)
+      local new_row = math.min(row, api.nvim_buf_line_count(0))
+      api.nvim_win_set_cursor(0, {new_row, col})
     end)()
   end
 end
