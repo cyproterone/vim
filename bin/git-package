@@ -58,7 +58,7 @@ async def main() -> None:
     args = parse_args()
     makedirs(args.path, exist_ok=True)
     repos: Set[str] = {expand_uri(line) for line in stdin.readlines()}
-    tasks = (install_pkg(repo, args.path) for repo in repos)
+    tasks = tuple(install_pkg(repo, args.path) for repo in repos)
     for p in as_completed(tasks):
         uri, code, out, err = await p
         print(f"安装: {uri}")
