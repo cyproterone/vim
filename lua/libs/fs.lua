@@ -15,6 +15,18 @@ local join = function (paths)
 end
 
 
+local realpath = function (path)
+  return a.sync(function ()
+    a.wait(function (cb)
+      uv.fs_realpath(path, function (err, p)
+        assert(not err, err)
+        cb(p)
+      end)
+    end)
+  end)
+end
+
+
 local read_dir = function(path)
   local t20 = 1048576
 
@@ -77,6 +89,7 @@ end
 
 return {
   join = join,
+  realpath = realpath,
   read_dir = read_dir,
   move = move,
   copy = copy,
