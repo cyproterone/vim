@@ -2,6 +2,7 @@
 --#################### FS Region ####################
 --#################### ######### ####################
 local a = require "libs/async"
+local std = require "libs/std"
 local uv = vim.loop
 
 
@@ -12,18 +13,6 @@ local join = function (paths)
     path = path .. sep .. p
   end
   return path
-end
-
-
-local realpath = function (path)
-  return a.sync(function ()
-    a.wait(function (cb)
-      uv.fs_realpath(path, function (err, p)
-        assert(not err, err)
-        cb(p)
-      end)
-    end)
-  end)
 end
 
 
@@ -58,6 +47,21 @@ local read_dir = function(path)
       end)
     end)
 
+    local links = a.wait_all(std.map(coll.link or {}, function (link)
+      return function (cb)
+        uv.fs_stat(link, function (err, stat)
+          assert(not err, err)
+          cb{type = stat.type, name = link}
+        end)
+      end
+    end))
+
+    for _, el in ipairs(links) do
+      local c = coll[el.type] or {}
+      table.insert(c, el.name)
+      coll[el.type] = c
+    end
+
     return coll
   end)
 end
@@ -89,7 +93,7 @@ end
 
 return {
   join = join,
-  realpath = realpath,
+  resolve_path = resolve_path,
   read_dir = read_dir,
   move = move,
   copy = copy,
