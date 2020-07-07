@@ -6,6 +6,12 @@ local std = require "libs/std"
 local uv = vim.loop
 
 
+local cwd = uv.cwd
+
+
+local chdir = uv.chdir
+
+
 local join = function (paths)
   local sep = "/"
   local path = ""
@@ -27,16 +33,10 @@ local read_dir = function(path)
       end, t20)
     end)
 
-    local coll = a.wait(function (cb)
+    local tb = a.wait(function (cb)
       uv.fs_readdir(handle, function (err, tb)
         assert(not err, err)
-        local coll = {}
-        for _, el in ipairs(tb) do
-          local c = coll[el.type] or {}
-          table.insert(c, el.name)
-          coll[el.type] = c
-        end
-        cb(coll)
+        cb(tb)
       end)
     end)
 
@@ -46,6 +46,13 @@ local read_dir = function(path)
         cb()
       end)
     end)
+
+    local coll = {}
+    for _, el in ipairs(tb) do
+      local c = coll[el.type] or {}
+      table.insert(c, el.name)
+      coll[el.type] = c
+    end
 
     local links = {a.wait_all(std.map(coll.link or {}, function (link)
       return function (cb)
@@ -93,8 +100,9 @@ end
 
 
 return {
+  cwd = cwd,
+  chdir = chdir,
   join = join,
-  resolve_path = resolve_path,
   read_dir = read_dir,
   move = move,
   copy = copy,
