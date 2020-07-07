@@ -47,16 +47,17 @@ local read_dir = function(path)
       end)
     end)
 
-    local links = a.wait_all(std.map(coll.link or {}, function (link)
+    local links = {a.wait_all(std.map(coll.link or {}, function (link)
       return function (cb)
         uv.fs_stat(link, function (err, stat)
           assert(not err, err)
           cb{type = stat.type, name = link}
         end)
       end
-    end))
+    end))}
 
-    for _, el in ipairs(links) do
+    for _, link in ipairs(links) do
+      local el = unpack(link)
       local c = coll[el.type] or {}
       table.insert(c, el.name)
       coll[el.type] = c
