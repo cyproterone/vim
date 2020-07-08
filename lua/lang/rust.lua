@@ -13,7 +13,7 @@ local lsp = function ()
   if not bindings.executable("rust-analyzer") then
     return
   end
-  local lsp = require "nvim_lsp".rust_analyzer
+  local lsp = lv.lsp.rust_analyzer
   lsp.setup{
     root_dir = ftp.lsp_root{},
   }

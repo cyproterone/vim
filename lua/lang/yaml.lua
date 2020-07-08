@@ -13,7 +13,7 @@ local lsp = function ()
   if not bindings.executable("yaml-language-server") then
     return
   end
-  local lsp = require "nvim_lsp".yamlls
+  local lsp = lv.lsp.yamlls
   lsp.setup{
     root_dir = ftp.lsp_root{},
   }

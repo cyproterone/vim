@@ -13,7 +13,7 @@ local lsp = function ()
   if not bindings.executable("vim-language-server") then
     return
   end
-  local lsp = require "nvim_lsp".vimls
+  local lsp = lv.lsp.vimls
   lsp.setup{
     root_dir = ftp.lsp_root{},
   }

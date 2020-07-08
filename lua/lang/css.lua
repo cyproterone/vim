@@ -13,7 +13,7 @@ local lsp = function ()
   if not bindings.executable("css-languageserver") then
     return
   end
-  local lsp = require "nvim_lsp".cssls
+  local lsp = lv.lsp.cssls
   lsp.setup{
     root_dir = ftp.lsp_root{},
   }

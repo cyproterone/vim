@@ -7,6 +7,8 @@ local registry = require "libs/registry"
 registry.install("neovim/nvim-lsp")
 local lsp_recommends = function ()
 
+  bindings.exec[[lua lv.lsp = require "nvim_lsp"]]
+
   bindings.set("omnifunc",     "v:lua.vim.lsp.omnifunc")
   bindings.set("completefunc", "v:lua.vim.lsp.omnifunc")
 
