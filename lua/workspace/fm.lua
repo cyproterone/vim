@@ -71,7 +71,6 @@ local keymap = function (buf)
 
   m1("q",         "defx#async_action('quit')")
 
-  m1("`",         "defx#async_action('open_tree', ['toggle', 'recursive'])")
   m1("<enter>",   "defx#async_action('drop')")
   m1("<m-up>",    "defx#async_action('cd', ['..'])")
   m1("<m-down>",  "defx#async_action('drop')")
