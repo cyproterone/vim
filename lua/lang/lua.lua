@@ -17,6 +17,13 @@ local lsp = function ()
   lsp.setup{
     cmd={"lua-ls"},
     root_dir = ftp.lsp_root{},
+    settings = {
+      Lua = {
+        runtime = {
+          version = "LuaJIT"
+        },
+      },
+    },
   }
   lsp.manager.try_add()
 end
