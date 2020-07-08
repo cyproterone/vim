@@ -66,6 +66,3 @@ require "lang/yaml"
 
 
 registry.materialize(ftp.materialize)
-
-
-require "fm/init"
