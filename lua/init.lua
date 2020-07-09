@@ -65,5 +65,4 @@ require "lang/xml"
 require "lang/yaml"
 
 
-registry.install("ms-jpq/fm")
 registry.materialize(ftp.materialize)
