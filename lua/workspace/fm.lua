@@ -66,8 +66,8 @@ local keymap = function (buf)
     return ""
   end
 
-  bindings.map.normal("<tab>",         "<cmd>lua lv.defx_preview()<cr>")
-  bindings.map.normal("<2-leftmouse>", "<cmd>lua lv.defx_preview()<cr>")
+  bindings.map.normal("<tab>",         "<cmd>lua lv.defx_preview()<cr>", {buffer = buf})
+  bindings.map.normal("<2-leftmouse>", "<cmd>lua lv.defx_preview()<cr>", {buffer = buf})
 
   m1("q",         "defx#async_action('quit')")
 
