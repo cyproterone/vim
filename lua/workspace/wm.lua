@@ -114,6 +114,15 @@ end
 registry.defer(tabs_wm)
 
 
+local quickfix_wm = function ()
+
+  bindings.set("<c-j>", "<cmd>cprevious<cr>")
+  bindings.set("<c-k>", "<cmd>cnext<cr>")
+
+end
+registry.defer(quickfix_wm)
+
+
 local preview_wm = function ()
 
   -- preview height
