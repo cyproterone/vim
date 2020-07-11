@@ -116,8 +116,8 @@ registry.defer(tabs_wm)
 
 local quickfix_wm = function ()
 
-  bindings.set("<c-j>", "<cmd>cprevious<cr>")
-  bindings.set("<c-k>", "<cmd>cnext<cr>")
+  bindings.map.normal("<c-j>", "<cmd>cprevious<cr>")
+  bindings.map.normal("<c-k>", "<cmd>cnext<cr>")
 
 end
 registry.defer(quickfix_wm)
