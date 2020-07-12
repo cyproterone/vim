@@ -64,7 +64,7 @@ local enable = function ()
   -- keys
   lv.enable_comp = function ()
     fn["deoplete#enable"]()
-    print("-- 蛙 --")
+    api.nvim_out_write("-- 蛙 --\n")
   end
   bindings.map.normal("gz", "<cmd>lua lv.enable_comp()<cr>")
 

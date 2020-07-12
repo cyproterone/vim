@@ -33,7 +33,7 @@ local defer = function (ft, ftplugin)
     set.subtract(_ftp, ftplugin)
     ftplugin()
     kill()
-    print("-- LSP 加载: " .. table.concat(ft, ",") .. " --")
+    api.nvim_out_write("-- LSP 加载: " .. table.concat(ft, ",") .. " --\n")
   end
   registry.auto("FileType", ftp, ft)
 end
