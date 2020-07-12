@@ -63,7 +63,7 @@ local wm_close = function ()
   -- close window
   bindings.map.normal("<leader>w", "<cmd>close<cr>")
 
-  local keep_open = set.new{"qf", "defx"}
+  local keep_open = set.new{}
 
   -- close other windows
   lv.window_only = function ()
