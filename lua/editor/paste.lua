@@ -30,6 +30,10 @@ local go_replace = function ()
     r = r - 1
     local replacement = fn.getreg("*")
     local new_lines = vim.split(replacement, "\n", true)
+    local len = #new_lines
+    if new_lines[len] == "" then
+      new_lines[len] = nil
+    end
     api.nvim_buf_set_lines(0, r, r + 1, true, new_lines)
   end
 
