@@ -23,18 +23,18 @@ registry.defer(wild)
 local smartcase = function ()
 
   bindings.set("ignorecase")
-  bindings.set("smartcase")
+  -- bindings.set("smartcase")
 
-  local on = function ()
-    bindings.set("smartcase")
-  end
+  -- local on = function ()
+  --   bindings.set("smartcase")
+  -- end
 
-  local off = function ()
-    bindings.set("nosmartcase")
-  end
+  -- local off = function ()
+  --   bindings.set("nosmartcase")
+  -- end
 
-  registry.auto("CmdLineEnter", off)
-  registry.auto("CmdLineLeave", on)
+  -- registry.auto("CmdLineEnter", off)
+  -- registry.auto("CmdLineLeave", on)
 
 end
 registry.defer(smartcase)
