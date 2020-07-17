@@ -55,6 +55,15 @@ registry.defer(hotkeys)
 
 --#################### Auto Region ####################
 
+registry.install("ms-jpq/fast-comp", {["branch"] = "nvim", ["do"] = ":UpdateRemotePlugins"})
+local keybind = function ()
+
+  bindings.map.normal("gx", "<cmd>FCstart<cr>")
+
+end
+registry.defer(keybind)
+
+
 registry.install("Shougo/deoplete.nvim", {["do"] = ":UpdateRemotePlugins"})
 registry.install("Shougo/deoplete-lsp")
 local enable = function ()
