@@ -116,6 +116,21 @@ registry.defer(tabs_wm)
 
 local quickfix_wm = function ()
 
+  lv.toggle_quickfix = function ()
+    local windows = api.nvim_tabpage_list_wins(0)
+    for _, window in ipairs(windows) do
+      local buf = api.nvim_win_get_buf(window)
+      local ft = api.nvim_buf_get_option(buf, "filetype")
+      if ft == "qf" then
+        bindings.exec[[cclose]]
+        return
+      end
+    end
+    bindings.exec[[copen]]
+  end
+
+  bindings.map.normal("<leader>i", "<cmd>lua lv.toggle_quickfix()<cr>")
+
   bindings.map.normal("<c-j>", "<cmd>cprevious<cr>")
   bindings.map.normal("<c-k>", "<cmd>cnext<cr>")
 
@@ -132,9 +147,18 @@ local preview_wm = function ()
   bindings.map.normal("<leader>M", "<cmd>pclose<cr>")
 
   lv.resize_preview = function ()
-    for _, win in ipairs(api.nvim_tabpage_list_wins(0)) do
+    local height = vim.o.previewheight
+    local windows = api.nvim_tabpage_list_wins(0)
+
+    for _, win in ipairs(windows) do
+      local buf = api.nvim_win_get_buf(win)
+      local ft = api.nvim_buf_get_option(buf, "filetype")
+
+      if ft == "qf" then
+          api.nvim_win_set_height(win, height)
+      end
+
       if api.nvim_win_get_option(win, "previewwindow") then
-        local height = vim.o.previewheight
         api.nvim_win_set_height(win, height)
       end
     end

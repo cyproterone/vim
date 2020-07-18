@@ -50,7 +50,7 @@ local open_preview = function ()
   end
   bindings.exec[[new]]
   vim.wo.previewwindow = true
-  return 0
+  return api.nvim_get_current_win()
 end
 
 
@@ -60,10 +60,10 @@ local print_message = function (code, err, out)
   local new_lines = vim.split(lines, "\n", true)
 
   a.wait(loop.main)
-  local buf = api.nvim_create_buf(false, true)
+  local win = open_preview()
+  local buf = api.nvim_win_get_buf(win)
   api.nvim_buf_set_lines(buf, 0, -1, true, new_lines)
   local height = math.min(vim.o.previewheight, #new_lines)
-  local win = open_preview()
   api.nvim_win_set_buf(win, buf)
   api.nvim_win_set_height(win, height)
 end
