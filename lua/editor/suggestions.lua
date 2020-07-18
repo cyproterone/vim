@@ -58,7 +58,7 @@ registry.defer(hotkeys)
 registry.install("ms-jpq/fast-comp", {["branch"] = "nvim", ["do"] = ":UpdateRemotePlugins"})
 local keybind = function ()
 
-  bindings.map.normal("gx", "<cmd>FCstart<cr>")
+  bindings.map.normal("gz", "<cmd>FCstart<cr>")
 
 end
 registry.defer(keybind)
