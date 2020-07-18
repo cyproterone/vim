@@ -7,7 +7,8 @@ local registry = require "libs/registry"
 local suggestions = function ()
 
   -- dont show too many opts
-  bindings.set("pumheight", 10)
+  bindings.set("pumheight", 15)
+
   -- transparency
   bindings.set("pumblend", 5)
 
