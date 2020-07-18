@@ -10,7 +10,6 @@ local lsp_recommends = function ()
   bindings.exec[[lua lv.lsp = require "nvim_lsp"]]
 
   bindings.set("omnifunc",     "v:lua.vim.lsp.omnifunc")
-  bindings.set("completefunc", "v:lua.vim.lsp.omnifunc")
 
   bindings.map.normal("H", "<cmd>lua vim.lsp.util.show_line_diagnostics()<cr>")
   bindings.map.normal("K", "<cmd>lua vim.lsp.buf.hover()<cr>")

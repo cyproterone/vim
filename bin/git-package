@@ -12,7 +12,7 @@ from urllib.parse import urlparse
 Triple = Tuple[int, str, str]
 
 
-async def call(prog: str, *args: str, cwd=getcwd()) -> Triple:
+async def call(prog: str, *args: str, cwd: str = getcwd()) -> Triple:
     proc = await create_subprocess_exec(prog, *args, cwd=cwd, stdout=PIPE, stderr=PIPE)
     stdout, stderr = await proc.communicate()
     out, err = stdout.decode(), stderr.decode()
@@ -41,7 +41,7 @@ def p_name(uri: str) -> str:
 async def install_pkg(uri: str, location: str) -> Tuple[str, int, str, str]:
     install_target = join(location, p_name(uri))
     if isdir(install_target):
-        ret = await call("git", "pull", cwd=install_target.encode())
+        ret = await call("git", "pull", cwd=install_target)
         return (uri, *ret)
     else:
         ret = await call("git", "clone", "--depth=1", uri, install_target)

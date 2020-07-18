@@ -28,7 +28,7 @@ registry.defer(suggestions)
 local hotkeys = function ()
 
   -- cancel comp
-  bindings.map.insert("<esc>", "pumvisible() ? (complete_info().selected == -1 ? '<c-e>' : '<c-y>') : '<esc>'",  {expr = true})
+  -- bindings.map.insert("<esc>", "pumvisible() ? (complete_info().selected == -1 ? '<c-e>' : '<c-y>') : '<esc>'",  {expr = true})
   bindings.map.insert("<c-q>", "<esc>")
 
   -- cua
@@ -61,6 +61,8 @@ registry.install("ms-jpq/fast-comp", {["branch"] = "nvim", ["do"] = ":UpdateRemo
 local keybind = function ()
 
   bindings.map.normal("gz", "<cmd>FCstart<cr>")
+
+  bindings.set("completefunc", "FCmanual")
 
 end
 registry.defer(keybind)
