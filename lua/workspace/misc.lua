@@ -39,7 +39,7 @@ local scroll = function ()
 
   -- scroll activation margin
   bindings.set("scrolloff", 0)
-  bindings.set("sidescrolloff", 0)
+  bindings.set("sidescrolloff", 10)
 
   -- normalize cursor pos
   bindings.set("virtualedit", "onemore,block")

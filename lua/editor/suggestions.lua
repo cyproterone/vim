@@ -47,7 +47,7 @@ local hotkeys = function ()
   bindings.map.insert("<c-o>", "<c-x><c-o>")
   -- userfunc
   bindings.map.nv("<c-space>")
-  bindings.map.insert("<c-space>", "<c-x><c-u>")
+  bindings.map.insert("<c-space>", "<c-x><c-o>")
 
 end
 registry.defer(hotkeys)
@@ -62,20 +62,3 @@ local keybind = function ()
 
 end
 registry.defer(keybind)
-
-
-registry.install("Shougo/deoplete.nvim", {["do"] = ":UpdateRemotePlugins"})
-registry.install("Shougo/deoplete-lsp")
-local enable = function ()
-
-  fn["deoplete#custom#option"]("auto_complete_delay", 0)
-
-  -- keys
-  lv.enable_comp = function ()
-    fn["deoplete#enable"]()
-    api.nvim_out_write("-- 蛙 --\n")
-  end
-  bindings.map.normal("gz", "<cmd>lua lv.enable_comp()<cr>")
-
-end
-registry.defer(enable)
