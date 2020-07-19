@@ -28,7 +28,7 @@ registry.defer(suggestions)
 local hotkeys = function ()
 
   -- cancel comp
-  -- bindings.map.insert("<esc>", "pumvisible() ? (complete_info().selected == -1 ? '<c-e>' : '<c-y>') : '<esc>'",  {expr = true})
+  bindings.map.insert("<esc>", "pumvisible() ? '<c-e><esc>' : '<esc>'",  {expr = true})
   bindings.map.insert("<c-q>", "<esc>")
 
   -- cua
