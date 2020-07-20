@@ -50,7 +50,7 @@ local hotkeys = function ()
   bindings.map.insert("<c-o>", "<c-x><c-o>")
   -- userfunc
   bindings.map.nv("<c-space>")
-  bindings.map.insert("<c-space>", "<c-x><c-o>")
+  bindings.map.insert("<c-space>", "<c-x><c-u>")
 
 end
 registry.defer(hotkeys)
