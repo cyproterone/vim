@@ -63,7 +63,7 @@ local keybind = function ()
 
   bindings.map.normal("gz", "<cmd>FCstart<cr>")
 
-  bindings.set("completefunc", "FCmanual")
+  bindings.set("completefunc", "FComnifunc")
 
 end
 registry.defer(keybind)
