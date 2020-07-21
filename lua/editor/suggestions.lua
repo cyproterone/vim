@@ -30,7 +30,6 @@ local hotkeys = function ()
   -- cancel comp
   bindings.map.insert("<esc>", "pumvisible() ? '<c-e><esc>' : '<esc>'", {expr = true})
   bindings.map.insert("<bs>",  "pumvisible() ? '<c-e><bs>'  : '<bs>'",  {expr = true})
-  bindings.map.insert("<c-q>", "<esc>")
 
   -- cua
   bindings.map.insert("<cr>", "pumvisible() ? (complete_info().selected == -1 ? '<c-e><cr>' : '<c-y>') : '<cr>'",  {expr = true})
