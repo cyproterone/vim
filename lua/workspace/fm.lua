@@ -4,7 +4,7 @@ local registry = require "libs/registry"
 
 --#################### File Manager Region ####################
 
-registry.install("ms-jpq/fuzzy-completion", {["branch"] = "nvim", ["do"] = ":UpdateRemotePlugins"})
+registry.install("ms-jpq/fast-fm", {["branch"] = "nvim", ["do"] = ":UpdateRemotePlugins"})
 local keybind = function ()
 
   bindings.map.normal("<leader>v", "<cmd>FMopen<cr>")
