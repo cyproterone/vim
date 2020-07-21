@@ -12,7 +12,7 @@ local suggestions = function ()
   -- transparency
   bindings.set("pumblend", 5)
 
-  -- dont show suggestions menu
+  -- dont spam suggestions menu
   bindings.set("shortmess", "c", [[+=]])
 
   -- dont follow tags
