@@ -58,7 +58,7 @@ registry.defer(hotkeys)
 
 --#################### Auto Region ####################
 
-registry.install("ms-jpq/fuzzy-completion", {["branch"] = "nvim", ["do"] = ":UpdateRemotePlugins"})
+registry.install("ms-jpq/fancy-completion", {["branch"] = "nvim", ["do"] = ":UpdateRemotePlugins"})
 local keybind = function ()
 
   bindings.map.normal("gz", "<cmd>FCstart<cr>")
