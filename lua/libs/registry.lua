@@ -138,8 +138,8 @@ local scripted = function ()
   a.sync(function ()
     local code, out, err = a.wait(loop.spawn(vim_inst, {args = {}}))
     a.wait(loop.main)
-    api.nvim_err_write(err .. "\n")
-    api.nvim_out_write(out .. "\n")
+    print(err)
+    print(out)
     if code ~= 0 then
       os.exit(code)
     end
@@ -148,8 +148,8 @@ local scripted = function ()
     local args = {args = {plugin_home}, stream = stream}
     local code, out, err = a.wait(loop.spawn("git-package", args))
     a.wait(loop.main)
-    api.nvim_err_write(err .. "\n")
-    api.nvim_out_write(out .. "\n")
+    print(err)
+    print(out)
     if code ~= 0 then
       os.exit(code)
     end
