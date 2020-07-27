@@ -2,6 +2,7 @@ prettier
 vscode-json-languageserver
 yaml-language-server
 bash-language-server
+pyright
 dockerfile-language-server-nodejs
 typescript-language-server
 typescript
