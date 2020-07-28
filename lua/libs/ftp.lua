@@ -41,7 +41,7 @@ end
 
 local always = function (ft, ftplugin)
   local ftp = function ()
-    local buf = tonumber(fn.expand("<abuf>"))
+    local buf = api.nvim_get_current_buf()
     ftplugin(buf)
   end
   registry.auto("FileType", ftp, ft)
@@ -51,7 +51,7 @@ end
 local materialize = function ()
 
   local shebang = function ()
-    local buf = tonumber(fn.expand("<abuf>"))
+    local buf = api.nvim_get_current_buf()
     local line = unpack(api.nvim_buf_get_lines(buf, 0, 1, true))
     for sb, ft in pairs(_shebang) do
       if fn.match(line, sb) ~= -1 then
