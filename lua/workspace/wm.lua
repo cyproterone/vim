@@ -78,7 +78,7 @@ local wm_close = function ()
       end
     end
   end
-  bindings.map.normal("<leader>W", [[:lua lv.window_only{}<cr>]])
+  bindings.map.normal("<leader>W", [[:lua lv.window_only()<cr>]])
 
   -- break window into tab
   bindings.map.normal("<leader>k", "<c-w>T")
@@ -143,8 +143,21 @@ local preview_wm = function ()
   -- preview height
   bindings.set("previewheight", 15)
 
-  -- clear preview
-  bindings.map.normal("<leader>M", "<cmd>pclose<cr>")
+  -- toggle preview
+  lv.toggle_preview = function ()
+    for _, win in ipairs(api.nvim_tabpage_list_wins(0)) do
+      if api.nvim_win_get_option(win, "previewwindow") then
+        api.nvim_win_close(win, true)
+        return
+      end
+    end
+    bindings.exec[[new]]
+    local height = vim.o.previewheight
+    vim.wo.previewwindow = true
+    api.nvim_win_set_height(0, height)
+  end
+
+  bindings.map.normal("<leader>M", "<cmd>lua lv.toggle_preview()<cr>")
 
   lv.resize_preview = function ()
     local height = vim.o.previewheight
