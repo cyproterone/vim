@@ -129,6 +129,11 @@ local quickfix_wm = function ()
     bindings.exec[[copen]]
   end
 
+  lv.clear_quickfix = function ()
+    fn.setqflist({})
+  end
+
+  bindings.map.normal("<leader>l", "<cmd>lua lv.clear_quickfix()<cr>")
   bindings.map.normal("<leader>L", "<cmd>lua lv.toggle_quickfix()<cr>")
 
   bindings.map.normal("<c-j>", "<cmd>cprevious<cr>")
