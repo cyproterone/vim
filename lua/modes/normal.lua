@@ -20,7 +20,7 @@ local no_stepback = function ()
     end
   end
 
-  registry.auto({"InsertEnter", "CursorMovedI", "CursorMovedP"}, record_pos)
+  registry.auto({"InsertEnter", "CursorMovedI", "TextChangedP"}, record_pos)
   registry.auto("InsertLeave", displace)
 
 end
