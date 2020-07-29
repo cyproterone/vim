@@ -57,16 +57,14 @@ local auto = function (events, func, filter, modifiers)
   local cls = "autocmd!"
   local cmd = "autocmd " .. events .. " " .. filter .. " " .. modifiers .. " lua require('" .. _registry .. "').call(" .. idx .. ")"
   local done = "augroup END"
+  local commands = table.concat({group, cls, cmd, done}, "\n")
 
   for event in ipairs(evnts) do
     assert(fn.exists("##" .. event))
   end
 
   _callbacks[idx] = func
-  api.nvim_command(group)
-  api.nvim_command(cls)
-  api.nvim_command(cmd)
-  api.nvim_command(done)
+  api.nvim_exec(commands, false)
 
   return function ()
     remove(idx)
