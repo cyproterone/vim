@@ -16,6 +16,7 @@ local vim_inst = vim_home .. "/init.sh"
 
 
 local _plugins = {}
+local _pre = {}
 local _defer = {}
 local _consts = {}
 local _callbacks = {}
@@ -23,6 +24,11 @@ local inc = std.count()
 
 local install = function (p)
   table.insert(_plugins, p)
+end
+
+
+local pre = function (d)
+  table.insert(_pre, d)
 end
 
 
@@ -105,9 +111,15 @@ local init_plugins = function ()
 end
 
 
+local init_pre = function ()
+  for _, cmd in ipairs(_pre) do
+    cmd()
+  end
+  _pre = {}
+end
+
+
 local init_defer = function ()
-  vim.g.mapleader = " "
-  vim.g.maplocalleader = " "
   for _, cmd in ipairs(_defer) do
     cmd()
   end
@@ -116,6 +128,7 @@ end
 
 
 local normal = function (post)
+  init_pre()
   local inst = a.wait(init_plug)
   init_plugins()
   if inst then
@@ -185,6 +198,7 @@ end
 
 return {
   install = install,
+  pre = pre,
   defer = defer,
   const = _consts,
   auto = auto,

@@ -4,6 +4,15 @@ local registry = require "libs/registry"
 
 --#################### Keyboard Region ####################
 
+local leader = function ()
+
+  vim.g.mapleader = " "
+  vim.g.maplocalleader = " "
+
+end
+registry.pre(leader)
+
+
 local misc = function ()
 
   -- waiting time within a key sequence
