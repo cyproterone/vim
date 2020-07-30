@@ -7,7 +7,7 @@ local registry = require "libs/registry"
 registry.install("ms-jpq/chadtree", {["branch"] = "chad", ["do"] = ":UpdateRemotePlugins"})
 local keybind = function ()
 
-  bindings.map.normal("<leader>v", "<cmd>FMopen<cr>")
+  bindings.map.normal("<leader>v", "<cmd>CHADopen<cr>")
 
 end
 registry.defer(keybind)
