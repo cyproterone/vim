@@ -118,19 +118,23 @@ local quickfix_wm = function ()
 
   lv.toggle_quickfix = function ()
     local windows = api.nvim_tabpage_list_wins(0)
+    local closed = false
     for _, window in ipairs(windows) do
       local buf = api.nvim_win_get_buf(window)
       local ft = api.nvim_buf_get_option(buf, "filetype")
       if ft == "qf" then
-        bindings.exec[[cclose]]
-        return
+        api.nvim_win_close(window, true)
+        closed = true
       end
     end
-    bindings.exec[[copen]]
+    if not closed then
+      bindings.exec[[copen]]
+    end
   end
 
   lv.clear_quickfix = function ()
     fn.setqflist({})
+    bindings.exec[[cclose]]
   end
 
   bindings.map.normal("<leader>l", "<cmd>lua lv.clear_quickfix()<cr>")
