@@ -154,16 +154,19 @@ local preview_wm = function ()
 
   -- toggle preview
   lv.toggle_preview = function ()
+    local closed = false
     for _, win in ipairs(api.nvim_tabpage_list_wins(0)) do
       if api.nvim_win_get_option(win, "previewwindow") then
         api.nvim_win_close(win, true)
-        return
+        closed = true
       end
     end
-    bindings.exec[[new]]
-    local height = vim.o.previewheight
-    vim.wo.previewwindow = true
-    api.nvim_win_set_height(0, height)
+    if not closed then
+      bindings.exec[[new]]
+      local height = vim.o.previewheight
+      vim.wo.previewwindow = true
+      api.nvim_win_set_height(0, height)
+    end
   end
 
   bindings.map.normal("<leader>M", "<cmd>lua lv.toggle_preview()<cr>")
