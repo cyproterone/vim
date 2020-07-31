@@ -25,8 +25,8 @@ local misc = function ()
   -- no swap files
   bindings.set("noswapfile")
 
-  -- nowrap
-  bindings.set("nowrap")
+  -- wrap
+  bindings.set("wrap")
 
   -- line wrap follow indent
   bindings.set("breakindent")
