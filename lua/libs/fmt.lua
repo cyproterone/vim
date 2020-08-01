@@ -86,7 +86,7 @@ local do_fmt = function ()
   local formatter = _formatter_assoc[ft]
 
   if formatter == nil then
-    error("no fmt associated with ft -- " .. ft)
+    api.nvim_err_writeln("no fmt associated with ft -- " .. ft)
   else
     local fmt = (function ()
       local fm_type = formatter.fmt_type

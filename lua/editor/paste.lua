@@ -18,6 +18,10 @@ local go_replace = function ()
     local post = string.sub(lines[lst], math.min(c2 + 1, lst_len + 1), lst_len)
     local replacement = pre .. text .. post
     local new_lines = vim.split(replacement, "\n", true)
+    local len = #new_lines
+    if new_lines[len] == "" then
+      new_lines[len] = nil
+    end
     api.nvim_buf_set_lines(0, r1, r2 + 1, true, new_lines)
   end
 

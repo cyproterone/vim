@@ -96,7 +96,7 @@ local do_lint = function ()
   local linter = _linter_assoc[ft]
 
   if linter == nil then
-    error("no linter associated with ft -- " .. ft)
+    api.nvim_err_writeln("no linter associated with ft -- " .. ft)
   else
     local lint = (function ()
       local lint_type = linter.linter_type
