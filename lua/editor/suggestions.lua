@@ -57,8 +57,8 @@ registry.defer(hotkeys)
 
 --#################### Auto Region ####################
 
-registry.install("ms-jpq/fancy-completion", {["branch"] = "nvim", ["do"] = ":UpdateRemotePlugins"})
-registry.install("ms-jpq/fancy-completion-clients", {["branch"] = "nvim", ["do"] = ":UpdateRemotePlugins"})
+registry.install("ms-jpq/nap", {["branch"] = "nap", ["do"] = ":UpdateRemotePlugins"})
+registry.install("ms-jpq/nap-clients", {["branch"] = "nap", ["do"] = ":UpdateRemotePlugins"})
 local keybind = function ()
 
   bindings.map.normal("gz", "<cmd>FCstart<cr>")
