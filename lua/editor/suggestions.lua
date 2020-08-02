@@ -65,7 +65,7 @@ local keybind = function ()
 
   bindings.set("completefunc", "NAPomnifunc")
 
-  vim.g.nap_settings = {sources = {lsp = {timeout = 0}}}
+  vim.g.nap_settings = {sources = {lsp = {enabled = true,timeout = 0}}}
 
 end
 registry.defer(keybind)
