@@ -1,5 +1,3 @@
-!.gitkeep
 /.git/
 .DS_Store
 autoload/plug.vim
-vars/*
