@@ -65,5 +65,7 @@ local keybind = function ()
 
   bindings.set("completefunc", "FComnifunc")
 
+  vim.g.fancy_completion_settings = {sources = {lsp = {timeout = 0}}}
+
 end
 registry.defer(keybind)
