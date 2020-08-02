@@ -61,9 +61,9 @@ registry.install("ms-jpq/nap", {["branch"] = "nap", ["do"] = ":UpdateRemotePlugi
 registry.install("ms-jpq/nap-clients", {["branch"] = "nap", ["do"] = ":UpdateRemotePlugins"})
 local keybind = function ()
 
-  bindings.map.normal("gz", "<cmd>FCstart<cr>")
+  bindings.map.normal("gz", "<cmd>NAPstart<cr>")
 
-  bindings.set("completefunc", "FComnifunc")
+  bindings.set("completefunc", "NAPomnifunc")
 
   vim.g.fancy_completion_settings = {sources = {lsp = {timeout = 0}}}
 
