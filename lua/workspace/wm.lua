@@ -48,10 +48,10 @@ local modern_split = function ()
   bindings.map.normal("<leader>;", "<c-w>R")
 
   -- reformat windows
-  bindings.map.normal("<s-left>",  "<c-w>H")
-  bindings.map.normal("<s-right>", "<c-w>L")
-  bindings.map.normal("<s-up>",    "<c-w>K")
-  bindings.map.normal("<s-down>",  "<c-w>J")
+  bindings.map.normal("<s-left>",  "<cmd>wincmd H<cr>")
+  bindings.map.normal("<s-right>", "<cmd>wincmd L<cr>")
+  bindings.map.normal("<s-up>",    "<cmd>wincmd K<cr>")
+  bindings.map.normal("<s-down>",  "<cmd>wincmd J<cr>")
 
 end
 registry.defer(modern_split)
