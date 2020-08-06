@@ -14,6 +14,7 @@ local formats = function ()
   fmt.add_fmt("prettier", t.stream, {"--stdin-filepath", "%"})
   fmt.add_fmt("rustfmt", t.stream, {})
   fmt.add_fmt("gofmt", t.stream, {})
+  fmt.add_fmt("scfg", t.stream, {})
 
 end
 registry.defer(formats)
