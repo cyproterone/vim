@@ -65,7 +65,10 @@ local keybind = function ()
 
   bindings.set("completefunc", "NAPomnifunc")
 
-  vim.g.nap_settings = {sources = {lsp = {enabled = true}}}
+  vim.g.nap_settings = {
+    loging_level = "DEBUG",
+    sources = {lsp = {enabled = true}}
+  }
 
 end
 registry.defer(keybind)
