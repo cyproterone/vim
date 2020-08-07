@@ -15,19 +15,55 @@ registry.defer(hotkeys)
 
 
 -- floating terminal
-registry.install("voldikss/vim-floaterm")
 local float_term = function ()
 
-  -- close on exit code 0
-  vim.g.floaterm_autoclose = 1
-  -- size
-  vim.g.floaterm_width = 0.9
-  vim.g.floaterm_height = 0.9
+  local rel_size = 0.95
+  local margin = 2
+  local options = {"nonumber", "signcolumn=no"}
+
+  local open_float_win = function ()
+    local t_width, t_height = vim.o.columns, vim.o.lines
+    local width  = math.floor((t_width - margin) * rel_size)
+    local height = math.floor((t_height - margin) * rel_size)
+    local row, col = (t_height - height) / 2, (t_width - width) / 2
+    local conf = {relative = "editor",
+                  anchor   = "NW",
+                  width    = width,
+                  height   = height,
+                  row      = row,
+                  col      = col,}
+    local win = api.nvim_open_win(0, true, conf)
+    if win ~= 0 then
+      local buf = api.nvim_create_buf(false, true)
+      api.nvim_win_set_buf(win, buf)
+      for _, option in ipairs(options) do
+        bindings.exec("setlocal " .. option)
+      end
+    end
+    return win
+  end
+
+  lv.term_notify = function (job_id, code, event_type)
+    print(job_id, code, event_type)
+  end
+
+
+  bindings.exec[[function! Lv_term_notify (job_id, code, event_type)
+    lua lv.term_notify(job_id, code, event_type)
+  endfunction]]
+
+  lv.toggle_float_term = function (prog)
+    local win = open_float_win()
+    if win == 0 then
+      api.nvim_err_writeln("Invaild window")
+    else
+      local program = prog or {env["SHELL"]}
+      local job = fn.termopen(program, {on_exit = "Lv_term_notify"})
+    end
+  end
 
   -- hotkeys
-  bindings.map.normal("<leader>u", "<cmd>FloatermToggle<cr>")
-  bindings.map.normal("[z", "<cmd>FloatermPrev<cr>")
-  bindings.map.normal("]z", "<cmd>FloatermNext<cr>")
+  bindings.map.normal("<leader>u", "<cmd>lua lv.toggle_float_term()<cr>")
 
 end
 registry.defer(float_term)
