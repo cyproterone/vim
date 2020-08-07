@@ -25,17 +25,19 @@ local float_term = function ()
     local width  = math.floor((t_width - margin) * rel_size)
     local height = math.floor((t_height - margin) * rel_size)
     local row, col = (t_height - height) / 2, (t_width - width) / 2
-    local conf = {relative = "editor",
-                  anchor   = "NW",
-                  width    = width,
-                  height   = height,
-                  row      = row,
-                  col      = col,
-                  style    = "minimal"}
+    local conf = {relative  = "editor",
+                  anchor    = "NW",
+                  width     = width,
+                  height    = height,
+                  row       = row,
+                  col       = col,
+                  focusable = false,
+                  style     = "minimal"}
     local win = api.nvim_open_win(0, true, conf)
     if win ~= 0 then
       local buf = api.nvim_create_buf(false, true)
       api.nvim_win_set_buf(win, buf)
+      -- api.nvim_win_set_option(win, "winhighlight", "")
     end
     return win
   end
