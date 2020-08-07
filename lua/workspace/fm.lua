@@ -7,6 +7,7 @@ local registry = require "libs/registry"
 registry.install("ms-jpq/chadtree", {["branch"] = "chad", ["do"] = ":UpdateRemotePlugins"})
 local keybind = function ()
 
+  vim.g.chadtree_settings = {logging_level = "DEBUG"}
   bindings.map.normal("<leader>v", "<cmd>CHADopen<cr>")
 
 end
