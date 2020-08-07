@@ -84,4 +84,10 @@ registry.defer(fzf)
 --#################### Navi Region ####################
 
 -- use [ ] to navigate various lists, ie quickfix
-registry.install("tpope/vim-unimpaired")
+local unimpaired = function ()
+
+  bindings.map.normal("[b", "<cmd>bprevious<cr>")
+  bindings.map.normal("]b", "<cmd>bnext<cr>")
+
+end
+registry.defer(unimpaired)
