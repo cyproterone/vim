@@ -19,7 +19,6 @@ local float_term = function ()
 
   local rel_size = 0.95
   local margin = 2
-  local options = {"nonumber", "signcolumn=no"}
 
   local open_float_win = function ()
     local t_width, t_height = vim.o.columns, vim.o.lines
@@ -31,14 +30,12 @@ local float_term = function ()
                   width    = width,
                   height   = height,
                   row      = row,
-                  col      = col,}
+                  col      = col,
+                  style    = "minimal"}
     local win = api.nvim_open_win(0, true, conf)
     if win ~= 0 then
       local buf = api.nvim_create_buf(false, true)
       api.nvim_win_set_buf(win, buf)
-      for _, option in ipairs(options) do
-        bindings.exec("setlocal " .. option)
-      end
     end
     return win
   end
