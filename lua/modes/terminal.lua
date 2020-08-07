@@ -33,11 +33,10 @@ local float_term = function ()
                   col       = col,
                   focusable = false,
                   style     = "minimal"}
-    local win = api.nvim_open_win(0, true, conf)
+    local buf = api.nvim_create_buf(false, true)
+    local win = api.nvim_open_win(buf, true, conf)
     if win ~= 0 then
-      local buf = api.nvim_create_buf(false, true)
-      api.nvim_win_set_buf(win, buf)
-      -- api.nvim_win_set_option(win, "winhighlight", "")
+      api.nvim_win_set_option(win, "winhighlight", "")
     end
     return win
   end
