@@ -82,8 +82,13 @@ local float_term = function ()
   end
 
 
-  lv.term_notify = function (job_id, code, event_type)
-    print(job_id, code, event_type)
+  local job_win_assoc = {}
+  lv.term_notify = function (job_id, code, _)
+    local win = job_win_assoc[job_id]
+    if win and code == 0 then
+      api.nvim_win_close(win, true)
+    end
+    job_win_assoc[job_id] = nil
   end
 
 
@@ -98,7 +103,8 @@ local float_term = function ()
       api.nvim_err_writeln("Invaild window")
     else
       local program = prog or {env["SHELL"]}
-      local job = fn.termopen(program, {on_exit = "Lv_term_notify"})
+      local job_id = fn.termopen(program, {on_exit = "Lv_term_notify"})
+      job_win_assoc[job_id] = win
       bindings.exec[[startinsert]]
     end
   end
