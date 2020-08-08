@@ -89,5 +89,24 @@ local unimpaired = function ()
   bindings.map.normal("[b", "<cmd>bprevious<cr>")
   bindings.map.normal("]b", "<cmd>bnext<cr>")
 
+  lv.add_line = function (up)
+    local row, _ = unpack(api.nvim_win_get_cursor(0))
+    row = row - 1
+    if up then
+      local btm, top = row - 1, row
+      local lines = api.nvim_buf_get_lines(0, btm, top, false)
+      table.insert(lines, "")
+      api.nvim_buf_set_lines(0, btm, top, true, lines)
+    else
+      local btm, top = row + 1, row + 2
+      local lines = api.nvim_buf_get_lines(0, btm, top, true)
+      table.insert(lines, 1, "")
+      api.nvim_buf_set_lines(0, btm, top, true, lines)
+    end
+  end
+
+  bindings.map.normal("[<space>", "<cmd>lua lv.add_line(true)<cr>")
+  bindings.map.normal("]<space>", "<cmd>lua lv.add_line(false)<cr>")
+
 end
 registry.defer(unimpaired)
