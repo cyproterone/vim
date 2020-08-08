@@ -48,7 +48,7 @@ end
 
 
 local reselect_visual = function ()
-  bindings.exec[[undojoin | norm! gv]]
+  bindings.exec[[norm! gv]]
 end
 
 
