@@ -4,6 +4,9 @@ local registry = require "libs/registry"
 
 --#################### Operators Region ####################
 
+-- . key repeat
+registry.install("tpope/vim-repeat")
+
 -- cs, ys, ds
 registry.install("tpope/vim-surround")
 
