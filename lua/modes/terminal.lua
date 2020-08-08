@@ -99,9 +99,11 @@ local float_term = function ()
 
   local job_win_assoc = {}
   lv.term_notify = function (job_id, code, _)
-    local win = job_win_assoc[job_id]
-    if win and code == 0 then
+    local winbuf = job_win_assoc[job_id]
+    if winbuf and code == 0 then
+      local win, buf = unpack(winbuf)
       pcall(api.nvim_win_close, win, true)
+      bindings.exec(":bwipeout! " .. buf)
     end
     job_win_assoc[job_id] = nil
   end
@@ -119,7 +121,7 @@ local float_term = function ()
       if not reuse then
         local program = prog or {env["SHELL"]}
         local job_id = fn.termopen(program, {on_exit = "Lv_term_notify"})
-        job_win_assoc[job_id] = win
+        job_win_assoc[job_id] = {win, buf}
       end
       bindings.exec[[startinsert]]
     end
