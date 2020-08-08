@@ -6,7 +6,7 @@ local std = require "libs/std"
 --#################### Navi Region ####################
 
 -- use [ ] to navigate various lists, ie quickfix
-local unimpaired = function ()
+local add_line = function ()
 
   lv.add_line = function (up)
     local count = math.max(vim.v.count, 1)
@@ -38,4 +38,4 @@ local unimpaired = function ()
   bindings.map.normal("]<space>", "<cmd>lua lv.add_line(false)<cr>")
 
 end
-registry.defer(unimpaired)
+registry.defer(add_line)
