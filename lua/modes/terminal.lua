@@ -113,6 +113,7 @@ local float_term = function ()
     call v:lua.lv.term_notify(a:job_id, a:code, a:event_type)
   endfunction]]
 
+
   local open = function (prog)
     local win, buf, reuse = open_float_win_bordered()
     if win == 0 then
@@ -126,6 +127,7 @@ local float_term = function ()
       bindings.exec[[startinsert]]
     end
   end
+
 
   lv.toggle_float_term = function (prog)
     local windows = api.nvim_list_wins()
