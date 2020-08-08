@@ -129,6 +129,8 @@ local quickfix_wm = function ()
     end
     if not closed then
       bindings.exec[[copen]]
+      local height = vim.o.previewheight
+      api.nvim_win_set_height(0, height)
     end
   end
 
