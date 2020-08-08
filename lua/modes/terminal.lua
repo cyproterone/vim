@@ -20,6 +20,18 @@ local float_term = function ()
   local rel_size = 0.95
   local margin = 2
 
+
+  local linked_windows = {}
+  local win_close_cmd = function ()
+    local win = tonumber(fn.expand("<afile>"))
+    local linked = linked_windows[win]
+    if linked then
+      api.nvim_win_close(linked, true)
+    end
+  end
+  registry.auto("WinClosed", win_close_cmd)
+
+
   local border_buf = function (width, height)
     local buf = api.nvim_create_buf(false, true)
     local lines = {}
@@ -38,6 +50,7 @@ local float_term = function ()
     return buf
   end
 
+
   local open_float_win = function (buf, width, height, row, col)
     local conf = {relative  = "editor",
                   anchor    = "NW",
@@ -54,24 +67,30 @@ local float_term = function ()
     return win
   end
 
+
   local open_float_win_bordered = function ()
     local t_width, t_height = vim.o.columns, vim.o.lines
     local width  = math.floor((t_width - margin) * rel_size)
     local height = math.floor((t_height - margin) * rel_size)
     local row, col = (t_height - height) / 2, (t_width - width) / 2
     local border = border_buf(width, height)
-    local win = open_float_win(border, width, height, row, col)
+    local border_win = open_float_win(border, width, height, row, col)
     local buf = api.nvim_create_buf(false, true)
-    return open_float_win(buf, width - 2, height - 2, row + 1, col + 1)
+    local win = open_float_win(buf, width - 2, height - 2, row + 1, col + 1)
+    linked_windows[win] = border_win
+    return win
   end
+
 
   lv.term_notify = function (job_id, code, event_type)
     print(job_id, code, event_type)
   end
 
+
   bindings.exec[[function! Lv_term_notify (job_id, code, event_type)
     lua lv.term_notify(job_id, code, event_type)
   endfunction]]
+
 
   lv.toggle_float_term = function (prog)
     local win = open_float_win_bordered()
@@ -83,6 +102,7 @@ local float_term = function ()
       bindings.exec[[startinsert]]
     end
   end
+
 
   -- hotkeys
   bindings.map.normal("<leader>u", "<cmd>lua lv.toggle_float_term()<cr>")
