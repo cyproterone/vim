@@ -26,7 +26,7 @@ local float_term = function ()
     local win = tonumber(fn.expand("<afile>"))
     local linked = linked_windows[win]
     if linked then
-      api.nvim_win_close(linked, true)
+      pcall(api.nvim_win_close, linked, true)
     end
   end
   registry.auto("WinClosed", win_close_cmd)
@@ -51,14 +51,29 @@ local float_term = function ()
   end
 
 
-  local open_float_win = function (buf, width, height, row, col)
+  local buf_mark = "terminal_buffer"
+  local term_buf = function ()
+    local bufs = api.nvim_list_bufs()
+    for _, buf in ipairs(bufs) do
+      local go, mark = pcall(api.nvim_buf_get_var, buf, buf_mark)
+      if go and mark then
+        return buf, true
+      end
+    end
+    local buf = api.nvim_create_buf(false, true)
+    api.nvim_buf_set_var(buf, buf_mark, true)
+    return buf, false
+  end
+
+
+  local open_float_win = function (buf, width, height, row, col, focusable)
     local conf = {relative  = "editor",
                   anchor    = "NW",
                   width     = width,
                   height    = height,
                   row       = row,
                   col       = col,
-                  focusable = false,
+                  focusable = focusable,
                   style     = "minimal"}
     local win = api.nvim_open_win(buf, true, conf)
     if win ~= 0 then
@@ -74,11 +89,11 @@ local float_term = function ()
     local height = math.floor((t_height - margin) * rel_size)
     local row, col = (t_height - height) / 2, (t_width - width) / 2
     local border = border_buf(width, height)
-    local border_win = open_float_win(border, width, height, row, col)
-    local buf = api.nvim_create_buf(false, true)
-    local win = open_float_win(buf, width - 2, height - 2, row + 1, col + 1)
+    local border_win = open_float_win(border, width, height, row, col, false)
+    local buf, reuse = term_buf()
+    local win = open_float_win(buf, width - 2, height - 2, row + 1, col + 1, true)
     linked_windows[win] = border_win
-    return win
+    return win, buf, reuse
   end
 
 
@@ -86,7 +101,7 @@ local float_term = function ()
   lv.term_notify = function (job_id, code, _)
     local win = job_win_assoc[job_id]
     if win and code == 0 then
-      api.nvim_win_close(win, true)
+      pcall(api.nvim_win_close, win, true)
     end
     job_win_assoc[job_id] = nil
   end
@@ -96,17 +111,31 @@ local float_term = function ()
     call v:lua.lv.term_notify(a:job_id, a:code, a:event_type)
   endfunction]]
 
-
-  lv.toggle_float_term = function (prog)
-    local win = open_float_win_bordered()
+  local open = function (prog)
+    local win, buf, reuse = open_float_win_bordered()
     if win == 0 then
       api.nvim_err_writeln("Invaild window")
     else
-      local program = prog or {env["SHELL"]}
-      local job_id = fn.termopen(program, {on_exit = "Lv_term_notify"})
-      job_win_assoc[job_id] = win
+      if not reuse then
+        local program = prog or {env["SHELL"]}
+        local job_id = fn.termopen(program, {on_exit = "Lv_term_notify"})
+        job_win_assoc[job_id] = win
+      end
       bindings.exec[[startinsert]]
     end
+  end
+
+  lv.toggle_float_term = function (prog)
+    local windows = api.nvim_list_wins()
+    for _, win in ipairs(windows) do
+      local buf = api.nvim_win_get_buf(win)
+      local go, mark = pcall(api.nvim_buf_get_var, buf, buf_mark)
+      if go and mark then
+        pcall(api.nvim_win_close, win, true)
+        return
+      end
+    end
+    open(prog)
   end
 
 
