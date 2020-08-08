@@ -1,5 +1,6 @@
 local bindings = require "libs/bindings"
 local registry = require "libs/registry"
+local std = require "libs/std"
 
 
 --#################### Navi Region ####################
@@ -8,21 +9,22 @@ local registry = require "libs/registry"
 local unimpaired = function ()
 
   lv.add_line = function (up)
-    local count = v:count or 1
+    local count = math.max(vim.v.count, 1)
     local row, _ = unpack(api.nvim_win_get_cursor(0))
     row = row - 1
     if up then
-      local btm, top = row - 1, row
-      local lines = api.nvim_buf_get_lines(0, btm, top, false)
-      for _ = 1, count do
+      local btm, top = math.max(row - 1, 0), row
+      local lines = api.nvim_buf_get_lines(0, btm, top, true)
+      for _ in std.range(1, count) do
         table.insert(lines, "")
       end
       api.nvim_buf_set_lines(0, btm, top, true, lines)
     else
-      local btm, top = row + 1, row + 2
+      local max = api.nvim_buf_line_count(0)
+      local btm, top = row + 1, math.min(row + 2, max)
       local lines = api.nvim_buf_get_lines(0, btm, top, true)
       local new_lines = {}
-      for _ in 1, count do
+      for _ in std.range(1, count) do
         table.insert(new_lines, "")
       end
       for _, line in ipairs(lines) do
