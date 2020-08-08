@@ -13,9 +13,8 @@ local entire = function ()
   lv.textobj_entire = function ()
     local count = api.nvim_buf_line_count(0)
     local line = unpack(api.nvim_buf_get_lines(0, -2, -1, true))
-    local len = string.len(line)
     fn.setpos("'<", {0, 1, 1, 0})
-    fn.setpos("'>", {0, count, len, 0})
+    fn.setpos("'>", {0, count, #line, 0})
     bindings.exec[[norm! `<V`>]]
   end
 
@@ -31,16 +30,14 @@ registry.defer(entire)
 local line = function ()
 
   local p_inner = function (line)
-    local len = string.len(line)
     local enil = string.reverse(line)
     local top = string.find(line, "%S") or 0
-    local btm = len - (string.find(enil, "%S") or 0) + 1
+    local btm = #line - (string.find(enil, "%S") or 0) + 1
     return top, btm
   end
 
   local p_outer = function (line)
-    local len = string.len(line)
-    return 1, len
+    return 1, #line
   end
 
   lv.textobj_line = function (inner)
