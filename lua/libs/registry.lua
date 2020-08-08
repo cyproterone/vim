@@ -81,9 +81,12 @@ end
 local init_plug = function (cont)
   if fn.filereadable(vim_plug) == 0 then
     local on_exit = {on_exit = "InitVIMtinI"}
-    lv.cont_init = cont
+    lv.cont_init = function ()
+      lv.cont_init = nil
+      cont(false)
+    end
     bindings.exec[[function! InitVIMtinI (job_id, code, event_type)
-      lua lv.cont_init()
+      call v:lua.lv.cont_init(a:job_id, a:code, a:event_type)
     endfunction]]
     fn.termopen({vim_inst}, on_exit)
   else

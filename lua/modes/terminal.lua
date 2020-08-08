@@ -88,7 +88,7 @@ local float_term = function ()
 
 
   bindings.exec[[function! Lv_term_notify (job_id, code, event_type)
-    lua lv.term_notify(job_id, code, event_type)
+    call v:lua.lv.term_notify(a:job_id, a:code, a:event_type)
   endfunction]]
 
 
