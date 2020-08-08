@@ -29,7 +29,7 @@ require "versioning/git"
 require "versioning/vc"
 
 -- editor
-require "editor/delimiter"
+require "editor/delimiters"
 require "editor/fmt"
 require "editor/highlight"
 require "editor/lint"

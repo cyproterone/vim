@@ -60,6 +60,7 @@ local float_term = function ()
     else
       local program = prog or {env["SHELL"]}
       local job = fn.termopen(program, {on_exit = "Lv_term_notify"})
+      bindings.exec[[startinsert]]
     end
   end
 
