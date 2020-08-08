@@ -20,7 +20,25 @@ local float_term = function ()
   local rel_size = 0.95
   local margin = 2
 
-  local open_float_win = function (width, height, row, col)
+  local border_buf = function (width, height)
+    local buf = api.nvim_create_buf(false, true)
+    local lines = {}
+
+    local top = "╭" .. string.rep("─", width - 2) .. "╮"
+    local mid = "│" .. string.rep(" ", width - 2) .. "│"
+    local btm = "╰" .. string.rep("─", width - 2) .. "╯"
+
+    table.insert(lines, top)
+    for _ = 1, (height - 2) do
+      table.insert(lines, mid)
+    end
+    table.insert(lines, btm)
+
+    api.nvim_buf_set_lines(buf, 0, -1, true, lines)
+    return buf
+  end
+
+  local open_float_win = function (buf, width, height, row, col)
     local conf = {relative  = "editor",
                   anchor    = "NW",
                   width     = width,
@@ -29,7 +47,6 @@ local float_term = function ()
                   col       = col,
                   focusable = false,
                   style     = "minimal"}
-    local buf = api.nvim_create_buf(false, true)
     local win = api.nvim_open_win(buf, true, conf)
     if win ~= 0 then
       api.nvim_win_set_option(win, "winhighlight", "Normal:Floating")
@@ -42,7 +59,10 @@ local float_term = function ()
     local width  = math.floor((t_width - margin) * rel_size)
     local height = math.floor((t_height - margin) * rel_size)
     local row, col = (t_height - height) / 2, (t_width - width) / 2
-    return open_float_win(width, height, row, col)
+    local border = border_buf(width, height)
+    local win = open_float_win(border, width, height, row, col)
+    local buf = api.nvim_create_buf(false, true)
+    return open_float_win(buf, width - 2, height - 2, row + 1, col + 1)
   end
 
   lv.term_notify = function (job_id, code, event_type)
