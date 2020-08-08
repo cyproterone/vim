@@ -9,6 +9,8 @@ local delimit = function ()
 
   local match_pairs = {
     ["{"] = "}",
+    ["["] = "]",
+    ["("] = ")",
     ['"'] = '"',
     ["'"] = "'",
     ["`"] = "`",
