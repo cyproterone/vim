@@ -57,15 +57,15 @@ registry.defer(hotkeys)
 
 --#################### Auto Region ####################
 
-registry.install("ms-jpq/nap", {["branch"] = "nap", ["do"] = ":UpdateRemotePlugins"})
-registry.install("ms-jpq/nap-t9", {["branch"] = "nap", ["do"] = ":UpdateRemotePlugins"})
+registry.install("ms-jpq/narc",    {["branch"] = "narc", ["do"] = ":UpdateRemotePlugins"})
+registry.install("ms-jpq/narc-t9", {["branch"] = "narc", ["do"] = ":UpdateRemotePlugins"})
 local keybind = function ()
 
-  bindings.map.normal("gz", "<cmd>NAPstart<cr>")
+  bindings.map.normal("gz", "<cmd>NARCstart<cr>")
 
-  bindings.set("completefunc", "NAPomnifunc")
+  bindings.set("completefunc", "NARComnifunc")
 
-  vim.g.nap_settings = {
+  vim.g.narc_settings = {
     logging_level = "DEBUG",
     sources = {lsp = {enabled = true}}
   }
