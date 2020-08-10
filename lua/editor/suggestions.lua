@@ -58,7 +58,7 @@ registry.defer(hotkeys)
 --#################### Auto Region ####################
 
 registry.install("ms-jpq/nap", {["branch"] = "nap", ["do"] = ":UpdateRemotePlugins"})
-registry.install("ms-jpq/nap-clients", {["branch"] = "nap", ["do"] = ":UpdateRemotePlugins"})
+registry.install("ms-jpq/nap-t9", {["branch"] = "nap", ["do"] = ":UpdateRemotePlugins"})
 local keybind = function ()
 
   bindings.map.normal("gz", "<cmd>NAPstart<cr>")
