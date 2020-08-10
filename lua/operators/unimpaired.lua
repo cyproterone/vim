@@ -9,7 +9,7 @@ local std = require "libs/std"
 local add_line = function ()
 
   lv.add_line = function (up)
-    local count = math.max(vim.v.count, 1)
+    local count = vim.v.count1
     local row, _ = unpack(api.nvim_win_get_cursor(0))
     row = row - 1
     if up then
