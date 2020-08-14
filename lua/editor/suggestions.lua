@@ -61,7 +61,7 @@ registry.install("ms-jpq/narc",          {["branch"] = "narc", ["do"] = ":Update
 registry.install("ms-jpq/narc-t9",       {["branch"] = "narc", ["do"] = ":UpdateRemotePlugins"})
 registry.install("ms-jpq/narc-snippets", {["branch"] = "narc", ["do"] = ":UpdateRemotePlugins"})
 registry.install("honza/vim-snippets")
-registry.install("Shougo/neosnippet.vim")
+registry.install("Shougo/neosnippet-snippets")
 local keybind = function ()
 
   bindings.map.normal("gz", "<cmd>NARCstart<cr>")
