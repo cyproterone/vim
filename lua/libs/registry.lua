@@ -13,7 +13,7 @@ local pip_home = vars_home .. "/pip_modules"
 local npm_home = vars_home .. "/node_modules"
 local vim_plug = vim_home .. "/autoload/plug.vim"
 local vim_inst = vim_home .. "/init.sh"
-local py_log = vars_home .. "/nvim_python.log"
+local py_log = logs_home .. "/nvim_"
 
 
 local _plugins = {}
