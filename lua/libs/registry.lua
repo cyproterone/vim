@@ -13,6 +13,7 @@ local pip_home = vars_home .. "/pip_modules"
 local npm_home = vars_home .. "/node_modules"
 local vim_plug = vim_home .. "/autoload/plug.vim"
 local vim_inst = vim_home .. "/init.sh"
+local py_log = vim_home .. "/nvim_python.log"
 
 
 local _plugins = {}
@@ -184,6 +185,9 @@ local paths = function ()
   else
     env["PYTHONPATH"] = pip_home
   end
+
+  env["NVIM_PYTHON_LOG_FILE"] = py_log
+
 end
 
 
