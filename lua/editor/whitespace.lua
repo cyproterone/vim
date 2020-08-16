@@ -49,7 +49,7 @@ local trailing_whitespace = function ()
       local trimmable = true
       for i in std.range(#lines, 1, -1) do
         local line = lines[i]
-        local new_line = string.gsub(line, "%s$", "")
+        local new_line = string.gsub(line, "%s+$", "")
         trimmable = trimmable and i > row and new_line == ""
         if trimmable then
           lines[i] = nil
