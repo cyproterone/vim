@@ -39,28 +39,23 @@ registry.defer(unsurprising_tab)
 local trailing_whitespace = function ()
 
   local strip = function ()
-    local m = api.nvim_get_mode()
-    if m.mode ~= "n" then
-      return
-    else
-      local row, col = unpack(api.nvim_win_get_cursor(0))
-      local lines = api.nvim_buf_get_lines(0, 0, -1, true)
+    local row, col = unpack(api.nvim_win_get_cursor(0))
+    local lines = api.nvim_buf_get_lines(0, 0, -1, true)
 
-      local trimmable = true
-      for i in std.range(#lines, 1, -1) do
-        local line = lines[i]
-        local new_line = string.gsub(line, "%s+$", "")
-        trimmable = trimmable and i > row and new_line == ""
-        if trimmable then
-          lines[i] = nil
-        elseif i ~= row then
-          lines[i] = new_line
-        end
+    local trimmable = true
+    for i in std.range(#lines, 1, -1) do
+      local line = lines[i]
+      local new_line = string.gsub(line, "%s+$", "")
+      trimmable = trimmable and i > row and new_line == ""
+      if trimmable then
+        lines[i] = nil
+      elseif i ~= row then
+        lines[i] = new_line
       end
-
-      api.nvim_buf_set_lines(0, 0, -1, true, lines)
-      api.nvim_win_set_cursor(0, {row, col})
     end
+
+    api.nvim_buf_set_lines(0, 0, -1, true, lines)
+    api.nvim_win_set_cursor(0, {row, col})
   end
 
   registry.auto("BufWritePre", strip, "*", "silent undojoin |")
