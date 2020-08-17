@@ -4,8 +4,10 @@ yaml-language-server
 bash-language-server
 pyright
 dockerfile-language-server-nodejs
+rome
 typescript-language-server
 typescript
 vscode-html-languageserver-bin
 vscode-css-languageserver-bin
 vim-language-server
+sql-language-server
