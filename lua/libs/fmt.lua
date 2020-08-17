@@ -58,7 +58,6 @@ local fmt_stream = function (prog, args)
     end
     local new_lines = vim.split(text, "\n", true)
     a.wait(loop.main)
-    new_lines[#new_lines] = nil
     api.nvim_buf_set_lines(0, 0, -1, true, new_lines)
   end)
 end
