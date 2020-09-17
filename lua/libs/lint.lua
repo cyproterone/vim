@@ -66,7 +66,9 @@ local print_message = function (code, err, out)
   local win = open_preview()
   api.nvim_set_current_win(cwin)
   local buf = api.nvim_win_get_buf(win)
+  api.nvim_buf_set_option(buf, "modifiable", true)
   api.nvim_buf_set_lines(buf, 0, -1, true, new_lines)
+  api.nvim_buf_set_option(buf, "modifiable", false)
   api.nvim_win_set_buf(win, buf)
 end
 
