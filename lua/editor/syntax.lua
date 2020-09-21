@@ -4,7 +4,7 @@ local registry = require "libs/registry"
 
 --#################### Syntax Region ####################
 
-registry.install("nvim-treesitter/nvim-treesitter")
+-- registry.install("nvim-treesitter/nvim-treesitter")
 local tree_sitter = function ()
 
   -- bindings.exec[[lua lv.tmp = require("nvim-treesitter.configs")]]
