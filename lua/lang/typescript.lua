@@ -7,6 +7,7 @@ local ftp = require "libs/ftp"
 
 
 local ft = {
+  "json",
   "javascript",
   "javascriptreact",
   "javascript.jsx",
@@ -16,10 +17,10 @@ local ft = {
 
 
 local lsp = function ()
-  if not bindings.executable("typescript-language-server") then
+  if not bindings.executable("rome") then
     return
   end
-  local lsp = lv.lsp.tsserver
+  local lsp = lv.lsp.rome
   lsp.setup{
     root_dir = ftp.lsp_root{},
   }

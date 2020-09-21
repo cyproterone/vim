@@ -16,7 +16,6 @@ local formats = function ()
   fmt.add_fmt("fmt-py", t.stream, {})
   fmt.add_fmt("rustfmt", t.stream, {})
   fmt.add_fmt("gofmt", t.stream, {})
-  fmt.add_fmt("sqlformat", t.stream, {"--reindent", "-"})
 
 end
 registry.defer(formats)

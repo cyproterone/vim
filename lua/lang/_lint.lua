@@ -11,6 +11,7 @@ local formats = function ()
 
   lint.add_linter("mypy", t.fs, {"%"})
   lint.add_linter("shellcheck", t.fs, {"%"})
+  lint.add_linter("sqlint", t.fs, {"%"})
 
 end
 registry.defer(formats)

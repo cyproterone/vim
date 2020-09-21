@@ -10,3 +10,4 @@ typescript
 vscode-html-languageserver-bin
 vscode-css-languageserver-bin
 vim-language-server
+sqlint

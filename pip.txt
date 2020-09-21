@@ -1,5 +1,4 @@
 sortd
-sqlparse
 python-language-server[all]
 mypy
 isort
