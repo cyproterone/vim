@@ -5,7 +5,7 @@ local registry = require "libs/registry"
 
 --#################### LSP Region ####################
 
-registry.install("neovim/nvim-lsp")
+registry.install("neovim/nvim-lspconfig")
 local lsp_keybinds = function ()
 
   bindings.exec[[lua lv.lsp = require "nvim_lsp"]]

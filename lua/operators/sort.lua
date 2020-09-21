@@ -1,4 +1,3 @@
-
 local bindings = require "libs/bindings"
 local fmt = require "libs/fmt"
 local registry = require "libs/registry"

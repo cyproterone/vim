@@ -11,10 +11,10 @@ local ft = {"python"}
 
 
 local lsp = function ()
-  if not bindings.executable("pyls") then
+  if not bindings.executable("pyright-langserver") then
     return
   end
-  local lsp = lv.lsp.pyls
+  local lsp = lv.lsp.pyright
   lsp.setup{
     root_dir = ftp.lsp_root{},
   }
