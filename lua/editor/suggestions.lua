@@ -73,5 +73,11 @@ local keybind = function ()
     sources = {lsp = {enabled = true}}
   }
 
+  vim.g.narc_snippet_sources = {
+    snipmate = {"vim-snippets/snippets"},
+    ultisnips = {"vim-snippets/UltiSnips"},
+    neosnippet = {"neosnippet-snippets/neosnippets"},
+  }
+
 end
 registry.defer(keybind)
