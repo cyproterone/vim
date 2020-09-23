@@ -8,15 +8,16 @@ local std = require "libs/std"
 -- try to guess table size
 registry.install("tpope/vim-sleuth")
 local tab_size = function ()
+  local tabsize = 2
 
   -- how big are tabs ?
-  bindings.set("tabstop", 2)
+  bindings.set("tabstop", tabsize)
 
   -- spaces remove on deletion
-  bindings.set("softtabstop", 2)
+  bindings.set("softtabstop", tabsize)
 
   -- manual indentation width
-  bindings.set("shiftwidth", 2)
+  bindings.set("shiftwidth", tabsize)
 
 end
 registry.defer(tab_size)
