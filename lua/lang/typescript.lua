@@ -13,14 +13,15 @@ local ft = {
   "javascript.jsx",
   "typescript",
   "typescriptreact",
-  "typescript.tsx" }
+  "typescript.tsx",
+}
 
 
 local lsp = function ()
-  if not bindings.executable("rome") then
+  if not bindings.executable("typescript-language-server") then
     return
   end
-  local lsp = lv.lsp.rome
+  local lsp = lv.lsp.tsserver
   lsp.setup{
     root_dir = ftp.lsp_root{},
   }
