@@ -11,7 +11,6 @@ local formats = function ()
 
   fmt.add_fmt("fmt-json", t.stream, {"%"})
   fmt.add_fmt("scfg", t.stream, {})
-
   fmt.add_fmt("prettier", t.stream, {"--stdin-filepath", "--", "%"})
   fmt.add_fmt("fmt-py", t.stream, {})
   fmt.add_fmt("rustfmt", t.stream, {})
