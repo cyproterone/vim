@@ -7,7 +7,6 @@ local ftp = require "libs/ftp"
 
 
 local ft = {
-  "json",
   "javascript",
   "javascriptreact",
   "javascript.jsx",
