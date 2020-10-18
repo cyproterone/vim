@@ -12,8 +12,8 @@ local _formatter_assoc = {}
 local fmt_type = {lsp="lsp", stream="stream", fs="fs"}
 
 
-local add_fmt = function (prog, fmt_type, args)
-  _formatters[prog] = {fmt_type=fmt_type, prog=prog, args=args}
+local add_fmt = function (prog, fmt_type, mk_args)
+  _formatters[prog] = {fmt_type=fmt_type, prog=prog, mk_args=mk_args}
 end
 
 
@@ -29,19 +29,6 @@ local assoc_fmt = function (fmt, filetypes)
 end
 
 
-local fmt_args = function (args)
-  local filename = vim.fn.bufname("%")
-  local new_args = std.map(args, function (arg)
-    if arg == "%" then
-      return filename
-    else
-      return arg
-    end
-  end)
-  return new_args
-end
-
-
 local fmt_lsp = function ()
   error("fmt_lsp")
 end
@@ -50,7 +37,7 @@ end
 local fmt_stream = function (prog, args)
   local lines = api.nvim_buf_get_lines(0, 0, -1, true)
   return a.sync(function ()
-    local args = {args = fmt_args(args),
+    local args = {args = args,
                   stream = table.concat(lines, "\n")}
     local code, text, err = a.wait(loop.spawn(prog, args))
     if code ~= 0 then
@@ -65,7 +52,7 @@ end
 
 local fmt_fs = function (prog, args)
   return a.sync(function ()
-    local args = {args = fmt_args(args)}
+    local args = {args = args}
     local code, _, err = a.wait(loop.spawn(prog, args))
     a.wait(loop.main)
     bindings.exec[[checktime]]
@@ -102,9 +89,10 @@ local do_fmt = function ()
 
     a.sync(function ()
       local row, col = unpack(api.nvim_win_get_cursor(0))
-      a.wait(fmt(formatter.prog, formatter.args))
+      a.wait(fmt(formatter.prog, formatter.mk_args()))
       local new_row = math.min(row, api.nvim_buf_line_count(0))
       api.nvim_win_set_cursor(0, {new_row, col})
+      print("Formatted using -- " .. formatter.prog)
     end)()
   end
 end

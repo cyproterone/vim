@@ -9,9 +9,17 @@ local formats = function ()
 
   local t = lint.linter_type
 
-  lint.add_linter("mypy", t.fs, {"--", "%"})
-  lint.add_linter("shellcheck", t.fs, {"--", "%"})
-  lint.add_linter("sqlint", t.fs, {"--", "%"})
+  lint.add_linter("mypy", t.fs, function ()
+    return {"--", vim.fn.bufname("%")}
+  end)
+
+  lint.add_linter("shellcheck", t.fs, function ()
+    return {"--", vim.fn.bufname("%")}
+  end)
+
+  lint.add_linter("sqlint", t.fs, function ()
+    return {"--", vim.fn.bufname("%")}
+  end)
 
 end
 registry.defer(formats)

@@ -12,8 +12,8 @@ local _linter_assoc = {}
 local linter_type = {stream="stream", fs="fs"}
 
 
-local add_linter = function (prog, linter_type, args)
-  _linters[prog] = {linter_type=linter_type, prog=prog, args=args}
+local add_linter = function (prog, linter_type, mk_args)
+  _linters[prog] = {linter_type=linter_type, prog=prog, mk_args=mk_args}
 end
 
 
@@ -26,19 +26,6 @@ local assoc_linter = function (lint, filetypes)
       _linter_assoc[ft] = linter
     end
   end
-end
-
-
-local lint_args = function (args)
-  local filename = vim.fn.bufname("%")
-  local new_args = std.map(args, function (arg)
-    if arg == "%" then
-      return filename
-    else
-      return arg
-    end
-  end)
-  return new_args
 end
 
 
@@ -76,7 +63,7 @@ end
 local lint_stream = function (prog, args)
   local lines = api.nvim_buf_get_lines(0, 0, -1, true)
   a.sync(function ()
-    local args = {args = lint_args(args),
+    local args = {args = args,
                   stream = table.concat(lines, "\n")}
     local code, out, err = a.wait(loop.spawn(prog, args))
     print_message(code, err, out)
@@ -86,7 +73,7 @@ end
 
 local lint_fs = function (prog, args)
   a.sync(function ()
-    local args = {args = lint_args(args)}
+    local args = {args = args}
     local code, out, err = a.wait(loop.spawn(prog, args))
     print_message(code, err, out)
   end)()
@@ -100,17 +87,14 @@ local do_lint = function ()
   if linter == nil then
     api.nvim_err_writeln("no linter associated with ft -- " .. ft)
   else
-    local lint = (function ()
       local lint_type = linter.linter_type
       if lint_type == linter_type.stream then
-        return lint_stream
+        lint_stream(linter.prog, linter.mk_args())
       elseif lint_type == linter_type.fs then
-        return lint_fs
+        lint_fs(linter.prog, linter.mk_args())
       else
         error("unknown lint type -- " .. linter_type)
-      end
-    end)()
-    lint(linter.prog, linter.args)
+    end
   end
 end
 
