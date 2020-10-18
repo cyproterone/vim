@@ -42,10 +42,12 @@ local fmt_stream = function (prog, args)
     local code, text, err = a.wait(loop.spawn(prog, args))
     if code ~= 0 then
       error(err)
+    else
+      local new_lines = vim.split(text, "\n", true)
+      a.wait(loop.main)
+      api.nvim_buf_set_lines(0, 0, -1, true, new_lines)
+      print("Formatted using -- " .. prog)
     end
-    local new_lines = vim.split(text, "\n", true)
-    a.wait(loop.main)
-    api.nvim_buf_set_lines(0, 0, -1, true, new_lines)
   end)
 end
 
@@ -58,6 +60,8 @@ local fmt_fs = function (prog, args)
     bindings.exec[[checktime]]
     if code ~= 0 then
       error(err)
+    else
+      print("Formatted using -- " .. prog)
     end
   end)
 end
@@ -92,7 +96,6 @@ local do_fmt = function ()
       a.wait(fmt(formatter.prog, formatter.mk_args()))
       local new_row = math.min(row, api.nvim_buf_line_count(0))
       api.nvim_win_set_cursor(0, {new_row, col})
-      print("Formatted using -- " .. formatter.prog)
     end)()
   end
 end
