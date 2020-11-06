@@ -4,12 +4,11 @@ local registry = require "libs/registry"
 
 --#################### Syntax Region ####################
 
--- registry.install("nvim-treesitter/nvim-treesitter")
+registry.install("nvim-treesitter/nvim-treesitter")
+registry.install("nvim-treesitter/nvim-treesitter-textobjects")
 local tree_sitter = function ()
 
-  -- bindings.exec[[lua lv.tmp = require("nvim-treesitter.configs")]]
-  -- local ts = lv.tmp
-  -- lv.tmp = nil
+  -- local ts = require("nvim-treesitter.configs")
   -- ts.setup{}
 
 end
