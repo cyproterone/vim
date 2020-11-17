@@ -66,7 +66,7 @@ local keybind = function ()
 
   bindings.map.normal("gz", "<cmd>NARCstart<cr>")
 
-  bindings.set("completefunc", "NARComnifunc")
+  bindings.set("completefunc", "KoKomnifunc")
 
   vim.g.narc_settings = {
     logging_level = "DEBUG",
