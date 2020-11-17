@@ -64,7 +64,7 @@ registry.install("honza/vim-snippets")
 registry.install("Shougo/neosnippet-snippets")
 local keybind = function ()
 
-  bindings.map.normal("gz", "<cmd>NARCstart<cr>")
+  bindings.map.normal("gz", "<cmd>KoKstart<cr>")
 
   bindings.set("completefunc", "KoKomnifunc")
 
