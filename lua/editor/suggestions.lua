@@ -57,9 +57,9 @@ registry.defer(hotkeys)
 
 --#################### Auto Region ####################
 
-registry.install("ms-jpq/narc",          {["branch"] = "narc", ["do"] = ":UpdateRemotePlugins"})
-registry.install("ms-jpq/narc-t9",       {["branch"] = "narc", ["do"] = ":UpdateRemotePlugins"})
-registry.install("ms-jpq/narc-snippets", {["branch"] = "narc", ["do"] = ":UpdateRemotePlugins"})
+registry.install("ms-jpq/kok.nvim",          {["branch"] = "narc", ["do"] = ":UpdateRemotePlugins"})
+registry.install("ms-jpq/kok-t9",       {["branch"] = "narc", ["do"] = ":UpdateRemotePlugins"})
+registry.install("ms-jpq/kok-snippets", {["branch"] = "narc", ["do"] = ":UpdateRemotePlugins"})
 registry.install("honza/vim-snippets")
 registry.install("Shougo/neosnippet-snippets")
 local keybind = function ()

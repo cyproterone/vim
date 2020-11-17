@@ -4,8 +4,8 @@ local registry = require "libs/registry"
 
 --#################### Syntax Region ####################
 
-registry.install("nvim-treesitter/nvim-treesitter")
-registry.install("nvim-treesitter/nvim-treesitter-textobjects")
+-- registry.install("nvim-treesitter/nvim-treesitter")
+-- registry.install("nvim-treesitter/nvim-treesitter-textobjects")
 local tree_sitter = function ()
 
   -- local ts = require("nvim-treesitter.configs")
