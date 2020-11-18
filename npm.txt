@@ -1,13 +1,13 @@
-prettier
 vscode-json-languageserver
 yaml-language-server
 bash-language-server
 pyright
+prettier
 dockerfile-language-server-nodejs
-rome
-typescript-language-server
 typescript
+typescript-language-server
+rome
 vscode-html-languageserver-bin
 vscode-css-languageserver-bin
 vim-language-server
-sqlint
+sql-language-server

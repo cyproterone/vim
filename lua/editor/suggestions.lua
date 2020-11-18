@@ -58,10 +58,10 @@ registry.defer(hotkeys)
 --#################### Auto Region ####################
 
 registry.install("ms-jpq/kok.nvim",     {["branch"] = "kok", ["do"] = ":UpdateRemotePlugins"})
-registry.install("ms-jpq/kok-t9",       {["branch"] = "kok", ["do"] = ":UpdateRemotePlugins"})
-registry.install("ms-jpq/kok-snippets", {["branch"] = "kok", ["do"] = ":UpdateRemotePlugins"})
-registry.install("honza/vim-snippets")
-registry.install("Shougo/neosnippet-snippets")
+-- registry.install("ms-jpq/kok-t9",       {["branch"] = "kok", ["do"] = ":UpdateRemotePlugins"})
+-- registry.install("ms-jpq/kok-snippets", {["branch"] = "kok", ["do"] = ":UpdateRemotePlugins"})
+-- registry.install("honza/vim-snippets")
+-- registry.install("Shougo/neosnippet-snippets")
 local keybind = function ()
 
   bindings.map.normal("gz", "<cmd>KoKstart<cr>")

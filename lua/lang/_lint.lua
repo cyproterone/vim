@@ -17,9 +17,5 @@ local formats = function ()
     return {"--", vim.fn.bufname("%")}
   end)
 
-  lint.add_linter("sqlint", t.fs, function ()
-    return {"--", vim.fn.bufname("%")}
-  end)
-
 end
 registry.defer(formats)

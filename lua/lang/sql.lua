@@ -24,7 +24,6 @@ end
 
 
 local lang = function ()
-  lint.assoc_linter("sqlint", ft)
   lsp()
 end
 ftp.defer(ft, lang)
