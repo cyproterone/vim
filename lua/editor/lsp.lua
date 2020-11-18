@@ -28,8 +28,8 @@ local lsp_keybinds = function ()
   bindings.map.normal("ge", "<cmd>lua vim.lsp.buf.document_symbol()<cr>")
   bindings.map.normal("gE", "<cmd>lua vim.lsp.buf.workspace_symbol()<cr>")
 
-  bindings.map.normal("d[", "<cmd>lua vim.lsp.diagnostic.goto_prev{ wrap = true }<cr>")
-  bindings.map.normal("d]", "<cmd>lua vim.lsp.diagnostic.goto_next{ wrap = true }<cr>")
+  bindings.map.normal("g[", "<cmd>lua vim.lsp.diagnostic.goto_prev()<cr>")
+  bindings.map.normal("g]", "<cmd>lua vim.lsp.diagnostic.goto_next()<cr>")
 
 end
 registry.defer(lsp_keybinds)
